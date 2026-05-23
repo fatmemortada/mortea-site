@@ -1,1 +1,1 @@
-Upload these files to your GitHub repository and replace the old files.
+Mortéa luxury landing page - Cloudflare Pages deployment.
