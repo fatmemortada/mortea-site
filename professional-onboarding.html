@@ -1,0 +1,162 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mortéa Professional Onboarding</title>
+
+<link rel="stylesheet" href="style.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<div class="background-glow glow-left"></div>
+<div class="background-glow glow-right"></div>
+
+<div class="onboarding-wrapper">
+
+  <div class="progress-bar">
+    <div class="progress-fill" id="progressFill"></div>
+  </div>
+
+  <div class="step-indicator">
+    <span id="stepText">Step 1 of 5</span>
+  </div>
+
+  <form class="luxury-flow">
+
+    <section class="step active">
+      <p class="eyebrow">Step 1</p>
+      <h1>Choose your category.</h1>
+
+      <div class="option-grid">
+        <button type="button" class="option-card">Hair Salon</button>
+        <button type="button" class="option-card">Nail Studio</button>
+        <button type="button" class="option-card">Head Spa</button>
+        <button type="button" class="option-card">Massage Center</button>
+        <button type="button" class="option-card">Mobile Beauty Professional</button>
+        <button type="button" class="option-card">Med Spa</button>
+      </div>
+    </section>
+
+    <section class="step">
+      <p class="eyebrow">Step 2</p>
+      <h1>Select your membership.</h1>
+
+      <div class="membership-grid">
+        <div class="membership-card">
+          <small>Founder Access</small>
+          <h2>$9<span>/month</span></h2>
+          <p>Luxury profile listing + early founder access.</p>
+        </div>
+
+        <div class="membership-card featured">
+          <small>Studio Partner</small>
+          <h2>$29<span>/month</span></h2>
+          <p>Premium visibility and priority placement.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="step">
+      <p class="eyebrow">Step 3</p>
+      <h1>Business information.</h1>
+
+      <div class="input-grid">
+        <input type="text" placeholder="Full Name">
+        <input type="text" placeholder="Business Name">
+        <input type="email" placeholder="Email Address">
+        <input type="tel" placeholder="Phone Number">
+        <input type="text" placeholder="Business Address">
+      </div>
+    </section>
+
+    <section class="step">
+      <p class="eyebrow">Step 4</p>
+      <h1>Add your social presence.</h1>
+
+      <div class="input-grid">
+        <input type="text" placeholder="Instagram Link">
+        <input type="text" placeholder="TikTok Link">
+        <input type="text" placeholder="WhatsApp Link">
+        <textarea placeholder="Services Offered"></textarea>
+      </div>
+    </section>
+
+    <section class="step">
+      <p class="eyebrow">Step 5</p>
+      <h1>Continue to payment.</h1>
+
+      <div class="payment-preview">
+        <div class="payment-card">
+          <small>Secure onboarding</small>
+          <h2>Stripe Payment</h2>
+          <p>
+            The real Stripe payment integration will be connected in the next phase.
+            After payment, professionals will receive access to their future dashboard.
+          </p>
+
+          <button type="button" class="payment-btn">
+            Continue to Payment
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <div class="navigation">
+      <button type="button" class="nav-btn secondary" id="prevBtn">Back</button>
+      <button type="button" class="nav-btn primary" id="nextBtn">Continue</button>
+    </div>
+
+  </form>
+
+</div>
+
+<script>
+const steps = document.querySelectorAll(".step");
+const nextBtn = document.getElementById("nextBtn");
+const prevBtn = document.getElementById("prevBtn");
+const progressFill = document.getElementById("progressFill");
+const stepText = document.getElementById("stepText");
+
+let currentStep = 0;
+
+function updateSteps() {
+  steps.forEach((step, index) => {
+    step.classList.toggle("active", index === currentStep);
+  });
+
+  stepText.textContent = `Step ${currentStep + 1} of ${steps.length}`;
+  progressFill.style.width = `${((currentStep + 1) / steps.length) * 100}%`;
+
+  prevBtn.style.display = currentStep === 0 ? "none" : "inline-flex";
+
+  if (currentStep === steps.length - 1) {
+    nextBtn.textContent = "Finish";
+  } else {
+    nextBtn.textContent = "Continue";
+  }
+}
+
+nextBtn.addEventListener("click", () => {
+  if (currentStep < steps.length - 1) {
+    currentStep++;
+    updateSteps();
+  }
+});
+
+prevBtn.addEventListener("click", () => {
+  if (currentStep > 0) {
+    currentStep--;
+    updateSteps();
+  }
+});
+
+updateSteps();
+</script>
+
+</body>
+</html>
