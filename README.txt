@@ -1,16 +1,12 @@
-Mortéa final polished website
+Mortéa membership update
 
-Files:
-- index.html
-- style.css
-- CNAME
-- README.txt
+Includes:
+- Professional Membership pricing section
+- Future account/payment/map positioning
+- Social profile integration wording
+- Google Form temporary CTA
 
-How to deploy:
-1. Replace the files in your local mortea-site folder.
-2. Run:
-   git add .
-   git commit -m "Polish Mortéa luxury website"
-   git push origin main --force
-
-Cloudflare Pages will deploy automatically.
+Deploy:
+git add .
+git commit -m "Add Mortéa professional membership concept"
+git push origin main --force
