@@ -3,82 +3,104 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>Mortéa — Luxury Beauty & Wellness Ecosystem</title>
-  <meta name="description" content="Mortéa is a luxury beauty and wellness ecosystem connecting elite salons, beauty experts, wellness rituals, private bookings, creators, and premium clients." />
+  <meta name="description" content="Mortéa is a luxury beauty and wellness ecosystem connecting elite salons, beauty experts, creators, wellness rituals, and private bookings." />
+  <meta name="theme-color" content="#fbf4e8" />
+
   <meta property="og:title" content="Mortéa — Luxury Beauty & Wellness Ecosystem" />
-  <meta property="og:description" content="Apply for private access to the next luxury beauty and wellness ecosystem." />
+  <meta property="og:description" content="Apply for private access to Mortéa, the next luxury beauty and wellness ecosystem." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://mortea.ca" />
-  <meta name="theme-color" content="#f8efe1" />
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
   <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
-  <div class="page-glow page-glow-one"></div>
-  <div class="page-glow page-glow-two"></div>
+  <div class="ambient ambient-left"></div>
+  <div class="ambient ambient-right"></div>
 
-  <header class="site-header">
-    <a class="brand" href="#top">Mortéa</a>
-    <button class="mobile-menu" aria-label="Open menu">☰</button>
-    <nav class="nav-links">
+  <header class="navbar">
+    <a class="logo" href="#top">Mortéa</a>
+
+    <button class="menu-toggle" type="button" aria-label="Open menu">
+      <span></span>
+      <span></span>
+    </button>
+
+    <nav class="nav">
       <a href="#vision">Vision</a>
       <a href="#ecosystem">Ecosystem</a>
-      <a href="#profiles">Professionals</a>
+      <a href="#professionals">Professionals</a>
       <a href="#private-access">Private Access</a>
     </nav>
   </header>
 
   <main id="top">
-    <section class="hero section-shell" id="vision">
+    <section class="hero" id="vision">
       <div class="hero-copy reveal">
         <p class="eyebrow">Luxury beauty & wellness ecosystem · Montréal</p>
-        <h1>The new era of <span>luxury beauty discovery</span></h1>
-        <p class="hero-text">
-          Mortéa connects elite salons, beauty experts, wellness rituals, creators, and premium clients through a curated luxury discovery experience.
+
+        <h1>
+          <span>The new era of</span>
+          <strong>luxury beauty discovery</strong>
+        </h1>
+
+        <p class="hero-description">
+          Mortéa connects elite salons, beauty experts, wellness rituals, creators,
+          and premium clients through a curated luxury discovery experience.
         </p>
+
         <div class="hero-actions">
           <a class="btn btn-primary" href="#private-access">Apply for Private Access</a>
           <a class="btn btn-secondary" href="#ecosystem">Explore the Ecosystem</a>
         </div>
-        <div class="trust-row">
+
+        <div class="hero-tags">
           <span>Creator-powered</span>
           <span>Private bookings</span>
-          <span>Luxury at-home wellness</span>
+          <span>At-home wellness</span>
         </div>
       </div>
 
-      <div class="hero-visual reveal delay-1">
-        <div class="phone">
+      <div class="hero-device reveal delay-1">
+        <div class="phone-shell">
           <div class="phone-speaker"></div>
+
           <div class="phone-screen">
-            <div class="feature-card">
-              <p>Featured experience</p>
-              <h3>Maison Head Spa</h3>
+            <article class="featured-experience">
+              <p>Featured Experience</p>
+              <h2>Maison Head Spa</h2>
               <span>Curated premium wellness ritual</span>
+            </article>
+
+            <div class="app-grid">
+              <div class="app-card">
+                <h3>Elite Salons</h3>
+                <p>Curated spaces</p>
+              </div>
+
+              <div class="app-card">
+                <h3>Beauty Experts</h3>
+                <p>Verified talent</p>
+              </div>
+
+              <div class="app-card">
+                <h3>Wellness Rituals</h3>
+                <p>Head spa & massage</p>
+              </div>
+
+              <div class="app-card">
+                <h3>Private Bookings</h3>
+                <p>Concierge access</p>
+              </div>
             </div>
-            <div class="mini-grid">
-              <div class="mini-card">
-                <strong>Elite Salons</strong>
-                <small>Curated spaces</small>
-              </div>
-              <div class="mini-card">
-                <strong>Beauty Experts</strong>
-                <small>Verified talent</small>
-              </div>
-              <div class="mini-card">
-                <strong>Wellness Rituals</strong>
-                <small>Head spa & massage</small>
-              </div>
-              <div class="mini-card">
-                <strong>Private Bookings</strong>
-                <small>At-home luxury</small>
-              </div>
-            </div>
-            <div class="social-strip">
+
+            <div class="social-pills">
               <span>Instagram</span>
               <span>TikTok</span>
               <span>WhatsApp</span>
@@ -88,7 +110,7 @@
       </div>
     </section>
 
-    <section class="stats-band reveal">
+    <section class="metrics reveal" aria-label="Mortéa positioning">
       <div>
         <strong>01</strong>
         <span>Luxury discovery</span>
@@ -107,106 +129,116 @@
       </div>
     </section>
 
-    <section class="section-shell categories" id="ecosystem">
+    <section class="section ecosystem" id="ecosystem">
       <div class="section-heading reveal">
         <p class="eyebrow">Ecosystem</p>
         <h2>Built for beauty, wellness, and private luxury experiences.</h2>
         <p>
-          Mortéa is not a generic marketplace. It is a premium environment designed for discovery, credibility, and beautiful client journeys.
+          Mortéa is designed as a curated platform — not a generic listing site.
+          Every touchpoint should feel elevated, trusted, and visually beautiful.
         </p>
       </div>
 
-      <div class="category-grid">
-        <article class="category-card reveal">
-          <span class="card-number">01</span>
+      <div class="ecosystem-grid">
+        <article class="feature-card reveal">
+          <span>01</span>
           <h3>Elite Salons</h3>
-          <p>Showcase premium salons, head spas, beauty lounges, and aesthetic spaces with curated visuals.</p>
+          <p>Premium salons, head spas, wellness lounges, and aesthetic spaces presented through a luxury lens.</p>
         </article>
-        <article class="category-card reveal delay-1">
-          <span class="card-number">02</span>
+
+        <article class="feature-card reveal delay-1">
+          <span>02</span>
           <h3>Beauty Experts</h3>
-          <p>Feature estheticians, makeup artists, nail artists, hair professionals, and mobile beauty providers.</p>
+          <p>Estheticians, makeup artists, nail artists, hair professionals, and private beauty providers.</p>
         </article>
-        <article class="category-card reveal delay-2">
-          <span class="card-number">03</span>
+
+        <article class="feature-card reveal delay-2">
+          <span>03</span>
           <h3>Wellness Rituals</h3>
-          <p>Include massage centers, head spa rituals, private wellness experiences, and at-home relaxation services.</p>
+          <p>Massage centers, head spa treatments, private relaxation rituals, and at-home wellness experiences.</p>
         </article>
-        <article class="category-card reveal delay-3">
-          <span class="card-number">04</span>
+
+        <article class="feature-card reveal delay-3">
+          <span>04</span>
           <h3>Private Bookings</h3>
-          <p>Give premium clients a discreet, elegant way to request services, explore providers, and connect directly.</p>
+          <p>A refined path for premium clients to discover, trust, and request services directly.</p>
         </article>
       </div>
     </section>
 
-    <section class="dark-panel">
-      <div class="section-shell dark-grid">
-        <div class="reveal">
-          <p class="eyebrow gold">For professionals</p>
-          <h2>Profiles designed to convert attention into bookings.</h2>
+    <section class="editorial-panel">
+      <div class="editorial-inner">
+        <div class="editorial-copy reveal">
+          <p class="eyebrow gold">Social-first discovery</p>
+          <h2>Profiles that connect trust, content, and bookings.</h2>
           <p>
-            Each professional profile can include direct Instagram, TikTok, website, and WhatsApp links so clients can move from discovery to trust instantly.
+            Professionals can add direct Instagram, TikTok, WhatsApp, and website links —
+            allowing clients to verify their work, explore their content, and book with confidence.
           </p>
         </div>
 
-        <div class="social-preview reveal delay-1">
-          <div class="profile-card">
-            <div class="profile-badge">Verified Professional</div>
+        <div class="profile-preview reveal delay-1">
+          <article class="profile-card primary-profile">
+            <span class="badge">Verified Professional</span>
             <h3>Lina Wellness Studio</h3>
             <p>Head spa · massage therapy · private wellness rituals</p>
-            <div class="profile-actions">
-              <a href="#" aria-label="Instagram">Instagram</a>
-              <a href="#" aria-label="TikTok">TikTok</a>
-              <a href="#" aria-label="WhatsApp">WhatsApp</a>
+            <div class="profile-links">
+              <a href="#">Instagram</a>
+              <a href="#">TikTok</a>
+              <a href="#">WhatsApp</a>
             </div>
-          </div>
-          <div class="profile-card muted-card">
-            <div class="profile-badge">Creator Partner</div>
+          </article>
+
+          <article class="profile-card secondary-profile">
+            <span class="badge">Creator Partner</span>
             <h3>Beauty Creator</h3>
-            <p>Content collaborations, salon discovery, premium launches.</p>
-          </div>
+            <p>Salon discovery, launch campaigns, premium beauty content.</p>
+          </article>
         </div>
       </div>
     </section>
 
-    <section class="section-shell profiles" id="profiles">
+    <section class="section professionals" id="professionals">
       <div class="section-heading reveal">
-        <p class="eyebrow">Discovery</p>
-        <h2>Curated cards for the professionals Mortéa will feature.</h2>
+        <p class="eyebrow">Professionals</p>
+        <h2>Designed for the people shaping modern beauty and wellness.</h2>
       </div>
 
-      <div class="profile-grid">
-        <article class="lux-card reveal">
-          <div class="image-shimmer"></div>
+      <div class="professional-grid">
+        <article class="professional-card reveal">
+          <div class="visual visual-one"></div>
           <h3>Salon & Spa Owners</h3>
-          <p>Build premium visibility and attract clients looking for elevated beauty experiences.</p>
+          <p>Build premium visibility and attract clients looking for elevated beauty and wellness experiences.</p>
           <span>Profile + booking links</span>
         </article>
-        <article class="lux-card reveal delay-1">
-          <div class="image-shimmer"></div>
+
+        <article class="professional-card reveal delay-1">
+          <div class="visual visual-two"></div>
           <h3>At-home Wellness Providers</h3>
-          <p>Position private wellness, massage, head spa, and concierge beauty services with elegance.</p>
+          <p>Position private massage, head spa, wellness, and concierge beauty services with elegance.</p>
           <span>Private request flow</span>
         </article>
-        <article class="lux-card reveal delay-2">
-          <div class="image-shimmer"></div>
+
+        <article class="professional-card reveal delay-2">
+          <div class="visual visual-three"></div>
           <h3>Creators & Influencers</h3>
-          <p>Turn beauty content into discovery, trust, and client acquisition for featured professionals.</p>
+          <p>Turn beauty content into discovery, credibility, and premium client acquisition.</p>
           <span>Instagram / TikTok integration</span>
         </article>
       </div>
     </section>
 
-    <section class="section-shell private-access" id="private-access">
-      <div class="access-card reveal">
-        <div>
-          <p class="eyebrow">Private access</p>
+    <section class="section private-access" id="private-access">
+      <div class="access-box reveal">
+        <div class="access-copy">
+          <p class="eyebrow">Private Access</p>
           <h2>Apply to join Mortéa before launch.</h2>
           <p>
-            We are inviting beauty professionals, creators, wellness providers, salons, and early premium clients to shape the first version of Mortéa.
+            We are inviting beauty professionals, creators, wellness providers,
+            salons, and early premium clients to shape the first version of Mortéa.
           </p>
-          <div class="access-points">
+
+          <div class="access-tags">
             <span>Elite salons</span>
             <span>Beauty experts</span>
             <span>Wellness rituals</span>
@@ -214,21 +246,28 @@
           </div>
         </div>
 
-        <div class="application-panel">
+        <div class="application-card">
           <h3>Early access application</h3>
-          <p>Complete the application form. Selected applicants will receive early access and onboarding details.</p>
-          <a class="btn btn-primary full-btn" href="https://docs.google.com/forms/d/e/1FAIpQLSddATzWJBwDcSPB0i9W65Y6FuOcfmJJ3wj8x-zKomZZ1SNbsw/viewform?usp=publish-editor" target="_blank" rel="noopener">Apply for Private Access</a>
-          <small>Powered by Google Forms for now. A custom in-app onboarding experience will follow.</small>
+          <p>
+            Complete the application form. Selected applicants will receive early access and onboarding details.
+          </p>
+
+          <a class="btn btn-primary full" href="https://docs.google.com/forms/d/e/1FAIpQLSddATzWJBwDcSPB0i9W65Y6FuOcfmJJ3wj8x-zKomZZ1SNbsw/viewform?usp=publish-editor" target="_blank" rel="noopener">
+            Apply for Private Access
+          </a>
+
+          <small>Application currently powered by Google Forms. A custom onboarding experience will follow.</small>
         </div>
       </div>
     </section>
   </main>
 
-  <footer class="site-footer">
+  <footer class="footer">
     <div>
-      <a class="brand footer-brand" href="#top">Mortéa</a>
+      <a class="logo footer-logo" href="#top">Mortéa</a>
       <p>Luxury beauty & wellness ecosystem built from Montréal.</p>
     </div>
+
     <div class="footer-links">
       <a href="#vision">Vision</a>
       <a href="#ecosystem">Ecosystem</a>
@@ -237,25 +276,26 @@
   </footer>
 
   <script>
-    const menuButton = document.querySelector('.mobile-menu');
-    const navLinks = document.querySelector('.nav-links');
-    if (menuButton && navLinks) {
-      menuButton.addEventListener('click', () => {
-        navLinks.classList.toggle('open');
+    const menuButton = document.querySelector(".menu-toggle");
+    const nav = document.querySelector(".nav");
+
+    if (menuButton && nav) {
+      menuButton.addEventListener("click", () => {
+        nav.classList.toggle("open");
+        menuButton.classList.toggle("open");
       });
     }
 
-    const reveals = document.querySelectorAll('.reveal');
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
+          entry.target.classList.add("visible");
           observer.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.15 });
+    }, { threshold: 0.16 });
 
-    reveals.forEach((el) => observer.observe(el));
+    document.querySelectorAll(".reveal").forEach((element) => observer.observe(element));
   </script>
 </body>
 </html>

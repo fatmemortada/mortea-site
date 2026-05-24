@@ -1,15 +1,16 @@
-Mortéa — Luxury Beauty & Wellness Ecosystem
+Mortéa final polished website
 
-Files included:
+Files:
 - index.html
 - style.css
 - CNAME
+- README.txt
 
-Deployment:
+How to deploy:
 1. Replace the files in your local mortea-site folder.
 2. Run:
    git add .
-   git commit -m "Upgrade Mortéa premium ecosystem website"
+   git commit -m "Polish Mortéa luxury website"
    git push origin main --force
 
-Cloudflare Pages will auto-deploy from GitHub.
+Cloudflare Pages will deploy automatically.
