@@ -1,12 +1,13 @@
-Mortéa latest location update
+Mortéa choose-your-path update
 
 Changes:
-- Removed large Québec city section
-- Added “near you” discovery section
-- Added future dropdown structure: Country / Province-State / City / Location
-- Kept luxury categories and membership concept
+- Removed Google Forms as primary experience
+- Added separate client and professional paths
+- Clarified that clients are free/searchers
+- Clarified that professionals will pay, create profiles, add address, and appear on map
+- Kept location dropdown concept as future app feature
 
 Deploy:
 git add .
-git commit -m "Update Mortéa location discovery section"
+git commit -m "Add Mortéa choose your path flow"
 git push origin main --force

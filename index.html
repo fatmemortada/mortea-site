@@ -4,12 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mortéa — Luxury Beauty & Wellness Ecosystem</title>
-  <meta name="description" content="Mortéa is a luxury beauty and wellness ecosystem connecting salons, beauty experts, at-home wellness providers, creators, and premium clients." />
+  <meta name="description" content="Mortéa is a luxury beauty and wellness ecosystem connecting premium clients with salons, beauty experts, wellness providers, and creators." />
+  <meta name="theme-color" content="#fbf4e8" />
   <meta property="og:title" content="Mortéa — Luxury Beauty & Wellness Ecosystem" />
-  <meta property="og:description" content="Discover premium beauty and wellness professionals near you." />
+  <meta property="og:description" content="A luxury discovery platform for premium beauty and wellness experiences." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://mortea.ca" />
-  <meta name="theme-color" content="#fbf4e8" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
@@ -18,13 +18,13 @@
 <body>
   <header class="navbar">
     <a class="logo" href="#top">Mortéa</a>
-    <button class="menu-toggle" type="button">☰</button>
+    <button class="menu-toggle" type="button" aria-label="Open menu">☰</button>
     <nav class="nav">
       <a href="#vision">Vision</a>
-      <a href="#discovery">Discovery</a>
+      <a href="#choose-path">Join</a>
       <a href="#ecosystem">Categories</a>
       <a href="#membership">Membership</a>
-      <a href="#private-access">Private Access</a>
+      <a href="#roadmap">Next Phase</a>
     </nav>
   </header>
 
@@ -33,12 +33,18 @@
       <div class="hero-copy">
         <p class="eyebrow">Luxury beauty & wellness ecosystem</p>
         <h1><span>The new era of</span><strong>luxury beauty discovery</strong></h1>
-        <p class="hero-description">Mortéa connects premium salons, beauty experts, at-home wellness providers, creators, and premium clients through a curated luxury discovery experience.</p>
+        <p class="hero-description">
+          Mortéa connects premium clients with salons, beauty experts, at-home wellness providers, creators, and private beauty experiences through a curated luxury platform.
+        </p>
         <div class="hero-actions">
-          <a class="btn btn-primary" href="#membership">Join as a Professional</a>
+          <a class="btn btn-primary" href="#choose-path">Choose Your Path</a>
           <a class="btn btn-secondary" href="#ecosystem">Explore Categories</a>
         </div>
-        <div class="hero-tags"><span>Map-based discovery</span><span>Social-first profiles</span><span>Private wellness</span></div>
+        <div class="hero-tags">
+          <span>Client discovery</span>
+          <span>Professional profiles</span>
+          <span>Future map search</span>
+        </div>
       </div>
 
       <div class="hero-device">
@@ -62,23 +68,68 @@
       </div>
     </section>
 
+    <section class="path-section" id="choose-path">
+      <div class="section-heading centered">
+        <p class="eyebrow">Choose your path</p>
+        <h2>One platform. Two luxury experiences.</h2>
+        <p>
+          Mortéa separates clients from professionals so the experience feels clean, premium, and intentional.
+        </p>
+      </div>
+
+      <div class="path-grid">
+        <article class="path-card client-card" id="client-access">
+          <span class="path-label">For clients</span>
+          <h3>I’m looking for beauty or wellness services</h3>
+          <p>
+            Discover premium salons, beauty professionals, massage therapists, head spas, and at-home wellness experiences near you.
+          </p>
+          <ul>
+            <li>Create a free client account later</li>
+            <li>Search by country, province/state, city, or location</li>
+            <li>Explore nearby providers on the map</li>
+            <li>Open Instagram, TikTok, WhatsApp, or booking links</li>
+          </ul>
+          <a class="btn btn-primary full" href="#client-coming">Join Client Waitlist</a>
+        </article>
+
+        <article class="path-card pro-card" id="professional-access">
+          <span class="path-label">For professionals</span>
+          <h3>I offer beauty or wellness services</h3>
+          <p>
+            Join Mortéa as a professional provider and prepare your profile for future map visibility, premium discovery, and client requests.
+          </p>
+          <ul>
+            <li>Choose a professional membership</li>
+            <li>Pay through a secure payment link later</li>
+            <li>Add profile, address, services, and social links</li>
+            <li>Appear on the map once the app launches</li>
+          </ul>
+          <a class="btn btn-primary full" href="#membership">View Membership</a>
+        </article>
+      </div>
+    </section>
+
     <section class="metrics">
       <div><strong>01</strong><span>Luxury discovery</span></div>
-      <div><strong>02</strong><span>Location search</span></div>
-      <div><strong>03</strong><span>Professional profiles</span></div>
+      <div><strong>02</strong><span>Client accounts</span></div>
+      <div><strong>03</strong><span>Paid profiles</span></div>
       <div><strong>04</strong><span>Map visibility</span></div>
     </section>
 
-    <section class="section discovery" id="discovery">
+    <section class="section discovery">
       <div class="section-heading">
-        <p class="eyebrow">Discovery</p>
-        <h2>Find premium beauty and wellness professionals near you.</h2>
-        <p>The app experience will let users choose their country, province or state, city, and address — or use their current location — to discover nearby salons, wellness providers, and private beauty services on the map.</p>
+        <p class="eyebrow">Future search flow</p>
+        <h2>Search by location, not by random listings.</h2>
+        <p>
+          In the app phase, clients will choose their country, province or state, city, and address — or use their current location — to discover nearby providers on the map.
+        </p>
       </div>
+
       <div class="location-preview">
-        <div class="select-card"><small>Country</small><strong>Choose country</strong></div>
-        <div class="select-card"><small>Province / State</small><strong>Choose region</strong></div>
-        <div class="select-card"><small>City</small><strong>Choose city</strong></div>
+        <div class="select-card"><small>Country</small><strong>Dropdown</strong></div>
+        <div class="select-card"><small>Province / State</small><strong>Dropdown</strong></div>
+        <div class="select-card"><small>City</small><strong>Dropdown</strong></div>
         <div class="select-card"><small>Location</small><strong>Use my location</strong></div>
       </div>
     </section>
@@ -87,16 +138,23 @@
       <div class="section-heading">
         <p class="eyebrow">Categories</p>
         <h2>A curated ecosystem for beauty, wellness, and private luxury services.</h2>
-        <p>Mortéa creates a premium discovery layer for professionals. Each profile can later include services, pricing, social links, booking links, address, and map visibility.</p>
+        <p>
+          Each professional profile can later include services, pricing, social links, booking links, address, and map visibility.
+        </p>
       </div>
+
       <div class="ecosystem-grid">
         <article class="feature-card"><span>01</span><h3>Elite Beauty Spaces</h3><p>Hair salons, nail studios, head spas, med spas, wellness studios, and aesthetic clinics.</p></article>
         <article class="feature-card"><span>02</span><h3>Beauty Experts</h3><p>Estheticians, makeup artists, nail artists, hair professionals, and mobile beauty professionals.</p></article>
         <article class="feature-card"><span>03</span><h3>At-Home Wellness</h3><p>Private wellness providers, mobile massage therapists, home spa rituals, and luxury at-home services.</p></article>
         <article class="feature-card"><span>04</span><h3>Concierge Beauty</h3><p>Private bookings, creator-powered recommendations, premium client requests, and social-first discovery.</p></article>
       </div>
+
       <div class="category-list">
-        <span>Hair Salons</span><span>Nail Studios</span><span>Head Spas</span><span>Estheticians</span><span>Wellness Studios</span><span>Massage Centers</span><span>Med Spas</span><span>Makeup Artists</span><span>Mobile Beauty Professionals</span><span>Private Wellness Providers</span><span>At-Home Wellness Services</span><span>Concierge Beauty Services</span><span>Mobile Massage Therapists</span><span>Luxury Home Spa Experiences</span>
+        <span>Hair Salons</span><span>Nail Studios</span><span>Head Spas</span><span>Estheticians</span>
+        <span>Wellness Studios</span><span>Massage Centers</span><span>Med Spas</span><span>Makeup Artists</span>
+        <span>Mobile Beauty Professionals</span><span>Private Wellness Providers</span><span>At-Home Wellness Services</span>
+        <span>Concierge Beauty Services</span><span>Mobile Massage Therapists</span><span>Luxury Home Spa Experiences</span>
       </div>
     </section>
 
@@ -105,7 +163,9 @@
         <div class="editorial-copy">
           <p class="eyebrow gold">Social-first discovery</p>
           <h2>Profiles that connect trust, content, location, and bookings.</h2>
-          <p>Professionals will be able to add Instagram, TikTok, WhatsApp, website links, service categories, and address details so clients can discover them nearby and verify their work instantly.</p>
+          <p>
+            Professionals will be able to add Instagram, TikTok, WhatsApp, website links, service categories, and address details so clients can discover them nearby and verify their work instantly.
+          </p>
         </div>
         <div class="profile-preview">
           <article class="profile-card primary-profile">
@@ -123,60 +183,66 @@
       </div>
     </section>
 
-    <section class="section professionals" id="professionals">
-      <div class="section-heading">
-        <p class="eyebrow">Professionals</p>
-        <h2>Designed for the people shaping modern beauty and wellness.</h2>
-      </div>
-      <div class="professional-grid">
-        <article class="professional-card"><div class="visual visual-one"></div><h3>Salon & Spa Owners</h3><p>Build premium visibility and attract clients looking for elevated beauty and wellness experiences.</p><span>Profile + booking links</span></article>
-        <article class="professional-card"><div class="visual visual-two"></div><h3>At-Home Wellness Providers</h3><p>Position private massage, head spa, wellness, and concierge beauty services with elegance.</p><span>Private request flow</span></article>
-        <article class="professional-card"><div class="visual visual-three"></div><h3>Creators & Influencers</h3><p>Turn beauty content into discovery, credibility, and premium client acquisition.</p><span>Instagram / TikTok integration</span></article>
-      </div>
-    </section>
-
     <section class="section membership" id="membership">
       <div class="section-heading centered">
         <p class="eyebrow">Professional Membership</p>
-        <h2>Launch your profile inside Mortéa.</h2>
-        <p>The next version of Mortéa will allow professionals to create an account, pay a small membership fee, add their address, and appear in nearby client searches on the map.</p>
+        <h2>Professionals will register differently from clients.</h2>
+        <p>
+          Clients will be free searchers. Professionals will have a paid membership, profile setup, location submission, and future map visibility.
+        </p>
       </div>
+
       <div class="membership-grid">
         <article class="pricing-card">
-          <p class="plan-label">Founder Access</p><h3>$9<span>/month</span></h3>
+          <p class="plan-label">Founder Access</p>
+          <h3>$9<span>/month</span></h3>
           <p class="plan-note">For early beauty and wellness professionals joining before launch.</p>
           <ul><li>Luxury profile listing</li><li>Instagram / TikTok / WhatsApp links</li><li>Map visibility when launched</li><li>Early founder badge</li></ul>
-          <a class="btn btn-primary full" href="https://docs.google.com/forms/d/e/1FAIpQLSddATzWJBwDcSPB0i9W65Y6FuOcfmJJ3wj8x-zKomZZ1SNbsw/viewform?usp=publish-editor" target="_blank" rel="noopener">Request Founder Access</a>
+          <a class="btn btn-primary full" href="#payment-next">Prepare Professional Profile</a>
         </article>
+
         <article class="pricing-card featured-pricing">
-          <p class="plan-label">Studio Partner</p><h3>$29<span>/month</span></h3>
+          <p class="plan-label">Studio Partner</p>
+          <h3>$29<span>/month</span></h3>
           <p class="plan-note">For salons, spas, clinics, and wellness studios needing premium visibility.</p>
           <ul><li>Premium studio profile</li><li>Multiple service categories</li><li>Social and booking links</li><li>Priority map placement concept</li></ul>
-          <a class="btn btn-primary full" href="https://docs.google.com/forms/d/e/1FAIpQLSddATzWJBwDcSPB0i9W65Y6FuOcfmJJ3wj8x-zKomZZ1SNbsw/viewform?usp=publish-editor" target="_blank" rel="noopener">Apply as a Studio</a>
+          <a class="btn btn-primary full" href="#payment-next">Apply as a Studio</a>
         </article>
+
         <article class="pricing-card">
-          <p class="plan-label">Creator Partner</p><h3>Invite<span> only</span></h3>
+          <p class="plan-label">Creator Partner</p>
+          <h3>Invite<span> only</span></h3>
           <p class="plan-note">For beauty and wellness creators who want to partner with premium professionals.</p>
           <ul><li>Creator profile</li><li>Collaboration requests</li><li>Featured campaign access</li><li>Salon discovery opportunities</li></ul>
-          <a class="btn btn-secondary full" href="https://docs.google.com/forms/d/e/1FAIpQLSddATzWJBwDcSPB0i9W65Y6FuOcfmJJ3wj8x-zKomZZ1SNbsw/viewform?usp=publish-editor" target="_blank" rel="noopener">Apply as a Creator</a>
+          <a class="btn btn-secondary full" href="#payment-next">Apply as a Creator</a>
         </article>
       </div>
-      <div class="flow"><div><strong>1</strong><span>Choose membership</span></div><div><strong>2</strong><span>Create profile</span></div><div><strong>3</strong><span>Add location</span></div><div><strong>4</strong><span>Appear on map</span></div></div>
+
+      <div class="flow">
+        <div><strong>1</strong><span>Choose membership</span></div>
+        <div><strong>2</strong><span>Secure payment</span></div>
+        <div><strong>3</strong><span>Create profile</span></div>
+        <div><strong>4</strong><span>Appear on map</span></div>
+      </div>
     </section>
 
-    <section class="section private-access" id="private-access">
+    <section class="section roadmap" id="roadmap">
       <div class="access-box">
         <div class="access-copy">
-          <p class="eyebrow">Private Access</p>
-          <h2>Apply to join Mortéa before launch.</h2>
-          <p>We are inviting beauty professionals, creators, wellness providers, salons, and early premium clients to shape the first version of Mortéa.</p>
-          <div class="access-tags"><span>Elite salons</span><span>Beauty experts</span><span>At-home wellness</span><span>Private bookings</span></div>
+          <p class="eyebrow">Next app phase</p>
+          <h2>The real signup system comes next.</h2>
+          <p>
+            The next build should include client accounts, professional accounts, Stripe payment links, profile creation, dropdown location fields, and map-based discovery.
+          </p>
+          <div class="access-tags"><span>Client signup</span><span>Professional payment</span><span>Profile dashboard</span><span>Map search</span></div>
         </div>
-        <div class="application-card">
-          <h3>Early access application</h3>
-          <p>Complete the application form. Selected applicants will receive early access and onboarding details.</p>
-          <a class="btn btn-primary full" href="https://docs.google.com/forms/d/e/1FAIpQLSddATzWJBwDcSPB0i9W65Y6FuOcfmJJ3wj8x-zKomZZ1SNbsw/viewform?usp=publish-editor" target="_blank" rel="noopener">Apply for Private Access</a>
-          <small>Temporary application flow. The account + payment + map system will be built in the next app phase.</small>
+        <div class="application-card" id="payment-next">
+          <h3>Temporary status</h3>
+          <p>
+            This landing page now shows the correct premium flow. The next step is to build the actual backend/payment app.
+          </p>
+          <a class="btn btn-primary full" href="mailto:fatmemortada88@gmail.com?subject=Mortéa Early Access">Contact Mortéa</a>
+          <small>Google Forms removed from the primary experience. Payment/account system will be connected next.</small>
         </div>
       </div>
     </section>
@@ -184,7 +250,7 @@
 
   <footer class="footer">
     <div><a class="logo footer-logo" href="#top">Mortéa</a><p>Luxury beauty & wellness ecosystem. Built to expand city by city.</p></div>
-    <div class="footer-links"><a href="#vision">Vision</a><a href="#membership">Membership</a><a href="#private-access">Apply</a></div>
+    <div class="footer-links"><a href="#choose-path">Join</a><a href="#membership">Membership</a><a href="#roadmap">Next Phase</a></div>
   </footer>
 
   <script>
