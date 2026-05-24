@@ -1,16 +1,12 @@
-Mortéa Québec luxury final update
+Mortéa latest location update
 
-Includes:
-- Québec-first positioning
-- Expanded premium beauty and wellness categories
-- At-home wellness services
-- Concierge beauty services
-- Mobile massage therapists
-- Luxury home spa experiences
-- Professional membership concept
-- Future account/payment/map positioning
+Changes:
+- Removed large Québec city section
+- Added “near you” discovery section
+- Added future dropdown structure: Country / Province-State / City / Location
+- Kept luxury categories and membership concept
 
 Deploy:
 git add .
-git commit -m "Update Mortéa Québec luxury ecosystem"
+git commit -m "Update Mortéa location discovery section"
 git push origin main --force
