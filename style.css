@@ -1205,3 +1205,280 @@ body{
   .pin-dubai{left:76%; top:57%;}
   .pin-riyadh{left:72%; top:64%;}
 }
+
+
+/* ===============================
+   Mortéa Phase 6 Admin Dashboard
+   =============================== */
+
+.admin-page{
+  width:min(1380px, calc(100% - 32px));
+  margin:60px auto 130px;
+}
+
+.admin-hero{
+  display:grid;
+  grid-template-columns:1.1fr .9fr;
+  gap:28px;
+  align-items:stretch;
+  margin-bottom:32px;
+}
+
+.admin-hero-card{
+  background:#171310;
+  color:#fff;
+  border-radius:46px;
+  padding:54px;
+  position:relative;
+  overflow:hidden;
+}
+
+.admin-hero-card::after{
+  content:"";
+  position:absolute;
+  width:320px;
+  height:320px;
+  border-radius:50%;
+  background:rgba(195,155,88,.25);
+  right:-90px;
+  top:-110px;
+}
+
+.admin-hero-card h1{
+  position:relative;
+  font-size:clamp(3.7rem, 7vw, 6.8rem);
+  line-height:.9;
+  margin-bottom:20px;
+}
+
+.admin-hero-card p{
+  position:relative;
+  color:rgba(255,255,255,.74);
+  line-height:1.85;
+  max-width:720px;
+}
+
+.admin-safe-card{
+  background:rgba(255,255,255,.78);
+  border:1px solid rgba(0,0,0,.06);
+  border-radius:38px;
+  padding:34px;
+}
+
+.admin-safe-card h2,
+.admin-card h2{
+  font-family:'Cormorant Garamond',serif;
+  font-size:2.6rem;
+  line-height:1;
+  margin-bottom:18px;
+}
+
+.admin-safe-card p,
+.admin-card p{
+  color:#76695f;
+  line-height:1.75;
+}
+
+.admin-badge-row{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+  margin-top:24px;
+}
+
+.admin-badge{
+  padding:10px 14px;
+  border-radius:999px;
+  background:#f3eadf;
+  color:#6d5946;
+  font-size:.8rem;
+}
+
+.admin-grid{
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  gap:22px;
+  margin:32px 0;
+}
+
+.admin-metric{
+  background:rgba(255,255,255,.78);
+  border:1px solid rgba(0,0,0,.06);
+  border-radius:30px;
+  padding:28px;
+}
+
+.admin-metric strong{
+  display:block;
+  font-family:'Cormorant Garamond',serif;
+  font-size:3.2rem;
+  line-height:1;
+  color:#171310;
+}
+
+.admin-metric span{
+  display:block;
+  color:#76695f;
+  margin-top:8px;
+}
+
+.admin-layout{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:26px;
+  align-items:start;
+}
+
+.admin-card{
+  background:rgba(255,255,255,.78);
+  border:1px solid rgba(0,0,0,.06);
+  border-radius:34px;
+  padding:32px;
+  box-shadow:0 18px 60px rgba(0,0,0,.045);
+}
+
+.admin-list{
+  display:grid;
+  gap:12px;
+  margin-top:20px;
+}
+
+.admin-list-item{
+  display:flex;
+  justify-content:space-between;
+  gap:16px;
+  align-items:center;
+  padding:16px;
+  border-radius:20px;
+  background:#f5eee5;
+}
+
+.admin-list-item strong{
+  display:block;
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.45rem;
+}
+
+.admin-list-item span{
+  display:block;
+  color:#76695f;
+  font-size:.88rem;
+  margin-top:4px;
+}
+
+.admin-status{
+  padding:9px 12px;
+  border-radius:999px;
+  font-size:.76rem;
+  white-space:nowrap;
+}
+
+.admin-status.approved{
+  background:#e6f2df;
+  color:#46632f;
+}
+
+.admin-status.pending{
+  background:#fff3d9;
+  color:#7a5c1d;
+}
+
+.admin-empty{
+  padding:18px;
+  border-radius:18px;
+  background:#f5eee5;
+  color:#76695f;
+}
+
+.admin-actions{
+  display:grid;
+  gap:18px;
+  margin-top:20px;
+}
+
+.admin-actions input{
+  margin-bottom:0;
+}
+
+.admin-sql-box{
+  display:grid;
+  gap:10px;
+  padding:16px;
+  border-radius:22px;
+  background:#f5eee5;
+}
+
+.admin-sql-box label{
+  font-weight:600;
+  color:#171310;
+}
+
+.admin-sql-box textarea{
+  min-height:92px;
+  font-family:Consolas, Monaco, monospace;
+  font-size:.86rem;
+}
+
+.admin-copy{
+  width:max-content;
+  padding:12px 16px;
+  border-radius:999px;
+  background:#171310;
+  color:#fff;
+  border:0;
+  cursor:pointer;
+}
+
+.admin-warning{
+  display:none;
+  margin-top:18px;
+  padding:18px;
+  border-radius:22px;
+  background:#fff3d9;
+  color:#7a5c1d;
+  line-height:1.6;
+}
+
+.admin-roadmap{
+  margin-top:28px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:18px;
+}
+
+.admin-roadmap .admin-card{
+  padding:24px;
+}
+
+.admin-roadmap strong{
+  color:#c39b58;
+  text-transform:uppercase;
+  letter-spacing:.14em;
+  font-size:.74rem;
+}
+
+@media(max-width:1000px){
+  .admin-hero,
+  .admin-layout,
+  .admin-grid{
+    grid-template-columns:1fr;
+  }
+}
+
+@media(max-width:640px){
+  .admin-page{
+    width:min(100% - 20px, 1380px);
+  }
+
+  .admin-hero-card,
+  .admin-safe-card,
+  .admin-card{
+    padding:26px;
+    border-radius:30px;
+  }
+
+  .admin-list-item{
+    align-items:flex-start;
+    flex-direction:column;
+  }
+}

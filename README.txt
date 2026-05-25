@@ -50,3 +50,12 @@ Dynamic Supabase Display Upgrade:
 - Public display only shows rows where status = approved.
 - If there is no approved data, static fallback cards still appear.
 - Added supabase-sample-data.sql for testing.
+
+
+Phase 6 Admin Dashboard:
+- Added admin.html
+- Added js/admin.js
+- Added ADMIN-DASHBOARD-GUIDE.md
+- Admin page can view approved professionals.
+- Approval/rejection SQL is generated safely for Supabase SQL Editor.
+- No service_role key is exposed in the public website.

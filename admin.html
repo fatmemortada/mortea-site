@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Dashboard | Mortéa</title>
+<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header class="navbar">
+  <div class="logo-mark"><div class="logo-emblem"></div><div class="logo">Mortéa<small>Luxury Wellness</small></div></div>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="discover.html">Discover</a>
+    <a href="map.html">Map</a>
+    <a href="admin.html">Admin</a>
+    <a href="professional-signup.html">Professional Access</a>
+  </nav>
+</header>
+
+<main class="admin-page">
+  <section class="admin-hero">
+    <div class="admin-hero-card">
+      <p class="eyebrow">Phase 6 Admin Dashboard</p>
+      <h1>Operate Mortéa like a real platform.</h1>
+      <p>
+        Review the platform structure, track approved professionals, prepare approval actions,
+        and manage the next operational steps without exposing private Supabase keys.
+      </p>
+    </div>
+
+    <div class="admin-safe-card">
+      <h2>Safe admin mode</h2>
+      <p>
+        This dashboard is safe for GitHub Pages. It does not expose the Supabase secret service key.
+        Until we add real admin login, approvals should be completed in Supabase SQL Editor using
+        the generated SQL below.
+      </p>
+      <div class="admin-badge-row">
+        <span class="admin-badge">No secret key exposed</span>
+        <span class="admin-badge">RLS respected</span>
+        <span class="admin-badge">Ready for Auth later</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="admin-grid">
+    <div class="admin-metric">
+      <strong data-approved-count>0</strong>
+      <span>Approved professionals visible publicly</span>
+    </div>
+
+    <div class="admin-metric">
+      <strong>Pending</strong>
+      <span>New applications stay private until approved</span>
+    </div>
+
+    <div class="admin-metric">
+      <strong data-client-count>Private</strong>
+      <span>Client leads protected by Supabase policies</span>
+    </div>
+  </section>
+
+  <section class="admin-layout">
+    <div class="admin-card">
+      <h2>Approved professionals</h2>
+      <p>These are the professionals currently visible on Mortéa's public discovery/map pages.</p>
+      <div class="admin-warning" data-pending-notice>
+        Pending applications are intentionally hidden from the public website for privacy. To review them,
+        open Supabase → Table Editor → professionals → filter status = pending.
+      </div>
+      <div class="admin-list" data-approved-professionals>
+        <div class="admin-empty">Loading approved professionals...</div>
+      </div>
+    </div>
+
+    <div class="admin-card">
+      <h2>Approval actions</h2>
+      <p>Enter the professional's email, then copy the SQL action into Supabase SQL Editor.</p>
+
+      <div class="admin-actions">
+        <input type="email" data-approval-email placeholder="professional@email.com">
+
+        <div class="admin-sql-box">
+          <label>Approve professional</label>
+          <textarea id="approveSql" data-approve-sql readonly></textarea>
+          <button class="admin-copy" data-copy-target="#approveSql">Copy SQL</button>
+        </div>
+
+        <div class="admin-sql-box">
+          <label>Reject professional</label>
+          <textarea id="rejectSql" data-reject-sql readonly></textarea>
+          <button class="admin-copy" data-copy-target="#rejectSql">Copy SQL</button>
+        </div>
+
+        <div class="admin-sql-box">
+          <label>Mark as featured</label>
+          <textarea id="featureSql" data-feature-sql readonly></textarea>
+          <button class="admin-copy" data-copy-target="#featureSql">Copy SQL</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="admin-roadmap">
+    <div class="admin-card">
+      <strong>Now</strong>
+      <h2>Manual approval</h2>
+      <p>Use Supabase Table Editor or SQL to approve professionals and keep quality control.</p>
+    </div>
+
+    <div class="admin-card">
+      <strong>Next</strong>
+      <h2>Admin login</h2>
+      <p>Add Supabase Auth so only you can access approval actions inside the site.</p>
+    </div>
+
+    <div class="admin-card">
+      <strong>Later</strong>
+      <h2>Stripe control</h2>
+      <p>Connect membership plans, subscription status, featured placement, and billing.</p>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="logo">Mortéa</div>
+  <p>Admin dashboard foundation — safe today, ready for secure login next.</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/supabase-config.js"></script>
+<script src="js/admin.js"></script>
+</body>
+</html>
