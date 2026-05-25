@@ -81,3 +81,11 @@ Phase 8 Pricing + Reviews:
 - reviews.html added
 - client review submission added
 - review approval structure added
+
+
+Phase 9 Stripe-Ready Memberships:
+- Added Stripe Payment Link configuration.
+- Added checkout buttons for $35 professional, $30 creator, and $10 single user plans.
+- Added 5-day free trial checkout messaging.
+- Added Stripe fields SQL.
+- Real automatic subscription sync requires webhook/backend later.

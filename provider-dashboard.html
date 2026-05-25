@@ -50,6 +50,14 @@
         <span>Approved</span>
         <span>Featured</span>
       </div>
+
+      <div class="payment-status-card">
+        <strong>Membership</strong>
+        <p data-membership-summary>Professional — $35/month after 5-day free trial</p>
+        <div class="checkout-row">
+          <button type="button" class="btn primary" data-dashboard-checkout data-stripe-plan="professional">Start Stripe checkout</button>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -97,5 +105,8 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="js/supabase-config.js"></script>
 <script src="js/auth.js"></script>
+
+<script src="js/stripe-config.js"></script>
+<script src="js/stripe.js"></script>
 </body>
 </html>

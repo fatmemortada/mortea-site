@@ -1919,3 +1919,71 @@ body{
     transform:none;
   }
 }
+
+
+/* ===============================
+   Mortéa Phase 9 Stripe-Ready Memberships
+   =============================== */
+
+.stripe-note{
+  width:min(1080px, calc(100% - 40px));
+  margin:60px auto 120px;
+  padding:30px;
+  border-radius:30px;
+  background:#fff3d9;
+  color:#7a5c1d;
+  border:1px solid rgba(122,92,29,.16);
+  line-height:1.75;
+}
+
+.stripe-note strong{
+  color:#171310;
+}
+
+.payment-status-card{
+  margin-top:24px;
+  padding:22px;
+  border-radius:24px;
+  background:#f5eee5;
+}
+
+.provider-panel.dark .payment-status-card{
+  background:rgba(255,255,255,.1);
+}
+
+.payment-status-card strong{
+  display:block;
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.8rem;
+  margin-bottom:8px;
+}
+
+.payment-status-card p{
+  margin:0;
+}
+
+.checkout-row{
+  display:flex;
+  gap:14px;
+  flex-wrap:wrap;
+  margin-top:18px;
+}
+
+.pricing-card .checkout-row{
+  position:relative;
+}
+
+.stripe-mini{
+  display:inline-flex;
+  margin-top:14px;
+  padding:9px 13px;
+  border-radius:999px;
+  background:#f5eee5;
+  color:#6d5946;
+  font-size:.8rem;
+}
+
+.pricing-card.featured .stripe-mini{
+  background:rgba(255,255,255,.12);
+  color:#f0d7ad;
+}
