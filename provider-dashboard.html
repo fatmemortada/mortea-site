@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<title>Provider Dashboard | Mortéa</title>
+</head>
+<body>
+<header class="navbar">
+  <div class="logo-mark"><div class="logo-emblem"></div><div class="logo">Mortéa<small>Luxury Wellness</small></div></div>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="discover.html">Discover</a>
+    <a href="map.html">Map</a>
+    <a href="admin.html">Admin</a>
+    <a href="login.html">Login</a>
+  </nav>
+</header>
+
+<main class="provider-dashboard" data-provider-dashboard>
+  <section class="provider-top">
+    <div class="provider-panel dark">
+      <p class="eyebrow">Professional Dashboard</p>
+      <h1>Manage your Mortéa profile.</h1>
+      <p>
+        This is the first real provider dashboard foundation. Professionals can sign in,
+        prepare their profile, and submit updates for approval.
+      </p>
+      <div class="provider-meta">
+        <span>Signed in: <strong data-user-email></strong></span>
+        <span>Status: <strong data-profile-status>pending</strong></span>
+      </div>
+      <div class="buttons">
+        <button class="btn logout-button" data-logout>Logout</button>
+      </div>
+    </div>
+
+    <div class="provider-panel">
+      <h2>Visibility rules</h2>
+      <p>
+        Your profile stays private while pending. After admin approval, it can appear on the
+        public discovery and map pages.
+      </p>
+      <div class="provider-meta">
+        <span>Pending</span>
+        <span>Approved</span>
+        <span>Featured</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="provider-panel">
+    <p class="eyebrow">Profile Details</p>
+    <h2>Professional profile</h2>
+    <p>Complete the details that will later power your public Mortéa profile.</p>
+
+    <form data-provider-profile-form>
+      <div class="provider-form-grid">
+        <input name="business_name" placeholder="Business name" required>
+        <input name="owner_name" placeholder="Owner / contact name">
+        <input name="phone" placeholder="Phone / WhatsApp">
+        <input name="category" placeholder="Category e.g. Head Spa">
+        <input name="country" placeholder="Country">
+        <input name="province" placeholder="Province / State">
+        <input name="city" placeholder="City">
+        <input name="address" placeholder="Address">
+        <input name="instagram" placeholder="Instagram link">
+        <input name="whatsapp" placeholder="WhatsApp link">
+        <input name="website" placeholder="Website link">
+        <input name="booking_link" placeholder="Booking link">
+        <textarea class="full" name="description" placeholder="Describe your services and luxury experience"></textarea>
+      </div>
+
+      <div class="buttons">
+        <button type="submit">Save profile</button>
+      </div>
+
+      <div class="profile-message" data-profile-message></div>
+    </form>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="logo">Mortéa</div>
+  <p>Provider dashboard foundation — ready for Stripe memberships next.</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/supabase-config.js"></script>
+<script src="js/auth.js"></script>
+</body>
+</html>

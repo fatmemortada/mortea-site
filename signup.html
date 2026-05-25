@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<title>Create Account | Mortéa</title>
+</head>
+<body>
+<header class="navbar">
+  <div class="logo-mark"><div class="logo-emblem"></div><div class="logo">Mortéa<small>Luxury Wellness</small></div></div>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="discover.html">Discover</a>
+    <a href="map.html">Map</a>
+    <a href="admin.html">Admin</a>
+    <a href="login.html">Login</a>
+  </nav>
+</header>
+
+<main class="auth-page">
+  <section class="auth-card dark">
+    <p class="eyebrow">Professional Account</p>
+    <h1>Create your Mortéa account.</h1>
+    <p>
+      Professionals can create an account, prepare their profile, and wait for approval before public visibility.
+    </p>
+  </section>
+
+  <section class="auth-card">
+    <p class="eyebrow">Sign up</p>
+    <h2>Create account</h2>
+    <p>Start your professional dashboard access.</p>
+
+    <form class="auth-form" data-signup-form>
+      <input type="email" name="email" placeholder="Email address" required>
+      <input type="password" name="password" placeholder="Password, minimum 6 characters" required minlength="6">
+      <button type="submit">Create account</button>
+    </form>
+
+    <div class="auth-message" data-auth-message></div>
+
+    <p class="auth-switch">
+      Already have an account? <a href="login.html">Sign in</a>
+    </p>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="logo">Mortéa</div>
+  <p>Account creation foundation for future memberships and profile editing.</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/supabase-config.js"></script>
+<script src="js/auth.js"></script>
+</body>
+</html>

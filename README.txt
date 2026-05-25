@@ -59,3 +59,14 @@ Phase 6 Admin Dashboard:
 - Admin page can view approved professionals.
 - Approval/rejection SQL is generated safely for Supabase SQL Editor.
 - No service_role key is exposed in the public website.
+
+
+Phase 7 Authentication:
+- Added login.html
+- Added signup.html
+- Added provider-dashboard.html
+- Added js/auth.js
+- Added supabase-auth-policies.sql
+- Added PHASE7-AUTH-GUIDE.md
+- Provider account/dashboard foundation created.
+- Admin access is visually restricted by admin email.
