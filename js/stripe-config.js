@@ -12,9 +12,9 @@
 */
 
 const MORTEA_STRIPE_LINKS = {
-  professional: "https://buy.stripe.com/REPLACE_PROFESSIONAL_35",
-  creator: "https://buy.stripe.com/REPLACE_CREATOR_30",
-  single_user: "https://buy.stripe.com/REPLACE_SINGLE_USER_10"
+  professional: "https://buy.stripe.com/14AaEQ71N2ob1W147h3VC00",
+  creator: "https://buy.stripe.com/aFa7sE5XJd2PdEJ9rB3VC03",
+  single_user: "https://buy.stripe.com/aFa5kwadZ2ob58davF3VC05"
 };
 
 function getStripeCheckoutLink(planType) {
