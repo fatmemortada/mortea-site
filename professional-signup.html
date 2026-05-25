@@ -69,5 +69,43 @@
   </div>
 </div>
 
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/supabase-config.js"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.querySelector("form");
+  if (!form) return;
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const business_name = form.querySelectorAll("input")[0]?.value || "";
+    const email = form.querySelector('input[type="email"]')?.value || "";
+    const category = form.querySelector("select")?.value || "";
+    const description = form.querySelector("textarea")?.value || "";
+
+    const { error } = await supabaseClient
+      .from("professionals")
+      .insert([{
+        business_name,
+        email,
+        category,
+        description
+      }]);
+
+    if (error) {
+      alert("Error submitting professional application.");
+      console.error(error);
+      return;
+    }
+
+    alert("Professional application submitted successfully.");
+    form.reset();
+  });
+});
+</script>
+
 </body>
 </html>

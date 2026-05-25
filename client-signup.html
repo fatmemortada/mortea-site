@@ -56,5 +56,39 @@
   </div>
 </div>
 
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/supabase-config.js"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.querySelector("form");
+  if (!form) return;
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const full_name = form.querySelectorAll("input")[0]?.value || "";
+    const email = form.querySelector('input[type="email"]')?.value || "";
+
+    const { error } = await supabaseClient
+      .from("clients")
+      .insert([{
+        full_name,
+        email
+      }]);
+
+    if (error) {
+      alert("Error submitting client form.");
+      console.error(error);
+      return;
+    }
+
+    alert("Client signup submitted successfully.");
+    form.reset();
+  });
+});
+</script>
+
 </body>
 </html>
