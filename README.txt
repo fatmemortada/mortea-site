@@ -70,3 +70,14 @@ Phase 7 Authentication:
 - Added PHASE7-AUTH-GUIDE.md
 - Provider account/dashboard foundation created.
 - Admin access is visually restricted by admin email.
+
+
+Phase 8 Pricing + Reviews:
+- Professionals: $35/month
+- Creators/Bloggers: $30/month
+- Single Users: $10/month
+- 5-day free trial messaging added
+- pricing.html added
+- reviews.html added
+- client review submission added
+- review approval structure added

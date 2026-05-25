@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<title>Client Reviews | Mortéa</title>
+</head>
+<body>
+<header class="navbar">
+  <div class="logo-mark"><div class="logo-emblem"></div><div class="logo">Mortéa<small>Luxury Wellness</small></div></div>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="discover.html">Discover</a>
+    <a href="map.html">Map</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="reviews.html">Reviews</a>
+    <a href="admin.html">Admin</a>
+    <a href="login.html">Login</a>
+  </nav>
+</header>
+
+<main class="reviews-section">
+  <section class="review-form-card">
+    <p class="eyebrow">Client Reviews</p>
+    <h2>Leave a review for a Mortéa provider.</h2>
+    <p>
+      Reviews are submitted for approval first to protect the luxury quality and trust of the platform.
+    </p>
+
+    <form class="review-form" data-review-form>
+      <input name="client_name" placeholder="Your name" required>
+      <input type="email" name="client_email" placeholder="Your email">
+      <input name="provider_name" placeholder="Provider / business name" required>
+      <select name="rating" required>
+        <option value="5">★★★★★ — 5 stars</option>
+        <option value="4">★★★★☆ — 4 stars</option>
+        <option value="3">★★★☆☆ — 3 stars</option>
+        <option value="2">★★☆☆☆ — 2 stars</option>
+        <option value="1">★☆☆☆☆ — 1 star</option>
+      </select>
+      <textarea name="review_text" placeholder="Write your review" required></textarea>
+      <button type="submit">Submit Review</button>
+    </form>
+
+    <div class="review-message" data-review-message></div>
+  </section>
+
+  <section class="review-display-card">
+    <p class="eyebrow">Approved Reviews</p>
+    <h2>Trusted client experiences.</h2>
+    <p>Approved reviews will appear here and later on provider profiles.</p>
+    <div class="review-list" data-reviews-list>
+      <div class="review-item">
+        <strong>Loading reviews...</strong>
+        <span>★★★★★</span>
+        <p>Please wait while Mortéa loads approved client reviews.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="logo">Mortéa</div>
+  <p>Reviews are moderated before public display.</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/supabase-config.js"></script>
+<script src="js/reviews.js"></script>
+</body>
+</html>

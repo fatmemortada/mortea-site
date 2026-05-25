@@ -106,6 +106,7 @@ async function protectProviderDashboard() {
     form.querySelector('[name="business_name"]').value = existing.business_name || "";
     form.querySelector('[name="owner_name"]').value = existing.owner_name || "";
     form.querySelector('[name="phone"]').value = existing.phone || "";
+    if (form.querySelector('[name="plan_type"]')) form.querySelector('[name="plan_type"]').value = existing.plan_type || "professional";
     form.querySelector('[name="category"]').value = existing.category || "";
     form.querySelector('[name="country"]').value = existing.country || "";
     form.querySelector('[name="province"]').value = existing.province || "";
@@ -130,6 +131,9 @@ async function protectProviderDashboard() {
         owner_name: form.querySelector('[name="owner_name"]').value,
         email: user.email,
         phone: form.querySelector('[name="phone"]').value,
+        plan_type: form.querySelector('[name="plan_type"]')?.value || "professional",
+        monthly_price: (form.querySelector('[name="plan_type"]')?.value === "creator" ? 30 : form.querySelector('[name="plan_type"]')?.value === "single_user" ? 10 : 35),
+        subscription_status: existing?.subscription_status || "trial",
         category: form.querySelector('[name="category"]').value,
         country: form.querySelector('[name="country"]').value,
         province: form.querySelector('[name="province"]').value,

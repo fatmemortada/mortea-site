@@ -1671,3 +1671,251 @@ body{
     grid-template-columns:1fr;
   }
 }
+
+
+/* ===============================
+   Mortéa Phase 8 Pricing + Reviews
+   =============================== */
+
+.pricing-section{
+  width:min(1280px, calc(100% - 40px));
+  margin:130px auto;
+}
+
+.pricing-header{
+  text-align:center;
+  max-width:850px;
+  margin:0 auto 54px;
+}
+
+.pricing-header h2{
+  font-size:clamp(3rem, 6vw, 5.5rem);
+  line-height:.9;
+}
+
+.pricing-header p{
+  color:#76695f;
+  line-height:1.85;
+  margin-top:18px;
+}
+
+.pricing-grid{
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  gap:24px;
+}
+
+.pricing-card{
+  background:rgba(255,255,255,.78);
+  border:1px solid rgba(0,0,0,.06);
+  border-radius:36px;
+  padding:34px;
+  box-shadow:0 18px 60px rgba(0,0,0,.045);
+  position:relative;
+  overflow:hidden;
+}
+
+.pricing-card.featured{
+  background:#171310;
+  color:#fff;
+  transform:translateY(-12px);
+}
+
+.pricing-card.featured::after{
+  content:"";
+  position:absolute;
+  width:260px;
+  height:260px;
+  border-radius:50%;
+  background:rgba(195,155,88,.25);
+  right:-85px;
+  top:-85px;
+}
+
+.pricing-badge{
+  display:inline-flex;
+  padding:10px 14px;
+  border-radius:999px;
+  background:#f3eadf;
+  color:#6d5946;
+  font-size:.78rem;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  margin-bottom:18px;
+}
+
+.pricing-card.featured .pricing-badge{
+  background:rgba(255,255,255,.12);
+  color:#f0d7ad;
+}
+
+.pricing-card h3{
+  position:relative;
+  font-family:'Cormorant Garamond',serif;
+  font-size:2.5rem;
+  line-height:1;
+}
+
+.price{
+  position:relative;
+  font-family:'Cormorant Garamond',serif;
+  font-size:4rem;
+  line-height:1;
+  margin:22px 0 8px;
+}
+
+.price span{
+  font-family:'Inter',sans-serif;
+  font-size:1rem;
+  color:#76695f;
+}
+
+.pricing-card.featured .price span,
+.pricing-card.featured p,
+.pricing-card.featured li{
+  color:rgba(255,255,255,.72);
+}
+
+.trial-note{
+  position:relative;
+  display:inline-flex;
+  padding:10px 14px;
+  border-radius:999px;
+  background:#fff3d9;
+  color:#7a5c1d;
+  font-size:.85rem;
+  margin:12px 0 22px;
+}
+
+.pricing-card.featured .trial-note{
+  background:rgba(195,155,88,.18);
+  color:#f0d7ad;
+}
+
+.pricing-card p{
+  position:relative;
+  color:#76695f;
+  line-height:1.75;
+}
+
+.pricing-card ul{
+  position:relative;
+  list-style:none;
+  display:grid;
+  gap:12px;
+  margin:24px 0 0;
+  padding:0;
+}
+
+.pricing-card li{
+  color:#76695f;
+  line-height:1.55;
+}
+
+.pricing-card li::before{
+  content:"✓";
+  color:#c39b58;
+  margin-right:10px;
+  font-weight:700;
+}
+
+.reviews-section{
+  width:min(1280px, calc(100% - 40px));
+  margin:130px auto;
+  display:grid;
+  grid-template-columns:.8fr 1.2fr;
+  gap:34px;
+  align-items:start;
+}
+
+.review-form-card,
+.review-display-card{
+  background:rgba(255,255,255,.78);
+  border:1px solid rgba(0,0,0,.06);
+  border-radius:36px;
+  padding:34px;
+  box-shadow:0 18px 60px rgba(0,0,0,.045);
+}
+
+.review-form-card h2,
+.review-display-card h2{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(2.6rem, 5vw, 4.3rem);
+  line-height:.95;
+  margin-bottom:18px;
+}
+
+.review-form-card p,
+.review-display-card p{
+  color:#76695f;
+  line-height:1.75;
+}
+
+.review-form{
+  display:grid;
+  gap:14px;
+  margin-top:24px;
+}
+
+.review-list{
+  display:grid;
+  gap:14px;
+  margin-top:24px;
+}
+
+.review-item{
+  padding:20px;
+  border-radius:24px;
+  background:#f5eee5;
+}
+
+.review-item strong{
+  display:block;
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.6rem;
+}
+
+.review-item span{
+  display:block;
+  color:#c39b58;
+  margin:6px 0;
+}
+
+.review-item p{
+  margin:0;
+}
+
+.review-message{
+  color:#76695f;
+  min-height:24px;
+}
+
+.review-message[data-type="success"]{
+  color:#46632f;
+}
+
+.review-message[data-type="error"]{
+  color:#9c2f2f;
+}
+
+.membership-pill{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:10px 14px;
+  border-radius:999px;
+  background:#f3eadf;
+  color:#6d5946;
+  font-size:.82rem;
+}
+
+@media(max-width:1000px){
+  .pricing-grid,
+  .reviews-section{
+    grid-template-columns:1fr;
+  }
+
+  .pricing-card.featured{
+    transform:none;
+  }
+}

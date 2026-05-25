@@ -14,6 +14,8 @@
     <a href="index.html">Home</a>
     <a href="discover.html">Discover</a>
     <a href="map.html">Map</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="reviews.html">Reviews</a>
     <a href="admin.html">Admin</a>
     <a href="login.html">Login</a>
   </nav>
@@ -61,6 +63,11 @@
         <input name="business_name" placeholder="Business name" required>
         <input name="owner_name" placeholder="Owner / contact name">
         <input name="phone" placeholder="Phone / WhatsApp">
+        <select name="plan_type">
+          <option value="professional">Professional — $35/month after 5-day free trial</option>
+          <option value="creator">Creator / Blogger — $30/month after 5-day free trial</option>
+          <option value="single_user">Single User — $10/month after 5-day free trial</option>
+        </select>
         <input name="category" placeholder="Category e.g. Head Spa">
         <input name="country" placeholder="Country">
         <input name="province" placeholder="Province / State">
@@ -84,7 +91,7 @@
 
 <footer class="site-footer">
   <div class="logo">Mortéa</div>
-  <p>Provider dashboard foundation — ready for Stripe memberships next.</p>
+  <p>Provider dashboard foundation — pricing and 5-day trial ready for Stripe next.</p>
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
