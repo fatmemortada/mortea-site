@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Map | Mortéa</title>
+<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header class="navbar">
+  <div class="logo-mark"><div class="logo-emblem"></div><div class="logo">Mortéa<small>Luxury Wellness</small></div></div>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="discover.html">Discover</a>
+    <a href="map.html">Map</a>
+    <a href="professional-onboarding.html">Onboarding</a>
+    <a href="client-signup.html">Client Access</a>
+    <a href="professional-signup.html">Professional Access</a>
+  </nav>
+</header>
+
+<main class="map-page">
+  <section class="map-hero">
+    <p class="eyebrow">Stage 1 Map Experience</p>
+    <h1>Discover luxury beauty around the world.</h1>
+    <p>
+      This is Mortéa’s static map simulation: a premium visual experience showing how clients will later
+      search by city, category, location, and nearby providers once real mapping is connected.
+    </p>
+  </section>
+
+  <div class="map-toolbar">
+    <span>Canada</span>
+    <span>Québec</span>
+    <span>Montréal</span>
+    <span>Head Spa</span>
+    <span>Mobile Beauty</span>
+    <a class="near-me" href="#">Near me preview</a>
+  </div>
+
+  <section class="map-experience">
+    <aside class="map-sidebar">
+      <div class="map-search-card">
+        <h2>Search Mortéa</h2>
+        <input type="text" value="Montréal" aria-label="City">
+        <select aria-label="Category">
+          <option>Head Spa</option>
+          <option>Mobile Beauty</option>
+          <option>Wellness</option>
+          <option>Massage</option>
+          <option>Med Spa</option>
+        </select>
+        <select aria-label="Experience">
+          <option>Luxury experience</option>
+          <option>At-home service</option>
+          <option>Studio visit</option>
+          <option>Private appointment</option>
+        </select>
+        <button type="button">Search preview</button>
+      </div>
+
+      <a class="map-provider-card" href="profiles/maison-elise.html">
+        <div class="map-provider-image" style="background-image:url('images/profile-headspa.svg');"></div>
+        <div>
+          <h3>Maison Élise</h3>
+          <p>Luxury head spa rituals in Montréal.</p>
+          <div class="map-provider-meta"><span>Montréal</span><span>Head Spa</span></div>
+        </div>
+      </a>
+
+      <a class="map-provider-card" href="profiles/studio-velour.html">
+        <div class="map-provider-image" style="background-image:url('images/profile-mobile.svg');"></div>
+        <div>
+          <h3>Studio Velour</h3>
+          <p>Mobile beauty concierge for private clients.</p>
+          <div class="map-provider-meta"><span>Toronto</span><span>Mobile</span></div>
+        </div>
+      </a>
+
+      <a class="map-provider-card" href="profiles/ether-wellness.html">
+        <div class="map-provider-image" style="background-image:url('images/profile-wellness.svg');"></div>
+        <div>
+          <h3>Éther Wellness</h3>
+          <p>Private wellness and recovery experiences.</p>
+          <div class="map-provider-meta"><span>Dubai</span><span>Wellness</span></div>
+        </div>
+      </a>
+    </aside>
+
+    <section class="luxury-map">
+      <div class="map-label">
+        <p class="eyebrow">Visual Map Preview</p>
+        <h2>Static now. Real API later.</h2>
+        <p>These pins simulate future Google Maps or Mapbox provider discovery.</p>
+      </div>
+
+      <a class="map-pin pin-montreal" href="profiles/maison-elise.html"><span>Montréal • Head Spa</span></a>
+      <a class="map-pin pin-toronto" href="profiles/studio-velour.html"><span>Toronto • Mobile Beauty</span></a>
+      <a class="map-pin pin-miami" href="#"><span>Miami • Beauty Concierge</span></a>
+      <a class="map-pin pin-paris" href="#"><span>Paris • Wellness Studio</span></a>
+      <a class="map-pin pin-dubai" href="profiles/ether-wellness.html"><span>Dubai • Private Wellness</span></a>
+      <a class="map-pin pin-riyadh" href="#"><span>Riyadh • Luxury Spa</span></a>
+
+      <div class="map-floating-card">
+        <h3>Future real map features</h3>
+        <p>Geolocation, nearby search, category filters, profile pin previews, and real provider coordinates.</p>
+        <a class="btn secondary" href="discover.html">Open Discover</a>
+      </div>
+    </section>
+  </section>
+</main>
+
+<section class="map-roadmap">
+  <div class="map-roadmap-card">
+    <strong>Stage 1</strong>
+    <h3>Static luxury map</h3>
+    <p>Visual pins, city filters, provider cards, and a map-style interface without API keys.</p>
+  </div>
+
+  <div class="map-roadmap-card">
+    <strong>Stage 2</strong>
+    <h3>Real data connection</h3>
+    <p>Supabase professionals table with city, category, latitude, longitude, and profile status.</p>
+  </div>
+
+  <div class="map-roadmap-card">
+    <strong>Stage 3</strong>
+    <h3>Google Maps or Mapbox</h3>
+    <p>Live pins, “near me,” geolocation, distance, and clickable provider previews.</p>
+  </div>
+
+  <div class="map-roadmap-card">
+    <strong>Stage 4</strong>
+    <h3>App discovery</h3>
+    <p>Mobile-first map search, saved providers, booking requests, and personal recommendations.</p>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="logo">Mortéa</div>
+  <p>Luxury map simulation — ready for real backend connection later.</p>
+</footer>
+
+</body>
+</html>

@@ -28,3 +28,17 @@ Next backend phase:
 - Real profile creation
 - Google Maps or Mapbox
 - Booking and dashboard functionality
+
+
+Stage 1 Mapping Upgrade:
+- Added map.html
+- Added luxury static map interface
+- Added city/category search preview
+- Added clickable pins for Montréal, Toronto, Dubai, Paris, Miami, Riyadh
+- Added provider cards linked to profile pages
+- Added near-me preview button
+- Added map roadmap section
+- Added images/luxury-map-lines.svg
+- Updated navigation to include Map
+
+No API key is required for this version.
