@@ -42,3 +42,11 @@ Stage 1 Mapping Upgrade:
 - Updated navigation to include Map
 
 No API key is required for this version.
+
+
+Dynamic Supabase Display Upgrade:
+- map.html now loads approved professionals from Supabase.
+- discover.html now loads approved professionals from Supabase.
+- Public display only shows rows where status = approved.
+- If there is no approved data, static fallback cards still appear.
+- Added supabase-sample-data.sql for testing.

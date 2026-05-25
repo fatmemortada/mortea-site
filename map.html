@@ -61,7 +61,10 @@
         <button type="button">Search preview</button>
       </div>
 
-      <a class="map-provider-card" href="profiles/maison-elise.html">
+      
+      <div data-professionals-list="map">
+        <div data-fallback>
+          <a class="map-provider-card" href="profiles/maison-elise.html">
         <div class="map-provider-image" style="background-image:url('images/profile-headspa.svg');"></div>
         <div>
           <h3>Maison Élise</h3>
@@ -87,9 +90,12 @@
           <div class="map-provider-meta"><span>Dubai</span><span>Wellness</span></div>
         </div>
       </a>
-    </aside>
+    
+        </div>
+      </div>
+</aside>
 
-    <section class="luxury-map">
+    <section class="luxury-map" data-dynamic-map-pins>
       <div class="map-label">
         <p class="eyebrow">Visual Map Preview</p>
         <h2>Static now. Real API later.</h2>
@@ -142,6 +148,11 @@
   <div class="logo">Mortéa</div>
   <p>Luxury map simulation — ready for real backend connection later.</p>
 </footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/supabase-config.js"></script>
+<script src="js/dynamic-professionals.js"></script>
 
 </body>
 </html>
