@@ -2094,3 +2094,425 @@ body{
     grid-template-columns:1fr;
   }
 }
+
+/* =====================================================
+   Mortéa homepage-only luxury redesign
+   Scoped to body.home-page so other pages stay intact
+   ===================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;
+
+/* Homepage-only hybrid luxury redesign */
+body.home-page 500;600;700&family=Playfair+Display:wght@500;600;700&display=swap');
+
+:root {
+  --ink: #111012;
+  --deep: #151016;
+  --cream: #fbf4eb;
+  --soft: #f0e4d5;
+  --champagne: #d9b98c;
+  --gold: #b98955;
+  --rose: #d9a7a2;
+  --muted: #7a6c61;
+  --white: #fffaf3;
+  --line: rgba(17, 16, 18, 0.12);
+}
+body.home-page * {
+  box-sizing: border-box;
+}
+body.home-page {
+  margin: 0;
+  background: var(--cream);
+  color: var(--ink);
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+body.home-page a {
+  color: inherit;
+  text-decoration: none;
+}
+body.home-page .topbar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  padding: 22px clamp(20px, 5vw, 72px);
+  background: rgba(251, 244, 235, 0.78);
+  backdrop-filter: blur(18px);
+  border-bottom: 1px solid rgba(17, 16, 18, 0.08);
+}
+body.home-page .logo, body.home-page .footer-logo {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 32px;
+  letter-spacing: -0.04em;
+  font-weight: 700;
+}
+body.home-page .nav-links {
+  display: flex;
+  gap: 30px;
+  color: rgba(17, 16, 18, 0.68);
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+body.home-page .nav-links a:hover {
+  color: var(--ink);
+}
+body.home-page .nav-button {
+  justify-self: end;
+  padding: 12px 20px;
+  border: 1px solid rgba(17, 16, 18, 0.2);
+  border-radius: 999px;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  background: rgba(255, 250, 243, 0.5);
+}
+body.home-page .hero {
+  position: relative;
+  overflow: hidden;
+  min-height: 88vh;
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  align-items: center;
+  gap: clamp(30px, 6vw, 90px);
+  padding: clamp(70px, 9vw, 140px) clamp(22px, 7vw, 120px);
+  background:
+    radial-gradient(circle at 80% 20%, rgba(217, 167, 162, 0.38), transparent 26%),
+    radial-gradient(circle at 18% 70%, rgba(185, 137, 85, 0.26), transparent 34%),
+    linear-gradient(135deg, #fff7ef 0%, #eedcc7 42%, #cfa77e 100%);
+}
+body.home-page .hero::after {
+  content: "";
+  position: absolute;
+  inset: auto -10% -35% 34%;
+  height: 62%;
+  background: radial-gradient(circle, rgba(255, 250, 243, 0.8), transparent 66%);
+  pointer-events: none;
+}
+body.home-page .hero-glow {
+  position: absolute;
+  border-radius: 999px;
+  filter: blur(22px);
+  opacity: 0.65;
+}
+body.home-page .hero-glow-one {
+  width: 320px;
+  height: 320px;
+  right: 10%;
+  top: 18%;
+  background: rgba(255, 255, 255, 0.45);
+}
+body.home-page .hero-glow-two {
+  width: 220px;
+  height: 220px;
+  left: 8%;
+  bottom: 12%;
+  background: rgba(185, 137, 85, 0.24);
+}
+body.home-page .hero-content, body.home-page .hero-card, body.home-page .founding-panel, body.home-page .concierge-card {
+  position: relative;
+  z-index: 1;
+}
+body.home-page .eyebrow {
+  margin: 0 0 18px;
+  color: var(--gold);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+body.home-page .eyebrow.dark {
+  color: #9b6e42;
+}
+body.home-page h1, body.home-page h2, body.home-page h3 {
+  margin: 0;
+  font-family: "Playfair Display", Georgia, serif;
+  letter-spacing: -0.045em;
+  font-weight: 600;
+}
+body.home-page h1 {
+  max-width: 880px;
+  font-size: clamp(56px, 9vw, 112px);
+  line-height: 0.92;
+}
+body.home-page h2 {
+  font-size: clamp(34px, 5vw, 70px);
+  line-height: 1;
+}
+body.home-page h3 {
+  font-size: 28px;
+  line-height: 1.05;
+}
+body.home-page .hero-copy {
+  max-width: 690px;
+  margin: 28px 0 0;
+  color: rgba(17, 16, 18, 0.72);
+  font-size: clamp(18px, 2vw, 23px);
+  line-height: 1.65;
+}
+body.home-page .hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 38px;
+}
+body.home-page .primary-button, body.home-page .ghost-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 50px;
+  padding: 14px 26px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+body.home-page .primary-button {
+  background: var(--ink);
+  color: var(--white);
+  box-shadow: 0 18px 40px rgba(17, 16, 18, 0.18);
+}
+body.home-page .primary-button.light {
+  background: var(--white);
+  color: var(--ink);
+}
+body.home-page .ghost-button {
+  border: 1px solid rgba(17, 16, 18, 0.2);
+  background: rgba(255, 250, 243, 0.35);
+}
+body.home-page .primary-button:hover, body.home-page .ghost-button:hover {
+  transform: translateY(-3px);
+}
+body.home-page .hero-card {
+  align-self: end;
+  min-height: 360px;
+  padding: 38px;
+  border: 1px solid rgba(255, 250, 243, 0.44);
+  border-radius: 34px;
+  background: linear-gradient(145deg, rgba(255, 250, 243, 0.46), rgba(255, 250, 243, 0.18));
+  backdrop-filter: blur(18px);
+  box-shadow: 0 28px 90px rgba(17, 16, 18, 0.16);
+}
+body.home-page .hero-card span {
+  color: var(--gold);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+body.home-page .hero-card h2 {
+  margin-top: 20px;
+  font-size: clamp(34px, 4vw, 54px);
+}
+body.home-page .hero-card p {
+  color: rgba(17, 16, 18, 0.68);
+  font-size: 17px;
+  line-height: 1.7;
+}
+body.home-page .split-section, body.home-page .experience-section, body.home-page .founding-section, body.home-page .city-section, body.home-page .concierge-section {
+  padding: clamp(70px, 8vw, 125px) clamp(22px, 7vw, 120px);
+}
+body.home-page .split-section {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 0.85fr);
+  gap: clamp(32px, 6vw, 90px);
+  align-items: start;
+  background: #fffaf3;
+  border-bottom: 1px solid var(--line);
+}
+body.home-page .split-section p:last-child {
+  color: var(--muted);
+  font-size: clamp(18px, 2vw, 23px);
+  line-height: 1.7;
+}
+body.home-page .experience-section {
+  background:
+    linear-gradient(180deg, rgba(255, 250, 243, 0.94), rgba(240, 228, 213, 0.8)),
+    radial-gradient(circle at 10% 0%, rgba(217, 167, 162, 0.2), transparent 35%);
+}
+body.home-page .section-heading {
+  max-width: 880px;
+  margin-bottom: 46px;
+}
+body.home-page .section-heading p:last-child, body.home-page .city-section p, body.home-page .concierge-card p, body.home-page .founding-panel p {
+  color: var(--muted);
+  font-size: 18px;
+  line-height: 1.7;
+}
+body.home-page .experience-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+body.home-page .experience-card {
+  min-height: 280px;
+  padding: 32px;
+  border: 1px solid rgba(17, 16, 18, 0.08);
+  border-radius: 28px;
+  background:
+    linear-gradient(145deg, rgba(255, 250, 243, 0.92), rgba(255, 250, 243, 0.48));
+  box-shadow: 0 20px 55px rgba(58, 43, 30, 0.08);
+}
+body.home-page .experience-card span {
+  color: var(--gold);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+}
+body.home-page .experience-card h3 {
+  margin-top: 42px;
+}
+body.home-page .experience-card p {
+  color: var(--muted);
+}
+body.home-page .founding-section {
+  background:
+    radial-gradient(circle at 80% 0%, rgba(217, 167, 162, 0.22), transparent 28%),
+    linear-gradient(135deg, #151016, #241920 52%, #332014);
+  color: var(--white);
+}
+body.home-page .founding-panel {
+  max-width: 1060px;
+  margin: 0 auto;
+  padding: clamp(34px, 6vw, 70px);
+  border: 1px solid rgba(255, 250, 243, 0.14);
+  border-radius: 38px;
+  background: rgba(255, 250, 243, 0.045);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.22);
+}
+body.home-page .founding-panel p {
+  max-width: 760px;
+  color: rgba(255, 250, 243, 0.74);
+}
+body.home-page .benefits {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin: 34px 0;
+}
+body.home-page .benefits span {
+  padding: 16px 18px;
+  border: 1px solid rgba(255, 250, 243, 0.14);
+  border-radius: 999px;
+  color: rgba(255, 250, 243, 0.82);
+  text-align: center;
+  font-size: 14px;
+}
+body.home-page .city-section {
+  text-align: center;
+  background: #fffaf3;
+}
+body.home-page .city-section h2, body.home-page .city-section p {
+  margin-left: auto;
+  margin-right: auto;
+}
+body.home-page .city-section p {
+  max-width: 700px;
+}
+body.home-page .city-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 34px;
+}
+body.home-page .city-list span {
+  padding: 13px 22px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgba(240, 228, 213, 0.48);
+}
+body.home-page .concierge-section {
+  background:
+    radial-gradient(circle at 20% 20%, rgba(185, 137, 85, 0.24), transparent 32%),
+    linear-gradient(135deg, #fbf4eb, #e8d4bd);
+}
+body.home-page .concierge-card {
+  max-width: 920px;
+  padding: clamp(34px, 6vw, 70px);
+  border-radius: 38px;
+  background: rgba(255, 250, 243, 0.58);
+  border: 1px solid rgba(17, 16, 18, 0.08);
+  box-shadow: 0 26px 80px rgba(58, 43, 30, 0.12);
+}
+body.home-page .footer {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 28px;
+  padding: 48px clamp(22px, 7vw, 120px);
+  background: var(--deep);
+  color: var(--white);
+}
+body.home-page .footer p {
+  color: rgba(255, 250, 243, 0.68);
+}
+body.home-page .footer nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  justify-content: flex-end;
+  color: rgba(255, 250, 243, 0.72);
+  font-size: 14px;
+}
+body.home-page .copyright {
+  grid-column: 1 / -1;
+  margin-top: 18px;
+  padding-top: 22px;
+  border-top: 1px solid rgba(255, 250, 243, 0.13);
+  font-size: 13px;
+}
+@media (max-width: 950px){
+  .topbar {
+    grid-template-columns: 1fr auto;
+    gap: 14px;
+  }
+body.home-page .nav-links {
+    grid-column: 1 / -1;
+    order: 3;
+    overflow-x: auto;
+    gap: 18px;
+    padding-top: 8px;
+  }
+body.home-page .hero {
+    grid-template-columns: 1fr;
+  }
+body.home-page .hero-card {
+    align-self: auto;
+    min-height: auto;
+  }
+body.home-page .split-section {
+    grid-template-columns: 1fr;
+  }
+body.home-page .experience-grid {
+    grid-template-columns: 1fr;
+  }
+body.home-page .benefits {
+    grid-template-columns: 1fr;
+  }
+body.home-page .footer {
+    grid-template-columns: 1fr;
+  }
+body.home-page .footer nav {
+    justify-content: flex-start;
+  }
+@media (max-width: 560px){
+  .nav-button {
+    display: none;
+  }
+body.home-page .hero {
+    min-height: auto;
+    padding-top: 72px;
+  }
+body.home-page .hero-actions {
+    flex-direction: column;
+  }
+body.home-page .primary-button, body.home-page .ghost-button {
+    width: 100%;
+  }
+body.home-page h1 {
+    font-size: 54px;
+  }
