@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mortéa Provider Profile</title>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <style>
+    :root {
+      --bg: #fbf7f1;
+      --card: #ffffff;
+      --ink: #2b211c;
+      --muted: #776b63;
+      --line: #eaded4;
+      --gold: #b9935a;
+      --gold-dark: #8e6d3f;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      background: var(--bg);
+      color: var(--ink);
+    }
+    .hero {
+      padding: 72px 20px 42px;
+      background: linear-gradient(135deg, #fffaf3, #f3e8d8);
+      border-bottom: 1px solid var(--line);
+    }
+    .wrap {
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 28px;
+      align-items: center;
+    }
+    h1 {
+      font-size: clamp(38px, 7vw, 76px);
+      line-height: 0.92;
+      letter-spacing: -0.06em;
+      margin: 0;
+    }
+    .tag {
+      display: inline-flex;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.62);
+      color: var(--gold-dark);
+      padding: 9px 14px;
+      border-radius: 999px;
+      margin-bottom: 18px;
+      font-weight: 700;
+    }
+    p { color: var(--muted); line-height: 1.7; }
+    .cover {
+      width: 100%;
+      min-height: 320px;
+      border-radius: 30px;
+      background: #e9dccd;
+      object-fit: cover;
+      box-shadow: 0 24px 60px rgba(58, 43, 31, 0.15);
+    }
+    .section {
+      padding: 34px 20px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+    .service, .review, .gallery-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 20px;
+      box-shadow: 0 18px 45px rgba(53, 39, 29, 0.05);
+    }
+    .service h3, .review h3 { margin: 0 0 10px; }
+    .meta { color: var(--gold-dark); font-weight: 700; }
+    .gallery-card { padding: 0; overflow: hidden; }
+    .gallery-card img {
+      width: 100%;
+      height: 240px;
+      display: block;
+      object-fit: cover;
+    }
+    .actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 24px;
+    }
+    .btn {
+      border-radius: 999px;
+      padding: 13px 18px;
+      background: var(--gold);
+      color: #fff;
+      text-decoration: none;
+      font-weight: 700;
+      display: inline-flex;
+    }
+    .btn.secondary {
+      background: transparent;
+      color: var(--gold-dark);
+      border: 1px solid var(--gold);
+    }
+    .empty {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 20px;
+      color: var(--muted);
+    }
+    @media (max-width: 860px) {
+      .hero-grid, .grid { grid-template-columns: 1fr; }
+      .hero { padding-top: 44px; }
+      .cover { min-height: 230px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="tag" id="providerCategory">Mortéa Provider</span>
+        <h1 id="providerName">Loading...</h1>
+        <p id="providerBio"></p>
+        <p id="providerLocation"></p>
+        <div class="actions">
+          <a id="bookingLink" class="btn" href="#" target="_blank">Book now</a>
+          <a id="instagramLink" class="btn secondary" href="#" target="_blank">Instagram</a>
+        </div>
+      </div>
+      <img id="providerCover" class="cover" alt="Provider cover image" />
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="wrap">
+      <h2>Services</h2>
+      <p>Signature experiences offered by this provider.</p>
+      <div id="servicesGrid" class="grid"></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2>Gallery</h2>
+      <p>A visual preview of the provider’s atmosphere, work, and client experience.</p>
+      <div id="galleryGrid" class="grid"></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2>Client Reviews</h2>
+      <div id="reviewsGrid" class="grid"></div>
+    </div>
+  </section>
+
+  <script>
+    const SUPABASE_URL = "PASTE_YOUR_SUPABASE_URL_HERE";
+    const SUPABASE_ANON_KEY = "PASTE_YOUR_SUPABASE_ANON_KEY_HERE";
+    const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    const params = new URLSearchParams(window.location.search);
+    const providerId = params.get("id");
+    const slug = params.get("slug");
+
+    async function initProviderPage() {
+      let query = supabaseClient.from("professionals").select("*").limit(1);
+
+      if (providerId) {
+        query = query.eq("id", providerId);
+      } else if (slug) {
+        query = query.eq("slug", slug);
+      } else {
+        showNotFound("No provider selected.");
+        return;
+      }
+
+      const { data, error } = await query.single();
+
+      if (error || !data) {
+        showNotFound("Provider not found.");
+        return;
+      }
+
+      renderProvider(data);
+      await Promise.all([
+        loadServices(data.id),
+        loadGallery(data.id),
+        loadReviews(data.id)
+      ]);
+    }
+
+    function renderProvider(provider) {
+      const name = provider.business_name || provider.full_name || "Mortéa Provider";
+      document.title = `${name} | Mortéa`;
+      document.getElementById("providerName").textContent = name;
+      document.getElementById("providerBio").textContent = provider.bio || provider.description || "A curated beauty and wellness provider on Mortéa.";
+      document.getElementById("providerLocation").textContent = [provider.city, provider.province].filter(Boolean).join(", ");
+      document.getElementById("providerCategory").textContent = provider.category || provider.specialty || "Mortéa Provider";
+
+      const cover = provider.cover_image_url || provider.image_url || "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=1200&q=80";
+      document.getElementById("providerCover").src = cover;
+
+      setLink("bookingLink", provider.booking_url);
+      setLink("instagramLink", provider.instagram_url);
+    }
+
+    async function loadServices(providerId) {
+      const { data, error } = await supabaseClient
+        .from("provider_services")
+        .select("*")
+        .eq("provider_id", providerId)
+        .eq("is_active", true)
+        .order("display_order", { ascending: true })
+        .order("created_at", { ascending: false });
+
+      const grid = document.getElementById("servicesGrid");
+
+      if (error || !data || data.length === 0) {
+        grid.innerHTML = `<div class="empty">No services have been published yet.</div>`;
+        return;
+      }
+
+      grid.innerHTML = data.map(service => `
+        <article class="service">
+          <h3>${escapeHtml(service.service_name)}</h3>
+          <div class="meta">${escapeHtml(service.service_price || "")} ${service.service_duration ? "• " + escapeHtml(service.service_duration) : ""}</div>
+          <p>${escapeHtml(service.service_description || "")}</p>
+        </article>
+      `).join("");
+    }
+
+    async function loadGallery(providerId) {
+      const { data, error } = await supabaseClient
+        .from("provider_gallery")
+        .select("*")
+        .eq("provider_id", providerId)
+        .eq("is_active", true)
+        .order("display_order", { ascending: true })
+        .order("created_at", { ascending: false });
+
+      const grid = document.getElementById("galleryGrid");
+
+      if (error || !data || data.length === 0) {
+        grid.innerHTML = `<div class="empty">No gallery images have been published yet.</div>`;
+        return;
+      }
+
+      grid.innerHTML = data.map(image => `
+        <figure class="gallery-card">
+          <img src="${escapeAttribute(image.image_url)}" alt="${escapeAttribute(image.image_alt || "Mortéa gallery image")}" />
+        </figure>
+      `).join("");
+    }
+
+    async function loadReviews(providerId) {
+      const { data, error } = await supabaseClient
+        .from("reviews")
+        .select("*")
+        .eq("provider_id", providerId)
+        .eq("is_approved", true)
+        .order("created_at", { ascending: false })
+        .limit(6);
+
+      const grid = document.getElementById("reviewsGrid");
+
+      if (error || !data || data.length === 0) {
+        grid.innerHTML = `<div class="empty">No approved reviews yet.</div>`;
+        return;
+      }
+
+      grid.innerHTML = data.map(review => `
+        <article class="review">
+          <h3>${escapeHtml(review.client_name || "Client")}</h3>
+          <div class="meta">${"★".repeat(Number(review.rating || 5))}</div>
+          <p>${escapeHtml(review.review_text || review.comment || "")}</p>
+        </article>
+      `).join("");
+    }
+
+    function setLink(id, url) {
+      const element = document.getElementById(id);
+      if (!url) {
+        element.style.display = "none";
+        return;
+      }
+      element.href = url;
+    }
+
+    function showNotFound(message) {
+      document.body.innerHTML = `<main class="section"><div class="wrap"><div class="empty"><h1>${message}</h1><p>Please return to the Mortéa discovery page and choose a provider.</p></div></div></main>`;
+    }
+
+    function escapeHtml(value) {
+      return String(value || "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+
+    function escapeAttribute(value) {
+      return escapeHtml(value).replaceAll("`", "&#096;");
+    }
+
+    initProviderPage();
+  </script>
+</body>
+</html>

@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mortéa Provider Dashboard — Services & Gallery</title>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <style>
+    :root {
+      --bg: #faf7f2;
+      --card: #ffffff;
+      --ink: #2b211c;
+      --muted: #776b63;
+      --line: #eaded4;
+      --gold: #b9935a;
+      --gold-dark: #8e6d3f;
+      --danger: #a04747;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      background: var(--bg);
+      color: var(--ink);
+    }
+    .wrap {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 32px 18px 70px;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: center;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+    h1, h2, h3 { margin: 0; }
+    h1 { font-size: clamp(28px, 5vw, 46px); letter-spacing: -0.04em; }
+    p { color: var(--muted); line-height: 1.6; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 22px;
+      box-shadow: 0 18px 45px rgba(53, 39, 29, 0.06);
+    }
+    label {
+      display: block;
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin: 14px 0 7px;
+    }
+    input, textarea {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 13px 14px;
+      font: inherit;
+      background: #fffdfb;
+      color: var(--ink);
+    }
+    textarea { min-height: 96px; resize: vertical; }
+    button, .btn {
+      border: 0;
+      border-radius: 999px;
+      padding: 12px 18px;
+      background: var(--gold);
+      color: #fff;
+      cursor: pointer;
+      font-weight: 700;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    button:hover, .btn:hover { background: var(--gold-dark); }
+    .secondary {
+      background: transparent;
+      color: var(--gold-dark);
+      border: 1px solid var(--line);
+    }
+    .danger { background: var(--danger); }
+    .list {
+      display: grid;
+      gap: 12px;
+      margin-top: 16px;
+    }
+    .item {
+      border: 1px solid var(--line);
+      background: #fffdfb;
+      border-radius: 18px;
+      padding: 15px;
+    }
+    .item-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: flex-start;
+    }
+    .item h3 { font-size: 18px; }
+    .meta { font-size: 14px; color: var(--muted); margin-top: 6px; }
+    .actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+    }
+    .gallery-preview {
+      width: 100%;
+      max-height: 170px;
+      object-fit: cover;
+      border-radius: 14px;
+      margin-top: 10px;
+      border: 1px solid var(--line);
+    }
+    .status {
+      margin: 14px 0 0;
+      font-weight: 700;
+      color: var(--gold-dark);
+    }
+    .hidden { display: none !important; }
+    @media (max-width: 800px) {
+      .grid { grid-template-columns: 1fr; }
+      .wrap { padding-top: 22px; }
+      .card { padding: 18px; border-radius: 20px; }
+      header { align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <header>
+      <div>
+        <h1>Services & Gallery</h1>
+        <p>Manage the services and portfolio images shown on your public Mortéa provider profile.</p>
+      </div>
+      <a class="btn secondary" href="provider.html" target="_blank">View public profile</a>
+    </header>
+
+    <section class="grid">
+      <div class="card">
+        <h2>Add / Edit Service</h2>
+        <form id="serviceForm">
+          <input type="hidden" id="serviceId" />
+
+          <label for="serviceName">Service name</label>
+          <input id="serviceName" required placeholder="Luxury Head Spa" />
+
+          <label for="serviceDescription">Description</label>
+          <textarea id="serviceDescription" placeholder="Describe the experience, benefits, and what is included."></textarea>
+
+          <label for="servicePrice">Price</label>
+          <input id="servicePrice" placeholder="$120" />
+
+          <label for="serviceDuration">Duration</label>
+          <input id="serviceDuration" placeholder="90 minutes" />
+
+          <label for="serviceOrder">Display order</label>
+          <input id="serviceOrder" type="number" value="0" />
+
+          <div class="actions">
+            <button type="submit">Save service</button>
+            <button type="button" class="secondary" onclick="resetServiceForm()">Clear</button>
+          </div>
+          <div id="serviceStatus" class="status"></div>
+        </form>
+      </div>
+
+      <div class="card">
+        <h2>Add / Edit Gallery Image</h2>
+        <form id="galleryForm">
+          <input type="hidden" id="galleryId" />
+
+          <label for="imageUrl">Image URL</label>
+          <input id="imageUrl" required placeholder="https://..." />
+
+          <label for="imageAlt">Image description</label>
+          <input id="imageAlt" placeholder="Elegant head spa treatment room" />
+
+          <label for="galleryOrder">Display order</label>
+          <input id="galleryOrder" type="number" value="0" />
+
+          <div class="actions">
+            <button type="submit">Save image</button>
+            <button type="button" class="secondary" onclick="resetGalleryForm()">Clear</button>
+          </div>
+          <div id="galleryStatus" class="status"></div>
+        </form>
+      </div>
+    </section>
+
+    <section class="grid" style="margin-top:20px;">
+      <div class="card">
+        <h2>Your Services</h2>
+        <div id="servicesList" class="list"></div>
+      </div>
+
+      <div class="card">
+        <h2>Your Gallery</h2>
+        <div id="galleryList" class="list"></div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const SUPABASE_URL = "PASTE_YOUR_SUPABASE_URL_HERE";
+    const SUPABASE_ANON_KEY = "PASTE_YOUR_SUPABASE_ANON_KEY_HERE";
+    const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    let currentUser = null;
+    let currentProvider = null;
+
+    async function initDashboard() {
+      const { data: { session } } = await supabaseClient.auth.getSession();
+
+      if (!session) {
+        window.location.href = "login.html";
+        return;
+      }
+
+      currentUser = session.user;
+
+      const { data: provider, error } = await supabaseClient
+        .from("professionals")
+        .select("*")
+        .eq("user_id", currentUser.id)
+        .single();
+
+      if (error || !provider) {
+        document.body.innerHTML = "<main class='wrap'><div class='card'><h1>Provider profile not found</h1><p>Please complete your professional onboarding first.</p><a class='btn' href='signup.html'>Go to signup</a></div></main>";
+        return;
+      }
+
+      currentProvider = provider;
+      await loadServices();
+      await loadGallery();
+    }
+
+    async function loadServices() {
+      const { data, error } = await supabaseClient
+        .from("provider_services")
+        .select("*")
+        .eq("provider_id", currentProvider.id)
+        .order("display_order", { ascending: true })
+        .order("created_at", { ascending: false });
+
+      const list = document.getElementById("servicesList");
+
+      if (error) {
+        list.innerHTML = `<p>Could not load services: ${error.message}</p>`;
+        return;
+      }
+
+      if (!data || data.length === 0) {
+        list.innerHTML = "<p>No services added yet.</p>";
+        return;
+      }
+
+      list.innerHTML = data.map(service => `
+        <article class="item">
+          <div class="item-top">
+            <div>
+              <h3>${escapeHtml(service.service_name)}</h3>
+              <div class="meta">${escapeHtml(service.service_price || "")} ${service.service_duration ? "• " + escapeHtml(service.service_duration) : ""}</div>
+            </div>
+          </div>
+          <p>${escapeHtml(service.service_description || "")}</p>
+          <div class="actions">
+            <button class="secondary" onclick='editService(${JSON.stringify(service)})'>Edit</button>
+            <button class="danger" onclick="deleteService('${service.id}')">Delete</button>
+          </div>
+        </article>
+      `).join("");
+    }
+
+    async function loadGallery() {
+      const { data, error } = await supabaseClient
+        .from("provider_gallery")
+        .select("*")
+        .eq("provider_id", currentProvider.id)
+        .order("display_order", { ascending: true })
+        .order("created_at", { ascending: false });
+
+      const list = document.getElementById("galleryList");
+
+      if (error) {
+        list.innerHTML = `<p>Could not load gallery: ${error.message}</p>`;
+        return;
+      }
+
+      if (!data || data.length === 0) {
+        list.innerHTML = "<p>No gallery images added yet.</p>";
+        return;
+      }
+
+      list.innerHTML = data.map(image => `
+        <article class="item">
+          <h3>${escapeHtml(image.image_alt || "Gallery image")}</h3>
+          <img class="gallery-preview" src="${escapeAttribute(image.image_url)}" alt="${escapeAttribute(image.image_alt || "Gallery image")}" />
+          <div class="meta">Order: ${image.display_order || 0}</div>
+          <div class="actions">
+            <button class="secondary" onclick='editGallery(${JSON.stringify(image)})'>Edit</button>
+            <button class="danger" onclick="deleteGallery('${image.id}')">Delete</button>
+          </div>
+        </article>
+      `).join("");
+    }
+
+    document.getElementById("serviceForm").addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const serviceId = document.getElementById("serviceId").value;
+
+      const payload = {
+        provider_id: currentProvider.id,
+        service_name: document.getElementById("serviceName").value.trim(),
+        service_description: document.getElementById("serviceDescription").value.trim(),
+        service_price: document.getElementById("servicePrice").value.trim(),
+        service_duration: document.getElementById("serviceDuration").value.trim(),
+        display_order: Number(document.getElementById("serviceOrder").value || 0),
+        is_active: true
+      };
+
+      const query = serviceId
+        ? supabaseClient.from("provider_services").update(payload).eq("id", serviceId)
+        : supabaseClient.from("provider_services").insert(payload);
+
+      const { error } = await query;
+      document.getElementById("serviceStatus").textContent = error ? error.message : "Service saved.";
+      if (!error) {
+        resetServiceForm();
+        await loadServices();
+      }
+    });
+
+    document.getElementById("galleryForm").addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const galleryId = document.getElementById("galleryId").value;
+
+      const payload = {
+        provider_id: currentProvider.id,
+        image_url: document.getElementById("imageUrl").value.trim(),
+        image_alt: document.getElementById("imageAlt").value.trim(),
+        display_order: Number(document.getElementById("galleryOrder").value || 0),
+        is_active: true
+      };
+
+      const query = galleryId
+        ? supabaseClient.from("provider_gallery").update(payload).eq("id", galleryId)
+        : supabaseClient.from("provider_gallery").insert(payload);
+
+      const { error } = await query;
+      document.getElementById("galleryStatus").textContent = error ? error.message : "Gallery image saved.";
+      if (!error) {
+        resetGalleryForm();
+        await loadGallery();
+      }
+    });
+
+    function editService(service) {
+      document.getElementById("serviceId").value = service.id;
+      document.getElementById("serviceName").value = service.service_name || "";
+      document.getElementById("serviceDescription").value = service.service_description || "";
+      document.getElementById("servicePrice").value = service.service_price || "";
+      document.getElementById("serviceDuration").value = service.service_duration || "";
+      document.getElementById("serviceOrder").value = service.display_order || 0;
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function resetServiceForm() {
+      document.getElementById("serviceForm").reset();
+      document.getElementById("serviceId").value = "";
+      document.getElementById("serviceOrder").value = 0;
+    }
+
+    async function deleteService(id) {
+      if (!confirm("Delete this service?")) return;
+      const { error } = await supabaseClient.from("provider_services").delete().eq("id", id);
+      if (error) alert(error.message);
+      await loadServices();
+    }
+
+    function editGallery(image) {
+      document.getElementById("galleryId").value = image.id;
+      document.getElementById("imageUrl").value = image.image_url || "";
+      document.getElementById("imageAlt").value = image.image_alt || "";
+      document.getElementById("galleryOrder").value = image.display_order || 0;
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function resetGalleryForm() {
+      document.getElementById("galleryForm").reset();
+      document.getElementById("galleryId").value = "";
+      document.getElementById("galleryOrder").value = 0;
+    }
+
+    async function deleteGallery(id) {
+      if (!confirm("Delete this image?")) return;
+      const { error } = await supabaseClient.from("provider_gallery").delete().eq("id", id);
+      if (error) alert(error.message);
+      await loadGallery();
+    }
+
+    function escapeHtml(value) {
+      return String(value || "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+
+    function escapeAttribute(value) {
+      return escapeHtml(value).replaceAll("`", "&#096;");
+    }
+
+    initDashboard();
+  </script>
+</body>
+</html>
