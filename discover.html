@@ -1,15 +1,96 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Discover | Mortéa</title><link rel="stylesheet" href="style.css"><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"></head><body><header class="navbar"><div class="logo-mark"><div class="logo-emblem"></div><div class="logo">Mortéa<small>Luxury Wellness</small></div></div><nav><a href="index.html">Home</a><a href="discover.html">Discover</a>
-    <a href="map.html">Map</a>
-    <a href="pricing.html">Pricing</a>
-    <a href="reviews.html">Reviews</a>
-    <a href="admin.html">Admin</a><a href="professional-onboarding.html">Onboarding</a><a href="client-signup.html">Client Access</a><a href="professional-signup.html">Professional Access</a>    <a href="login.html">Login</a>
-  </nav></header><main class="discover-page"><section class="discover-hero"><p class="eyebrow">Mortéa Discovery</p><h1>Find beauty and wellness experiences that feel curated.</h1><p>Browse luxury salons, mobile professionals, private wellness providers, and at-home beauty experiences. This is the first simulation of the future Mortéa marketplace.</p></section><div class="discover-filters"><span>Canada</span><span>Montréal</span><span>Head Spa</span><span>Mobile Beauty</span><span>Wellness</span><span>Concierge</span></div><section class="discovery-feed" data-professionals-list="discover">
-    <div data-fallback>
-      <a class="discover-card-link" href="profiles/maison-elise.html"><div class="discovery-card"><div class="discovery-image one"></div><div><h3>Maison Élise Head Spa</h3><p>Premium head spa rituals with calming scalp therapy and luxury relaxation.</p><div class="card-meta"><span>Montréal</span><span>Head Spa</span><span>Founder Profile</span></div></div></div></a><a class="discover-card-link" href="profiles/studio-velour.html"><div class="discovery-card"><div class="discovery-image two"></div><div><h3>Studio Velour</h3><p>Mobile beauty concierge for events, bridal mornings, and private appointments.</p><div class="card-meta"><span>Toronto</span><span>Mobile Beauty</span><span>WhatsApp Ready</span></div></div></div></a><a class="discover-card-link" href="profiles/ether-wellness.html"><div class="discovery-card"><div class="discovery-image three"></div><div><h3>Éther Wellness</h3><p>Luxury massage and private wellness experiences for modern clients.</p><div class="card-meta"><span>Dubai</span><span>Wellness</span><span>Premium</span></div></div></div></a>
-    </div>
-  </section></main><footer class="site-footer"><div class="logo">Mortéa</div><p>Luxury beauty & wellness ecosystem — discovery first, platform next.</p></footer>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="js/supabase-config.js"></script>
-<script src="js/dynamic-professionals.js"></script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Discover | Mortéa</title>
+  <meta name="description" content="Discover Mortéa's curated luxury beauty and wellness experience categories." />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="mortea-inner-page discover-luxury">
+  <header class="inner-topbar">
+    <a class="inner-logo" href="index.html">Mortéa</a>
+    <nav class="inner-nav">
+      <a href="discover.html">Discover</a>
+      <a href="professional-onboarding.html">Professionals</a>
+      <a href="index.html#vision">Vision</a>
+      <a href="login.html">Access</a>
+    </nav>
+    <a class="inner-nav-button" href="professional-onboarding.html">Request Access</a>
+  </header>
 
-</body></html>
+  <main>
+    <section class="inner-hero">
+      <p class="inner-eyebrow">Curated discovery</p>
+      <h1>Explore the worlds Mortéa is being built to elevate.</h1>
+      <p>
+        Until selected professionals officially join, Mortéa highlights experience categories
+        instead of presenting unregistered businesses as active members.
+      </p>
+    </section>
+
+    <section class="inner-grid-section">
+      <div class="inner-section-heading">
+        <p class="inner-eyebrow">Experience categories</p>
+        <h2>Luxury beauty, wellness, and self-care.</h2>
+      </div>
+
+      <div class="inner-card-grid">
+        <article>
+          <span>01</span>
+          <h3>Luxury Head Spa</h3>
+          <p>Scalp rituals, relaxation, and restorative care in a premium environment.</p>
+        </article>
+        <article>
+          <span>02</span>
+          <h3>Premium Facials</h3>
+          <p>Skin rituals designed around calm, glow, and elevated beauty.</p>
+        </article>
+        <article>
+          <span>03</span>
+          <h3>Bridal Beauty</h3>
+          <p>Curated preparation for meaningful occasions and private events.</p>
+        </article>
+        <article>
+          <span>04</span>
+          <h3>Massage & Recovery</h3>
+          <p>Body care, recovery, and wellness rituals with luxury positioning.</p>
+        </article>
+        <article>
+          <span>05</span>
+          <h3>Mobile Concierge Beauty</h3>
+          <p>Private beauty experiences designed around discretion and convenience.</p>
+        </article>
+        <article>
+          <span>06</span>
+          <h3>Wellness Retreats</h3>
+          <p>Quiet luxury experiences for reset, restoration, and self-care.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="inner-dark-panel">
+      <p class="inner-eyebrow">Launching carefully</p>
+      <h2>Mortéa will grow through selected providers, not random listings.</h2>
+      <p>
+        The goal is to build trust first: curated professionals, refined profiles,
+        and a premium discovery experience that feels intentional from the beginning.
+      </p>
+      <a class="inner-primary light" href="professional-onboarding.html">Apply as a Founding Professional</a>
+    </section>
+  </main>
+
+  <footer class="inner-footer">
+    <strong>Mortéa</strong>
+    <p>Curated luxury wellness experiences.</p>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="professional-onboarding.html">Professionals</a>
+      <a href="login.html">Access</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="terms.html">Terms</a>
+    </nav>
+    <small>© 2026 Mortéa. All rights reserved.</small>
+  </footer>
+</body>
+</html>
