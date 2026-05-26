@@ -1,350 +1,185 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mortéa | Luxury Beauty & Wellness Ecosystem</title>
-<link rel="stylesheet" href="style.css">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mortéa | Luxury Beauty & Wellness Ecosystem</title>
+  <meta name="description" content="Mortéa is a curated luxury beauty and wellness ecosystem for elevated discovery, founding professionals, and future AI-powered concierge experiences." />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <header class="topbar">
+    <a class="logo" href="index.html">Mortéa</a>
 
-<header class="navbar">
-  <div class="logo-mark"><div class="logo-emblem"></div><div class="logo">Mortéa<small>Luxury Wellness</small></div></div>
+    <nav class="nav-links" aria-label="Main navigation">
+      <a href="discover.html">Discover</a>
+      <a href="professional-onboarding.html">Professionals</a>
+      <a href="#vision">Vision</a>
+      <a href="login.html">Access</a>
+    </nav>
 
-  <nav>
-    <a href="discover.html">Discover</a>
-    <a href="map.html">Map</a>
-    <a href="pricing.html">Pricing</a>
-    <a href="reviews.html">Reviews</a>
-    <a href="admin.html">Admin</a>
-    <a href="#professionals">Professionals</a>
-    <a href="client-signup.html">Client Access</a>
-    <a href="professional-signup.html">Professional Access</a>
-      <a href="login.html">Login</a>
-  </nav>
-</header>
+    <a class="nav-button" href="professional-onboarding.html">Request Access</a>
+  </header>
 
-<section class="hero">
-  <div class="hero-overlay"></div>
+  <main>
+    <section class="hero">
+      <div class="hero-glow hero-glow-one"></div>
+      <div class="hero-glow hero-glow-two"></div>
 
-  <div class="hero-content">
-    <p class="eyebrow">Luxury Beauty & Wellness Ecosystem</p>
+      <div class="hero-content">
+        <p class="eyebrow">Luxury beauty ecosystem</p>
+        <h1>Where beauty discovery becomes an experience.</h1>
+        <p class="hero-copy">
+          Mortéa is building a curated destination for premium beauty, wellness,
+          and self-care experiences — beginning with selected founding professionals.
+        </p>
 
-    <h1>
-      The future of luxury beauty discovery.
-    </h1>
-
-    <p class="hero-description">
-      Mortéa connects premium clients with curated salons, private wellness experiences,
-      mobile beauty professionals, luxury concierge services, and elevated at-home treatments.
-    </p>
-
-    <div class="buttons">
-      <a class="btn primary" href="client-signup.html">Continue as Client</a>
-      <a class="btn secondary" href="professional-signup.html">Join as Professional</a>
-    </div>
-
-    <div class="hero-stats">
-      <div class="stat-card">
-        <h3>120+</h3>
-        <p>Luxury professionals onboarding</p>
-      </div>
-
-      <div class="stat-card">
-        <h3>15+</h3>
-        <p>Wellness & beauty categories</p>
-      </div>
-
-      <div class="stat-card">
-        <h3>Global</h3>
-        <p>Designed for worldwide expansion</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="visual-hero">
-  <div class="visual-card large reveal">
-    <div class="visual-label">
-      <h3>Curated rituals</h3>
-      <p>Beauty and wellness experiences presented with a luxury editorial feel.</p>
-    </div>
-  </div>
-
-  <div class="visual-stack">
-    <div class="visual-card small reveal delay-1">
-      <div class="visual-label">
-        <h3>Premium providers</h3>
-        <p>Built for salons, wellness studios, and private professionals.</p>
-      </div>
-    </div>
-
-    <div class="visual-card map reveal delay-2">
-      <div class="visual-label dark">
-        <h3>Global by design</h3>
-        <p>Country, province/state, and city discovery for scalable expansion.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="luxury-strip">
-  <div>Montréal</div>
-  <div>Toronto</div>
-  <div>Dubai</div>
-  <div>Paris</div>
-  <div>Miami</div>
-  <div>Riyadh</div>
-</section>
-
-<section class="video-luxury-hero"><div><p class="eyebrow">Cinematic Platform Vision</p><h2>Beauty, wellness, and private care in motion.</h2><p>Mortéa is built to feel alive: visual, curated, premium, and ready to evolve into a real marketplace, booking platform, and professional growth ecosystem.</p></div></section>
-
-<section class="brand-story reveal">
-  <p class="eyebrow">Brand Story</p>
-  <h2>Mortéa is not a directory. It is a luxury discovery world.</h2>
-  <p>
-    Created for modern clients and premium beauty professionals, Mortéa is designed to make
-    beauty, wellness, and private care feel curated, visual, trustworthy, and elevated from
-    the first click.
-  </p>
-</section>
-
-<section class="section discover" id="discover">
-  <div class="section-header">
-    <p class="eyebrow">Luxury Discovery</p>
-    <h2>Explore premium wellness experiences.</h2>
-  </div>
-
-  <div class="experience-grid">
-    <div class="experience-card">
-      <span>Head Spa</span>
-      <h3>Private Japanese-inspired head spa rituals.</h3>
-      <p>Immersive scalp wellness experiences designed for relaxation and beauty.</p>
-    </div>
-
-    <div class="experience-card">
-      <span>Mobile Beauty</span>
-      <h3>Luxury beauty experiences at home.</h3>
-      <p>Elite professionals delivering curated at-home treatments.</p>
-    </div>
-
-    <div class="experience-card">
-      <span>Wellness</span>
-      <h3>Massage, wellness & recovery services.</h3>
-      <p>Premium providers for modern luxury lifestyles.</p>
-    </div>
-  </div>
-</section>
-
-<section class="section professionals" id="professionals">
-  <div class="section-header">
-    <p class="eyebrow">Featured Professionals</p>
-    <h2>Profiles designed for the next generation of beauty professionals.</h2>
-  </div>
-
-  <div class="profile-grid">
-
-    <div class="profile-card">
-      <div class="profile-image"></div>
-      <div class="profile-content">
-        <h3>Maison Élise</h3>
-        <p>Luxury Head Spa • Montréal</p>
-        <div class="profile-tags">
-          <span>Head Spa</span>
-          <span>Luxury</span>
+        <div class="hero-actions">
+          <a class="primary-button" href="professional-onboarding.html">Apply as a Founding Professional</a>
+          <a class="ghost-button" href="discover.html">Explore the Vision</a>
         </div>
       </div>
-    </div>
 
-    <div class="profile-card">
-      <div class="profile-image second"></div>
-      <div class="profile-content">
-        <h3>Studio Velour</h3>
-        <p>Mobile Beauty Concierge • Toronto</p>
-        <div class="profile-tags">
-          <span>Mobile</span>
-          <span>Concierge</span>
+      <div class="hero-card">
+        <span>Curated launch</span>
+        <h2>Invitation-led. Premium. Designed for trust.</h2>
+        <p>
+          Early access is reserved for professionals who want elevated visibility,
+          refined presentation, and a stronger digital experience.
+        </p>
+      </div>
+    </section>
+
+    <section id="vision" class="split-section">
+      <div>
+        <p class="eyebrow dark">The new standard</p>
+        <h2>A platform built around curation, not clutter.</h2>
+      </div>
+      <p>
+        Mortéa is not an open directory filled with random listings. It is designed
+        to feel refined, selective, and modern — a place where clients discover
+        trusted beauty experiences with intention.
+      </p>
+    </section>
+
+    <section class="experience-section">
+      <div class="section-heading">
+        <p class="eyebrow dark">Experience categories</p>
+        <h2>Curated beauty and wellness worlds.</h2>
+        <p>
+          Until real providers officially join, Mortéa highlights experience categories
+          instead of presenting unregistered businesses as active members.
+        </p>
+      </div>
+
+      <div class="experience-grid">
+        <article class="experience-card">
+          <span>01</span>
+          <h3>Luxury Head Spa</h3>
+          <p>Scalp rituals, relaxation, and restorative wellness experiences.</p>
+        </article>
+
+        <article class="experience-card">
+          <span>02</span>
+          <h3>Premium Facials</h3>
+          <p>Elevated skin rituals for refined beauty and visible care.</p>
+        </article>
+
+        <article class="experience-card">
+          <span>03</span>
+          <h3>Bridal Beauty</h3>
+          <p>Curated preparation for meaningful occasions and private events.</p>
+        </article>
+
+        <article class="experience-card">
+          <span>04</span>
+          <h3>Massage & Recovery</h3>
+          <p>Recovery, calm, and body care in a premium wellness environment.</p>
+        </article>
+
+        <article class="experience-card">
+          <span>05</span>
+          <h3>Mobile Concierge Beauty</h3>
+          <p>Private beauty experiences designed around comfort and discretion.</p>
+        </article>
+
+        <article class="experience-card">
+          <span>06</span>
+          <h3>Wellness Retreats</h3>
+          <p>Quiet luxury experiences for reset, restoration, and self-care.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="founding-section">
+      <div class="founding-panel">
+        <p class="eyebrow">Founding professional access</p>
+        <h2>Early access should feel like a privilege.</h2>
+        <p>
+          Founding professionals help shape Mortéa before public launch. The program is
+          designed for selected beauty and wellness providers who want premium positioning
+          from the beginning.
+        </p>
+
+        <div class="benefits">
+          <span>Founder badge</span>
+          <span>Priority visibility</span>
+          <span>Early verification</span>
+          <span>Launch exposure</span>
+          <span>Lower founding pricing</span>
+          <span>Product influence</span>
         </div>
+
+        <a class="primary-button light" href="professional-onboarding.html">Apply for Founding Access</a>
       </div>
-    </div>
+    </section>
 
-    <div class="profile-card">
-      <div class="profile-image third"></div>
-      <div class="profile-content">
-        <h3>Éther Wellness</h3>
-        <p>Private Wellness Experiences • Dubai</p>
-        <div class="profile-tags">
-          <span>Wellness</span>
-          <span>Premium</span>
-        </div>
+    <section class="city-section">
+      <p class="eyebrow dark">City by city</p>
+      <h2>Launching with intention.</h2>
+      <p>
+        Mortéa is designed to grow through curated city launches rather than generic mass listings.
+      </p>
+
+      <div class="city-list">
+        <span>Montréal</span>
+        <span>Québec City</span>
+        <span>Toronto</span>
+        <span>Dubai</span>
+        <span>Paris</span>
+        <span>Riyadh</span>
       </div>
-    </div>
+    </section>
 
-  </div>
-</section>
-
-<section class="discovery-shell">
-  <div class="filter-panel">
-    <p class="eyebrow">Discovery Engine</p>
-    <h2>Search by lifestyle, not just location.</h2>
-    <p>
-      The next version of Mortéa will allow clients to discover curated providers by category,
-      city, service style, and luxury experience.
-    </p>
-
-    <div class="filter-row">
-      <div class="filter-pill">Country <span>Canada</span></div>
-      <div class="filter-pill">City <span>Montréal</span></div>
-      <div class="filter-pill">Experience <span>Head Spa</span></div>
-      <div class="filter-pill">Style <span>At-home luxury</span></div>
-    </div>
-  </div>
-
-  <div class="discovery-feed">
-    <div class="discovery-card">
-      <div class="discovery-image one"></div>
-      <div>
-        <h3>Maison Élise Head Spa</h3>
-        <p>Premium head spa rituals with calming scalp therapy and elevated relaxation.</p>
-        <div class="card-meta"><span>Montréal</span><span>Head Spa</span><span>Booking Link</span></div>
+    <section class="concierge-section">
+      <div class="concierge-card">
+        <p class="eyebrow">AI concierge direction</p>
+        <h2>A smarter way to discover luxury beauty.</h2>
+        <p>
+          Mortéa’s concierge vision is designed to help clients discover experiences
+          based on taste, city, occasion, lifestyle, and personal preferences — without
+          overwhelming the journey.
+        </p>
       </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div>
+      <a class="footer-logo" href="index.html">Mortéa</a>
+      <p>Curated luxury wellness experiences.</p>
     </div>
 
-    <div class="discovery-card">
-      <div class="discovery-image two"></div>
-      <div>
-        <h3>Velour Mobile Beauty</h3>
-        <p>On-demand beauty concierge for events, bridal mornings, and private appointments.</p>
-        <div class="card-meta"><span>Toronto</span><span>Mobile</span><span>WhatsApp</span></div>
-      </div>
-    </div>
+    <nav>
+      <a href="discover.html">Discover</a>
+      <a href="professional-onboarding.html">Professionals</a>
+      <a href="login.html">Client Access</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="terms.html">Terms</a>
+      <a href="mailto:fatmemortada88@gmail.com">Contact</a>
+    </nav>
 
-    <div class="discovery-card">
-      <div class="discovery-image three"></div>
-      <div>
-        <h3>Éther Private Wellness</h3>
-        <p>Luxury massage and recovery experiences for clients who prefer private care.</p>
-        <div class="card-meta"><span>Dubai</span><span>Wellness</span><span>Premium</span></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="app-preview">
-  <div class="app-content">
-    <p class="eyebrow">Future Ecosystem</p>
-    <h2>A premium platform experience designed for mobile-first luxury discovery.</h2>
-
-    <p>
-      Mortéa is evolving into a global ecosystem where clients discover curated experiences,
-      book professionals, explore luxury wellness, and connect with trusted providers.
-    </p>
-
-    <div class="buttons">
-      <a class="btn primary" href="professional-signup.html">Become a Founding Professional</a>
-    </div>
-  </div>
-
-  <div class="phone-mockup">
-    <div class="phone-screen">
-      <div class="mockup-card">
-        <small>Featured Experience</small>
-        <h3>Luxury Home Spa</h3>
-        <p>Private wellness concierge</p>
-      </div>
-
-      <div class="mockup-feed">
-        <div class="feed-item"></div>
-        <div class="feed-item"></div>
-        <div class="feed-item"></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="platform-grid"><div class="platform-card"><div><div class="platform-icon"></div><h3>Discovery Page</h3><p>A real marketplace-style page where clients can browse providers by city, category, and experience.</p></div><a class="btn secondary" href="discover.html">Open Discovery</a></div><div class="platform-card"><div><div class="platform-icon"></div><h3>Profile Pages</h3><p>Luxury professional pages with services, gallery, reviews, booking links, and social buttons.</p></div><a class="btn secondary" href="profiles/maison-elise.html">View Profile</a></div><div class="platform-card"><div><div class="platform-icon"></div><h3>Dashboard Preview</h3><p>A visual simulation of what professionals could later see: requests, analytics, bookings, and growth.</p></div><a class="btn secondary" href="#dashboard-preview">View Preview</a></div></section><section class="founding-section"><div class="founding-card"><p class="eyebrow">Limited Founder Access</p><h2>Apply before Mortéa opens fully.</h2><p>Founding professionals get early positioning, premium profile visibility, and a chance to shape the platform before the full backend, booking system, and app launch.</p><div class="buttons"><a class="btn secondary" href="professional-signup.html">Apply as Founding Professional</a></div></div><div class="founding-benefits"><div class="benefit"><h3>Premium positioning</h3><p>Early professionals can appear as founding profiles in the future marketplace.</p></div><div class="benefit"><h3>Social-first visibility</h3><p>Instagram, TikTok, WhatsApp, booking links, and website links are planned for profiles.</p></div><div class="benefit"><h3>Growth tools later</h3><p>Future roadmap includes dashboards, leads, booking tools, subscriptions, and analytics.</p></div></div></section>
-
-<section class="onboarding-upgrade">
-  <div>
-    <p class="eyebrow">Professional Onboarding</p>
-    <h2>A smoother path for founding professionals.</h2>
-    <p style="color:#76695f;line-height:1.85;margin-top:20px;">
-      Mortéa's onboarding is structured to feel premium while collecting the details needed
-      for future profiles, memberships, booking links, and discovery placement.
-    </p>
-  </div>
-
-  <div class="steps">
-    <div class="step"><div class="step-number">01</div><div><h3>Choose category</h3><p>Salon, wellness, massage, mobile beauty, med spa, or concierge service.</p></div></div>
-    <div class="step"><div class="step-number">02</div><div><h3>Select membership</h3><p>Founder Access or Studio Partner positioning for early professionals.</p></div></div>
-    <div class="step"><div class="step-number">03</div><div><h3>Build profile</h3><p>Social links, city, services, booking links, and luxury presentation.</p></div></div>
-  </div>
-</section>
-
-<section class="testimonial-section">
-  <div class="quote-card"><strong>For clients</strong><p>Discover trusted beauty and wellness providers with a premium, curated experience.</p></div>
-  <div class="quote-card"><strong>For professionals</strong><p>Present your services through a platform that feels aligned with luxury branding.</p></div>
-  <div class="quote-card"><strong>For growth</strong><p>Start with visibility, then evolve into booking, payments, analytics, and marketplace tools.</p></div>
-</section>
-
-<section class="dashboard-preview" id="dashboard-preview"><div class="dashboard-top"><div><p class="eyebrow">Professional Dashboard Preview</p><h2>From visibility to business tools.</h2></div><p>This visual preview shows where Mortéa can go after the static MVP: client requests, profile analytics, bookings, subscriptions, and performance tracking.</p></div><div class="dashboard-grid"><div class="dashboard-panel"><h3>Performance</h3><div class="metric-row"><div class="metric"><strong>248</strong><span>Profile views</span></div><div class="metric"><strong>37</strong><span>Client clicks</span></div><div class="metric"><strong>12</strong><span>Booking requests</span></div></div><div class="request-item"><span>Head spa inquiry</span><strong>New</strong></div><div class="request-item"><span>Mobile beauty request</span><strong>Pending</strong></div><div class="request-item"><span>Wellness consultation</span><strong>Booked</strong></div></div><div class="dashboard-panel"><h3>Growth roadmap</h3><div class="request-item"><span>Verified profile badge</span><strong>V2</strong></div><div class="request-item"><span>Stripe subscriptions</span><strong>V2</strong></div><div class="request-item"><span>Maps and geolocation</span><strong>V3</strong></div><div class="request-item"><span>Mobile app</span><strong>V4</strong></div></div></div></section>
-
-
-<section class="pricing-section">
-  <div class="pricing-header">
-    <p class="eyebrow">Memberships</p>
-    <h2>Paid access keeps Mortéa curated.</h2>
-    <p>All paid members receive a 5-day free trial before monthly billing begins. Stripe checkout is prepared for the next live payment step.</p>
-  </div>
-
-  <div class="pricing-grid">
-    <div class="pricing-card">
-      <span class="pricing-badge">Single User</span>
-      <h3>Independent Access</h3>
-      <div class="price">$10 <span>/ month</span></div>
-      <div class="trial-note">5-day free trial</div>
-      <p>For people without a salon or physical place.</p>
-    </div>
-
-    <div class="pricing-card featured">
-      <span class="pricing-badge">Professional</span>
-      <h3>Salon & Studio</h3>
-      <div class="price">$35 <span>/ month</span></div>
-      <div class="trial-note">5-day free trial</div>
-      <p>For beauty, wellness, salon, spa, and mobile professionals.</p>
-    </div>
-
-    <div class="pricing-card">
-      <span class="pricing-badge">Creator</span>
-      <h3>Creator Access</h3>
-      <div class="price">$30 <span>/ month</span></div>
-      <div class="trial-note">5-day free trial</div>
-      <p>For bloggers, influencers, and content creators.</p>
-    </div>
-  </div>
-
-  <div class="buttons">
-    <a class="btn primary" href="pricing.html">View Pricing</a>
-    <a class="btn secondary" href="reviews.html">Client Reviews</a>
-  </div>
-</section>
-
-<section class="cta-section">
-  <div class="cta-card">
-    <p class="eyebrow">Join Mortéa</p>
-    <h2>Build the future of luxury beauty with us.</h2>
-
-    <div class="buttons">
-      <a class="btn primary" href="client-signup.html">Join as Client</a>
-      <a class="btn secondary" href="professional-signup.html">Apply as Professional</a>
-    </div>
-  </div>
-</section>
-
-<footer class="site-footer">
-  <div class="logo">Mortéa</div>
-  <p>Luxury beauty & wellness ecosystem — built brand-first, platform-ready.</p>
-</footer>
+    <p class="copyright">© 2026 Mortéa. All rights reserved.</p>
+  </footer>
 </body>
 </html>
