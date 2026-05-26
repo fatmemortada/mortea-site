@@ -1,0 +1,62 @@
+/* Mortéa Phase 19 — Mobile Optimization */
+@media (max-width: 768px) {
+  body {
+    overflow-x: hidden;
+  }
+
+  .container,
+  .dashboard-container,
+  .provider-container,
+  .pricing-container {
+    width: 100%;
+    padding: 18px;
+  }
+
+  nav,
+  .navbar {
+    flex-direction: column;
+    gap: 14px;
+    align-items: flex-start;
+  }
+
+  .hero,
+  .provider-hero,
+  .dashboard-grid,
+  .pricing-grid,
+  .analytics-grid,
+  .booking-grid {
+    display: grid;
+    grid-template-columns: 1fr !important;
+    gap: 20px;
+  }
+
+  .card,
+  .provider-card,
+  .booking-card,
+  .analytics-card,
+  .pricing-card {
+    width: 100%;
+    border-radius: 22px;
+  }
+
+  button,
+  .btn,
+  .cta-button {
+    width: 100%;
+    min-height: 48px;
+    font-size: 16px;
+  }
+
+  input,
+  textarea,
+  select {
+    width: 100%;
+    min-height: 46px;
+    font-size: 16px;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+}

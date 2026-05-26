@@ -1,0 +1,27 @@
+/* Mortéa Phase 19 — Dashboard Mobile Layout */
+
+@media (max-width: 768px) {
+  .dashboard-sidebar {
+    position: relative;
+    width: 100%;
+    border-radius: 20px;
+    margin-bottom: 20px;
+  }
+
+  .dashboard-main {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .dashboard-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .dashboard-table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+}

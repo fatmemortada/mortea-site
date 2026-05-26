@@ -1,0 +1,12 @@
+Mortéa Phase 19 checklist:
+
+[ ] Add mobile.css to all main pages
+[ ] Add responsive-dashboard.css to dashboard/admin pages
+[ ] Add mobile.js before closing body tag
+[ ] Test homepage on phone
+[ ] Test provider page on phone
+[ ] Test booking form on phone
+[ ] Test pricing page on phone
+[ ] Test provider dashboard on phone
+[ ] Test analytics page on phone
+[ ] Commit and push to GitHub
