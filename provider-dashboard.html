@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="style.css">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-<title>Provider Dashboard | Mortéa</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Provider Dashboard | Mortéa</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    .dashboard-shell{max-width:1180px;margin:0 auto;padding:36px 18px 80px}.dashboard-hero{display:grid;grid-template-columns:1.15fr .85fr;gap:22px;margin-bottom:22px}.dash-card{background:#fff;border:1px solid rgba(185,147,90,.24);border-radius:28px;padding:24px;box-shadow:0 20px 55px rgba(43,33,28,.07)}.dash-card.dark{background:linear-gradient(135deg,#34251e,#6f553f);color:#fff}.dash-card.dark p,.dash-card.dark .muted{color:rgba(255,255,255,.78)}.dash-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}.dash-card h1{font-family:'Cormorant Garamond',serif;font-size:clamp(38px,6vw,68px);line-height:.95;margin:8px 0 14px}.dash-card h2{font-family:'Cormorant Garamond',serif;font-size:34px;margin:0 0 10px}.dash-card h3{margin:0 0 8px}.form-stack label{display:block;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#8e6d3f;margin:14px 0 7px;font-weight:700}.form-stack input,.form-stack textarea,.form-stack select{width:100%;border:1px solid #eaded4;border-radius:16px;padding:13px 14px;font:inherit;background:#fffdfb;color:#2b211c}.form-stack textarea{min-height:105px;resize:vertical}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}.secondary{background:transparent!important;color:#8e6d3f!important;border:1px solid #d8c6b6!important}.danger{background:#a04747!important}.list{display:grid;gap:12px;margin-top:16px}.dash-item{border:1px solid #eaded4;background:#fffdfb;border-radius:20px;padding:16px}.dash-item-top{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}.meta,.muted{color:#776b63}.gallery-preview{width:100%;height:175px;object-fit:cover;border-radius:16px;border:1px solid #eaded4;margin-top:10px}.status{margin-top:12px;font-weight:700;color:#8e6d3f}.upload-box{border:1px dashed #c9aa78;border-radius:20px;padding:16px;background:#fffaf3}.upload-preview{display:none;width:100%;max-height:220px;object-fit:cover;border-radius:16px;margin-top:12px}.small-note{font-size:13px;color:#776b63;margin-top:8px}.hidden{display:none!important}@media(max-width:860px){.dashboard-hero,.dash-grid{grid-template-columns:1fr}.dashboard-shell{padding-top:22px}.dash-card{padding:19px;border-radius:22px}.dash-item-top{display:block}}
+  </style>
 </head>
 <body>
 <header class="navbar">
@@ -15,98 +18,170 @@
     <a href="discover.html">Discover</a>
     <a href="map.html">Map</a>
     <a href="pricing.html">Pricing</a>
-    <a href="reviews.html">Reviews</a>
-    <a href="admin.html">Admin</a>
-    <a href="login.html">Login</a>
+    <a href="provider.html" target="_blank">View Profile</a>
   </nav>
 </header>
 
-<main class="provider-dashboard" data-provider-dashboard>
-  <section class="provider-top">
-    <div class="provider-panel dark">
+<main class="dashboard-shell">
+  <section class="dashboard-hero">
+    <div class="dash-card dark">
       <p class="eyebrow">Professional Dashboard</p>
       <h1>Manage your Mortéa profile.</h1>
-      <p>
-        This is the first real provider dashboard foundation. Professionals can sign in,
-        prepare their profile, and submit updates for approval.
-      </p>
-      <div class="provider-meta">
-        <span>Signed in: <strong data-user-email></strong></span>
-        <span>Status: <strong data-profile-status>pending</strong></span>
-      </div>
-      <div class="buttons">
-        <button class="btn logout-button" data-logout>Logout</button>
-      </div>
+      <p>Add your services and upload real gallery images. Your public profile updates from Supabase.</p>
+      <p class="muted">Signed in: <strong id="userEmail">Loading...</strong></p>
+      <div class="actions"><button class="btn logout-button" id="logoutButton" type="button">Logout</button></div>
     </div>
-
-    <div class="provider-panel">
-      <h2>Visibility rules</h2>
-      <p>
-        Your profile stays private while pending. After admin approval, it can appear on the
-        public discovery and map pages.
-      </p>
-      <div class="provider-meta">
-        <span>Pending</span>
-        <span>Approved</span>
-        <span>Featured</span>
-      </div>
-
-      <div class="payment-status-card">
-        <strong>Membership</strong>
-        <p data-membership-summary>Professional — $35/month after 5-day free trial</p>
-        <div class="checkout-row">
-          <button type="button" class="btn primary" data-dashboard-checkout data-stripe-plan="professional">Start Stripe checkout</button>
-        </div>
-      </div>
+    <div class="dash-card">
+      <h2>Phase 14 complete</h2>
+      <p>Providers can now upload images directly to Supabase Storage. The public URL is saved automatically in the gallery table.</p>
+      <div class="actions"><a class="btn primary" href="provider.html" target="_blank">View public profile</a></div>
     </div>
   </section>
 
-  <section class="provider-panel">
-    <p class="eyebrow">Profile Details</p>
-    <h2>Professional profile</h2>
-    <p>Complete the details that will later power your public Mortéa profile.</p>
+  <section class="dash-grid">
+    <div class="dash-card">
+      <h2>Add / Edit Service</h2>
+      <form id="serviceForm" class="form-stack">
+        <input type="hidden" id="serviceId" />
+        <label for="serviceName">Service name</label>
+        <input id="serviceName" required placeholder="Luxury Head Spa" />
+        <label for="serviceDescription">Description</label>
+        <textarea id="serviceDescription" placeholder="Describe the experience, benefits, and what is included."></textarea>
+        <label for="servicePrice">Price</label>
+        <input id="servicePrice" placeholder="$120" />
+        <label for="serviceDuration">Duration</label>
+        <input id="serviceDuration" placeholder="90 minutes" />
+        <label for="serviceOrder">Display order</label>
+        <input id="serviceOrder" type="number" value="0" />
+        <div class="actions"><button type="submit">Save service</button><button type="button" class="secondary" onclick="resetServiceForm()">Clear</button></div>
+        <div id="serviceStatus" class="status"></div>
+      </form>
+    </div>
 
-    <form data-provider-profile-form>
-      <div class="provider-form-grid">
-        <input name="business_name" placeholder="Business name" required>
-        <input name="owner_name" placeholder="Owner / contact name">
-        <input name="phone" placeholder="Phone / WhatsApp">
-        <select name="plan_type">
-          <option value="professional">Professional — $35/month after 5-day free trial</option>
-          <option value="creator">Creator / Blogger — $30/month after 5-day free trial</option>
-          <option value="single_user">Single User — $10/month after 5-day free trial</option>
-        </select>
-        <input name="category" placeholder="Category e.g. Head Spa">
-        <input name="country" placeholder="Country">
-        <input name="province" placeholder="Province / State">
-        <input name="city" placeholder="City">
-        <input name="address" placeholder="Address">
-        <input name="instagram" placeholder="Instagram link">
-        <input name="whatsapp" placeholder="WhatsApp link">
-        <input name="website" placeholder="Website link">
-        <input name="booking_link" placeholder="Booking link">
-        <textarea class="full" name="description" placeholder="Describe your services and luxury experience"></textarea>
-      </div>
+    <div class="dash-card">
+      <h2>Upload Gallery Image</h2>
+      <form id="galleryForm" class="form-stack">
+        <input type="hidden" id="galleryId" />
+        <input type="hidden" id="existingImageUrl" />
+        <input type="hidden" id="existingStoragePath" />
+        <label for="imageFile">Image file</label>
+        <div class="upload-box">
+          <input id="imageFile" type="file" accept="image/*" />
+          <div class="small-note">Upload JPG, PNG, WEBP, or GIF. Recommended: landscape image under 5 MB.</div>
+          <img id="uploadPreview" class="upload-preview" alt="Upload preview" />
+        </div>
+        <label for="imageAlt">Image description</label>
+        <input id="imageAlt" placeholder="Elegant head spa treatment room" />
+        <label for="galleryOrder">Display order</label>
+        <input id="galleryOrder" type="number" value="0" />
+        <div class="actions"><button type="submit">Save gallery image</button><button type="button" class="secondary" onclick="resetGalleryForm()">Clear</button></div>
+        <div id="galleryStatus" class="status"></div>
+      </form>
+    </div>
+  </section>
 
-      <div class="buttons">
-        <button type="submit">Save profile</button>
-      </div>
-
-      <div class="profile-message" data-profile-message></div>
-    </form>
+  <section class="dash-grid" style="margin-top:22px;">
+    <div class="dash-card"><h2>Your Services</h2><div id="servicesList" class="list"></div></div>
+    <div class="dash-card"><h2>Your Gallery</h2><div id="galleryList" class="list"></div></div>
   </section>
 </main>
 
-<footer class="site-footer">
-  <div class="logo">Mortéa</div>
-  <p>Provider dashboard foundation — pricing and 5-day trial ready for Stripe next.</p>
-</footer>
+<footer class="site-footer"><div class="logo">Mortéa</div><p>Provider dashboard powered by Supabase.</p></footer>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="js/supabase-config.js"></script>
-<script src="js/auth.js"></script>
+<script>
+  const GALLERY_BUCKET = "provider-gallery";
+  let currentUser = null;
+  let currentProvider = null;
 
-<script src="js/stripe-config.js"></script>
-<script src="js/stripe.js"></script>
+  async function initDashboard(){
+    const { data: { session } } = await supabaseClient.auth.getSession();
+    if(!session){ window.location.href = "login.html"; return; }
+    currentUser = session.user;
+    document.getElementById("userEmail").textContent = currentUser.email || "Provider";
+    const { data: provider, error } = await supabaseClient.from("professionals").select("*").eq("user_id", currentUser.id).single();
+    if(error || !provider){
+      document.querySelector("main").innerHTML = "<div class='dash-card'><h1>Provider profile not found</h1><p>Please complete your professional onboarding first.</p><a class='btn' href='signup.html'>Go to signup</a></div>";
+      return;
+    }
+    currentProvider = provider;
+    await Promise.all([loadServices(), loadGallery()]);
+  }
+
+  async function loadServices(){
+    const { data, error } = await supabaseClient.from("provider_services").select("*").eq("provider_id", currentProvider.id).order("display_order",{ascending:true}).order("created_at",{ascending:false});
+    const list = document.getElementById("servicesList");
+    if(error){ list.innerHTML = `<p>Could not load services: ${escapeHtml(error.message)}</p>`; return; }
+    if(!data || data.length===0){ list.innerHTML = "<p>No services added yet.</p>"; return; }
+    list.innerHTML = data.map(service => `<article class="dash-item"><div class="dash-item-top"><div><h3>${escapeHtml(service.service_name)}</h3><div class="meta">${escapeHtml(service.service_price || "")} ${service.service_duration ? "• " + escapeHtml(service.service_duration) : ""}</div></div></div><p>${escapeHtml(service.service_description || "")}</p><div class="actions"><button class="secondary" onclick='editService(${JSON.stringify(service)})'>Edit</button><button class="danger" onclick="deleteService('${service.id}')">Delete</button></div></article>`).join("");
+  }
+
+  async function loadGallery(){
+    const { data, error } = await supabaseClient.from("provider_gallery").select("*").eq("provider_id", currentProvider.id).order("display_order",{ascending:true}).order("created_at",{ascending:false});
+    const list = document.getElementById("galleryList");
+    if(error){ list.innerHTML = `<p>Could not load gallery: ${escapeHtml(error.message)}</p>`; return; }
+    if(!data || data.length===0){ list.innerHTML = "<p>No gallery images added yet.</p>"; return; }
+    list.innerHTML = data.map(image => `<article class="dash-item"><h3>${escapeHtml(image.image_alt || "Gallery image")}</h3><img class="gallery-preview" src="${escapeAttribute(image.image_url)}" alt="${escapeAttribute(image.image_alt || "Gallery image")}" /><div class="meta">Order: ${image.display_order || 0}</div><div class="actions"><button class="secondary" onclick='editGallery(${JSON.stringify(image)})'>Edit</button><button class="danger" onclick="deleteGallery('${image.id}','${escapeAttribute(image.storage_path || "")}')">Delete</button></div></article>`).join("");
+  }
+
+  document.getElementById("serviceForm").addEventListener("submit", async event => {
+    event.preventDefault();
+    const serviceId = document.getElementById("serviceId").value;
+    const payload = { provider_id: currentProvider.id, service_name: document.getElementById("serviceName").value.trim(), service_description: document.getElementById("serviceDescription").value.trim(), service_price: document.getElementById("servicePrice").value.trim(), service_duration: document.getElementById("serviceDuration").value.trim(), display_order: Number(document.getElementById("serviceOrder").value || 0), is_active: true };
+    const query = serviceId ? supabaseClient.from("provider_services").update(payload).eq("id", serviceId) : supabaseClient.from("provider_services").insert(payload);
+    const { error } = await query;
+    document.getElementById("serviceStatus").textContent = error ? error.message : "Service saved.";
+    if(!error){ resetServiceForm(); await loadServices(); }
+  });
+
+  document.getElementById("galleryForm").addEventListener("submit", async event => {
+    event.preventDefault();
+    const galleryStatus = document.getElementById("galleryStatus");
+    const galleryId = document.getElementById("galleryId").value;
+    const file = document.getElementById("imageFile").files[0];
+    let imageUrl = document.getElementById("existingImageUrl").value;
+    let storagePath = document.getElementById("existingStoragePath").value;
+
+    if(!galleryId && !file){ galleryStatus.textContent = "Please choose an image file."; return; }
+
+    if(file){
+      galleryStatus.textContent = "Uploading image...";
+      const extension = (file.name.split(".").pop() || "jpg").toLowerCase();
+      const safeName = file.name.replace(/[^a-z0-9.\-_]/gi,"-").toLowerCase();
+      storagePath = `${currentProvider.id}/${Date.now()}-${safeName || "gallery." + extension}`;
+      const { error: uploadError } = await supabaseClient.storage.from(GALLERY_BUCKET).upload(storagePath, file, { cacheControl: "3600", upsert: false, contentType: file.type });
+      if(uploadError){ galleryStatus.textContent = uploadError.message; return; }
+      const { data: publicData } = supabaseClient.storage.from(GALLERY_BUCKET).getPublicUrl(storagePath);
+      imageUrl = publicData.publicUrl;
+    }
+
+    const payload = { provider_id: currentProvider.id, image_url: imageUrl, storage_path: storagePath, image_alt: document.getElementById("imageAlt").value.trim(), display_order: Number(document.getElementById("galleryOrder").value || 0), is_active: true };
+    const query = galleryId ? supabaseClient.from("provider_gallery").update(payload).eq("id", galleryId) : supabaseClient.from("provider_gallery").insert(payload);
+    const { error } = await query;
+    galleryStatus.textContent = error ? error.message : "Gallery image saved.";
+    if(!error){ resetGalleryForm(); await loadGallery(); }
+  });
+
+  document.getElementById("imageFile").addEventListener("change", event => {
+    const file = event.target.files[0];
+    const preview = document.getElementById("uploadPreview");
+    if(!file){ preview.style.display = "none"; preview.removeAttribute("src"); return; }
+    preview.src = URL.createObjectURL(file);
+    preview.style.display = "block";
+  });
+
+  document.getElementById("logoutButton").addEventListener("click", async () => { await supabaseClient.auth.signOut(); window.location.href = "login.html"; });
+
+  function editService(service){ document.getElementById("serviceId").value=service.id; document.getElementById("serviceName").value=service.service_name||""; document.getElementById("serviceDescription").value=service.service_description||""; document.getElementById("servicePrice").value=service.service_price||""; document.getElementById("serviceDuration").value=service.service_duration||""; document.getElementById("serviceOrder").value=service.display_order||0; window.scrollTo({top:0,behavior:"smooth"}); }
+  function resetServiceForm(){ document.getElementById("serviceForm").reset(); document.getElementById("serviceId").value=""; document.getElementById("serviceOrder").value=0; }
+  async function deleteService(id){ if(!confirm("Delete this service?")) return; const { error } = await supabaseClient.from("provider_services").delete().eq("id", id); if(error) alert(error.message); await loadServices(); }
+  function editGallery(image){ document.getElementById("galleryId").value=image.id; document.getElementById("existingImageUrl").value=image.image_url||""; document.getElementById("existingStoragePath").value=image.storage_path||""; document.getElementById("imageAlt").value=image.image_alt||""; document.getElementById("galleryOrder").value=image.display_order||0; const preview=document.getElementById("uploadPreview"); preview.src=image.image_url||""; preview.style.display=image.image_url?"block":"none"; window.scrollTo({top:0,behavior:"smooth"}); }
+  function resetGalleryForm(){ document.getElementById("galleryForm").reset(); document.getElementById("galleryId").value=""; document.getElementById("existingImageUrl").value=""; document.getElementById("existingStoragePath").value=""; document.getElementById("galleryOrder").value=0; const preview=document.getElementById("uploadPreview"); preview.style.display="none"; preview.removeAttribute("src"); }
+  async function deleteGallery(id, storagePath){ if(!confirm("Delete this image?")) return; const { error } = await supabaseClient.from("provider_gallery").delete().eq("id", id); if(error){ alert(error.message); return; } if(storagePath){ await supabaseClient.storage.from(GALLERY_BUCKET).remove([storagePath]); } await loadGallery(); }
+  function escapeHtml(value){ return String(value||"").replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;").replaceAll("'","&#039;"); }
+  function escapeAttribute(value){ return escapeHtml(value).replaceAll("`","&#096;"); }
+  initDashboard();
+</script>
 </body>
 </html>

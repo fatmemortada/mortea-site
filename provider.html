@@ -1,107 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mortéa Provider Profile</title>
-<link rel="stylesheet" href="style.css">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mortéa Provider Profile</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    .provider-page{background:#fbf7f1;color:#2b211c}.provider-hero{padding:72px 20px 42px;background:linear-gradient(135deg,#fffaf3,#f3e8d8);border-bottom:1px solid #eaded4}.wrap{max-width:1120px;margin:0 auto}.provider-hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:28px;align-items:center}.provider-hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(42px,7vw,78px);line-height:.92;letter-spacing:-.055em;margin:0}.tag{display:inline-flex;border:1px solid #eaded4;background:rgba(255,255,255,.65);color:#8e6d3f;padding:9px 14px;border-radius:999px;margin-bottom:18px;font-weight:700}.provider-page p{color:#776b63;line-height:1.7}.cover{width:100%;min-height:320px;border-radius:30px;background:#e9dccd;object-fit:cover;box-shadow:0 24px 60px rgba(58,43,31,.15)}.section{padding:36px 20px}.public-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}.public-card{background:#fff;border:1px solid #eaded4;border-radius:24px;padding:20px;box-shadow:0 18px 45px rgba(53,39,29,.05)}.public-card h3{margin:0 0 10px}.meta{color:#8e6d3f;font-weight:700}.gallery-card{background:#fff;border:1px solid #eaded4;border-radius:24px;overflow:hidden;box-shadow:0 18px 45px rgba(53,39,29,.05)}.gallery-card img{width:100%;height:250px;display:block;object-fit:cover}.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}.empty{background:#fff;border:1px solid #eaded4;border-radius:20px;padding:20px;color:#776b63}.hidden{display:none!important}@media(max-width:860px){.provider-hero-grid,.public-grid{grid-template-columns:1fr}.provider-hero{padding-top:44px}.cover{min-height:230px}}
+  </style>
 </head>
-<body>
-
+<body class="provider-page">
 <header class="navbar">
-  <div class="logo-mark">
-    <div class="logo-emblem"></div>
-    <div class="logo">Mortéa<small>Luxury Wellness</small></div>
-  </div>
-
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="discover.html">Discover</a>
-    <a href="map.html">Map</a>
-    <a href="pricing.html">Pricing</a>
-    <a href="reviews.html">Reviews</a>
-  </nav>
+  <div class="logo-mark"><div class="logo-emblem"></div><div class="logo">Mortéa<small>Luxury Wellness</small></div></div>
+  <nav><a href="index.html">Home</a><a href="discover.html">Discover</a><a href="map.html">Map</a><a href="pricing.html">Pricing</a><a href="reviews.html">Reviews</a></nav>
 </header>
 
-<main class="provider-luxury-page">
-  <section class="provider-hero-card">
-    <div class="provider-hero-copy">
-      <p class="eyebrow">Luxury Wellness Profile</p>
-      <h1 id="provider-name">Loading provider...</h1>
-      <p id="provider-description">
-        Mortéa luxury provider profile.
-      </p>
-
-      <div class="provider-tags">
-        <span id="provider-category">Luxury Wellness</span>
-        <span id="provider-city">Canada</span>
-        <span id="provider-plan">Professional</span>
-      </div>
-
-      <div class="buttons">
-        <a class="btn primary" id="provider-booking" href="#" target="_blank">Book now</a>
-        <a class="btn secondary" id="provider-instagram" href="#" target="_blank">Instagram</a>
-      </div>
-    </div>
-
-    <div class="provider-gallery">
-      <div class="gallery-image large"></div>
-      <div class="gallery-grid">
-        <div class="gallery-image"></div>
-        <div class="gallery-image"></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="provider-services-card">
+<section class="provider-hero">
+  <div class="wrap provider-hero-grid">
     <div>
-      <p class="eyebrow">Services</p>
-      <h2>Luxury services & experience.</h2>
+      <span class="tag" id="providerCategory">Mortéa Provider</span>
+      <h1 id="providerName">Loading...</h1>
+      <p id="providerBio"></p>
+      <p id="providerLocation"></p>
+      <div class="actions"><a id="bookingLink" class="btn primary" href="#" target="_blank">Book now</a><a id="instagramLink" class="btn secondary" href="#" target="_blank">Instagram</a></div>
     </div>
+    <img id="providerCover" class="cover" alt="Provider cover image" />
+  </div>
+</section>
 
-    <div class="services-grid">
-      <div class="service-item">
-        <strong>Luxury Treatment</strong>
-        <span>Premium wellness experience</span>
-      </div>
-
-      <div class="service-item">
-        <strong>Signature Experience</strong>
-        <span>Curated Mortéa atmosphere</span>
-      </div>
-
-      <div class="service-item">
-        <strong>Private Session</strong>
-        <span>Exclusive personalized service</span>
-      </div>
-    </div>
-  </section>
-
-  <section class="provider-reviews-card">
-    <div>
-      <p class="eyebrow">Client Reviews</p>
-      <h2>Verified experiences.</h2>
-    </div>
-
-    <div class="review-list" id="provider-reviews">
-      <div class="review-item">
-        <strong>Loading reviews...</strong>
-        <span>★★★★★</span>
-        <p>Please wait while reviews load.</p>
-      </div>
-    </div>
-  </section>
-</main>
-
-<footer class="site-footer">
-  <div class="logo">Mortéa</div>
-  <p>Luxury provider ecosystem powered by Mortéa.ca</p>
-</footer>
+<section class="section"><div class="wrap"><h2>Services</h2><p>Signature experiences offered by this provider.</p><div id="servicesGrid" class="public-grid"></div></div></section>
+<section class="section"><div class="wrap"><h2>Gallery</h2><p>A visual preview of the provider’s atmosphere, work, and client experience.</p><div id="galleryGrid" class="public-grid"></div></div></section>
+<section class="section"><div class="wrap"><h2>Client Reviews</h2><div id="reviewsGrid" class="public-grid"></div></div></section>
+<footer class="site-footer"><div class="logo">Mortéa</div><p>Luxury provider ecosystem powered by Mortéa.ca</p></footer>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="js/supabase-config.js"></script>
-<script src="js/provider-profile.js"></script>
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const providerId = params.get("id");
+  const slug = params.get("slug");
 
+  async function initProviderPage(){
+    let query = supabaseClient.from("professionals").select("*").limit(1);
+    if(providerId) query = query.eq("id", providerId); else if(slug) query = query.eq("slug", slug); else query = query.order("created_at", { ascending: false });
+    const { data, error } = await query.single();
+    if(error || !data){ showNotFound("Provider not found."); return; }
+    renderProvider(data);
+    await Promise.all([loadServices(data.id), loadGallery(data.id), loadReviews(data.id)]);
+  }
+  function renderProvider(provider){
+    const name = provider.business_name || provider.full_name || provider.owner_name || "Mortéa Provider";
+    document.title = `${name} | Mortéa`;
+    document.getElementById("providerName").textContent = name;
+    document.getElementById("providerBio").textContent = provider.bio || provider.description || "A curated beauty and wellness provider on Mortéa.";
+    document.getElementById("providerLocation").textContent = [provider.city, provider.province, provider.country].filter(Boolean).join(", ");
+    document.getElementById("providerCategory").textContent = provider.category || provider.specialty || "Mortéa Provider";
+    const cover = provider.cover_image_url || provider.image_url || "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=1200&q=80";
+    document.getElementById("providerCover").src = cover;
+    setLink("bookingLink", provider.booking_link || provider.booking_url);
+    setLink("instagramLink", provider.instagram || provider.instagram_url);
+  }
+  async function loadServices(providerId){
+    const { data, error } = await supabaseClient.from("provider_services").select("*").eq("provider_id", providerId).eq("is_active", true).order("display_order",{ascending:true}).order("created_at",{ascending:false});
+    const grid = document.getElementById("servicesGrid");
+    if(error || !data || data.length===0){ grid.innerHTML = `<div class="empty">No services have been published yet.</div>`; return; }
+    grid.innerHTML = data.map(service => `<article class="public-card"><h3>${escapeHtml(service.service_name)}</h3><div class="meta">${escapeHtml(service.service_price || "")} ${service.service_duration ? "• " + escapeHtml(service.service_duration) : ""}</div><p>${escapeHtml(service.service_description || "")}</p></article>`).join("");
+  }
+  async function loadGallery(providerId){
+    const { data, error } = await supabaseClient.from("provider_gallery").select("*").eq("provider_id", providerId).eq("is_active", true).order("display_order",{ascending:true}).order("created_at",{ascending:false});
+    const grid = document.getElementById("galleryGrid");
+    if(error || !data || data.length===0){ grid.innerHTML = `<div class="empty">No gallery images have been published yet.</div>`; return; }
+    const firstImage = data[0]?.image_url;
+    if(firstImage) document.getElementById("providerCover").src = firstImage;
+    grid.innerHTML = data.map(image => `<figure class="gallery-card"><img src="${escapeAttribute(image.image_url)}" alt="${escapeAttribute(image.image_alt || "Mortéa gallery image")}" /></figure>`).join("");
+  }
+  async function loadReviews(providerId){
+    const { data, error } = await supabaseClient.from("reviews").select("*").eq("provider_id", providerId).eq("is_approved", true).order("created_at",{ascending:false}).limit(6);
+    const grid = document.getElementById("reviewsGrid");
+    if(error || !data || data.length===0){ grid.innerHTML = `<div class="empty">No approved reviews yet.</div>`; return; }
+    grid.innerHTML = data.map(review => `<article class="public-card"><h3>${escapeHtml(review.client_name || "Client")}</h3><div class="meta">${"★".repeat(Number(review.rating || 5))}</div><p>${escapeHtml(review.review_text || review.comment || "")}</p></article>`).join("");
+  }
+  function setLink(id,url){ const element=document.getElementById(id); if(!url){ element.classList.add("hidden"); return; } element.href=url; }
+  function showNotFound(message){ document.body.innerHTML = `<main class="section"><div class="wrap"><div class="empty"><h1>${message}</h1><p>Please return to the Mortéa discovery page and choose a provider.</p></div></div></main>`; }
+  function escapeHtml(value){ return String(value||"").replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;").replaceAll("'","&#039;"); }
+  function escapeAttribute(value){ return escapeHtml(value).replaceAll("`","&#096;"); }
+  initProviderPage();
+</script>
 </body>
 </html>
