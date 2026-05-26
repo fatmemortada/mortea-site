@@ -1,0 +1,28 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #f8f4ee;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  text-align: center;
+  padding: 30px;
+}
+
+.mobile-provider-card {
+  background: white;
+  margin: 20px;
+  padding: 20px;
+  border-radius: 18px;
+}
+
+#bottom-navigation {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  background: white;
+  padding: 15px 0;
+}
