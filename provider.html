@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mortéa Provider Profile</title>
+<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header class="navbar">
+  <div class="logo-mark">
+    <div class="logo-emblem"></div>
+    <div class="logo">Mortéa<small>Luxury Wellness</small></div>
+  </div>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="discover.html">Discover</a>
+    <a href="map.html">Map</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="reviews.html">Reviews</a>
+  </nav>
+</header>
+
+<main class="provider-luxury-page">
+  <section class="provider-hero-card">
+    <div class="provider-hero-copy">
+      <p class="eyebrow">Luxury Wellness Profile</p>
+      <h1 id="provider-name">Loading provider...</h1>
+      <p id="provider-description">
+        Mortéa luxury provider profile.
+      </p>
+
+      <div class="provider-tags">
+        <span id="provider-category">Luxury Wellness</span>
+        <span id="provider-city">Canada</span>
+        <span id="provider-plan">Professional</span>
+      </div>
+
+      <div class="buttons">
+        <a class="btn primary" id="provider-booking" href="#" target="_blank">Book now</a>
+        <a class="btn secondary" id="provider-instagram" href="#" target="_blank">Instagram</a>
+      </div>
+    </div>
+
+    <div class="provider-gallery">
+      <div class="gallery-image large"></div>
+      <div class="gallery-grid">
+        <div class="gallery-image"></div>
+        <div class="gallery-image"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="provider-services-card">
+    <div>
+      <p class="eyebrow">Services</p>
+      <h2>Luxury services & experience.</h2>
+    </div>
+
+    <div class="services-grid">
+      <div class="service-item">
+        <strong>Luxury Treatment</strong>
+        <span>Premium wellness experience</span>
+      </div>
+
+      <div class="service-item">
+        <strong>Signature Experience</strong>
+        <span>Curated Mortéa atmosphere</span>
+      </div>
+
+      <div class="service-item">
+        <strong>Private Session</strong>
+        <span>Exclusive personalized service</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="provider-reviews-card">
+    <div>
+      <p class="eyebrow">Client Reviews</p>
+      <h2>Verified experiences.</h2>
+    </div>
+
+    <div class="review-list" id="provider-reviews">
+      <div class="review-item">
+        <strong>Loading reviews...</strong>
+        <span>★★★★★</span>
+        <p>Please wait while reviews load.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="logo">Mortéa</div>
+  <p>Luxury provider ecosystem powered by Mortéa.ca</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/supabase-config.js"></script>
+<script src="js/provider-profile.js"></script>
+
+</body>
+</html>
