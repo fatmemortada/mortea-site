@@ -1,61 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="style.css">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-<title>Login | Mortéa</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Access | Mortéa</title>
+  <meta name="description" content="Access your Mortéa client or professional experience." />
+  <link rel="stylesheet" href="style.css" />
 </head>
-<body>
-<header class="navbar">
-  <div class="logo-mark"><div class="logo-emblem"></div><div class="logo">Mortéa<small>Luxury Wellness</small></div></div>
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="discover.html">Discover</a>
-    <a href="map.html">Map</a>
-    <a href="pricing.html">Pricing</a>
-    <a href="reviews.html">Reviews</a>
-    <a href="admin.html">Admin</a>
-    <a href="login.html">Login</a>
-  </nav>
-</header>
+<body class="mortea-inner-page access-luxury">
+  <header class="inner-topbar">
+    <a class="inner-logo" href="index.html">Mortéa</a>
+    <nav class="inner-nav">
+      <a href="discover.html">Discover</a>
+      <a href="professional-onboarding.html">Professionals</a>
+      <a href="index.html#vision">Vision</a>
+    </nav>
+    <a class="inner-nav-button" href="professional-onboarding.html">Request Access</a>
+  </header>
 
-<main class="auth-page">
-  <section class="auth-card dark">
-    <p class="eyebrow">Mortéa Access</p>
-    <h1>Welcome back to the platform layer.</h1>
-    <p>
-      Sign in as a professional to manage your profile, or as admin to access the operational dashboard.
-    </p>
-  </section>
+  <main class="access-layout">
+    <section class="access-copy">
+      <p class="inner-eyebrow">Private access</p>
+      <h1>Enter your Mortéa space.</h1>
+      <p>
+        Access is designed for clients, founding professionals, and future partners
+        as the platform moves toward curated launch.
+      </p>
+    </section>
 
-  <section class="auth-card">
-    <p class="eyebrow">Login</p>
-    <h2>Sign in</h2>
-    <p>Use the email and password connected to your Mortéa account.</p>
+    <section class="access-card">
+      <h2>Sign in</h2>
+      <p>Continue to your Mortéa account.</p>
 
-    <form class="auth-form" data-login-form>
-      <input type="email" name="email" placeholder="Email address" required>
-      <input type="password" name="password" placeholder="Password" required>
-      <button type="submit">Sign in</button>
-    </form>
+      <form class="luxury-form compact">
+        <label>
+          Email
+          <input type="email" placeholder="you@example.com" />
+        </label>
 
-    <div class="auth-message" data-auth-message></div>
+        <label>
+          Password
+          <input type="password" placeholder="••••••••" />
+        </label>
 
-    <p class="auth-switch">
-      No account yet? <a href="signup.html">Create one</a>
-    </p>
-  </section>
-</main>
+        <button type="submit">Continue</button>
+      </form>
 
-<footer class="site-footer">
-  <div class="logo">Mortéa</div>
-  <p>Authentication foundation powered by Supabase Auth.</p>
-</footer>
+      <div class="access-links">
+        <a href="signup.html">Create account</a>
+        <a href="professional-onboarding.html">Apply as a professional</a>
+      </div>
+    </section>
+  </main>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="js/supabase-config.js"></script>
-<script src="js/auth.js"></script>
+  <footer class="inner-footer">
+    <strong>Mortéa</strong>
+    <p>Curated luxury wellness experiences.</p>
+    <small>© 2026 Mortéa. All rights reserved.</small>
+  </footer>
 </body>
 </html>
