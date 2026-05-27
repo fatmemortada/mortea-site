@@ -1,41 +1,69 @@
-# Mortéa Final Repaired Site
+# Mortéa Global Luxury Website
 
-This folder is a safe repaired Mortéa website package based on the rework session notes.
+This package contains a bilingual English/French static website for the new Mortéa direction.
 
-## What was fixed
+## Vision
+Mortéa is a worldwide luxury beauty discovery ecosystem. It combines:
+- map-style local discovery
+- premium professional profiles
+- social portfolio links for Instagram/TikTok
+- booking/calendar concept
+- professional membership fees
+- future mobile app positioning
 
-- The homepage has a luxury curated design.
-- Homepage CSS is scoped to `body.mortea-home`.
-- Inner pages are protected from the homepage redesign.
-- Basic repaired pages are included:
-  - `index.html`
-  - `discover.html`
-  - `professional-onboarding.html`
-  - `login.html`
-  - `style.css`
+## Included Pages
+English:
+- index.html
+- discover.html
+- professional-onboarding.html
+- login.html
 
-## Important rule
+French:
+- fr/index.html
+- fr/discover.html
+- fr/professional-onboarding.html
+- fr/login.html
 
-Do not replace the entire global `style.css` with homepage-only styles again. Keep homepage-specific styles under:
+Shared:
+- style.css
+- script.js
 
-```css
-body.mortea-home
-```
+## Professional Categories Included
+- Beauty salons
+- Estheticians
+- Lash technicians
+- Nail technicians
+- Facial specialists
+- Japanese head spa
+- Eyebrow artists
+- Massage therapists
+- Makeup artists
+- Hair stylists
+- Hair colorists
+- Brow lamination
+- Waxing specialists
+- Laser technicians
+- Skincare clinics
+- Beauty bloggers
+- Wellness spas
+- Bridal beauty
+- Barbers
+- Permanent makeup artists
+- Body sculpting
+- Spray tan artists
 
-## How to test locally
+## Membership Pricing Included
+- Independent: $10/month
+- Creator: $30/month
+- Professional: $35/month
 
-Open `index.html` in your browser.
+## Important Technical Note
+The design is scoped through `body.mortea-luxury` and shared carefully through one stylesheet. Avoid replacing global CSS randomly. Future pages should be added one by one.
 
-Then test:
-
-- `discover.html`
-- `professional-onboarding.html`
-- `login.html`
-
-## Git commands
-
-```bash
-git add .
-git commit -m "Repair Mortéa luxury homepage and protect inner pages"
-git push origin main
-```
+## Future Development
+Next real app steps:
+1. Add real Google Maps API integration.
+2. Connect professionals to Supabase.
+3. Add real booking calendar logic.
+4. Add login/accounts.
+5. Later build mobile app using the same data structure.
