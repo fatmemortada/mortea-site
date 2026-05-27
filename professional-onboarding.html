@@ -3,100 +3,39 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Founding Professionals | Mortéa</title>
-  <meta name="description" content="Apply for Mortéa Founding Professional Access and join the curated luxury beauty ecosystem." />
+  <title>Professionals | Mortéa</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
 </head>
-<body class="mortea-inner-page professionals-luxury">
-  <header class="inner-topbar">
-    <a class="inner-logo" href="index.html">Mortéa</a>
-    <nav class="inner-nav">
+<body>
+  <header class="site-header">
+    <a class="brand" href="index.html">Mortéa</a>
+    <nav>
       <a href="discover.html">Discover</a>
       <a href="professional-onboarding.html">Professionals</a>
-      <a href="index.html#vision">Vision</a>
       <a href="login.html">Access</a>
     </nav>
-    <a class="inner-nav-button" href="#apply">Apply</a>
   </header>
 
-  <main>
-    <section class="inner-hero professional-hero">
-      <p class="inner-eyebrow">Founding professional program</p>
-      <h1>Join Mortéa before the platform opens widely.</h1>
-      <p>
-        Mortéa is selecting early beauty and wellness professionals who want elevated
-        visibility, refined presentation, and a premium digital experience from launch.
-      </p>
+  <main class="page-shell">
+    <section class="page-hero">
+      <p class="eyebrow">Professionals</p>
+      <h1>Join a beauty ecosystem designed for premium presentation.</h1>
+      <p>Mortéa is for selected salons, creators, independent professionals, and beauty experts who want a more elevated digital presence.</p>
     </section>
 
-    <section class="founder-benefits-section">
-      <div class="inner-section-heading">
-        <p class="inner-eyebrow">Founder privileges</p>
-        <h2>Early access should feel meaningful.</h2>
-      </div>
-
-      <div class="benefit-luxury-grid">
-        <div>Founder badge</div>
-        <div>Priority visibility</div>
-        <div>Early verification</div>
-        <div>Launch exposure</div>
-        <div>Lower founding pricing</div>
-        <div>Product influence</div>
-      </div>
-    </section>
-
-    <section id="apply" class="application-section">
-      <div class="application-copy">
-        <p class="inner-eyebrow">Apply for access</p>
-        <h2>Tell us about your brand.</h2>
-        <p>
-          This is an early application form. Approved professionals may be invited
-          to complete their profile and prepare for launch visibility.
-        </p>
-      </div>
-
-      <form class="luxury-form">
-        <label>
-          Business name
-          <input type="text" name="business_name" placeholder="Your studio or brand name" />
-        </label>
-
-        <label>
-          Professional email
-          <input type="email" name="email" placeholder="you@example.com" />
-        </label>
-
-        <label>
-          City
-          <input type="text" name="city" placeholder="Montréal, Laval, Québec City..." />
-        </label>
-
-        <label>
-          Service category
-          <input type="text" name="category" placeholder="Head spa, facial, wellness, bridal..." />
-        </label>
-
-        <label>
-          Tell us about your experience
-          <textarea name="message" placeholder="Describe your brand, services, and what makes your experience premium."></textarea>
-        </label>
-
-        <button type="submit">Request Founding Access</button>
+    <section class="form-panel">
+      <h2>Request professional access</h2>
+      <form action="mailto:fatmemortada88@gmail.com" method="post" enctype="text/plain">
+        <label>Name <input type="text" name="name" required></label>
+        <label>Email <input type="email" name="email" required></label>
+        <label>Service category <input type="text" name="service-category" placeholder="Hair, nails, head spa, makeup..."></label>
+        <label>Tell us about your work <textarea name="message" rows="5"></textarea></label>
+        <button type="submit">Send Request</button>
       </form>
     </section>
   </main>
-
-  <footer class="inner-footer">
-    <strong>Mortéa</strong>
-    <p>Curated luxury wellness experiences.</p>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="discover.html">Discover</a>
-      <a href="login.html">Access</a>
-      <a href="privacy.html">Privacy</a>
-      <a href="terms.html">Terms</a>
-    </nav>
-    <small>© 2026 Mortéa. All rights reserved.</small>
-  </footer>
 </body>
 </html>
