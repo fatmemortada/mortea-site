@@ -1,162 +1,93 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Map | Mortéa</title>
-<link rel="stylesheet" href="style.css">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Mortéa Map Discovery Foundation</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;650;750&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="map-foundation.css">
 </head>
-<body>
-
-<header class="navbar">
-  <div class="logo-mark"><div class="logo-emblem"></div><div class="logo">Mortéa<small>Luxury Wellness</small></div></div>
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="discover.html">Discover</a>
-    <a href="map.html">Map</a>
-    <a href="pricing.html">Pricing</a>
-    <a href="reviews.html">Reviews</a>
-    <a href="admin.html">Admin</a>
-    <a href="professional-onboarding.html">Onboarding</a>
-    <a href="client-signup.html">Client Access</a>
-    <a href="professional-signup.html">Professional Access</a>
-      <a href="login.html">Login</a>
+<body class="mortea-luxury">
+  <nav class="nav">
+    <a class="brand" href="index.html">Mortéa</a>
+    <div class="nav-links">
+      <a href="discover.html">Discover</a>
+      <a href="professional-onboarding.html">Professionals</a>
+      <a href="pricing.html">Memberships</a>
+      <a href="login.html">Access</a>
+      <a class="lang" href="fr/map.html">FR</a>
+    </div>
   </nav>
-</header>
 
-<main class="map-page">
-  <section class="map-hero">
-    <p class="eyebrow">Stage 1 Map Experience</p>
-    <h1>Discover luxury beauty around the world.</h1>
-    <p>
-      This is Mortéa’s static map simulation: a premium visual experience showing how clients will later
-      search by city, category, location, and nearby providers once real mapping is connected.
-    </p>
-  </section>
-
-  <div class="map-toolbar">
-    <span>Canada</span>
-    <span>Québec</span>
-    <span>Montréal</span>
-    <span>Head Spa</span>
-    <span>Mobile Beauty</span>
-    <a class="near-me" href="#">Near me preview</a>
-  </div>
-
-  <section class="map-experience">
-    <aside class="map-sidebar">
-      <div class="map-search-card">
-        <h2>Search Mortéa</h2>
-        <input type="text" value="Montréal" aria-label="City">
-        <select aria-label="Category">
-          <option>Head Spa</option>
-          <option>Mobile Beauty</option>
-          <option>Wellness</option>
-          <option>Massage</option>
-          <option>Med Spa</option>
-        </select>
-        <select aria-label="Experience">
-          <option>Luxury experience</option>
-          <option>At-home service</option>
-          <option>Studio visit</option>
-          <option>Private appointment</option>
-        </select>
-        <button type="button">Search preview</button>
-      </div>
-
-      
-      <div data-professionals-list="map">
-        <div data-fallback>
-          <a class="map-provider-card" href="profiles/maison-elise.html">
-        <div class="map-provider-image" style="background-image:url('images/profile-headspa.svg');"></div>
-        <div>
-          <h3>Maison Élise</h3>
-          <p>Luxury head spa rituals in Montréal.</p>
-          <div class="map-provider-meta"><span>Montréal</span><span>Head Spa</span></div>
-        </div>
-      </a>
-
-      <a class="map-provider-card" href="profiles/studio-velour.html">
-        <div class="map-provider-image" style="background-image:url('images/profile-mobile.svg');"></div>
-        <div>
-          <h3>Studio Velour</h3>
-          <p>Mobile beauty concierge for private clients.</p>
-          <div class="map-provider-meta"><span>Toronto</span><span>Mobile</span></div>
-        </div>
-      </a>
-
-      <a class="map-provider-card" href="profiles/ether-wellness.html">
-        <div class="map-provider-image" style="background-image:url('images/profile-wellness.svg');"></div>
-        <div>
-          <h3>Éther Wellness</h3>
-          <p>Private wellness and recovery experiences.</p>
-          <div class="map-provider-meta"><span>Dubai</span><span>Wellness</span></div>
-        </div>
-      </a>
-    
-        </div>
-      </div>
-</aside>
-
-    <section class="luxury-map" data-dynamic-map-pins>
-      <div class="map-label">
-        <p class="eyebrow">Visual Map Preview</p>
-        <h2>Static now. Real API later.</h2>
-        <p>These pins simulate future Google Maps or Mapbox provider discovery.</p>
-      </div>
-
-      <a class="map-pin pin-montreal" href="profiles/maison-elise.html"><span>Montréal • Head Spa</span></a>
-      <a class="map-pin pin-toronto" href="profiles/studio-velour.html"><span>Toronto • Mobile Beauty</span></a>
-      <a class="map-pin pin-miami" href="#"><span>Miami • Beauty Concierge</span></a>
-      <a class="map-pin pin-paris" href="#"><span>Paris • Wellness Studio</span></a>
-      <a class="map-pin pin-dubai" href="profiles/ether-wellness.html"><span>Dubai • Private Wellness</span></a>
-      <a class="map-pin pin-riyadh" href="#"><span>Riyadh • Luxury Spa</span></a>
-
-      <div class="map-floating-card">
-        <h3>Future real map features</h3>
-        <p>Geolocation, nearby search, category filters, profile pin previews, and real provider coordinates.</p>
-        <a class="btn secondary" href="discover.html">Open Discover</a>
+  <main>
+    <section class="page-hero">
+      <div class="eyebrow">Step 7 · Google Maps foundation</div>
+      <h1>Search beauty near you.</h1>
+      <p class="lead">This is Mortéa’s map-ready discovery foundation: search by service, city, or current location, then view nearby beauty professionals, medical aesthetics clinics, social portfolios, and booking-ready profiles.</p>
+      <div class="hero-actions">
+        <a class="btn primary" href="#mapExperience">Open map discovery</a>
+        <a class="btn secondary" href="professional-onboarding.html">Join as a professional</a>
       </div>
     </section>
-  </section>
-</main>
 
-<section class="map-roadmap">
-  <div class="map-roadmap-card">
-    <strong>Stage 1</strong>
-    <h3>Static luxury map</h3>
-    <p>Visual pins, city filters, provider cards, and a map-style interface without API keys.</p>
-  </div>
+    <section class="section" id="mapExperience">
+      <div class="map-control-panel">
+        <div class="eyebrow">Find providers</div>
+        <h2>Service + city + location search.</h2>
+        <p class="section-intro">This version uses mock provider data. The next technical step is connecting the same structure to Google Maps and Supabase provider records.</p>
+        <div class="map-filter-row">
+          <input class="input" id="serviceSearch" placeholder="Botox, laser, lashes, nails, head spa...">
+          <input class="input" id="citySearch" placeholder="Dubai, Paris, Montréal, Beirut, Riyadh...">
+          <button class="btn primary" id="mapSearchButton" type="button">Search</button>
+        </div>
+        <div class="map-quick-filters">
+          <button type="button" data-map-filter="Botox">Botox</button>
+          <button type="button" data-map-filter="Laser">Laser</button>
+          <button type="button" data-map-filter="Med Spa">Med Spa</button>
+          <button type="button" data-map-filter="Lashes">Lashes</button>
+          <button type="button" data-map-filter="Japanese Head Spa">Head Spa</button>
+          <button type="button" data-map-filter="Body Contouring">Body Contouring</button>
+        </div>
+      </div>
 
-  <div class="map-roadmap-card">
-    <strong>Stage 2</strong>
-    <h3>Real data connection</h3>
-    <p>Supabase professionals table with city, category, latitude, longitude, and profile status.</p>
-  </div>
+      <div class="map-foundation-layout">
+        <div class="map-shell">
+          <div class="map-route"></div>
+          <span class="map-marker one">Botox · 0.8 km</span>
+          <span class="map-marker two">Laser clinic</span>
+          <span class="map-marker three">Head spa</span>
+          <span class="map-marker four">Lashes</span>
+          <div class="map-status">
+            <button class="btn secondary" id="useLocationButton" type="button">Use my location</button>
+            <p id="locationStatus">Google Maps API will later replace this visual placeholder with a live interactive map.</p>
+          </div>
+        </div>
 
-  <div class="map-roadmap-card">
-    <strong>Stage 3</strong>
-    <h3>Google Maps or Mapbox</h3>
-    <p>Live pins, “near me,” geolocation, distance, and clickable provider previews.</p>
-  </div>
+        <div>
+          <div class="map-control-panel">
+            <div class="eyebrow" id="resultCount">Providers found</div>
+            <h2>Nearby results</h2>
+            <p class="section-intro">Each result links to a luxury profile with services, portfolio, Instagram/TikTok, reviews, booking, and map location.</p>
+          </div>
+          <div class="map-provider-list" id="mapResults"></div>
+        </div>
+      </div>
+    </section>
 
-  <div class="map-roadmap-card">
-    <strong>Stage 4</strong>
-    <h3>App discovery</h3>
-    <p>Mobile-first map search, saved providers, booking requests, and personal recommendations.</p>
-  </div>
-</section>
+    <section class="section">
+      <div class="eyebrow">Next integration</div>
+      <h2>What this becomes with Google Maps.</h2>
+      <div class="grid cards">
+        <div class="card"><h3>Real nearby search</h3><p>Use the client’s coordinates to show providers within a radius by category, availability, city, and service.</p></div>
+        <div class="card"><h3>Provider pins</h3><p>Each professional or clinic becomes a map marker with profile, social links, reviews, and Book Now.</p></div>
+        <div class="card"><h3>Supabase data</h3><p>Provider profiles, services, photos, cities, categories, reviews, and bookings should come from the database.</p></div>
+      </div>
+    </section>
+  </main>
 
-<footer class="site-footer">
-  <div class="logo">Mortéa</div>
-  <p>Luxury map simulation — ready for real backend connection later.</p>
-</footer>
+  <footer class="footer"><b>Mortéa</b><span>Maps-ready beauty discovery foundation.</span><span>Google Maps · Supabase · Mobile app future</span></footer>
 
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="js/supabase-config.js"></script>
-<script src="js/dynamic-professionals.js"></script>
-
+  <script src="map-foundation.js"></script>
 </body>
 </html>

@@ -1,0 +1,25 @@
+
+/* Mortéa Step 7 — Maps Foundation */
+.map-foundation-layout{display:grid;grid-template-columns:1.05fr .95fr;gap:24px;align-items:start}
+.map-shell{min-height:650px;border:1px solid var(--line);border-radius:34px;background:radial-gradient(circle at 60% 28%,rgba(217,183,162,.24),transparent 20%),linear-gradient(135deg,rgba(255,255,255,.08),rgba(255,255,255,.02));position:relative;overflow:hidden}
+.map-shell:before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);background-size:54px 54px;opacity:.52}
+.map-route{position:absolute;inset:80px 60px;border:1px dashed rgba(234,214,198,.22);border-radius:38% 62% 54% 46%;transform:rotate(-12deg)}
+.map-marker{position:absolute;border-radius:999px;background:#f5eee7;color:#130d0a;padding:10px 13px;font-size:13px;font-weight:800;box-shadow:0 24px 70px rgba(0,0,0,.42);z-index:2}
+.map-marker.one{top:18%;left:18%}.map-marker.two{top:36%;right:14%}.map-marker.three{bottom:28%;left:32%}.map-marker.four{bottom:16%;right:20%}
+.map-status{position:absolute;left:22px;right:22px;bottom:22px;border:1px solid var(--line);border-radius:24px;padding:16px;background:rgba(9,7,6,.68);backdrop-filter:blur(14px);color:#d7c6bb;z-index:3}
+.map-control-panel{border:1px solid var(--line);border-radius:30px;padding:22px;background:linear-gradient(165deg,rgba(255,255,255,.08),rgba(255,255,255,.03));margin-bottom:16px}
+.map-filter-row{display:grid;grid-template-columns:1fr 1fr auto;gap:10px;margin-top:16px}
+.map-provider-list{display:grid;gap:14px;max-height:660px;overflow:auto;padding-right:4px}
+.map-provider-card{display:grid;grid-template-columns:86px 1fr;gap:14px;border:1px solid var(--line);border-radius:24px;padding:14px;background:rgba(255,255,255,.05)}
+.map-provider-thumb{border-radius:18px;background:linear-gradient(135deg,#d9b7a2,#4a2d25);min-height:86px}
+.map-provider-topline{color:var(--rose);text-transform:uppercase;letter-spacing:.14em;font-size:10px;font-weight:800}
+.map-provider-card h3{margin:4px 0 2px;font-size:18px}
+.map-provider-card p{margin:0;color:#cab8ac;font-size:14px}
+.map-chip-row{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}
+.map-chip-row span{font-size:11px;border:1px solid var(--line);border-radius:999px;padding:5px 8px;color:var(--champagne)}
+.map-card-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:11px}
+.map-card-actions a{font-size:12px;border:1px solid var(--line);border-radius:999px;padding:6px 9px;color:var(--sand);background:rgba(255,255,255,.04)}
+.map-quick-filters{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.map-quick-filters button{border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.04);color:var(--champagne);padding:8px 11px;cursor:pointer}
+.map-quick-filters button:hover{background:rgba(255,255,255,.08);color:white}
+@media(max-width:980px){.map-foundation-layout,.map-filter-row{grid-template-columns:1fr}.map-shell{min-height:440px}.map-provider-list{max-height:none}}
