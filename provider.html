@@ -22,25 +22,18 @@
     .profile-btn{display:inline-flex;align-items:center;justify-content:center;border-radius:999px;padding:14px 22px;border:1px solid rgba(234,214,198,.18);font-weight:700;text-decoration:none;color:#f5eee7}
     .profile-btn.primary{background:#f5eee7;color:#130d0a}
     .profile-cover{min-height:430px;border-radius:34px;border:1px solid rgba(234,214,198,.18);background:linear-gradient(165deg,rgba(255,255,255,.12),rgba(255,255,255,.03)),radial-gradient(circle at 35% 28%,rgba(217,183,162,.42),transparent 24%),radial-gradient(circle at 72% 60%,rgba(234,214,198,.18),transparent 20%);box-shadow:0 30px 90px rgba(0,0,0,.42);position:relative;overflow:hidden}
-    .profile-cover:before{content:"";position:absolute;inset:28px;border-radius:28px;border:1px solid rgba(234,214,198,.10)}
     .floating-card{position:absolute;left:26px;right:26px;bottom:26px;border:1px solid rgba(234,214,198,.16);border-radius:24px;padding:18px;background:rgba(9,7,6,.62);backdrop-filter:blur(16px)}
     .floating-card strong{display:block;font-size:18px}.floating-card span{color:#cab8ac;font-size:14px}
     .verified{display:inline-flex;align-items:center;gap:8px;margin-top:12px;color:#ead6c6;font-size:13px}.verified:before{content:"";width:9px;height:9px;border-radius:99px;background:#d9b7a2;box-shadow:0 0 20px #d9b7a2}
     .profile-section{padding:42px 6vw}.section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(34px,5vw,58px);line-height:1;margin:0 0 14px}.section-lead{color:#cab8ac;max-width:760px;font-size:17px}
     .profile-columns{display:grid;grid-template-columns:1.2fr .8fr;gap:22px;margin-top:24px}
     .profile-card{border:1px solid rgba(234,214,198,.15);border-radius:28px;padding:24px;background:linear-gradient(165deg,rgba(255,255,255,.075),rgba(255,255,255,.025))}
-    .profile-card h3{margin-top:0;font-size:22px}
     .service-list{display:grid;gap:12px;margin-top:18px}.service-row{display:flex;justify-content:space-between;gap:18px;padding:14px 0;border-bottom:1px solid rgba(234,214,198,.12)}.service-row span{color:#cab8ac}.service-row b{color:#f5eee7}
-    .portfolio-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:20px}.portfolio-item{min-height:170px;border-radius:24px;background:linear-gradient(135deg,#d9b7a2,#3a2119 62%,#090706);border:1px solid rgba(234,214,198,.14);position:relative;overflow:hidden}.portfolio-item:nth-child(2){background:linear-gradient(135deg,#ead6c6,#5d3b31 55%,#120c09)}.portfolio-item:nth-child(3){background:linear-gradient(135deg,#b88972,#2a1813 60%,#090706)}.portfolio-item:nth-child(4){background:linear-gradient(135deg,#f5eee7,#6a4a3a 55%,#120c09)}.portfolio-item:nth-child(5){background:linear-gradient(135deg,#d9b7a2,#1a100d 55%,#090706)}.portfolio-item:nth-child(6){background:linear-gradient(135deg,#9d725d,#ead6c6 48%,#2a1813)}
-    .portfolio-item:after{content:"Portfolio";position:absolute;left:14px;bottom:12px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#fff;background:rgba(0,0,0,.28);border:1px solid rgba(255,255,255,.16);border-radius:999px;padding:6px 10px}
     .badge-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}.badge{border:1px solid rgba(234,214,198,.16);border-radius:999px;padding:8px 11px;color:#ead6c6;font-size:13px;background:rgba(255,255,255,.04)}
-    .review{border-bottom:1px solid rgba(234,214,198,.12);padding:14px 0}.review:last-child{border-bottom:0}.stars{color:#d9b7a2;letter-spacing:.08em}
     .map-preview{min-height:280px;border-radius:26px;border:1px solid rgba(234,214,198,.14);background:linear-gradient(135deg,rgba(255,255,255,.05),rgba(255,255,255,.015)),linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);background-size:auto,52px 52px,52px 52px;position:relative;overflow:hidden}
     .map-preview .pin{position:absolute;top:46%;left:48%;background:#f5eee7;color:#130d0a;border-radius:999px;padding:10px 14px;font-weight:800;font-size:13px;box-shadow:0 20px 60px rgba(0,0,0,.35)}
-    .booking-box{display:grid;gap:10px}.slot{display:flex;justify-content:space-between;align-items:center;border:1px solid rgba(234,214,198,.13);border-radius:18px;padding:13px 14px;color:#ead6c6}.slot button{border:0;border-radius:999px;background:#f5eee7;color:#130d0a;padding:8px 12px;font-weight:800}
     .profile-footer{padding:34px 6vw;border-top:1px solid rgba(234,214,198,.14);display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;color:#bdaea4}
-    @media(max-width:880px){.profile-grid,.profile-columns{grid-template-columns:1fr}.portfolio-grid{grid-template-columns:1fr 1fr}.provider-nav .links{gap:12px;font-size:13px}.profile-cover{min-height:330px}}
-    @media(max-width:560px){.portfolio-grid{grid-template-columns:1fr}.profile-actions{display:grid}.profile-btn{width:100%}.provider-nav{align-items:flex-start;gap:12px}.provider-nav .links{flex-wrap:wrap;justify-content:flex-end}}
+    @media(max-width:880px){.profile-grid,.profile-columns{grid-template-columns:1fr}.provider-nav .links{gap:12px;font-size:13px}.profile-cover{min-height:330px}}
   </style>
 </head>
 <body class="provider-page">
@@ -48,6 +41,7 @@
     <a class="brand" href="index.html">Mortéa</a>
     <div class="links">
       <a href="discover.html">Discover</a>
+      <a href="map.html">Map</a>
       <a href="professional-onboarding.html">Professionals</a>
       <a href="pricing.html">Memberships</a>
       <a href="fr/provider.html">FR</a>
@@ -57,28 +51,17 @@
   <header class="profile-hero">
     <div class="profile-wrap profile-grid">
       <div>
-        <div class="profile-kicker">Verified luxury profile</div>
-        <h1 id="providerName">Élan Aesthetic Clinic</h1>
-        <p id="providerBio" class="profile-sub">A premium medical aesthetics and skin clinic specializing in Botox, laser treatments, skin rejuvenation, hydrafacial, injectables, and elevated beauty experiences.</p>
-        <div class="badge-row">
-          <span class="badge">Botox Clinic</span>
-          <span class="badge">Laser</span>
-          <span class="badge">Med Spa</span>
-          <span class="badge">Instagram Portfolio</span>
-          <span class="badge">Booking Ready</span>
-        </div>
-        <div class="profile-actions">
-          <a class="profile-btn primary" href="#booking">Book now</a>
-          <a class="profile-btn" href="#portfolio">View portfolio</a>
-          <a class="profile-btn" href="#" target="_blank">Instagram</a>
-          <a class="profile-btn" href="#" target="_blank">TikTok</a>
-        </div>
+        <div class="profile-kicker" id="providerKicker">Loading profile</div>
+        <h1 id="providerName">Loading...</h1>
+        <p id="providerBio" class="profile-sub">Loading provider information from Mortéa.</p>
+        <div class="badge-row" id="providerBadges"></div>
+        <div class="profile-actions" id="providerActions"></div>
       </div>
       <div class="profile-cover">
         <div class="floating-card">
-          <strong>Luxury skin & aesthetics</strong>
-          <span id="providerLocation">Dubai · Paris · Montréal ready profile structure</span>
-          <div class="verified">Mortéa verified profile concept</div>
+          <strong id="providerCategory">Luxury beauty profile</strong>
+          <span id="providerLocation">Location loading...</span>
+          <div class="verified" id="providerVerified">Mortéa profile</div>
         </div>
       </div>
     </div>
@@ -89,54 +72,27 @@
       <div class="profile-wrap profile-columns">
         <div class="profile-card">
           <h2 class="section-title">Signature services</h2>
-          <p class="section-lead">Each profile should clearly show what the professional or clinic offers, pricing direction, and booking readiness.</p>
-          <div class="service-list">
-            <div class="service-row"><b>Botox / Anti-wrinkle treatment</b><span>From $250</span></div>
-            <div class="service-row"><b>Laser skin treatment</b><span>From $180</span></div>
-            <div class="service-row"><b>Hydrafacial glow ritual</b><span>From $120</span></div>
-            <div class="service-row"><b>Microneedling / skin renewal</b><span>From $160</span></div>
-            <div class="service-row"><b>Consultation</b><span>Book request</span></div>
-          </div>
+          <p class="section-lead" id="providerServicesIntro">Services listed by this professional or clinic.</p>
+          <div class="service-list" id="providerServices"></div>
         </div>
         <aside class="profile-card" id="booking">
-          <h3>Available booking slots</h3>
-          <p class="section-lead">This is a front-end calendar concept. Later it can connect to Supabase and real bookings.</p>
-          <div class="booking-box">
-            <div class="slot"><span>Today · 3:30 PM</span><button>Book</button></div>
-            <div class="slot"><span>Tomorrow · 11:00 AM</span><button>Book</button></div>
-            <div class="slot"><span>Friday · 5:15 PM</span><button>Book</button></div>
-          </div>
+          <h3>Booking</h3>
+          <p class="section-lead">Use the professional’s booking link or social pages to request an appointment.</p>
+          <div class="profile-actions" id="bookingActions"></div>
         </aside>
-      </div>
-    </section>
-
-    <section class="profile-section" id="portfolio">
-      <div class="profile-wrap">
-        <h2 class="section-title">Portfolio & social proof</h2>
-        <p class="section-lead">Mortéa profiles should feel like luxury mini-sites: visual portfolio, before/after work, Instagram/TikTok access, reviews, and booking in one place.</p>
-        <div class="portfolio-grid">
-          <div class="portfolio-item"></div>
-          <div class="portfolio-item"></div>
-          <div class="portfolio-item"></div>
-          <div class="portfolio-item"></div>
-          <div class="portfolio-item"></div>
-          <div class="portfolio-item"></div>
-        </div>
       </div>
     </section>
 
     <section class="profile-section">
       <div class="profile-wrap profile-columns">
         <div class="profile-card">
-          <h2 class="section-title">Reviews</h2>
-          <div class="review"><div class="stars">★★★★★</div><p>“Beautiful experience, very professional, and the results looked natural.”</p><strong>Client review</strong></div>
-          <div class="review"><div class="stars">★★★★★</div><p>“I loved being able to see the portfolio and social pages before booking.”</p><strong>Client review</strong></div>
-          <div class="review"><div class="stars">★★★★★</div><p>“Luxury atmosphere and easy booking request.”</p><strong>Client review</strong></div>
+          <h2 class="section-title">About</h2>
+          <p class="section-lead" id="providerAbout">Loading...</p>
         </div>
         <div class="profile-card">
           <h2 class="section-title">Location</h2>
-          <p class="section-lead">Future Google Maps integration should show exact location, nearby search, directions, and city discovery.</p>
-          <div class="map-preview"><span class="pin">Clinic location</span></div>
+          <p class="section-lead" id="providerAddress">Loading address...</p>
+          <div class="map-preview"><span class="pin" id="providerMapPin">Location</span></div>
         </div>
       </div>
     </section>
@@ -146,5 +102,9 @@
     <b>Mortéa</b>
     <span>Luxury beauty, wellness, and aesthetics profile system.</span>
   </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase-config.js"></script>
+  <script src="provider-dynamic.js"></script>
 </body>
 </html>
