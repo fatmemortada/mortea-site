@@ -80,3 +80,25 @@ function renderTags(id, list){
 
 renderTags('category-tags', categories);
 renderTags('category-tags-fr', categoriesFr);
+
+
+async function submitProfessionalApplication(){
+ const btn=document.getElementById('submitProfessional');
+ if(!btn || typeof supabaseClient==='undefined') return;
+ const payload={
+  business_name: document.getElementById('business_name')?.value || '',
+  category: document.getElementById('category')?.value || '',
+  country: document.getElementById('country')?.value || '',
+  city: document.getElementById('city')?.value || '',
+  instagram: document.getElementById('instagram')?.value || '',
+  tiktok: document.getElementById('tiktok')?.value || '',
+  website: document.getElementById('website')?.value || '',
+  booking_link: document.getElementById('booking_link')?.value || '',
+  description: document.getElementById('description')?.value || ''
+ };
+ const {error}=await supabaseClient.from('professionals').insert([payload]);
+ const msg=document.getElementById('formMessage');
+ if(error){ if(msg) msg.textContent='Error: '+error.message; }
+ else { if(msg) msg.textContent='Application submitted successfully.'; document.getElementById('professionalForm')?.reset(); }
+}
+document.getElementById('submitProfessional')?.addEventListener('click', submitProfessionalApplication);
