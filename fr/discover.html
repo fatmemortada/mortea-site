@@ -1,1 +1,115 @@
-<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Découvrir — Mortéa</title><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;650;750&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="../style.css"></head><body class="mortea-luxury"><nav class="nav"><a class="brand" href="index.html">Mortéa</a><div class="nav-links"><a href="discover.html">Découvrir</a><a href="../map.html">Carte</a><a href="professional-onboarding.html">Professionnels</a><a href="../pricing.html">Memberships</a><a href="login.html">Accès</a><a class="lang" href="../discover.html">EN</a></div></nav><main><section class="page-hero"><div class="eyebrow">Recherche beauté, bien-être et esthétique en direct</div><h1>Découvrir beauty experts and aesthetic clinics near you.</h1><p class="lead">Recherchez les vrais professionnels Mortéa par service, ville, pays, catégorie ou portfolio social. Les profils viennent de Supabase.</p><div class="hero-actions"><a class="btn primary" href="../map.html">Ouvrir la carte</a><a class="btn secondary" href="professional-onboarding.html">Joindre comme professionnel</a></div></section><section class="section"><div class="search-row"><input class="input" id="discoverServiceSearch" placeholder="Que cherchez-vous? Botox, ongles, laser, cils..."><input class="input" id="discoverCitySearch" placeholder="Ville ou pays"><button class="btn primary" id="discoverSearchButton" type="button">Rechercher</button></div><div class="taglist"><button class="tag" type="button" data-discover-filter="Botox">Botox</button><button class="tag" type="button" data-discover-filter="Laser">Laser clinics</button><button class="tag" type="button" data-discover-filter="Japanese Head Spa">Japanese head spa</button><button class="tag" type="button" data-discover-filter="Lash">Lash technicians</button><button class="tag" type="button" data-discover-filter="Nail">Nails</button><button class="tag" type="button" data-discover-filter="Med Spa">Med spas</button><button class="tag" type="button" data-discover-filter="Body Contouring">Body contouring</button><button class="tag" type="button" data-discover-filter="Hydrafacial">Hydrafacial</button></div><div class="discovery" style="margin-top:28px"><div class="map-box"><span class="pin a">Live provider</span><span class="pin b">Supabase</span><span class="pin c">Profile ready</span></div><div><div class="eyebrow" id="discoverProviderCount">Chargement des professionnels</div><h2>Professionnels Mortéa en direct</h2><p class="section-intro">Ces résultats viennent de la table professionals. Quand un professionnel postule, il peut apparaître ici après l’enregistrement.</p><div class="results" id="discoverProviderResults"></div></div></div></section><section class="section"><div class="eyebrow">Explorer par catégorie</div><h2>Beauté, bien-être et esthétique au même endroit.</h2><p class="section-intro">Clients should be able to search for salons, independent professionals, creators, med spas, Botox clinics, laser clinics, injectors, skin specialists, and body enhancement services from the same luxury discovery experience.</p><div id="category-tags" class="taglist"></div></section><section class="section"><div class="eyebrow">Réseau mondial de villes</div><h2>Explorez des destinations beauté de luxe dans le monde.</h2><p class="section-intro">Mortéa is designed to grow city by city, connecting clients with nearby beauty, wellness, and medical aesthetics professionals in major global markets.</p><div class="grid cards"><div class="card"><h3><a href="dubai.html">Dubai</a></h3><p>Botox clinics, laser clinics, med spas, luxury salons, lashes, nails, and premium wellness.</p></div><div class="card"><h3><a href="paris.html">Paris</a></h3><p>Editorial skincare, refined salons, aesthetic clinics, facials, and beauty destinations.</p></div><div class="card"><h3><a href="montreal.html">Montréal</a></h3><p>Bilingual beauty professionals, med spas, wellness studios, head spas, lashes, and facials.</p></div><div class="card"><h3><a href="beirut.html">Beirut</a></h3><p>Glam beauty, injectors, aesthetics clinics, hair, makeup, lashes, nails, and social portfolios.</p></div><div class="card"><h3><a href="riyadh.html">Riyadh</a></h3><p>Private luxury salons, laser clinics, med spas, wellness, skin, body, and premium beauty.</p></div><div class="card"><h3>Coming next</h3><p>London, New York, Toronto, Seoul, Milan, Tokyo, Los Angeles, Doha, Kuwait City, and Istanbul.</p></div></div></section></main><footer class="footer"><b>Mortéa</b><span>Découverte beauté de luxe mondiale.</span></footer><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="../supabase-config.js"></script><script src="../script.js"></script><script src="../discover-dynamic.js"></script></body></html>
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Découvrez des professionnels de beauté, des cliniques esthétiques et des experts bien-être près de chez vous sur Mortéa.">
+  <title>Découvrir — Mortéa</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+  <style>
+    .discover-filters { display:flex; gap:10px; flex-wrap:wrap; margin-top:16px; }
+    .discover-filters button { border:1px solid var(--line); border-radius:999px; background:rgba(255,255,255,.04); color:var(--champagne); padding:8px 14px; font-size:13px; cursor:pointer; transition:all .2s; }
+    .discover-filters button:hover, .discover-filters button.active { background:rgba(234,214,198,.12); border-color:rgba(234,214,198,.32); color:var(--sand); }
+    .no-results { border:1px solid var(--line); border-radius:26px; padding:40px 28px; text-align:center; color:var(--muted); }
+    .no-results h3 { font-family:'Playfair Display',serif; font-size:26px; margin-bottom:10px; color:var(--champagne); }
+  </style>
+</head>
+<body class="mortea-luxury">
+
+<nav class="nav">
+  <a class="brand" href="index.html">Mortéa</a>
+  <div class="nav-links">
+    <a href="discover.html">Découvrir</a>
+    <a href="../map.html">Carte</a>
+    <a href="professional-onboarding.html">Professionnels</a>
+    <a href="../pricing.html">Memberships</a>
+    <a href="login.html">Accès</a>
+    <a class="lang" href="../discover.html">EN</a>
+  </div>
+</nav>
+
+<main>
+  <section class="page-hero">
+    <div class="eyebrow">Recherche beauté, bien-être et esthétique en direct</div>
+    <h1>Découvrez des experts beauté et cliniques près de vous.</h1>
+    <p class="lead">Recherchez les vrais professionnels Mortéa par service, ville, pays, catégorie ou portfolio social.</p>
+    <div class="hero-actions" style="margin-top:24px">
+      <a class="btn primary" href="../map.html">Ouvrir la carte</a>
+      <a class="btn secondary" href="professional-onboarding.html">Joindre comme professionnel</a>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:16px">
+    <div class="search-row" style="max-width:860px">
+      <input class="input" id="discoverServiceSearch" placeholder="Que cherchez-vous ? Botox, ongles, laser, cils...">
+      <input class="input" id="discoverCitySearch" placeholder="Ville ou pays">
+      <button class="btn primary" id="discoverSearchButton" type="button">Rechercher</button>
+    </div>
+
+    <div class="discover-filters" id="discoverFilters">
+      <button type="button" data-discover-filter="Botox">Botox</button>
+      <button type="button" data-discover-filter="Laser">Cliniques laser</button>
+      <button type="button" data-discover-filter="Japanese Head Spa">Head spa japonais</button>
+      <button type="button" data-discover-filter="Lash">Cils</button>
+      <button type="button" data-discover-filter="Nail">Ongles</button>
+      <button type="button" data-discover-filter="Med Spa">Med spas</button>
+      <button type="button" data-discover-filter="Body Contouring">Remodelage corporel</button>
+      <button type="button" data-discover-filter="Facial">Soins visage</button>
+    </div>
+
+    <div style="margin-top:32px">
+      <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:20px">
+        <h2 style="font-size:clamp(22px,3vw,32px);margin:0">Professionnels en direct</h2>
+        <span style="color:var(--rose);font-size:13px;letter-spacing:.12em;text-transform:uppercase;font-weight:700" id="discoverProviderCount">Chargement…</span>
+      </div>
+      <div class="discovery">
+        <div class="map-box" style="min-height:380px">
+          <span class="pin a">Professionnel en direct</span>
+          <span class="pin b">Supabase</span>
+          <span class="pin c">Profil prêt</span>
+        </div>
+        <div>
+          <div class="results" id="discoverProviderResults">
+            <div style="text-align:center;padding:48px;color:var(--muted)">Chargement des professionnels…</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:60px">
+      <div class="eyebrow">Explorer par catégorie</div>
+      <h2>Beauté, bien-être et esthétique au même endroit.</h2>
+      <p class="section-intro">Recherchez des salons, des indépendants, des créateurs, des med spas, des cliniques Botox, des cliniques laser, des injecteurs et des spécialistes dans la même expérience de découverte de luxe.</p>
+      <div id="category-tags-fr" class="taglist"></div>
+    </div>
+
+    <div style="margin-top:60px">
+      <div class="eyebrow">Réseau mondial de villes</div>
+      <h2>Explorez des destinations beauté de luxe dans le monde.</h2>
+      <p class="section-intro">Mortéa grandit ville par ville, connectant les clients avec des professionnels de beauté, de bien-être et d'esthétique médicale dans les grands marchés mondiaux.</p>
+      <div class="grid cards">
+        <div class="card"><h3>Dubaï</h3><p>Cliniques Botox, laser, med spas, salons de luxe, cils, ongles et bien-être premium.</p></div>
+        <div class="card"><h3>Paris</h3><p>Soins de la peau éditoriaux, salons raffinés, cliniques esthétiques et destinations beauté.</p></div>
+        <div class="card"><h3>Montréal</h3><p>Professionnels beauté bilingues, med spas, studios bien-être, head spas, cils et soins.</p></div>
+        <div class="card"><h3>Beyrouth</h3><p>Beauté glamour, injecteurs, cliniques esthétiques, cheveux, maquillage, cils et ongles.</p></div>
+        <div class="card"><h3>Riyad</h3><p>Salons de luxe privés, cliniques laser, med spas, bien-être, peau et beauté premium.</p></div>
+        <div class="card"><h3>Prochainement</h3><p>Londres, New York, Toronto, Séoul, Milan, Tokyo, Los Angeles, Doha, Koweït et Istanbul.</p></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <b>Mortéa</b>
+  <span>Découverte beauté de luxe mondiale.</span>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../supabase-config.js"></script>
+<script src="../script.js"></script>
+<script src="../discover-dynamic.js"></script>
+</body>
+</html>

@@ -1,69 +1,77 @@
-# Mortéa Global Luxury Website
+# Mortéa — Global Luxury Beauty Discovery
+## Final Version
 
-This package contains a bilingual English/French static website for the new Mortéa direction.
+### What was improved in this version
 
-## Vision
-Mortéa is a worldwide luxury beauty discovery ecosystem. It combines:
-- map-style local discovery
-- premium professional profiles
-- social portfolio links for Instagram/TikTok
-- booking/calendar concept
-- professional membership fees
-- future mobile app positioning
+#### Design & CSS (`style.css`)
+- Full CSS custom properties system with semantic tokens (`--line-hi`, `--glass-hi`, `--radius-*`, `--shadow`, `--transition`)
+- Consistent hover transitions on all interactive elements (cards, buttons, nav links, results)
+- Animated map dots with pulsing glow effect
+- Floating pin animation on map boxes
+- Page load fade-up animation on hero sections
+- Luxury scrollbar styling
+- Better mobile breakpoints (900px, 560px) with improved nav wrapping
+- Button hover states with subtle lift + shadow
+- Better focus states on inputs
 
-## Included Pages
-English:
-- index.html
-- discover.html
-- professional-onboarding.html
-- login.html
+#### Homepage (`index.html`)
+- Smart search redirect — hero form pre-fills the discover page on submit
+- Italic accent on hero headline using brand rose color
+- Featured Professional plan highlighted in pricing grid
+- Better pricing cards with CTA buttons
+- Removed vague "future direction" notice wording, reframed positively
 
-French:
-- fr/index.html
-- fr/discover.html
-- fr/professional-onboarding.html
-- fr/login.html
+#### Discover Page (`discover.html`)
+- Filter chips with active state toggle
+- URL param pre-fill from homepage search
+- Provider count display
+- Enter key support on search inputs
+- Empty state with link to professional onboarding
 
-Shared:
-- style.css
-- script.js
+#### Professional Onboarding (`professional-onboarding.html`)
+- Structured two-column form with field labels
+- Full validation before submit (required fields)
+- Better success/error messaging with styling
+- Benefits section redesigned with icon rows
+- All required fields captured including `owner_name`, `phone`, `province`
 
-## Professional Categories Included
-- Beauty salons
-- Estheticians
-- Lash technicians
-- Nail technicians
-- Facial specialists
-- Japanese head spa
-- Eyebrow artists
-- Massage therapists
-- Makeup artists
-- Hair stylists
-- Hair colorists
-- Brow lamination
-- Waxing specialists
-- Laser technicians
-- Skincare clinics
-- Beauty bloggers
-- Wellness spas
-- Bridal beauty
-- Barbers
-- Permanent makeup artists
-- Body sculpting
-- Spray tan artists
+#### French Pages (`fr/`)
+- `fr/discover.html` — fully translated (was mixed EN/FR)
+- `fr/index.html` — improved heading typography
+- `fr/professional-onboarding.html` — full Supabase-connected form in French
+- `fr/login.html` — redesigned access portal page
+- `fr/provider.html` — fixed mixed-language strings
 
-## Membership Pricing Included
-- Independent: $10/month
-- Creator: $30/month
-- Professional: $35/month
+#### JavaScript
+- `script.js` — full form validation, better error handling, loading state on submit button
+- `discover-dynamic.js` — toggle filter chips, Enter key support, cleaner card rendering with Instagram/TikTok link normalisation
+- `map-foundation.js` — improved filter logic, Enter key, geolocation feedback
 
-## Important Technical Note
-The design is scoped through `body.mortea-luxury` and shared carefully through one stylesheet. Avoid replacing global CSS randomly. Future pages should be added one by one.
+#### Map Page (`map.html`)
+- Removed "Step 7" developer label
+- Removed "mock provider data" wording
 
-## Future Development
-Next real app steps:
-1. Add real Google Maps API integration.
-2. Connect professionals to Supabase.
-3. Add real booking calendar logic.
-4. Add login/accounts.
-5. Later build mobile app using the same data structure.
+#### SEO
+- Meta descriptions added to all core pages
+
+---
+
+### Core Pages
+- `index.html` — EN homepage
+- `discover.html` — provider search
+- `map.html` — map discovery
+- `professional-onboarding.html` — professional signup form
+- `pricing.html` — membership plans
+- `login.html` — access portal
+- `provider.html` — individual provider profile
+- `fr/` — French equivalents
+
+### Supabase Config
+Edit `supabase-config.js` to update your project URL and anon key.
+
+### Next Steps
+1. Connect real Google Maps API to `map.html`
+2. Add Stripe checkout to `pricing.html`
+3. Implement auth (Supabase Auth) on `login.html`
+4. Add image upload for provider profiles
+5. Build mobile app using same Supabase data structure

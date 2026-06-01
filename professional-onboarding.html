@@ -1,18 +1,221 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Professionals — Mortéa</title><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;650;750&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="style.css"></head><body class="mortea-luxury"><nav class="nav"><a class="brand" href="index.html">Mortéa</a><div class="nav-links"><a href="discover.html">Discover</a><a href="professional-onboarding.html">Professionals</a><a href="pricing.html">Memberships</a><a href="login.html">Access</a><a class="lang" href="fr/professional-onboarding.html">FR</a></div></nav><main><section class="page-hero"><div class="eyebrow">Professional membership</div><h1>Join the global luxury beauty network.</h1><p class="lead">Mortéa gives beauty professionals, creators, wellness experts, med spas, and aesthetic clinics a premium profile, discovery placement, social portfolio links, and a future booking calendar built for clients already searching for their service.</p></section><section class="section two"><div class="card"><h3>Who can join?</h3><p>Beauty salons, estheticians, lash technicians, nail technicians, facial workers, Japanese head spa studios, eyebrow technicians, massage therapists, makeup artists, hair professionals, skincare clinics, Botox clinics, laser clinics, med spas, cosmetic injectors, PRP specialists, microneedling specialists, body contouring clinics, wellness clinics, permanent makeup artists, cosmetic tattoo artists, beauty bloggers, influencers, and similar fields.</p><div id="category-tags" class="taglist"></div></div><div class="card"><h3>Why membership?</h3><p>Instead of paying for generic ads, professionals pay for direct beauty discovery: search visibility, map presence, portfolio presentation, social traffic, booking readiness, and a more premium brand environment.</p><p>Membership plans start from $10/month for independent users, $30/month for creators, and $35/month for professionals and clinics. A 5-day free trial can be used before the monthly membership starts.</p></div></section><section class="section"><h2>Apply for access</h2><p class="section-intro">Complete your professional details. Address is required because Mortéa will later use it to place your business correctly on the map.</p><form class="form" id="professionalForm">
-<input class="input" id="business_name" placeholder="Business / Professional Name" required>
-<input class="input" id="owner_name" placeholder="Owner Name" required>
-<input class="input" id="email" type="email" placeholder="Email Address" required>
-<input class="input" id="phone" placeholder="Phone Number">
-<input class="input" id="category" placeholder="Service Category" required>
-<input class="input" id="country" placeholder="Country" required>
-<input class="input" id="province" placeholder="Province / State" required>
-<input class="input" id="city" placeholder="City" required>
-<input class="input" id="address" placeholder="Full Address" required>
-<input class="input" id="instagram" placeholder="Instagram">
-<input class="input" id="tiktok" placeholder="TikTok">
-<input class="input" id="website" placeholder="Website">
-<input class="input" id="booking_link" placeholder="Booking Link">
-<textarea class="input textarea" id="description" placeholder="Tell us about your work, services, clinic, portfolio, and booking needs" required></textarea>
-<button class="btn primary" id="submitProfessional" type="button">Submit Application</button>
-<p id="formMessage"></p>
-</form></section></main><footer class="footer"><b>Mortéa</b><span>Built for beauty, wellness, and aesthetics professionals worldwide.</span></footer><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="supabase-config.js"></script><script src="script.js"></script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Join Mortéa as a beauty professional, clinic, or creator. Apply for a membership and get discovered by clients worldwide.">
+  <title>Professionals — Mortéa</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .form-section {
+      background: linear-gradient(165deg, rgba(255,255,255,.055), rgba(255,255,255,.015));
+      border: 1px solid var(--line);
+      border-radius: 34px;
+      padding: 36px;
+      max-width: 860px;
+    }
+    .form-section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(30px,4vw,46px);
+      margin-bottom: 6px;
+    }
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 20px;
+    }
+    .form-grid .full { grid-column: 1 / -1; }
+    .field-label {
+      display: block;
+      font-size: 12px;
+      color: var(--rose);
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      margin-bottom: 6px;
+      font-weight: 700;
+    }
+    .input-wrap { display: flex; flex-direction: column; }
+    .step-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border: 1px solid var(--line-hi);
+      border-radius: 50%;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--champagne);
+      margin-right: 10px;
+    }
+    .benefit-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .benefit-row:last-child { border-bottom: none; }
+    .benefit-icon {
+      width: 42px;
+      height: 42px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: rgba(255,255,255,.045);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+    .benefit-row h4 { margin: 0 0 3px; font-size: 16px; }
+    .benefit-row p { margin: 0; color: var(--muted); font-size: 14px; }
+    @media (max-width:640px) {
+      .form-grid { grid-template-columns: 1fr; }
+      .form-section { padding: 22px 18px; }
+    }
+  </style>
+</head>
+<body class="mortea-luxury">
+
+<nav class="nav">
+  <a class="brand" href="index.html">Mortéa</a>
+  <div class="nav-links">
+    <a href="discover.html">Discover</a>
+    <a href="professional-onboarding.html">Professionals</a>
+    <a href="pricing.html">Memberships</a>
+    <a href="login.html">Access</a>
+    <a class="lang" href="fr/professional-onboarding.html">FR</a>
+  </div>
+</nav>
+
+<main>
+  <section class="page-hero">
+    <div class="eyebrow">Professional membership</div>
+    <h1>Join the global luxury<br>beauty network.</h1>
+    <p class="lead">Mortéa gives beauty professionals, creators, wellness experts, med spas, and aesthetic clinics a premium profile, discovery placement, social portfolio links, and a future booking calendar — built for clients already searching for their service.</p>
+  </section>
+
+  <section class="section" style="padding-top:16px">
+    <div class="two" style="align-items:start;gap:24px">
+
+      <!-- Left: Benefits -->
+      <div>
+        <div class="card" style="margin-bottom:18px">
+          <h3>Who can join?</h3>
+          <p style="margin-bottom:14px">Beauty salons, estheticians, lash technicians, nail technicians, facial specialists, Japanese head spa studios, eyebrow artists, massage therapists, makeup artists, hair professionals, skincare clinics, Botox clinics, laser clinics, med spas, cosmetic injectors, PRP specialists, microneedling specialists, body contouring clinics, wellness clinics, permanent makeup artists, cosmetic tattoo artists, beauty bloggers, influencers, and similar fields.</p>
+          <div id="category-tags" class="taglist"></div>
+        </div>
+
+        <div class="card">
+          <h3>Why membership?</h3>
+          <div class="benefit-row">
+            <div class="benefit-icon">📍</div>
+            <div><h4>Map visibility</h4><p>Your business appears on Mortéa's discovery map, reachable by clients searching near you.</p></div>
+          </div>
+          <div class="benefit-row">
+            <div class="benefit-icon">📸</div>
+            <div><h4>Social portfolio</h4><p>Link Instagram, TikTok, website, and a booking page directly on your profile.</p></div>
+          </div>
+          <div class="benefit-row">
+            <div class="benefit-icon">⭐</div>
+            <div><h4>Reviews &amp; credibility</h4><p>Clients can leave reviews, building trust before they book.</p></div>
+          </div>
+          <div class="benefit-row">
+            <div class="benefit-icon">📅</div>
+            <div><h4>Booking readiness</h4><p>Receive booking requests and prepare for the full calendar management app coming soon.</p></div>
+          </div>
+          <div style="margin-top:18px;padding:14px;background:rgba(217,183,162,.08);border-radius:18px;border:1px solid var(--line)">
+            <p style="font-size:14px;color:var(--champagne);margin:0">Plans from <strong>$10/month</strong> · Every membership includes a <strong>5-day free trial</strong></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Form -->
+      <div class="form-section">
+        <div class="eyebrow" style="margin-bottom:10px">Apply for access</div>
+        <h2>Your professional profile</h2>
+        <p style="color:var(--muted);font-size:14px;margin-top:6px">Address required — Mortéa uses it to place your business on the map correctly.</p>
+
+        <form class="form-grid" id="professionalForm" onsubmit="return false">
+          <div class="input-wrap">
+            <label class="field-label" for="business_name">Business / Professional Name *</label>
+            <input class="input" id="business_name" placeholder="Maison Lumière" required>
+          </div>
+          <div class="input-wrap">
+            <label class="field-label" for="owner_name">Owner Name *</label>
+            <input class="input" id="owner_name" placeholder="Sophie Martin" required>
+          </div>
+          <div class="input-wrap">
+            <label class="field-label" for="email">Email Address *</label>
+            <input class="input" id="email" type="email" placeholder="hello@maisonlumiere.com" required>
+          </div>
+          <div class="input-wrap">
+            <label class="field-label" for="phone">Phone Number</label>
+            <input class="input" id="phone" placeholder="+1 514 000 0000">
+          </div>
+          <div class="input-wrap">
+            <label class="field-label" for="category">Service Category *</label>
+            <input class="input" id="category" placeholder="Botox clinic, Lash technician..." required>
+          </div>
+          <div class="input-wrap">
+            <label class="field-label" for="country">Country *</label>
+            <input class="input" id="country" placeholder="Canada" required>
+          </div>
+          <div class="input-wrap">
+            <label class="field-label" for="province">Province / State *</label>
+            <input class="input" id="province" placeholder="Québec" required>
+          </div>
+          <div class="input-wrap">
+            <label class="field-label" for="city">City *</label>
+            <input class="input" id="city" placeholder="Montréal" required>
+          </div>
+          <div class="input-wrap full">
+            <label class="field-label" for="address">Full Address *</label>
+            <input class="input" id="address" placeholder="1234 Rue Saint-Denis, Montréal, QC H2X 1K4" required>
+          </div>
+          <div class="input-wrap">
+            <label class="field-label" for="instagram">Instagram</label>
+            <input class="input" id="instagram" placeholder="@maisonlumiere">
+          </div>
+          <div class="input-wrap">
+            <label class="field-label" for="tiktok">TikTok</label>
+            <input class="input" id="tiktok" placeholder="@maisonlumiere">
+          </div>
+          <div class="input-wrap">
+            <label class="field-label" for="website">Website</label>
+            <input class="input" id="website" placeholder="https://maisonlumiere.com">
+          </div>
+          <div class="input-wrap">
+            <label class="field-label" for="booking_link">Booking Link</label>
+            <input class="input" id="booking_link" placeholder="https://book.maisonlumiere.com">
+          </div>
+          <div class="input-wrap full">
+            <label class="field-label" for="description">About your work *</label>
+            <textarea class="input textarea" id="description" placeholder="Tell us about your services, clinic, portfolio, specialties, and booking needs..." required></textarea>
+          </div>
+          <div class="full">
+            <button class="btn primary" id="submitProfessional" type="button" style="width:100%;padding:16px">Submit Application</button>
+            <p id="formMessage" style="margin-top:12px;text-align:center;font-size:14px;color:var(--champagne)"></p>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <b>Mortéa</b>
+  <span>Built for beauty, wellness, and aesthetics professionals worldwide.</span>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase-config.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
