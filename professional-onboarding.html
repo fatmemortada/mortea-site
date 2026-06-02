@@ -315,26 +315,23 @@
   <span>Built for beauty, wellness, and aesthetics professionals worldwide.</span>
 </footer>
 
-<script src="https://js.stripe.com/v3/"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="supabase-config.js"></script>
 <script src="script.js"></script>
 <script>
-/* ── Stripe config ─────────────────────────────────────────── */
-const STRIPE_PUBLIC_KEY = 'pk_live_51Tb6jv539sddq3X5BXvVI1pUCXBOHW2o5t6vRrnAx44HZ6ycTeXbOHGWrdQ8q4TM0i8Pq3066ZLNPocbVIxWeS9D00l7tFdjo1';
-
-const PRICE_IDS = {
+/* ── Stripe Payment Links ────────────────────────────────── */
+const PAYMENT_LINKS = {
   independent: {
-    monthly: 'price_1Tb77R539sddq3X5B9n9xvjP',
-    yearly:  'price_1Tb77j539sddq3X547jqdtoP'
+    monthly: 'https://buy.stripe.com/aFa5kwadZ2ob58davF3VC05',
+    yearly:  'https://buy.stripe.com/3cI28k99VfaX58d5bl3VC02'
   },
   professional: {
-    monthly: 'price_1Tb6z6539sddq3X57kkBtl7o',
-    yearly:  'price_1Tb702539sddq3X5tRpGqlVy'
+    monthly: 'https://buy.stripe.com/14AaEQ71N2ob1W147h3VC00',
+    yearly:  'https://buy.stripe.com/7sYaEQfyj8Mz58d6fp3VC01'
   },
   creator: {
-    monthly: 'price_1Tb76j539sddq3X5ekZxs7gk',
-    yearly:  'price_1Tb773539sddq3X5ANymVwaa'
+    monthly: 'https://buy.stripe.com/aFa7sE5XJd2PdEJ9rB3VC03',
+    yearly:  'https://buy.stripe.com/00w4gs1Ht4wjeIN8nx3VC04'
   }
 };
 
@@ -484,36 +481,24 @@ function buildCheckoutSummary() {
     </div>`;
 }
 
-/* ── Handle Stripe payment ─────────────────────────────────── */
+/* ── Handle Stripe payment with direct Payment Links ──────── */
 async function handlePayment() {
   const btn = document.getElementById('btnPay');
   const msg = document.getElementById('payMessage');
   msg.textContent = '';
 
-  const priceId = PRICE_IDS[selectedPlan][billingCycle];
+  const paymentUrl = PAYMENT_LINKS[selectedPlan] && PAYMENT_LINKS[selectedPlan][billingCycle];
 
-  btn.textContent = 'Redirecting to Stripe…'; btn.disabled = true;
-
-  try {
-    const stripe = Stripe(STRIPE_PUBLIC_KEY);
-    const email  = document.getElementById('email').value.trim();
-
-    const { error } = await stripe.redirectToCheckout({
-      lineItems: [{ price: priceId, quantity: 1 }],
-      mode: 'subscription',
-      customerEmail: email,
-      clientReferenceId: savedProviderId || undefined,
-      successUrl: 'https://www.mortea.ca/provider-dashboard.html?subscribed=1&email=' + encodeURIComponent(email),
-      cancelUrl:  'https://www.mortea.ca/professional-onboarding.html?cancelled=1'
-    });
-
-    if (error) throw error;
-  } catch (e) {
+  if (!paymentUrl) {
     msg.style.color = '#e8aaaa';
-    msg.textContent = 'Payment error: ' + (e.message || 'Please try again.');
-    btn.textContent = 'Pay & activate profile →';
-    btn.disabled = false;
+    msg.textContent = 'Payment link not found for this plan. Please choose another plan or contact Mortéa.';
+    return;
   }
+
+  btn.textContent = 'Redirecting to Stripe…';
+  btn.disabled = true;
+
+  window.location.href = paymentUrl;
 }
 
 /* ── Cancelled return from Stripe ──────────────────────────── */
