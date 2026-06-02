@@ -178,24 +178,6 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="supabase-config.js"></script>
 <script src="auth.js"></script>
-<script src="stripe-checkout.js"></script>
-<script>
-async function selectPlan(plan) {
-  const user = await MorteaAuth.getUser();
-  if (!user) {
-    window.location.href = 'login.html?next=' + encodeURIComponent('pricing.html?plan=' + plan);
-    return;
-  }
-  const started = await startStripeCheckout(plan, user.email);
-  if (!started) {
-    // Stripe not configured — fall back to apply form
-    window.location.href = 'professional-onboarding.html?plan=' + plan;
-  }
-}
 
-// Pre-select plan from URL param
-const urlPlan = new URLSearchParams(window.location.search).get('plan');
-if (urlPlan) selectPlan(urlPlan);
-</script>
 </body>
 </html>
