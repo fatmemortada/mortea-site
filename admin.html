@@ -66,7 +66,7 @@
         <div class="admin-stat"><div class="num" id="statTotal">—</div><div class="lbl">Total applications</div></div>
         <div class="admin-stat"><div class="num" id="statPending">—</div><div class="lbl">Pending review</div></div>
         <div class="admin-stat"><div class="num" id="statApproved">—</div><div class="lbl">Approved & live</div></div>
-        <div class="admin-stat"><div class="num" id="statCities">—</div><div class="lbl">Cities represented</div></div>
+        <div class="admin-stat"><div class="num" id="statActiveSubs">—</div><div class="lbl">Active subscriptions</div></div>
       </div>
 
       <!-- Search & Filter -->
@@ -138,8 +138,7 @@ async function init() {
   document.getElementById('statTotal').textContent   = allApplicants.length;
   document.getElementById('statPending').textContent = allApplicants.filter(a=>(!a.status||a.status==='pending')).length;
   document.getElementById('statApproved').textContent= allApplicants.filter(a=>a.status==='approved').length;
-  const cities = new Set(allApplicants.map(a=>a.city).filter(Boolean));
-  document.getElementById('statCities').textContent  = cities.size;
+  document.getElementById('statActiveSubs').textContent = allApplicants.filter(a=>a.subscription_status==='active').length;
 
   renderList();
 }
@@ -170,7 +169,7 @@ function renderList() {
       <div class="applicant-info">
         <h4><span class="status-dot ${status}"></span>${escHtml(a.business_name || 'Unknown')}</h4>
         <p>${escHtml(a.category||'')} · ${escHtml(a.city||'')}${a.country?', '+escHtml(a.country):''} · ${escHtml(a.email||'')}
-        <br>Applied ${new Date(a.created_at).toLocaleDateString('en-CA',{year:'numeric',month:'short',day:'numeric'})}</p>
+        <br>Plan: ${escHtml(a.membership_plan || '—')} · Subscription: ${escHtml(a.subscription_status || 'not active')}<br>Applied ${new Date(a.created_at).toLocaleDateString('en-CA',{year:'numeric',month:'short',day:'numeric'})}</p>
       </div>
       <div class="action-btns">
         <button class="btn-view" onclick="viewDetail('${a.id}')">View</button>
@@ -184,18 +183,19 @@ function renderList() {
 async function updateStatus(id, status) {
   const { error } = await supabaseClient
     .from('professionals')
-    .update({ status, updated_at: new Date().toISOString() })
+    .update({ status, subscription_status: status === 'approved' ? 'active' : 'not_active', updated_at: new Date().toISOString() })
     .eq('id', id);
 
   if (error) { alert('Error: ' + error.message); return; }
 
   const idx = allApplicants.findIndex(a => a.id === id);
-  if (idx >= 0) allApplicants[idx].status = status;
+  if (idx >= 0) { allApplicants[idx].status = status; allApplicants[idx].subscription_status = status === 'approved' ? 'active' : 'not_active'; }
   renderList();
 
   // Update stats
   document.getElementById('statPending').textContent  = allApplicants.filter(a=>(!a.status||a.status==='pending')).length;
   document.getElementById('statApproved').textContent = allApplicants.filter(a=>a.status==='approved').length;
+  document.getElementById('statActiveSubs').textContent = allApplicants.filter(a=>a.subscription_status==='active').length;
 }
 
 function viewDetail(id) {
@@ -209,6 +209,7 @@ function viewDetail(id) {
       <div><span style="color:var(--muted)">Owner:</span> ${escHtml(a.owner_name||'—')}</div>
       <div><span style="color:var(--muted)">Email:</span> ${escHtml(a.email||'—')}</div>
       <div><span style="color:var(--muted)">Phone:</span> ${escHtml(a.phone||'—')}</div>
+      <div><span style="color:var(--muted)">Plan:</span> ${escHtml(a.membership_plan||'—')} · ${escHtml(a.subscription_status||'not active')}</div>
       <div><span style="color:var(--muted)">Category:</span> ${escHtml(a.category||'—')}</div>
       <div><span style="color:var(--muted)">Address:</span> ${escHtml([a.address,a.city,a.province,a.country].filter(Boolean).join(', ')||'—')}</div>
       ${a.instagram ? `<div><span style="color:var(--muted)">Instagram:</span> ${escHtml(a.instagram)}</div>` : ''}

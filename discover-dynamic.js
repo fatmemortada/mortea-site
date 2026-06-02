@@ -77,17 +77,16 @@ async function loadDiscoverProviders() {
   try {
     if (typeof supabaseClient === 'undefined') throw new Error('Supabase not initialised');
 
-    // Load all (approved ones + pending shown so early applicants see themselves)
+    // Load only approved/active professionals so paid members appear publicly
     const { data, error } = await supabaseClient
       .from('professionals')
       .select('*')
+      .eq('status', 'approved')
       .order('created_at', { ascending: false });
 
     if (error) throw error;
 
-    // Show approved first, then pending (so the platform looks active even early on)
-    const approved = (data || []).filter(p => p.status === 'approved');
-    discoverProviders = approved.length ? approved : (data || []);
+    discoverProviders = (data || []).filter(p => !p.subscription_status || p.subscription_status === 'active');
 
     renderDiscoverProviders(discoverProviders);
   } catch (err) {

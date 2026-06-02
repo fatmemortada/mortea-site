@@ -188,7 +188,7 @@
                 <button class="btn secondary" style="width:100%;margin-top:14px" onclick="startCheckout('creator')">Select</button>
               </div>
             </div>
-            <p style="font-size:12px;color:var(--muted);margin-top:14px">Payments handled by Stripe. Configure your Stripe price IDs in stripe-checkout.js.</p>
+            <p style="font-size:12px;color:var(--muted);margin-top:14px">Payments handled securely by Stripe Payment Links. All plans include a 5-day free trial.</p>
           </div>
         </div>
 
@@ -211,9 +211,16 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="supabase-config.js"></script>
 <script src="auth.js"></script>
+<script src="checkout-success.js"></script>
 <script>
 let currentProvider = null;
 let currentUser = null;
+
+const DASHBOARD_PAYMENT_LINKS = {
+  independent: 'https://buy.stripe.com/aFa5kwadZ2ob58davF3VC05',
+  professional: 'https://buy.stripe.com/14AaEQ71N2ob1W147h3VC00',
+  creator: 'https://buy.stripe.com/aFa7sE5XJd2PdEJ9rB3VC03'
+};
 
 function showSection(id) {
   document.querySelectorAll('.dash-section').forEach(s => s.classList.remove('active'));
@@ -224,6 +231,9 @@ function showSection(id) {
 
 async function init() {
   currentUser = await MorteaAuth.getUser();
+  if (new URLSearchParams(window.location.search).get('subscribed') === '1') {
+    await activatePendingMorteaProfile();
+  }
   if (!currentUser) {
     document.getElementById('dashLoading').style.display = 'none';
     document.getElementById('dashNotAuthed').style.display = 'block';
@@ -299,7 +309,7 @@ async function init() {
 
   // Membership
   document.getElementById('planName').textContent = data.membership_plan ? capitalize(data.membership_plan) : 'No active plan';
-  document.getElementById('planStatus').textContent = data.membership_plan ? `Active ${data.membership_plan} membership` : 'Subscribe to get discovered on Mortéa';
+  document.getElementById('planStatus').textContent = data.subscription_status === 'active' ? `Active ${data.membership_plan || 'professional'} membership` : (data.membership_plan ? `${capitalize(data.membership_plan)} selected · payment pending` : 'Subscribe to get discovered on Mortéa');
 
   // Reviews
   loadReviews(data.id);
@@ -388,18 +398,29 @@ async function handlePhotoUpload(event) {
 }
 
 async function startCheckout(plan) {
-  // Replace price IDs with your actual Stripe price IDs
-  const priceIds = {
-    independent: 'price_INDEPENDENT_ID_HERE',
-    professional: 'price_PROFESSIONAL_ID_HERE',
-    creator: 'price_CREATOR_ID_HERE'
-  };
-  const priceId = priceIds[plan];
-  if (!priceId || priceId.includes('HERE')) {
-    alert('Stripe price IDs not configured. Add your Stripe price IDs to stripe-checkout.js.');
-    return;
+  const link = DASHBOARD_PAYMENT_LINKS[plan];
+  if (!link) { alert('Payment link not found.'); return; }
+
+  if (currentProvider) {
+    localStorage.setItem('mortea_pending_checkout', JSON.stringify({
+      providerId: currentProvider.id,
+      email: currentUser?.email || currentProvider.email,
+      businessName: currentProvider.business_name,
+      plan,
+      billingCycle: 'monthly',
+      startedAt: new Date().toISOString()
+    }));
+
+    await supabaseClient
+      .from('professionals')
+      .update({ membership_plan: plan, billing_cycle: 'monthly', subscription_status: 'pending_payment', updated_at: new Date().toISOString() })
+      .eq('id', currentProvider.id);
   }
-  window.location.href = `stripe-checkout.html?plan=${plan}&price=${priceId}&email=${encodeURIComponent(currentUser.email)}`;
+
+  const url = new URL(link);
+  if (currentUser?.email) url.searchParams.set('prefilled_email', currentUser.email);
+  if (currentProvider?.id) url.searchParams.set('client_reference_id', currentProvider.id);
+  window.location.href = url.toString();
 }
 
 function escHtml(v) { return String(v||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c])); }

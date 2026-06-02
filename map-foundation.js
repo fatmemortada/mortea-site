@@ -61,9 +61,12 @@ function filterProviders() {
 async function loadProviders() {
   try {
     if (typeof supabaseClient === 'undefined') throw new Error('Supabase not initialised');
-    const { data, error } = await supabaseClient.from('professionals').select('*');
+    const { data, error } = await supabaseClient
+      .from('professionals')
+      .select('*')
+      .eq('status', 'approved');
     if (error) throw error;
-    allProviders = data || [];
+    allProviders = (data || []).filter(p => !p.subscription_status || p.subscription_status === 'active');
     renderProviders(allProviders);
   } catch (err) {
     console.error('Map load error:', err);

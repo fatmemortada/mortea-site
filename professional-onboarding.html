@@ -424,7 +424,10 @@ document.getElementById('btnStep1').addEventListener('click', async () => {
     website:       document.getElementById('website').value.trim(),
     booking_link:  document.getElementById('booking_link').value.trim(),
     description:   document.getElementById('description').value.trim(),
-    status:        'pending'
+    status:        'pending',
+    membership_plan: selectedPlan,
+    billing_cycle:   billingCycle,
+    subscription_status: 'pending_payment'
   };
 
   try {
@@ -482,6 +485,27 @@ function buildCheckoutSummary() {
 }
 
 /* ── Handle Stripe payment with direct Payment Links ──────── */
+function withStripeParams(baseUrl, params) {
+  const url = new URL(baseUrl);
+  Object.entries(params).forEach(([key, value]) => {
+    if (value !== undefined && value !== null && String(value).trim() !== '') {
+      url.searchParams.set(key, value);
+    }
+  });
+  return url.toString();
+}
+
+async function markProfilePendingPayment() {
+  if (!savedProviderId || typeof supabaseClient === 'undefined') return;
+  const updates = {
+    membership_plan: selectedPlan,
+    billing_cycle: billingCycle,
+    subscription_status: 'pending_payment',
+    updated_at: new Date().toISOString()
+  };
+  await supabaseClient.from('professionals').update(updates).eq('id', savedProviderId);
+}
+
 async function handlePayment() {
   const btn = document.getElementById('btnPay');
   const msg = document.getElementById('payMessage');
@@ -498,7 +522,24 @@ async function handlePayment() {
   btn.textContent = 'Redirecting to Stripe…';
   btn.disabled = true;
 
-  window.location.href = paymentUrl;
+  const email = document.getElementById('email').value.trim();
+  const businessName = document.getElementById('business_name').value.trim();
+  const checkoutState = {
+    providerId: savedProviderId,
+    email,
+    businessName,
+    plan: selectedPlan,
+    billingCycle,
+    startedAt: new Date().toISOString()
+  };
+
+  localStorage.setItem('mortea_pending_checkout', JSON.stringify(checkoutState));
+  await markProfilePendingPayment();
+
+  window.location.href = withStripeParams(paymentUrl, {
+    prefilled_email: email,
+    client_reference_id: savedProviderId || email
+  });
 }
 
 /* ── Cancelled return from Stripe ──────────────────────────── */
