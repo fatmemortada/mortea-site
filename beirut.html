@@ -3,73 +3,117 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Beirut Beauty & Aesthetics — Mortéa</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;650;750&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <meta name="description" content="Discover luxury beauty professionals, aesthetic clinics, and wellness experts in Beirut on Mortéa — the global beauty discovery platform.">
+  <title>Beirut Beauty &amp; Aesthetics — Mortéa</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <style>
+    .city-hero-bg { position:absolute;inset:0;pointer-events:none;overflow:hidden;border-radius:inherit; }
+    .service-chip { border:1px solid var(--line);border-radius:999px;padding:9px 16px;font-size:13px;color:var(--champagne);background:rgba(255,255,255,.04); }
+    .provider-count-badge { display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(162,217,162,.28);border-radius:999px;padding:9px 16px;background:rgba(162,217,162,.06);color:#a8e0a8;font-size:13px;font-weight:700; }
+    .city-stat { text-align:center;padding:20px; }
+    .city-stat .num { font-family:'Playfair Display',serif;font-size:42px;color:var(--sand); }
+    .city-stat .lbl { font-size:13px;color:var(--muted);margin-top:4px; }
+  </style>
 </head>
 <body class="mortea-luxury">
-  <nav class="nav">
-    <a class="brand" href="index.html">Mortéa</a>
-    <div class="nav-links">
-      <a href="discover.html">Discover</a>
-      <a href="professional-onboarding.html">Professionals</a>
-      <a href="pricing.html">Memberships</a>
-      <a href="login.html">Access</a>
+<nav class="nav">
+  <a class="brand" href="index.html">Mortéa</a>
+  <div class="nav-links">
+    <a href="discover.html">Discover</a>
+    <a href="map.html">Map</a>
+    <a href="professional-onboarding.html">Professionals</a>
+    <a href="pricing.html">Memberships</a>
+    <a href="login.html">Access</a>
+  </div>
+</nav>
+<main>
+  <section class="page-hero">
+    <div class="eyebrow">Lebanon · Global city network</div>
+    <h1>Discover beauty &amp; aesthetics<br>in <em style="font-style:italic;color:var(--rose)">Beirut.</em></h1>
+    <p class="lead">Explore Beirut's vibrant beauty scene — from glamorous injectors and lash artists to luxury hair salons, nail technicians, makeup artists, and aesthetic clinics across Achrafieh, Hamra, and Badaro.</p>
+    <div class="hero-actions">
+      <a class="btn primary" href="discover.html?city=beirut">Find providers in Beirut</a>
+      <a class="btn secondary" href="professional-onboarding.html?city=Beirut">Join Mortéa in Beirut</a>
     </div>
-  </nav>
+  </section>
 
-  <main>
-    <section class="page-hero">
-      <div class="eyebrow">Global city discovery</div>
-      <h1>Discover beauty and aesthetics in Beirut.</h1>
-      <p class="lead">Explore glamour, artistry, aesthetic clinics and expressive beauty professionals. Mortéa is building a worldwide luxury discovery layer for clients searching nearby and professionals ready to be found.</p>
-      <div class="hero-actions">
-        <a class="btn primary" href="discover.html">Back to Discover</a>
-        <a class="btn secondary" href="professional-onboarding.html">Join Mortéa in Beirut</a>
-      </div>
-    </section>
+  <section class="section" style="padding-top:0">
+    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;margin-bottom:28px">
+      <div class="provider-count-badge" id="cityProviderCount">⬤ Loading providers…</div>
+      <a class="btn secondary" href="map.html?city=Beirut">Open map</a>
+    </div>
 
-    <section class="section">
-      <div class="eyebrow">Featured categories in Beirut</div>
-      <h2>Search by service, specialty, or beauty destination.</h2>
-      <p class="section-intro">This city page is prepared for future Google Maps results, live provider data, booking calendars, reviews, and social portfolio links.</p>
-      <div class="taglist">
-        <span class="tag">Botox Clinics</span><span class="tag">Laser Clinics</span><span class="tag">Med Spas</span><span class="tag">Cosmetic Injectors</span><span class="tag">Lash Technicians</span><span class="tag">Nail Technicians</span><span class="tag">Facial Specialists</span><span class="tag">Japanese Head Spa</span><span class="tag">Body Contouring</span><span class="tag">Hydrafacial</span><span class="tag">Wellness Clinics</span><span class="tag">Hair Stylists</span>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="discovery">
-        <div class="map-box">
-          <span class="pin a">Botox clinic</span>
-          <span class="pin b">Laser & med spa</span>
-          <span class="pin c">Luxury beauty studio</span>
+    <div class="two" style="gap:24px;align-items:start">
+      <div>
+        <div class="eyebrow" style="margin-bottom:12px">Services in Beirut</div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:28px">
+          <span class="service-chip">Botox</span><span class="service-chip">Lashes</span><span class="service-chip">Hair</span><span class="service-chip">Makeup</span><span class="service-chip">Nails</span><span class="service-chip">Facials</span><span class="service-chip">Body Contouring</span><span class="service-chip">Brows</span>
         </div>
-        <div>
-          <div class="eyebrow">Future map experience</div>
-          <h2>Beirut map discovery.</h2>
-          <p class="section-intro">Later, this area will connect to Google Maps and show real providers near the client with distance, availability, reviews, Instagram/TikTok links, and booking buttons.</p>
-          <div class="results">
-            <div class="result"><div class="thumb"></div><div><h4><a href="provider.html">Élan Aesthetic Clinic</a></h4><p>Botox · Laser · Skin rejuvenation · Beirut</p><div class="socials"><span>Book</span><span>Instagram</span><span>TikTok</span></div></div></div>
-            <div class="result"><div class="thumb"></div><div><h4><a href="provider.html">Maison Lumière</a></h4><p>Facials · Hydrafacial · Luxury skincare · Beirut</p><div class="socials"><span>Calendar</span><span>Instagram</span><span>Reviews</span></div></div></div>
-            <div class="result"><div class="thumb"></div><div><h4><a href="provider.html">Noir Lash House</a></h4><p>Lashes · Brows · Permanent makeup · Beirut</p><div class="socials"><span>Book</span><span>TikTok</span><span>Portfolio</span></div></div></div>
-          </div>
+        <div id="cityProviderList">
+          <div style="text-align:center;padding:40px;color:var(--muted)">Loading providers…</div>
         </div>
       </div>
-    </section>
-
-    <section class="section">
-      <div class="eyebrow">City positioning</div>
-      <h2>Beirut beauty culture.</h2>
-      <p class="section-intro">Mortéa’s Beirut experience should feel like high-glam beauty, social portfolios, polished transformation — not a crowded directory. Each city should eventually have curated professionals, clinics, reviews, portfolios, and booking-ready profiles.</p>
-      <div class="grid cards">
-        <div class="card"><h3>For clients</h3><p>Search nearby, compare visual portfolios, open Instagram/TikTok, read reviews, and request a booking.</p></div>
-        <div class="card"><h3>For professionals</h3><p>Get a luxury profile, map discovery placement, social traffic, and future booking calendar access.</p></div>
-        <div class="card"><h3>For clinics</h3><p>Show Botox, laser, injectables, med spa, skin, hair restoration, and body contouring services in a premium environment.</p></div>
+      <div>
+        <div class="card" style="margin-bottom:18px">
+          <h3>Beirut beauty scene</h3>
+          <p style="color:var(--muted);font-size:15px;line-height:1.7">Beirut has one of the Middle East's most vibrant and creative beauty cultures. From beauty influencers with millions of followers to boutique clinics offering world-class aesthetics, Mortéa connects clients with Beirut's best.</p>
+        </div>
+        <div class="card">
+          <h3>Are you a Beirut professional?</h3>
+          <p style="color:var(--muted);font-size:15px;margin-bottom:18px">Join Mortéa and get discovered by clients searching for your services in Beirut and beyond.</p>
+          <a class="btn primary" href="professional-onboarding.html?city=Beirut" style="display:block;text-align:center">Apply now</a>
+        </div>
       </div>
-    </section>
-  </main>
+    </div>
+  </section>
+</main>
+<footer class="footer">
+  <b>Mortéa</b>
+  <span>Beauty &amp; aesthetics discovery in Beirut.</span>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase-config.js"></script>
+<script src="script.js"></script>
+<script>
+(async function() {
+  const city = 'Beirut';
+  const { data, error } = await supabaseClient
+    .from('professionals')
+    .select('*')
+    .ilike('city', '%' + city + '%')
+    .eq('status', 'approved')
+    .order('created_at', { ascending: false });
 
-  <footer class="footer"><b>Mortéa</b><span>Beirut luxury beauty discovery.</span><span>Worldwide · Maps-ready · Mobile app future</span></footer>
+  const count = document.getElementById('cityProviderCount');
+  const list  = document.getElementById('cityProviderList');
+  const providers = data || [];
+
+  count.textContent = providers.length
+    ? '⬤ ' + providers.length + ' live provider' + (providers.length !== 1 ? 's' : '') + ' in Beirut'
+    : '⬤ Be the first to join in Beirut';
+
+  if (!providers.length) {
+    list.innerHTML = `<div class="card"><h3>Be the first in Beirut</h3><p style="color:var(--muted);margin:10px 0 18px">No providers registered yet. Join now and be the first beauty professional discovered by clients in Beirut.</p><a class="btn primary" href="professional-onboarding.html?city=Beirut">Apply now</a></div>`;
+    return;
+  }
+
+  function esc(v) { return String(v||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c])); }
+  list.innerHTML = providers.map(p => `
+    <div class="result" style="margin-bottom:14px">
+      <div class="thumb"></div>
+      <div>
+        <h4><a href="provider.html?id=${encodeURIComponent(p.id)}">${esc(p.business_name)}</a></h4>
+        <p>${esc(p.category)} · ${esc(p.city)}</p>
+        <div class="socials">
+          ${p.booking_link ? `<a href="${esc(p.booking_link)}" target="_blank">Book</a>` : '<span>Profile</span>'}
+          ${p.instagram ? `<a href="https://instagram.com/${esc(p.instagram.replace('@',''))}" target="_blank">Instagram</a>` : ''}
+        </div>
+      </div>
+    </div>`).join('');
+})();
+</script>
 </body>
 </html>

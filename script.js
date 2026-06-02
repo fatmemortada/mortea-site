@@ -1,6 +1,5 @@
 /* ============================================================
-   Mortéa — Global Luxury Beauty Discovery
-   Core Script · Final Version
+   Mortéa — Core Script · Final Version
    ============================================================ */
 
 // ── Professional Categories (EN) ─────────────────────────────
@@ -35,81 +34,75 @@ const categoriesFr = [
   'Blogueurs beauté', 'Influenceurs beauté', 'Éducateurs beauté'
 ];
 
-// ── Render Tag Lists ─────────────────────────────────────────
+// ── Render Tag Lists ──────────────────────────────────────────
 function renderTags(id, list) {
   const el = document.getElementById(id);
   if (!el) return;
-  el.innerHTML = list.map(c =>
-    `<span class="tag">${escapeHtml(c)}</span>`
-  ).join('');
+  el.innerHTML = list.map(c => `<span class="tag">${escapeHtml(c)}</span>`).join('');
 }
-
 renderTags('category-tags', categories);
 renderTags('category-tags-fr', categoriesFr);
 
-// ── HTML Escape Utility ───────────────────────────────────────
+// ── HTML Escape ───────────────────────────────────────────────
 function escapeHtml(value) {
   return String(value || '').replace(/[&<>"']/g, char => ({
     '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;'
   }[char]));
 }
 
-// ── Professional Application Form ─────────────────────────────
+// ── Professional Application Form ────────────────────────────
 async function submitProfessionalApplication() {
   const btn = document.getElementById('submitProfessional');
   const msg = document.getElementById('formMessage');
-
   if (!btn) return;
 
-  // Validate required fields
-  const required = ['business_name', 'owner_name', 'email', 'category', 'country', 'province', 'city', 'address', 'description'];
+  const required = ['business_name','owner_name','email','category','country','province','city','address','description'];
   for (const id of required) {
     const el = document.getElementById(id);
     if (el && !el.value.trim()) {
-      if (msg) {
-        msg.textContent = 'Please fill in all required fields.';
-        msg.className = 'error';
-      }
-      el.focus();
-      return;
+      if (msg) { msg.textContent = 'Please fill in all required fields.'; msg.className = 'error'; }
+      el.focus(); return;
     }
   }
 
-  // Check Supabase availability
   if (typeof supabaseClient === 'undefined') {
-    if (msg) {
-      msg.textContent = 'Database not connected. Please check your Supabase configuration.';
-      msg.className = 'error';
-    }
+    if (msg) { msg.textContent = 'Database not connected. Check your Supabase configuration.'; msg.className = 'error'; }
     return;
   }
 
-  btn.textContent = 'Submitting…';
-  btn.disabled = true;
+  btn.textContent = 'Submitting…'; btn.disabled = true;
 
   const payload = {
-    business_name:  document.getElementById('business_name')?.value?.trim() || '',
-    owner_name:     document.getElementById('owner_name')?.value?.trim() || '',
-    email:          document.getElementById('email')?.value?.trim() || '',
-    phone:          document.getElementById('phone')?.value?.trim() || '',
-    category:       document.getElementById('category')?.value?.trim() || '',
-    country:        document.getElementById('country')?.value?.trim() || '',
-    province:       document.getElementById('province')?.value?.trim() || '',
-    city:           document.getElementById('city')?.value?.trim() || '',
-    address:        document.getElementById('address')?.value?.trim() || '',
-    instagram:      document.getElementById('instagram')?.value?.trim() || '',
-    tiktok:         document.getElementById('tiktok')?.value?.trim() || '',
-    website:        document.getElementById('website')?.value?.trim() || '',
-    booking_link:   document.getElementById('booking_link')?.value?.trim() || '',
-    description:    document.getElementById('description')?.value?.trim() || ''
+    business_name:  document.getElementById('business_name')?.value?.trim(),
+    owner_name:     document.getElementById('owner_name')?.value?.trim(),
+    email:          document.getElementById('email')?.value?.trim(),
+    phone:          document.getElementById('phone')?.value?.trim(),
+    category:       document.getElementById('category')?.value?.trim(),
+    country:        document.getElementById('country')?.value?.trim(),
+    province:       document.getElementById('province')?.value?.trim(),
+    city:           document.getElementById('city')?.value?.trim(),
+    address:        document.getElementById('address')?.value?.trim(),
+    instagram:      document.getElementById('instagram')?.value?.trim(),
+    tiktok:         document.getElementById('tiktok')?.value?.trim(),
+    website:        document.getElementById('website')?.value?.trim(),
+    booking_link:   document.getElementById('booking_link')?.value?.trim(),
+    description:    document.getElementById('description')?.value?.trim(),
+    status:         'pending'
   };
+
+  // Pre-fill city from URL param if present
+  const urlCity = new URLSearchParams(window.location.search).get('city');
+  if (urlCity && !payload.city) payload.city = urlCity;
 
   try {
     const { error } = await supabaseClient.from('professionals').insert([payload]);
     if (error) {
       if (msg) { msg.textContent = 'Submission error: ' + error.message; msg.className = 'error'; }
     } else {
-      if (msg) { msg.textContent = '✓ Application submitted successfully! We will review your profile and be in touch.'; msg.className = ''; }
+      if (msg) {
+        msg.innerHTML = '✓ Application submitted! We will review your profile within 24–48 hours and notify you by email.';
+        msg.className = '';
+      }
       document.getElementById('professionalForm')?.reset();
     }
   } catch (e) {
@@ -121,3 +114,17 @@ async function submitProfessionalApplication() {
 }
 
 document.getElementById('submitProfessional')?.addEventListener('click', submitProfessionalApplication);
+
+// Pre-fill city field from URL param
+document.addEventListener('DOMContentLoaded', () => {
+  const cityParam = new URLSearchParams(window.location.search).get('city');
+  if (cityParam) {
+    const cityEl = document.getElementById('city');
+    if (cityEl && !cityEl.value) cityEl.value = cityParam;
+  }
+  const planParam = new URLSearchParams(window.location.search).get('plan');
+  if (planParam) {
+    // Could pre-highlight plan in the onboarding page
+    console.log('Plan selected:', planParam);
+  }
+});

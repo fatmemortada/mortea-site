@@ -3,91 +3,35 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Découverte sur carte — Mortéa</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;650;750&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="map-foundation.css">
+  <meta name="description" content="Trouvez des professionnels de beauté et cliniques esthétiques près de vous sur la carte Mortéa.">
+  <title>Carte — Mortéa</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
 </head>
 <body class="mortea-luxury">
-  <nav class="nav">
-    <a class="brand" href="index.html">Mortéa</a>
-    <div class="nav-links">
-      <a href="discover.html">Découvrir</a>
-      <a href="professional-onboarding.html">Professionnels</a>
-      <a href="pricing.html">Memberships</a>
-      <a href="login.html">Accès</a>
-      <a class="lang" href="fr/map.html">FR</a>
+<nav class="nav">
+  <a class="brand" href="index.html">Mortéa</a>
+  <div class="nav-links">
+    <a href="discover.html">Découvrir</a>
+    <a href="map.html">Carte</a>
+    <a href="professional-onboarding.html">Professionnels</a>
+    <a href="login.html">Accès</a>
+    <a class="lang" href="../map.html">EN</a>
+  </div>
+</nav>
+<main>
+  <section class="page-hero" style="text-align:center;max-width:640px;margin:0 auto">
+    <div class="eyebrow">Découverte sur carte</div>
+    <h1>Beauté &amp; esthétique<br>près de vous.</h1>
+    <p class="lead">La carte interactive complète est disponible en version anglaise. Cliquez ci-dessous pour accéder à l'expérience carte complète avec tous les professionnels Mortéa.</p>
+    <div class="hero-actions" style="justify-content:center;margin-top:28px">
+      <a class="btn primary" href="../map.html">Ouvrir la carte complète</a>
+      <a class="btn secondary" href="discover.html">Découvrir en liste</a>
     </div>
-  </nav>
-
-  <main>
-    <section class="page-hero">
-      <div class="eyebrow">Étape 7 · Fondation Google Maps</div>
-      <h1>Trouvez la beauté près de vous.</h1>
-      <p class="lead">Ceci est la fondation de découverte sur carte de Mortéa: recherchez par service, ville ou localisation actuelle, puis découvrez les professionnels beauté, cliniques esthétiques, portfolios sociaux et profils prêts pour réservation.</p>
-      <div class="hero-actions">
-        <a class="btn primary" href="#mapExperience">Ouvrir la carte</a>
-        <a class="btn secondary" href="professional-onboarding.html">Joindre comme professionnel</a>
-      </div>
-    </section>
-
-    <section class="section" id="mapExperience">
-      <div class="map-control-panel">
-        <div class="eyebrow">Trouver des professionnels</div>
-        <h2>Recherche par service + ville + localisation.</h2>
-        <p class="section-intro">Cette version utilise des données exemples. La prochaine étape technique sera de connecter cette structure à Google Maps et aux données Supabase.</p>
-        <div class="map-filter-row">
-          <input class="input" id="serviceSearch" placeholder="Botox, laser, cils, ongles, head spa...">
-          <input class="input" id="citySearch" placeholder="Dubai, Paris, Montréal, Beirut, Riyadh...">
-          <button class="btn primary" id="mapSearchButton" type="button">Rechercher</button>
-        </div>
-        <div class="map-quick-filters">
-          <button type="button" data-map-filter="Botox">Botox</button>
-          <button type="button" data-map-filter="Laser">Laser</button>
-          <button type="button" data-map-filter="Med Spa">Med Spa</button>
-          <button type="button" data-map-filter="Lashes">Lashes</button>
-          <button type="button" data-map-filter="Japanese Head Spa">Head Spa</button>
-          <button type="button" data-map-filter="Body Contouring">Body Contouring</button>
-        </div>
-      </div>
-
-      <div class="map-foundation-layout">
-        <div class="map-shell">
-          <div class="map-route"></div>
-          <span class="map-marker one">Botox · 0.8 km</span>
-          <span class="map-marker two">Laser clinic</span>
-          <span class="map-marker three">Head spa</span>
-          <span class="map-marker four">Lashes</span>
-          <div class="map-status">
-            <button class="btn secondary" id="useLocationButton" type="button">Utiliser ma localisation</button>
-            <p id="locationStatus">L’API Google Maps remplacera plus tard ce visuel par une vraie carte interactive.</p>
-          </div>
-        </div>
-
-        <div>
-          <div class="map-control-panel">
-            <div class="eyebrow" id="resultCount">Professionnels trouvés</div>
-            <h2>Résultats proches</h2>
-            <p class="section-intro">Chaque résultat mène à un profil luxe avec services, portfolio, Instagram/TikTok, avis, réservation et localisation.</p>
-          </div>
-          <div class="map-provider-list" id="mapResults"></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="eyebrow">Prochaine intégration</div>
-      <h2>Ce que cela deviendra avec Google Maps.</h2>
-      <div class="grid cards">
-        <div class="card"><h3>Recherche près de moi réelle</h3><p>Utiliser les coordonnées du client pour afficher les professionnels proches par catégorie, disponibilité, ville et service.</p></div>
-        <div class="card"><h3>Marqueurs professionnels</h3><p>Chaque professionnel ou clinique devient un marqueur avec profil, liens sociaux, avis et Réserver.</p></div>
-        <div class="card"><h3>Données Supabase</h3><p>Les profils, services, photos, villes, catégories, avis et réservations viendront de la base de données.</p></div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="footer"><b>Mortéa</b><span>Fondation de découverte beauté prête pour la carte.</span><span>Google Maps · Supabase · Mobile app future</span></footer>
-
-  <script src="map-foundation.js"></script>
+  </section>
+</main>
+<footer class="footer"><b>Mortéa</b><span>Beauté de luxe mondiale.</span></footer>
 </body>
 </html>

@@ -1,73 +1,229 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="style.css">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-<title>Client Reviews | Mortéa</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Leave a review for your Mortéa beauty professional. Help others find the best beauty and aesthetic experts worldwide.">
+  <title>Leave a Review — Mortéa</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .review-form-card { max-width:600px; margin:0 auto; border:1px solid var(--line); border-radius:34px; padding:36px; background:linear-gradient(165deg,rgba(255,255,255,.07),rgba(255,255,255,.02)); }
+    .star-picker { display:flex; gap:10px; margin:12px 0; }
+    .star-btn { font-size:32px; cursor:pointer; color:rgba(234,214,198,.25); transition:color .15s; background:none;border:none;padding:0; }
+    .star-btn.active, .star-btn:hover { color:var(--champagne); }
+    .field-label { display:block;font-size:11px;color:var(--rose);text-transform:uppercase;letter-spacing:.14em;margin-bottom:6px;font-weight:700; }
+    .recent-reviews { max-width:760px; margin:40px auto 0; }
+    .review-card { border:1px solid var(--line);border-radius:22px;padding:20px;background:rgba(255,255,255,.04);margin-bottom:14px; }
+    .review-stars { color:var(--champagne);font-size:16px;margin-bottom:8px; }
+    .review-meta { display:flex;align-items:center;gap:12px;margin-bottom:10px; }
+    .review-provider { font-size:13px;color:var(--rose);font-weight:600; }
+    .review-date { font-size:12px;color:var(--muted); }
+    .review-text { font-size:15px;color:var(--sand);line-height:1.65; }
+    .reviewer-name { font-size:13px;color:var(--muted);margin-top:8px; }
+  </style>
 </head>
-<body>
-<header class="navbar">
-  <div class="logo-mark"><div class="logo-emblem"></div><div class="logo">Mortéa<small>Luxury Wellness</small></div></div>
-  <nav>
-    <a href="index.html">Home</a>
+<body class="mortea-luxury">
+<nav class="nav">
+  <a class="brand" href="index.html">Mortéa</a>
+  <div class="nav-links">
     <a href="discover.html">Discover</a>
-    <a href="map.html">Map</a>
-    <a href="pricing.html">Pricing</a>
-    <a href="reviews.html">Reviews</a>
-    <a href="admin.html">Admin</a>
-    <a href="login.html">Login</a>
-  </nav>
-</header>
+    <a href="professional-onboarding.html">Professionals</a>
+    <a href="login.html">Access</a>
+  </div>
+</nav>
 
-<main class="reviews-section">
-  <section class="review-form-card">
-    <p class="eyebrow">Client Reviews</p>
-    <h2>Leave a review for a Mortéa provider.</h2>
-    <p>
-      Reviews are submitted for approval first to protect the luxury quality and trust of the platform.
-    </p>
-
-    <form class="review-form" data-review-form>
-      <input name="client_name" placeholder="Your name" required>
-      <input type="email" name="client_email" placeholder="Your email">
-      <input name="provider_name" placeholder="Provider / business name" required>
-      <select name="rating" required>
-        <option value="5">★★★★★ — 5 stars</option>
-        <option value="4">★★★★☆ — 4 stars</option>
-        <option value="3">★★★☆☆ — 3 stars</option>
-        <option value="2">★★☆☆☆ — 2 stars</option>
-        <option value="1">★☆☆☆☆ — 1 star</option>
-      </select>
-      <textarea name="review_text" placeholder="Write your review" required></textarea>
-      <button type="submit">Submit Review</button>
-    </form>
-
-    <div class="review-message" data-review-message></div>
+<main>
+  <section class="page-hero" style="text-align:center;max-width:640px;margin:0 auto;padding-bottom:16px">
+    <div class="eyebrow">Client reviews</div>
+    <h1>Share your experience.</h1>
+    <p class="lead" style="font-size:16px">Help other clients find the best beauty and aesthetic professionals on Mortéa.</p>
   </section>
 
-  <section class="review-display-card">
-    <p class="eyebrow">Approved Reviews</p>
-    <h2>Trusted client experiences.</h2>
-    <p>Approved reviews will appear here and later on provider profiles.</p>
-    <div class="review-list" data-reviews-list>
-      <div class="review-item">
-        <strong>Loading reviews...</strong>
-        <span>★★★★★</span>
-        <p>Please wait while Mortéa loads approved client reviews.</p>
+  <section class="section" style="padding-top:16px">
+    <div class="review-form-card">
+      <div class="eyebrow" style="margin-bottom:16px">Write a review</div>
+
+      <!-- Provider search -->
+      <div style="margin-bottom:20px">
+        <label class="field-label" for="reviewSearch">Find the professional</label>
+        <div style="display:grid;grid-template-columns:1fr auto;gap:10px">
+          <input class="input" id="reviewSearch" placeholder="Search by name or city…" oninput="searchProviders()">
+          <button class="btn secondary" onclick="searchProviders()">Search</button>
+        </div>
+        <div id="providerSearchResults" style="margin-top:10px;display:grid;gap:8px"></div>
+      </div>
+
+      <!-- Selected provider -->
+      <div id="selectedProviderPanel" style="display:none;margin-bottom:20px;border:1px solid var(--line-hi);border-radius:18px;padding:14px;background:rgba(234,214,198,.05)">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <div>
+            <div style="font-weight:700" id="selectedProviderName">—</div>
+            <div style="font-size:13px;color:var(--muted)" id="selectedProviderCat">—</div>
+          </div>
+          <button class="btn secondary" style="padding:7px 12px;font-size:12px" onclick="clearProvider()">Change</button>
+        </div>
+      </div>
+      <input type="hidden" id="selectedProviderId">
+
+      <!-- Rating -->
+      <div style="margin-bottom:18px">
+        <label class="field-label">Your rating</label>
+        <div class="star-picker" id="starPicker">
+          <button class="star-btn" data-val="1" onclick="setRating(1)">★</button>
+          <button class="star-btn" data-val="2" onclick="setRating(2)">★</button>
+          <button class="star-btn" data-val="3" onclick="setRating(3)">★</button>
+          <button class="star-btn" data-val="4" onclick="setRating(4)">★</button>
+          <button class="star-btn" data-val="5" onclick="setRating(5)">★</button>
+        </div>
+        <div id="ratingLabel" style="font-size:13px;color:var(--muted)">Select a rating</div>
+      </div>
+
+      <!-- Name + Comment -->
+      <div style="display:grid;gap:14px">
+        <div>
+          <label class="field-label" for="reviewerName">Your name</label>
+          <input class="input" id="reviewerName" placeholder="How should we display your name?">
+        </div>
+        <div>
+          <label class="field-label" for="reviewComment">Your review</label>
+          <textarea class="input textarea" id="reviewComment" placeholder="Tell others about your experience — the service, the professional, the results…"></textarea>
+        </div>
+        <button class="btn primary" id="btnSubmitReview" onclick="submitReview()" style="width:100%;padding:15px">Submit review</button>
+        <div id="reviewMsg"></div>
+      </div>
+    </div>
+
+    <!-- Recent reviews -->
+    <div class="recent-reviews">
+      <div class="eyebrow" style="margin-bottom:18px">Recent reviews on Mortéa</div>
+      <div id="recentReviewsList">
+        <div style="text-align:center;padding:40px;color:var(--muted)">Loading reviews…</div>
       </div>
     </div>
   </section>
 </main>
 
-<footer class="site-footer">
-  <div class="logo">Mortéa</div>
-  <p>Reviews are moderated before public display.</p>
+<footer class="footer">
+  <b>Mortéa</b>
+  <span>Client reviews · Building trust in luxury beauty.</span>
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="js/supabase-config.js"></script>
-<script src="js/reviews.js"></script>
+<script src="supabase-config.js"></script>
+<script src="script.js"></script>
+<script>
+let selectedRating = 0;
+let searchTimeout = null;
+
+const ratingLabels = ['','Poor','Fair','Good','Great','Excellent'];
+
+function esc(v) { return String(v||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c])); }
+
+function setRating(val) {
+  selectedRating = val;
+  document.querySelectorAll('.star-btn').forEach(b => {
+    b.classList.toggle('active', parseInt(b.dataset.val) <= val);
+  });
+  document.getElementById('ratingLabel').textContent = ratingLabels[val] || '';
+}
+
+function searchProviders() {
+  clearTimeout(searchTimeout);
+  searchTimeout = setTimeout(async () => {
+    const q = document.getElementById('reviewSearch').value.trim();
+    if (!q) { document.getElementById('providerSearchResults').innerHTML = ''; return; }
+    const { data } = await supabaseClient
+      .from('professionals')
+      .select('id,business_name,category,city,country')
+      .or(`business_name.ilike.%${q}%,city.ilike.%${q}%`)
+      .eq('status','approved')
+      .limit(6);
+    const res = document.getElementById('providerSearchResults');
+    if (!data || !data.length) { res.innerHTML = '<div style="color:var(--muted);font-size:13px">No providers found.</div>'; return; }
+    res.innerHTML = (data||[]).map(p => `
+      <button onclick="selectProvider('${p.id}','${esc(p.business_name)}','${esc(p.category||'')}','${esc(p.city||'')}')"
+        style="display:flex;align-items:center;gap:12px;padding:10px 14px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.04);width:100%;text-align:left;cursor:pointer;color:var(--sand);transition:all .18s"
+        onmouseover="this.style.borderColor='rgba(234,214,198,.3)'" onmouseout="this.style.borderColor='var(--line)'">
+        <span style="font-weight:600;font-size:14px">${esc(p.business_name)}</span>
+        <span style="font-size:13px;color:var(--muted)">${esc(p.category||'')} · ${esc(p.city||'')}</span>
+      </button>`).join('');
+  }, 300);
+}
+
+function selectProvider(id, name, cat, city) {
+  document.getElementById('selectedProviderId').value = id;
+  document.getElementById('selectedProviderName').textContent = name;
+  document.getElementById('selectedProviderCat').textContent = cat + (city ? ' · ' + city : '');
+  document.getElementById('selectedProviderPanel').style.display = 'block';
+  document.getElementById('providerSearchResults').innerHTML = '';
+  document.getElementById('reviewSearch').value = '';
+}
+
+function clearProvider() {
+  document.getElementById('selectedProviderId').value = '';
+  document.getElementById('selectedProviderPanel').style.display = 'none';
+}
+
+async function submitReview() {
+  const providerId = document.getElementById('selectedProviderId').value;
+  const name = document.getElementById('reviewerName').value.trim();
+  const comment = document.getElementById('reviewComment').value.trim();
+  const msg = document.getElementById('reviewMsg');
+  const btn = document.getElementById('btnSubmitReview');
+
+  if (!providerId) { msg.innerHTML = '<div style="color:#e8aaaa;font-size:14px">Please select a professional.</div>'; return; }
+  if (!selectedRating) { msg.innerHTML = '<div style="color:#e8aaaa;font-size:14px">Please select a rating.</div>'; return; }
+  if (!comment) { msg.innerHTML = '<div style="color:#e8aaaa;font-size:14px">Please write a review.</div>'; return; }
+
+  btn.textContent = 'Submitting…'; btn.disabled = true;
+  const { error } = await supabaseClient.from('reviews').insert([{
+    provider_id: providerId,
+    reviewer_name: name || 'Anonymous',
+    rating: selectedRating,
+    comment,
+    created_at: new Date().toISOString()
+  }]);
+
+  if (error) {
+    msg.innerHTML = `<div style="color:#e8aaaa;font-size:14px">Error: ${esc(error.message)}</div>`;
+  } else {
+    msg.innerHTML = '<div style="color:#a8e0a8;font-size:14px">✓ Thank you! Your review has been submitted.</div>';
+    document.getElementById('reviewComment').value = '';
+    document.getElementById('reviewerName').value = '';
+    setRating(0);
+    clearProvider();
+    loadRecentReviews();
+  }
+  btn.textContent = 'Submit review'; btn.disabled = false;
+}
+
+async function loadRecentReviews() {
+  const { data } = await supabaseClient
+    .from('reviews')
+    .select('*, professionals(business_name,category,city)')
+    .order('created_at', { ascending: false })
+    .limit(10);
+  const container = document.getElementById('recentReviewsList');
+  if (!data || !data.length) {
+    container.innerHTML = '<div style="text-align:center;padding:40px;color:var(--muted)">No reviews yet. Be the first to leave one!</div>';
+    return;
+  }
+  container.innerHTML = data.map(r => `
+    <div class="review-card">
+      <div class="review-stars">${'★'.repeat(r.rating||5)}${'☆'.repeat(5-(r.rating||5))}</div>
+      <div class="review-meta">
+        <span class="review-provider">${esc(r.professionals?.business_name||'—')}</span>
+        <span class="review-date">${new Date(r.created_at).toLocaleDateString('en-CA',{year:'numeric',month:'short',day:'numeric'})}</span>
+      </div>
+      <p class="review-text">${esc(r.comment||'')}</p>
+      <div class="reviewer-name">${esc(r.reviewer_name||'Anonymous')}</div>
+    </div>`).join('');
+}
+
+loadRecentReviews();
+</script>
 </body>
 </html>

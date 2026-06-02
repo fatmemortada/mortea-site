@@ -1,140 +1,237 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Admin Dashboard | Mortéa</title>
-<link rel="stylesheet" href="style.css">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Admin — Mortéa</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .admin-stats { display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:28px; }
+    .admin-stat { border:1px solid var(--line);border-radius:22px;padding:20px;background:rgba(255,255,255,.04); }
+    .admin-stat .num { font-family:'Playfair Display',serif;font-size:36px;color:var(--sand); }
+    .admin-stat .lbl { font-size:13px;color:var(--muted);margin-top:4px; }
+    .filter-row { display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px; }
+    .filter-btn { border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.04);color:var(--champagne);padding:8px 16px;font-size:13px;cursor:pointer;transition:all .18s; }
+    .filter-btn.active { background:rgba(234,214,198,.12);border-color:var(--line-hi);color:var(--sand); }
+    .applicant-row { display:grid;grid-template-columns:1fr auto;align-items:center;gap:16px;border:1px solid var(--line);border-radius:20px;padding:16px 20px;background:rgba(255,255,255,.04);margin-bottom:10px;transition:border-color .18s; }
+    .applicant-row:hover { border-color:var(--line-hi); }
+    .applicant-info h4 { margin:0 0 4px;font-size:16px; }
+    .applicant-info p { margin:0;color:var(--muted);font-size:13px; }
+    .action-btns { display:flex;gap:8px;flex-shrink:0; }
+    .btn-approve { background:rgba(162,217,162,.12);border:1px solid rgba(162,217,162,.3);color:#a8e0a8;border-radius:999px;padding:8px 16px;font-size:13px;cursor:pointer;transition:all .18s; }
+    .btn-approve:hover { background:rgba(162,217,162,.22); }
+    .btn-reject  { background:rgba(217,120,120,.08);border:1px solid rgba(217,120,120,.22);color:#e8aaaa;border-radius:999px;padding:8px 16px;font-size:13px;cursor:pointer;transition:all .18s; }
+    .btn-reject:hover  { background:rgba(217,120,120,.16); }
+    .btn-view    { border:1px solid var(--line);border-radius:999px;padding:8px 14px;font-size:13px;cursor:pointer;background:rgba(255,255,255,.04);color:var(--champagne);transition:all .18s; }
+    .status-dot { display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px; }
+    .status-dot.pending  { background:#e8d080; }
+    .status-dot.approved { background:#a8e0a8; }
+    .status-dot.rejected { background:#e8aaaa; }
+    .search-admin { max-width:400px;margin-bottom:18px; }
+    .admin-detail-overlay { display:none;position:fixed;inset:0;background:rgba(7,5,4,.85);backdrop-filter:blur(8px);z-index:100;overflow-y:auto;padding:40px 20px; }
+    .admin-detail-overlay.open { display:flex;align-items:flex-start;justify-content:center; }
+    .admin-detail-card { background:linear-gradient(165deg,rgba(255,255,255,.08),rgba(255,255,255,.02));border:1px solid var(--line-hi);border-radius:34px;padding:36px;max-width:680px;width:100%;position:relative; }
+    .close-overlay { position:absolute;top:20px;right:20px;background:rgba(255,255,255,.08);border:1px solid var(--line);border-radius:50%;width:36px;height:36px;cursor:pointer;font-size:18px;color:var(--champagne); }
+    @media(max-width:800px){ .admin-stats{grid-template-columns:1fr 1fr;} .applicant-row{grid-template-columns:1fr;} .action-btns{justify-content:flex-start;} }
+    @media(max-width:480px){ .admin-stats{grid-template-columns:1fr;} }
+  </style>
 </head>
-<body>
+<body class="mortea-luxury">
 
-<header class="navbar">
-  <div class="logo-mark"><div class="logo-emblem"></div><div class="logo">Mortéa<small>Luxury Wellness</small></div></div>
-  <nav>
-    <a href="index.html">Home</a>
+<nav class="nav">
+  <a class="brand" href="index.html">Mortéa</a>
+  <div class="nav-links">
     <a href="discover.html">Discover</a>
-    <a href="map.html">Map</a>
-    <a href="pricing.html">Pricing</a>
-    <a href="reviews.html">Reviews</a>
-    <a href="admin.html">Admin</a>
-    <a href="professional-signup.html">Professional Access</a>
-      <a href="login.html">Login</a>
-  </nav>
-</header>
+    <a href="admin.html" style="color:var(--champagne);font-weight:700">Admin</a>
+    <a href="#" id="navSignOut" style="color:var(--rose)">Sign out</a>
+  </div>
+</nav>
 
-<main class="admin-page">
-  <section class="admin-hero">
-    <div class="admin-hero-card">
-      <p class="eyebrow">Phase 6 Admin Dashboard</p>
-      <h1>Operate Mortéa like a real platform.</h1>
-      <p>
-        Review the platform structure, track approved professionals, prepare approval actions,
-        and manage the next operational steps without exposing private Supabase keys.
-      </p>
-    </div>
-
-    <div class="admin-safe-card">
-      <h2>Safe admin mode</h2>
-      <p>
-        This dashboard is safe for GitHub Pages. It does not expose the Supabase secret service key.
-        Until we add real admin login, approvals should be completed in Supabase SQL Editor using
-        the generated SQL below.
-      </p>
-      <div class="admin-badge-row">
-        <span class="admin-badge">No secret key exposed</span>
-        <span class="admin-badge">RLS respected</span>
-        <span class="admin-badge">Ready for Auth later</span>
-      </div>
-    </div>
+<main>
+  <section class="page-hero" style="padding-bottom:24px">
+    <div class="eyebrow">Operations</div>
+    <h1>Admin Dashboard</h1>
+    <p class="lead" style="font-size:16px">Review applications, approve profiles, manage providers.</p>
   </section>
 
-  <section class="admin-grid">
-    <div class="admin-metric">
-      <strong data-approved-count>0</strong>
-      <span>Approved professionals visible publicly</span>
-    </div>
+  <section class="section" style="padding-top:0">
+    <div id="adminLoading" style="text-align:center;padding:60px;color:var(--muted)">Loading admin dashboard…</div>
+    <div id="adminContent" style="display:none">
 
-    <div class="admin-metric">
-      <strong>Pending</strong>
-      <span>New applications stay private until approved</span>
-    </div>
-
-    <div class="admin-metric">
-      <strong data-client-count>Private</strong>
-      <span>Client leads protected by Supabase policies</span>
-    </div>
-  </section>
-
-  <section class="admin-layout">
-    <div class="admin-card">
-      <h2>Approved professionals</h2>
-      <p>These are the professionals currently visible on Mortéa's public discovery/map pages.</p>
-      <div class="admin-warning" data-pending-notice>
-        Pending applications are intentionally hidden from the public website for privacy. To review them,
-        open Supabase → Table Editor → professionals → filter status = pending.
+      <!-- Stats -->
+      <div class="admin-stats">
+        <div class="admin-stat"><div class="num" id="statTotal">—</div><div class="lbl">Total applications</div></div>
+        <div class="admin-stat"><div class="num" id="statPending">—</div><div class="lbl">Pending review</div></div>
+        <div class="admin-stat"><div class="num" id="statApproved">—</div><div class="lbl">Approved & live</div></div>
+        <div class="admin-stat"><div class="num" id="statCities">—</div><div class="lbl">Cities represented</div></div>
       </div>
-      <div class="admin-list" data-approved-professionals>
-        <div class="admin-empty">Loading approved professionals...</div>
+
+      <!-- Search & Filter -->
+      <div class="search-admin">
+        <input class="input" id="adminSearch" placeholder="Search by name, city, category…" oninput="renderList()">
       </div>
-    </div>
-
-    <div class="admin-card">
-      <h2>Approval actions</h2>
-      <p>Enter the professional's email, then copy the SQL action into Supabase SQL Editor.</p>
-
-      <div class="admin-actions">
-        <input type="email" data-approval-email placeholder="professional@email.com">
-
-        <div class="admin-sql-box">
-          <label>Approve professional</label>
-          <textarea id="approveSql" data-approve-sql readonly></textarea>
-          <button class="admin-copy" data-copy-target="#approveSql">Copy SQL</button>
-        </div>
-
-        <div class="admin-sql-box">
-          <label>Reject professional</label>
-          <textarea id="rejectSql" data-reject-sql readonly></textarea>
-          <button class="admin-copy" data-copy-target="#rejectSql">Copy SQL</button>
-        </div>
-
-        <div class="admin-sql-box">
-          <label>Mark as featured</label>
-          <textarea id="featureSql" data-feature-sql readonly></textarea>
-          <button class="admin-copy" data-copy-target="#featureSql">Copy SQL</button>
-        </div>
+      <div class="filter-row">
+        <button class="filter-btn active" data-filter="all" onclick="setFilter('all',this)">All</button>
+        <button class="filter-btn" data-filter="pending" onclick="setFilter('pending',this)">Pending</button>
+        <button class="filter-btn" data-filter="approved" onclick="setFilter('approved',this)">Approved</button>
+        <button class="filter-btn" data-filter="rejected" onclick="setFilter('rejected',this)">Rejected</button>
       </div>
-    </div>
-  </section>
 
-  <section class="admin-roadmap">
-    <div class="admin-card">
-      <strong>Now</strong>
-      <h2>Manual approval</h2>
-      <p>Use Supabase Table Editor or SQL to approve professionals and keep quality control.</p>
-    </div>
+      <!-- List -->
+      <div id="applicantList"></div>
 
-    <div class="admin-card">
-      <strong>Next</strong>
-      <h2>Admin login</h2>
-      <p>Add Supabase Auth so only you can access approval actions inside the site.</p>
     </div>
-
-    <div class="admin-card">
-      <strong>Later</strong>
-      <h2>Stripe control</h2>
-      <p>Connect membership plans, subscription status, featured placement, and billing.</p>
+    <div id="adminNotAuthed" style="display:none;text-align:center;padding:60px">
+      <h2 style="font-family:'Playfair Display',serif;font-size:36px;margin-bottom:12px">Admin access required</h2>
+      <p style="color:var(--muted);margin-bottom:24px">Sign in with an admin account to access this dashboard.</p>
+      <a class="btn primary" href="login.html?next=admin.html">Sign in</a>
     </div>
   </section>
 </main>
 
-<footer class="site-footer">
-  <div class="logo">Mortéa</div>
-  <p>Admin dashboard foundation — safe today, ready for secure login next.</p>
+<!-- Detail Overlay -->
+<div class="admin-detail-overlay" id="detailOverlay">
+  <div class="admin-detail-card">
+    <button class="close-overlay" onclick="closeDetail()">✕</button>
+    <div id="detailContent"></div>
+  </div>
+</div>
+
+<footer class="footer">
+  <b>Mortéa</b>
+  <span>Admin · Operations centre</span>
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="js/supabase-config.js"></script>
-<script src="js/admin.js"></script>
+<script src="supabase-config.js"></script>
+<script src="auth.js"></script>
+<script>
+let allApplicants = [];
+let currentFilter = 'all';
+const ADMIN_EMAILS = ['fatmemortada88@gmail.com']; // Add admin emails here
+
+function escHtml(v) { return String(v||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c])); }
+
+async function init() {
+  const user = await MorteaAuth.getUser();
+  if (!user || !ADMIN_EMAILS.includes(user.email)) {
+    document.getElementById('adminLoading').style.display = 'none';
+    document.getElementById('adminNotAuthed').style.display = 'block';
+    return;
+  }
+
+  const { data, error } = await supabaseClient
+    .from('professionals')
+    .select('*')
+    .order('created_at', { ascending: false });
+
+  document.getElementById('adminLoading').style.display = 'none';
+  if (error) { alert('Error loading data: ' + error.message); return; }
+
+  allApplicants = data || [];
+  document.getElementById('adminContent').style.display = 'block';
+
+  // Stats
+  document.getElementById('statTotal').textContent   = allApplicants.length;
+  document.getElementById('statPending').textContent = allApplicants.filter(a=>(!a.status||a.status==='pending')).length;
+  document.getElementById('statApproved').textContent= allApplicants.filter(a=>a.status==='approved').length;
+  const cities = new Set(allApplicants.map(a=>a.city).filter(Boolean));
+  document.getElementById('statCities').textContent  = cities.size;
+
+  renderList();
+}
+
+function setFilter(f, btn) {
+  currentFilter = f;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderList();
+}
+
+function renderList() {
+  const q = (document.getElementById('adminSearch')?.value || '').toLowerCase();
+  let list = allApplicants;
+  if (currentFilter !== 'all') list = list.filter(a => (a.status||'pending') === currentFilter);
+  if (q) list = list.filter(a =>
+    [a.business_name,a.category,a.city,a.country,a.email].join(' ').toLowerCase().includes(q)
+  );
+
+  const container = document.getElementById('applicantList');
+  if (!list.length) {
+    container.innerHTML = `<div style="text-align:center;padding:40px;color:var(--muted)">No applications found.</div>`;
+    return;
+  }
+  container.innerHTML = list.map(a => {
+    const status = a.status || 'pending';
+    return `<div class="applicant-row" id="row-${a.id}">
+      <div class="applicant-info">
+        <h4><span class="status-dot ${status}"></span>${escHtml(a.business_name || 'Unknown')}</h4>
+        <p>${escHtml(a.category||'')} · ${escHtml(a.city||'')}${a.country?', '+escHtml(a.country):''} · ${escHtml(a.email||'')}
+        <br>Applied ${new Date(a.created_at).toLocaleDateString('en-CA',{year:'numeric',month:'short',day:'numeric'})}</p>
+      </div>
+      <div class="action-btns">
+        <button class="btn-view" onclick="viewDetail('${a.id}')">View</button>
+        ${status !== 'approved' ? `<button class="btn-approve" onclick="updateStatus('${a.id}','approved')">Approve</button>` : ''}
+        ${status !== 'rejected' ? `<button class="btn-reject"  onclick="updateStatus('${a.id}','rejected')">Reject</button>`  : ''}
+      </div>
+    </div>`;
+  }).join('');
+}
+
+async function updateStatus(id, status) {
+  const { error } = await supabaseClient
+    .from('professionals')
+    .update({ status, updated_at: new Date().toISOString() })
+    .eq('id', id);
+
+  if (error) { alert('Error: ' + error.message); return; }
+
+  const idx = allApplicants.findIndex(a => a.id === id);
+  if (idx >= 0) allApplicants[idx].status = status;
+  renderList();
+
+  // Update stats
+  document.getElementById('statPending').textContent  = allApplicants.filter(a=>(!a.status||a.status==='pending')).length;
+  document.getElementById('statApproved').textContent = allApplicants.filter(a=>a.status==='approved').length;
+}
+
+function viewDetail(id) {
+  const a = allApplicants.find(p => p.id === id);
+  if (!a) return;
+  const status = a.status || 'pending';
+  document.getElementById('detailContent').innerHTML = `
+    <div class="eyebrow" style="margin-bottom:12px">${status.toUpperCase()}</div>
+    <h2 style="font-family:'Playfair Display',serif;font-size:34px;margin-bottom:18px">${escHtml(a.business_name)}</h2>
+    <div style="display:grid;gap:10px;font-size:15px;color:var(--champagne)">
+      <div><span style="color:var(--muted)">Owner:</span> ${escHtml(a.owner_name||'—')}</div>
+      <div><span style="color:var(--muted)">Email:</span> ${escHtml(a.email||'—')}</div>
+      <div><span style="color:var(--muted)">Phone:</span> ${escHtml(a.phone||'—')}</div>
+      <div><span style="color:var(--muted)">Category:</span> ${escHtml(a.category||'—')}</div>
+      <div><span style="color:var(--muted)">Address:</span> ${escHtml([a.address,a.city,a.province,a.country].filter(Boolean).join(', ')||'—')}</div>
+      ${a.instagram ? `<div><span style="color:var(--muted)">Instagram:</span> ${escHtml(a.instagram)}</div>` : ''}
+      ${a.tiktok    ? `<div><span style="color:var(--muted)">TikTok:</span> ${escHtml(a.tiktok)}</div>`    : ''}
+      ${a.website   ? `<div><span style="color:var(--muted)">Website:</span> <a href="${escHtml(a.website)}" target="_blank" style="color:var(--rose)">${escHtml(a.website)}</a></div>` : ''}
+      ${a.booking_link ? `<div><span style="color:var(--muted)">Booking:</span> <a href="${escHtml(a.booking_link)}" target="_blank" style="color:var(--rose)">${escHtml(a.booking_link)}</a></div>` : ''}
+      ${a.description ? `<div style="margin-top:6px"><span style="color:var(--muted)">About:</span><p style="margin:6px 0 0;line-height:1.65;color:var(--sand)">${escHtml(a.description)}</p></div>` : ''}
+    </div>
+    <div style="display:flex;gap:10px;margin-top:24px;flex-wrap:wrap">
+      ${status !== 'approved' ? `<button class="btn-approve" style="padding:11px 20px;font-size:14px" onclick="updateStatus('${a.id}','approved');closeDetail()">✓ Approve</button>` : ''}
+      ${status !== 'rejected' ? `<button class="btn-reject"  style="padding:11px 20px;font-size:14px" onclick="updateStatus('${a.id}','rejected');closeDetail()">✗ Reject</button>`  : ''}
+      <a class="btn secondary btn-view" style="padding:10px 18px;font-size:14px" href="provider.html?id=${a.id}" target="_blank">View profile →</a>
+    </div>`;
+  document.getElementById('detailOverlay').classList.add('open');
+}
+
+function closeDetail() {
+  document.getElementById('detailOverlay').classList.remove('open');
+}
+
+document.getElementById('navSignOut')?.addEventListener('click', e => { e.preventDefault(); MorteaAuth.signOut(); });
+document.getElementById('detailOverlay')?.addEventListener('click', e => { if(e.target === document.getElementById('detailOverlay')) closeDetail(); });
+init();
+</script>
 </body>
 </html>

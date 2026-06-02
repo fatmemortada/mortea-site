@@ -3,36 +3,34 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Sign in or create your Mortéa account — for clients and beauty professionals.">
   <title>Access — Mortéa</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <style>
-    .access-card {
-      display: block;
-      border: 1px solid var(--line);
-      border-radius: 34px;
-      padding: 36px;
-      background: linear-gradient(165deg, rgba(255,255,255,.07), rgba(255,255,255,.02));
-      transition: all .22s;
-      text-decoration: none;
-    }
-    .access-card:hover {
-      border-color: rgba(234,214,198,.32);
-      transform: translateY(-3px);
-      box-shadow: 0 24px 64px rgba(0,0,0,.38);
-    }
-    .access-card .icon {
-      font-size: 36px;
-      margin-bottom: 18px;
-    }
-    .access-card h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 32px;
-      margin-bottom: 12px;
-    }
-    .access-card p { color: var(--muted); font-size: 15px; margin-bottom: 24px; line-height: 1.65; }
+    .auth-wrap { max-width: 480px; margin: 0 auto; padding: 0 16px; }
+    .auth-card { border: 1px solid var(--line); border-radius: 34px; padding: 40px 36px; background: linear-gradient(165deg,rgba(255,255,255,.07),rgba(255,255,255,.02)); margin-top: 8px; }
+    .auth-tabs { display: flex; border: 1px solid var(--line); border-radius: 999px; padding: 4px; margin-bottom: 28px; background: rgba(255,255,255,.03); }
+    .auth-tab { flex: 1; text-align: center; padding: 10px; border-radius: 999px; font-size: 14px; font-weight: 600; cursor: pointer; color: var(--muted); transition: all .2s; border: none; background: none; }
+    .auth-tab.active { background: var(--sand); color: #130d0a; }
+    .auth-form { display: none; }
+    .auth-form.active { display: grid; gap: 14px; }
+    .field-label { display: block; font-size: 11px; color: var(--rose); text-transform: uppercase; letter-spacing: .14em; margin-bottom: 5px; font-weight: 700; }
+    .auth-divider { text-align: center; color: var(--muted); font-size: 13px; margin: 4px 0; }
+    .auth-msg { font-size: 14px; padding: 12px 16px; border-radius: 14px; border: 1px solid var(--line); margin-top: 4px; }
+    .auth-msg.success { background: rgba(180,217,162,.08); border-color: rgba(180,217,162,.22); color: #b8e0a8; }
+    .auth-msg.error   { background: rgba(217,162,162,.08); border-color: rgba(217,162,162,.22); color: #e8aaaa; }
+    .forgot-link { font-size: 13px; color: var(--rose); text-align: right; display: block; margin-top: -6px; opacity: .8; cursor: pointer; }
+    .forgot-link:hover { opacity: 1; }
+    .portal-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 28px; }
+    .portal-card { border: 1px solid var(--line); border-radius: 22px; padding: 20px; background: rgba(255,255,255,.04); text-align: center; transition: all .2s; }
+    .portal-card:hover { border-color: var(--line-hi); transform: translateY(-2px); }
+    .portal-card .icon { font-size: 28px; margin-bottom: 10px; }
+    .portal-card h4 { font-size: 15px; margin-bottom: 6px; }
+    .portal-card p { font-size: 13px; color: var(--muted); }
+    @media(max-width:480px){ .auth-card{ padding:28px 20px; } .portal-cards{ grid-template-columns:1fr; } }
   </style>
 </head>
 <body class="mortea-luxury">
@@ -48,26 +46,72 @@
 </nav>
 
 <main>
-  <section class="page-hero" style="text-align:center;max-width:680px;margin:0 auto">
+  <section class="page-hero" style="text-align:center;max-width:600px;margin:0 auto;padding-bottom:16px">
     <div class="eyebrow">Private access</div>
-    <h1>Choose your portal.</h1>
-    <p class="lead">Client discovery and professional tools will connect to accounts, calendars, bookings, and profiles.</p>
+    <h1>Welcome back.</h1>
+    <p class="lead" style="font-size:16px">Sign in to your Mortéa account or create one to get started.</p>
   </section>
 
-  <section class="section" style="padding-top:24px">
-    <div class="two" style="max-width:860px;margin:0 auto;gap:20px">
-      <a class="access-card" href="discover.html">
-        <div class="icon">🔍</div>
-        <h3>Client access</h3>
-        <p>Search near you, save professionals, view portfolios, and request bookings from the best beauty and aesthetic experts worldwide.</p>
-        <span class="btn secondary">Explore &rarr;</span>
-      </a>
-      <a class="access-card" href="professional-onboarding.html">
-        <div class="icon">✦</div>
-        <h3>Professional access</h3>
-        <p>Apply for a membership, manage your profile, connect social pages, set up your booking link, and prepare for calendar management.</p>
-        <span class="btn primary">Apply &rarr;</span>
-      </a>
+  <section class="section" style="padding-top:8px">
+    <div class="auth-wrap">
+      <div class="auth-card">
+        <!-- Tabs -->
+        <div class="auth-tabs">
+          <button class="auth-tab active" id="tabSignIn" onclick="switchTab('signin')">Sign in</button>
+          <button class="auth-tab" id="tabSignUp" onclick="switchTab('signup')">Create account</button>
+        </div>
+
+        <!-- Sign In Form -->
+        <div class="auth-form active" id="formSignIn">
+          <div>
+            <label class="field-label" for="siEmail">Email address</label>
+            <input class="input" id="siEmail" type="email" placeholder="you@example.com" autocomplete="email">
+          </div>
+          <div>
+            <label class="field-label" for="siPassword">Password</label>
+            <input class="input" id="siPassword" type="password" placeholder="Your password" autocomplete="current-password">
+            <span class="forgot-link" onclick="handleForgotPassword()">Forgot password?</span>
+          </div>
+          <button class="btn primary" id="btnSignIn" onclick="handleSignIn()" style="width:100%;padding:15px;margin-top:4px">Sign in</button>
+          <div id="msgSignIn"></div>
+        </div>
+
+        <!-- Sign Up Form -->
+        <div class="auth-form" id="formSignUp">
+          <div>
+            <label class="field-label" for="suEmail">Email address</label>
+            <input class="input" id="suEmail" type="email" placeholder="you@example.com" autocomplete="email">
+          </div>
+          <div>
+            <label class="field-label" for="suPassword">Password</label>
+            <input class="input" id="suPassword" type="password" placeholder="Choose a strong password" autocomplete="new-password">
+          </div>
+          <div>
+            <label class="field-label" for="suRole">I am a</label>
+            <select class="input" id="suRole" style="cursor:pointer">
+              <option value="client">Client — looking for beauty services</option>
+              <option value="professional">Professional — offering beauty services</option>
+            </select>
+          </div>
+          <button class="btn primary" id="btnSignUp" onclick="handleSignUp()" style="width:100%;padding:15px;margin-top:4px">Create account</button>
+          <div id="msgSignUp"></div>
+          <p style="font-size:12px;color:var(--muted);text-align:center">By creating an account you agree to Mortéa's terms.</p>
+        </div>
+      </div>
+
+      <!-- After sign-in portal links -->
+      <div class="portal-cards">
+        <div class="portal-card">
+          <div class="icon">🔍</div>
+          <h4>Client</h4>
+          <p>Discover professionals, save favourites, track bookings</p>
+        </div>
+        <div class="portal-card">
+          <div class="icon">✦</div>
+          <h4>Professional</h4>
+          <p>Manage profile, view stats, update your listing</p>
+        </div>
+      </div>
     </div>
   </section>
 </main>
@@ -77,5 +121,78 @@
   <span>Luxury access for clients and professionals.</span>
 </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase-config.js"></script>
+<script src="auth.js"></script>
+<script>
+  function switchTab(tab) {
+    document.getElementById('formSignIn').classList.toggle('active', tab === 'signin');
+    document.getElementById('formSignUp').classList.toggle('active', tab === 'signup');
+    document.getElementById('tabSignIn').classList.toggle('active', tab === 'signin');
+    document.getElementById('tabSignUp').classList.toggle('active', tab === 'signup');
+  }
+
+  function showMsg(id, text, type) {
+    const el = document.getElementById(id);
+    el.innerHTML = `<div class="auth-msg ${type}">${text}</div>`;
+  }
+
+  async function handleSignIn() {
+    const email = document.getElementById('siEmail').value.trim();
+    const password = document.getElementById('siPassword').value;
+    const btn = document.getElementById('btnSignIn');
+    if (!email || !password) { showMsg('msgSignIn','Please enter your email and password.','error'); return; }
+    btn.textContent = 'Signing in…'; btn.disabled = true;
+    const { data, error } = await MorteaAuth.signIn(email, password);
+    if (error) {
+      showMsg('msgSignIn', error.message, 'error');
+    } else {
+      showMsg('msgSignIn', '✓ Signed in successfully. Redirecting…', 'success');
+      const next = new URLSearchParams(window.location.search).get('next');
+      setTimeout(() => { window.location.href = next || 'provider-dashboard.html'; }, 900);
+    }
+    btn.textContent = 'Sign in'; btn.disabled = false;
+  }
+
+  async function handleSignUp() {
+    const email = document.getElementById('suEmail').value.trim();
+    const password = document.getElementById('suPassword').value;
+    const role = document.getElementById('suRole').value;
+    const btn = document.getElementById('btnSignUp');
+    if (!email || !password) { showMsg('msgSignUp','Please fill in all fields.','error'); return; }
+    if (password.length < 8) { showMsg('msgSignUp','Password must be at least 8 characters.','error'); return; }
+    btn.textContent = 'Creating account…'; btn.disabled = true;
+    const { error } = await MorteaAuth.signUp(email, password, { role });
+    if (error) {
+      showMsg('msgSignUp', error.message, 'error');
+    } else {
+      showMsg('msgSignUp', '✓ Account created! Check your email to confirm, then sign in.', 'success');
+    }
+    btn.textContent = 'Create account'; btn.disabled = false;
+  }
+
+  async function handleForgotPassword() {
+    const email = document.getElementById('siEmail').value.trim();
+    if (!email) { showMsg('msgSignIn','Enter your email above first.','error'); return; }
+    const { error } = await supabaseClient.auth.resetPasswordForEmail(email, {
+      redirectTo: window.location.origin + '/login.html'
+    });
+    if (error) showMsg('msgSignIn', error.message, 'error');
+    else showMsg('msgSignIn', '✓ Password reset email sent. Check your inbox.', 'success');
+  }
+
+  // Redirect already-signed-in users
+  MorteaAuth.getUser().then(user => {
+    if (user) {
+      const next = new URLSearchParams(window.location.search).get('next');
+      window.location.href = next || 'provider-dashboard.html';
+    }
+  });
+
+  // Enter key support
+  ['siEmail','siPassword'].forEach(id =>
+    document.getElementById(id)?.addEventListener('keydown', e => { if(e.key==='Enter') handleSignIn(); })
+  );
+</script>
 </body>
 </html>

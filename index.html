@@ -9,6 +9,35 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <style>
+    .social-proof-bar {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
+      margin-top: 32px;
+      padding-top: 28px;
+      border-top: 1px solid var(--line);
+    }
+    .sp-stat { text-align: center; }
+    .sp-stat .num { font-family: 'Playfair Display', serif; font-size: 28px; color: var(--sand); }
+    .sp-stat .lbl { font-size: 12px; color: var(--muted); margin-top: 2px; }
+    .sp-divider { width: 1px; height: 36px; background: var(--line); }
+    .trust-badge {
+      display: inline-flex; align-items: center; gap: 7px;
+      border: 1px solid rgba(162,217,162,.28); border-radius: 999px;
+      padding: 8px 14px; background: rgba(162,217,162,.05);
+      color: #a8e0a8; font-size: 12px; font-weight: 700;
+    }
+    .marquee-wrap { overflow: hidden; position: relative; margin-top: 0; padding: 18px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .marquee-wrap::before, .marquee-wrap::after { content:''; position:absolute; top:0; bottom:0; width:80px; z-index:2; }
+    .marquee-wrap::before { left:0; background: linear-gradient(90deg,var(--noir),transparent); }
+    .marquee-wrap::after  { right:0; background: linear-gradient(-90deg,var(--noir),transparent); }
+    .marquee-track { display: flex; gap: 22px; width: max-content; animation: marquee 28s linear infinite; }
+    .marquee-track:hover { animation-play-state: paused; }
+    @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    .marquee-item { white-space: nowrap; font-size: 13px; color: var(--champagne); padding: 7px 16px; border: 1px solid var(--line); border-radius: 999px; }
+  </style>
 </head>
 <body class="mortea-luxury">
 
@@ -19,20 +48,37 @@
     <a href="map.html">Map</a>
     <a href="professional-onboarding.html">Professionals</a>
     <a href="pricing.html">Memberships</a>
-    <a href="login.html">Access</a>
+    <a href="login.html" id="navAuthLink">Access</a>
     <a class="lang" href="fr/index.html">FR</a>
     <a class="pill" href="professional-onboarding.html">Apply</a>
   </div>
 </nav>
 
+<!-- Scrolling category marquee -->
+<div class="marquee-wrap">
+  <div class="marquee-track" id="marqueeTrack"></div>
+</div>
+
 <header class="hero">
   <div>
-    <div class="eyebrow">Worldwide beauty, wellness &amp; aesthetics discovery</div>
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;flex-wrap:wrap">
+      <div class="trust-badge">⬤ <span id="liveCount">—</span> live providers</div>
+      <div class="eyebrow" style="margin:0">Worldwide beauty, wellness &amp; aesthetics</div>
+    </div>
     <h1>The global luxury<br><em style="font-style:italic;color:var(--rose)">beauty</em> ecosystem.</h1>
-    <p class="lead">Mortéa connects clients with curated beauty professionals and aesthetic clinics near them — salons, estheticians, lash and nail artists, massage therapists, Japanese head spa studios, Botox clinics, laser clinics, med spas, injectors, body contouring clinics, wellness experts, beauty creators, and more worldwide.</p>
+    <p class="lead">Mortéa connects clients with curated beauty professionals and aesthetic clinics near them — salons, estheticians, lash and nail artists, Japanese head spa studios, Botox clinics, laser clinics, med spas, injectors, body contouring, and more worldwide.</p>
     <div class="hero-actions">
       <a class="btn primary" href="discover.html">Explore near you</a>
       <a class="btn secondary" href="professional-onboarding.html">Join as a professional</a>
+    </div>
+    <div class="social-proof-bar">
+      <div class="sp-stat"><div class="num" id="spProviders">—</div><div class="lbl">Professionals joined</div></div>
+      <div class="sp-divider"></div>
+      <div class="sp-stat"><div class="num" id="spCities">—</div><div class="lbl">Cities covered</div></div>
+      <div class="sp-divider"></div>
+      <div class="sp-stat"><div class="num" id="spCountries">—</div><div class="lbl">Countries</div></div>
+      <div class="sp-divider"></div>
+      <div class="sp-stat"><div class="num">5</div><div class="lbl">Day free trial</div></div>
     </div>
   </div>
   <div class="hero-panel">
@@ -45,7 +91,7 @@
       <div class="search-row">
         <input class="input" id="heroServiceInput" placeholder="Botox, lashes, facial, head spa...">
         <input class="input" id="heroCityInput" placeholder="Near me, Paris, Dubai, Montréal...">
-        <a class="btn primary" id="heroSearchBtn" href="discover.html">Search</a>
+        <button class="btn primary" id="heroSearchBtn">Search</button>
       </div>
     </div>
   </div>
@@ -54,7 +100,7 @@
 <section class="section">
   <div class="eyebrow">Better than generic ads</div>
   <h2>Beauty search designed for direct discovery.</h2>
-  <p class="section-intro">Mortéa is built so when a client searches for a service, the right registered professional or clinic appears directly — with location, portfolio, Instagram/TikTok links, reviews, and booking availability.</p>
+  <p class="section-intro">When a client searches for a service on Mortéa, the right registered professional or clinic appears directly — with location, portfolio, Instagram/TikTok links, reviews, and booking availability.</p>
   <div class="grid cards">
     <div class="card">
       <h3>Map discovery</h3>
@@ -65,47 +111,30 @@
       <p>Each profile links to Instagram, TikTok, and visual work so clients can trust the professional before booking.</p>
     </div>
     <div class="card">
-      <h3>Booking calendar</h3>
-      <p>Professionals show availability, receive booking requests, and manage full calendars through the mobile app.</p>
+      <h3>Reviews &amp; trust</h3>
+      <p>Verified client reviews on every profile build credibility and help clients choose with confidence.</p>
     </div>
   </div>
 </section>
 
-<section class="section">
+<!-- Live providers from Supabase -->
+<section class="section" style="padding-top:0">
   <div class="discovery">
-    <div class="map-box">
+    <div class="map-box" style="min-height:400px">
       <span class="pin a">Botox clinic · 0.8 km</span>
       <span class="pin b">Japanese head spa · 2.1 km</span>
       <span class="pin c">Luxury facial · open today</span>
     </div>
     <div>
-      <div class="eyebrow">Live discovery concept</div>
-      <h2>Search beauty, wellness, and aesthetics near you — worldwide.</h2>
-      <p class="section-intro">From Montréal to Paris, Dubai, Beirut, London, Seoul, Milan, Tokyo and New York — Mortéa is designed to scale globally while keeping the experience luxurious, visual, and curated.</p>
-      <div class="results">
-        <div class="result">
-          <div class="thumb"></div>
-          <div>
-            <h4>Maison Lumière</h4>
-            <p>Facials · Japanese head spa · Skin rituals</p>
-            <div class="socials">
-              <span>Book</span><span>Instagram</span><span>TikTok</span>
-            </div>
-          </div>
-        </div>
-        <div class="result">
-          <div class="thumb" style="background:linear-gradient(140deg,#c9a890,#2e1810)"></div>
-          <div>
-            <h4>Élan Aesthetic Clinic</h4>
-            <p>Botox · Laser · Skin rejuvenation · Med spa</p>
-            <div class="socials">
-              <span>Book</span><span>Instagram</span><span>Reviews</span>
-            </div>
-          </div>
-        </div>
+      <div class="eyebrow">Live on Mortéa</div>
+      <h2>Search beauty, wellness, and aesthetics near you.</h2>
+      <p class="section-intro">Real professionals available on the platform right now.</p>
+      <div class="results" id="homepageProviders">
+        <div style="text-align:center;padding:30px;color:var(--muted)">Loading providers…</div>
       </div>
-      <div style="margin-top:18px">
+      <div style="margin-top:18px;display:flex;gap:10px;flex-wrap:wrap">
         <a class="btn primary" href="discover.html">Explore all providers</a>
+        <a class="btn secondary" href="map.html">Open map</a>
       </div>
     </div>
   </div>
@@ -114,57 +143,47 @@
 <section class="section">
   <div class="eyebrow">Professional categories</div>
   <h2>For every elevated beauty, wellness, and aesthetic field.</h2>
-  <p class="section-intro">Mortéa is open to salons, independent professionals, clinics, med spas, creators, and specialists working across beauty, wellness, skin, hair, body, and medical aesthetics.</p>
+  <p class="section-intro">Mortéa is open to salons, independent professionals, clinics, med spas, creators, and specialists across all beauty, wellness, skin, hair, body, and medical aesthetics fields.</p>
   <div id="category-tags" class="taglist"></div>
 </section>
 
 <section class="section">
+  <div class="eyebrow">Global city network</div>
+  <h2>Live in these cities. Growing worldwide.</h2>
+  <p class="section-intro">From Montréal to Paris, Dubai, Beirut, Riyadh, London, Seoul, Tokyo, Milan, and New York — Mortéa expands city by city with curated luxury beauty coverage.</p>
+  <div class="grid cards">
+    <div class="card"><h3><a href="montreal.html">Montréal</a></h3><p>Bilingual beauty professionals, med spas, wellness studios, head spas, lashes, and facials.</p></div>
+    <div class="card"><h3><a href="dubai.html">Dubai</a></h3><p>Botox clinics, laser clinics, med spas, luxury salons, lashes, nails, and premium wellness.</p></div>
+    <div class="card"><h3><a href="paris.html">Paris</a></h3><p>Editorial skincare, refined salons, aesthetic clinics, facials, and beauty destinations.</p></div>
+    <div class="card"><h3><a href="beirut.html">Beirut</a></h3><p>Glam beauty, injectors, aesthetic clinics, hair, makeup, lashes, nails, and portfolios.</p></div>
+    <div class="card"><h3><a href="riyadh.html">Riyadh</a></h3><p>Private luxury salons, laser clinics, med spas, wellness, skin, and body beauty.</p></div>
+    <div class="card"><h3>Coming next</h3><p>London, New York, Toronto, Seoul, Milan, Tokyo, Los Angeles, Doha, Kuwait City, Istanbul.</p></div>
+  </div>
+</section>
+
+<section class="section">
   <div class="eyebrow">Membership model</div>
-  <h2>Professional membership fees.</h2>
-  <p class="section-intro">Professionals pay to be discoverable, bookable, and beautifully presented inside a specialized beauty ecosystem instead of fighting generic ad platforms.</p>
+  <h2>Professional membership plans.</h2>
+  <p class="section-intro">Professionals pay to be discoverable, bookable, and beautifully presented inside a specialized beauty ecosystem — not fighting on generic ad platforms.</p>
   <div class="grid pricing">
     <div class="price">
       <h3>Independent</h3>
       <div><strong>$10</strong><span>/month</span></div>
-      <ul>
-        <li>Solo profile</li>
-        <li>Social links</li>
-        <li>Booking request button</li>
-        <li>Discovery listing</li>
-        <li>5-day free trial</li>
-      </ul>
-      <div style="margin-top:20px"><a class="btn secondary btn sm" href="professional-onboarding.html">Get started</a></div>
+      <ul><li>Solo profile</li><li>Social links</li><li>Discovery listing</li><li>5-day free trial</li></ul>
+      <div style="margin-top:20px"><a class="btn secondary btn sm" href="pricing.html">Get started</a></div>
     </div>
     <div class="price" style="border-color:rgba(217,183,162,.35);background:linear-gradient(165deg,rgba(217,183,162,.12),rgba(255,255,255,.025))">
       <h3 style="color:var(--sand)">Professional</h3>
       <div><strong>$35</strong><span>/month</span></div>
-      <ul>
-        <li>Premium clinic or studio profile</li>
-        <li>Map discovery placement</li>
-        <li>Reviews and booking flow</li>
-        <li>Calendar concept</li>
-        <li>5-day free trial</li>
-      </ul>
+      <ul><li>Premium clinic or studio profile</li><li>Map discovery placement</li><li>Reviews and booking flow</li><li>Dashboard &amp; stats</li><li>5-day free trial</li></ul>
       <div style="margin-top:20px"><a class="btn primary btn sm" href="professional-onboarding.html">Apply now</a></div>
     </div>
     <div class="price">
       <h3>Creator</h3>
       <div><strong>$30</strong><span>/month</span></div>
-      <ul>
-        <li>Portfolio profile</li>
-        <li>Featured content sections</li>
-        <li>Instagram/TikTok traffic</li>
-        <li>Priority category visibility</li>
-        <li>5-day free trial</li>
-      </ul>
-      <div style="margin-top:20px"><a class="btn secondary btn sm" href="professional-onboarding.html">Join as creator</a></div>
+      <ul><li>Portfolio profile</li><li>Featured content sections</li><li>Instagram/TikTok traffic</li><li>5-day free trial</li></ul>
+      <div style="margin-top:20px"><a class="btn secondary btn sm" href="pricing.html">Join as creator</a></div>
     </div>
-  </div>
-</section>
-
-<section class="section">
-  <div class="notice">
-    <strong>Future mobile app direction:</strong> Mortéa will evolve into a client and professional app with live map search, profiles, saved favourites, bookings, push notifications, portfolios, short beauty videos, and professional calendar management.
   </div>
 </section>
 
@@ -174,20 +193,86 @@
   <span>English · Français · Mobile app ready</span>
 </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase-config.js"></script>
+<script src="auth.js"></script>
 <script src="script.js"></script>
 <script>
-  // Smart hero search redirect
-  document.getElementById('heroSearchBtn').addEventListener('click', function(e) {
-    const svc = document.getElementById('heroServiceInput').value.trim();
+  // ── Hero search redirect ──────────────────────────────────
+  document.getElementById('heroSearchBtn').addEventListener('click', function() {
+    const svc  = document.getElementById('heroServiceInput').value.trim();
     const city = document.getElementById('heroCityInput').value.trim();
-    if (svc || city) {
-      e.preventDefault();
-      const params = new URLSearchParams();
-      if (svc) params.set('service', svc);
-      if (city) params.set('city', city);
-      window.location.href = 'discover.html?' + params.toString();
-    }
+    const params = new URLSearchParams();
+    if (svc)  params.set('service', svc);
+    if (city) params.set('city', city);
+    window.location.href = 'discover.html' + (params.toString() ? '?' + params.toString() : '');
   });
+  ['heroServiceInput','heroCityInput'].forEach(id =>
+    document.getElementById(id)?.addEventListener('keydown', e => {
+      if (e.key === 'Enter') document.getElementById('heroSearchBtn').click();
+    })
+  );
+
+  // ── Marquee ───────────────────────────────────────────────
+  const marqueeItems = [
+    'Botox clinics','Laser clinics','Japanese head spa','Lash technicians','Nail technicians',
+    'Med spas','Facials','Massage','Body contouring','Makeup artists','Hair stylists',
+    'Brow artists','Estheticians','Injectors','Microneedling','Hydrafacial','Wellness clinics',
+    'PRP specialists','Skin rejuvenation','Hair restoration','Beauty creators','Permanent makeup'
+  ];
+  const track = document.getElementById('marqueeTrack');
+  if (track) {
+    const double = [...marqueeItems, ...marqueeItems];
+    track.innerHTML = double.map(i => `<span class="marquee-item">${i}</span>`).join('');
+  }
+
+  // ── Live stats + homepage providers ──────────────────────
+  (async function() {
+    try {
+      const { data } = await supabaseClient
+        .from('professionals')
+        .select('id,business_name,category,city,country,instagram,tiktok,booking_link,photo_url,status')
+        .order('created_at', { ascending: false });
+
+      const all      = data || [];
+      const approved = all.filter(p => p.status === 'approved');
+      const cities   = new Set(all.map(p => p.city).filter(Boolean));
+      const countries= new Set(all.map(p => p.country).filter(Boolean));
+
+      // Update live count badge & stats
+      document.getElementById('liveCount').textContent    = approved.length || all.length;
+      document.getElementById('spProviders').textContent  = all.length;
+      document.getElementById('spCities').textContent     = cities.size;
+      document.getElementById('spCountries').textContent  = countries.size;
+
+      // Render top 4 providers
+      const show = (approved.length ? approved : all).slice(0, 4);
+      function esc(v) { return String(v||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c])); }
+      const gradients = [
+        'linear-gradient(140deg,#d9b7a2,#3e2218)',
+        'linear-gradient(140deg,#c9a890,#2e1510)',
+        'linear-gradient(140deg,#e8c5a8,#5c3020)',
+        'linear-gradient(140deg,#ddb89c,#4a2415)'
+      ];
+      document.getElementById('homepageProviders').innerHTML = show.length
+        ? show.map((p, i) => `
+          <div class="result">
+            <div class="thumb" style="background:${gradients[i%4]}${p.photo_url?`;background-image:url('${esc(p.photo_url)}');background-size:cover;background-position:center`:''}"></div>
+            <div>
+              <h4><a href="provider.html?id=${encodeURIComponent(p.id)}">${esc(p.business_name)}</a></h4>
+              <p>${esc(p.category||'')}${p.city ? ' · ' + esc(p.city) : ''}${p.country ? ', ' + esc(p.country) : ''}</p>
+              <div class="socials">
+                ${p.booking_link ? `<a href="${esc(p.booking_link)}" target="_blank" rel="noopener">Book</a>` : '<span>Profile</span>'}
+                ${p.instagram    ? `<a href="https://instagram.com/${esc(p.instagram.replace('@',''))}" target="_blank" rel="noopener">Instagram</a>` : ''}
+                ${p.tiktok       ? `<a href="https://tiktok.com/@${esc(p.tiktok.replace('@',''))}" target="_blank" rel="noopener">TikTok</a>` : ''}
+              </div>
+            </div>
+          </div>`).join('')
+        : '<div style="color:var(--muted);text-align:center;padding:20px">No providers yet. <a href="professional-onboarding.html" style="color:var(--rose)">Be the first.</a></div>';
+    } catch(e) {
+      console.error('Homepage load error', e);
+    }
+  })();
 </script>
 </body>
 </html>

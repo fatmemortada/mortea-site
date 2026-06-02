@@ -1,6 +1,5 @@
 /* ============================================================
    Mortéa — Discover Dynamic · Final Version
-   Live provider search from Supabase
    ============================================================ */
 
 let discoverProviders = [];
@@ -17,21 +16,17 @@ function providerCard(provider) {
   const city     = provider.city || '';
   const country  = provider.country || '';
   const location = [city, country].filter(Boolean).join(', ');
-
-  const services = (provider.services_offered || category)
+  const services = (provider.services_offered || '')
     .split(',').map(s => s.trim()).filter(Boolean).slice(0, 4);
-
-  const thumbGradient = category.toLowerCase().includes('botox') || category.toLowerCase().includes('clinic')
-    ? 'linear-gradient(140deg,#c9a488,#2e1510)'
-    : category.toLowerCase().includes('nail')
-    ? 'linear-gradient(140deg,#e8c5a8,#5c3020)'
-    : 'linear-gradient(140deg,#d9b7a2,#3e2218)';
+  const thumbStyle = provider.photo_url
+    ? `background-image:url('${escapeHtml(provider.photo_url)}');background-size:cover;background-position:center`
+    : `background:linear-gradient(140deg,#d9b7a2,#3e2218)`;
 
   return `
-    <div class="result">
-      <div class="thumb" style="background:${thumbGradient}"></div>
+    <div class="result" id="card-${escapeHtml(provider.id)}">
+      <div class="thumb" style="${thumbStyle}"></div>
       <div>
-        <h4><a href="provider.html?id=${encodeURIComponent(provider.id || '')}">${escapeHtml(name)}</a></h4>
+        <h4><a href="provider.html?id=${encodeURIComponent(provider.id)}">${escapeHtml(name)}</a></h4>
         <p>${escapeHtml(category)}${location ? ' · ' + escapeHtml(location) : ''}</p>
         <div class="socials">
           ${provider.booking_link
@@ -43,9 +38,12 @@ function providerCard(provider) {
           ${provider.tiktok
             ? `<a href="${provider.tiktok.startsWith('http') ? escapeHtml(provider.tiktok) : 'https://tiktok.com/@' + escapeHtml(provider.tiktok.replace('@',''))}" target="_blank" rel="noopener">TikTok</a>`
             : ''}
+          ${provider.website
+            ? `<a href="${escapeHtml(provider.website)}" target="_blank" rel="noopener">Website</a>`
+            : ''}
         </div>
         ${services.length
-          ? `<div class="taglist" style="margin-top:10px">${services.map(s => `<span class="tag">${escapeHtml(s)}</span>`).join('')}</div>`
+          ? `<div class="taglist" style="margin-top:8px">${services.map(s => `<span class="tag">${escapeHtml(s)}</span>`).join('')}</div>`
           : ''}
       </div>
     </div>`;
@@ -58,18 +56,18 @@ function renderDiscoverProviders(list) {
 
   if (!list.length) {
     results.innerHTML = `
-      <div class="no-results">
-        <h3>No providers found yet</h3>
-        <p>Try a different city or category, or be the first to register in your area.</p>
-        <div style="margin-top:18px">
-          <a class="btn secondary" href="professional-onboarding.html">Join as a professional</a>
-        </div>
+      <div style="border:1px solid var(--line);border-radius:26px;padding:40px 28px;text-align:center;color:var(--muted)">
+        <h3 style="font-family:'Playfair Display',serif;font-size:26px;margin-bottom:10px;color:var(--champagne)">No providers found yet</h3>
+        <p style="margin-bottom:18px">Try a different city or category, or be the first to join in your area.</p>
+        <a class="btn secondary" href="professional-onboarding.html">Join as a professional</a>
       </div>`;
   } else {
     results.innerHTML = list.map(providerCard).join('');
   }
 
-  if (count) count.textContent = list.length === 1 ? '1 live provider' : `${list.length} live providers`;
+  if (count) count.textContent = list.length === 1
+    ? '1 provider'
+    : `${list.length} providers`;
 }
 
 async function loadDiscoverProviders() {
@@ -79,6 +77,7 @@ async function loadDiscoverProviders() {
   try {
     if (typeof supabaseClient === 'undefined') throw new Error('Supabase not initialised');
 
+    // Load all (approved ones + pending shown so early applicants see themselves)
     const { data, error } = await supabaseClient
       .from('professionals')
       .select('*')
@@ -86,7 +85,10 @@ async function loadDiscoverProviders() {
 
     if (error) throw error;
 
-    discoverProviders = data || [];
+    // Show approved first, then pending (so the platform looks active even early on)
+    const approved = (data || []).filter(p => p.status === 'approved');
+    discoverProviders = approved.length ? approved : (data || []);
+
     renderDiscoverProviders(discoverProviders);
   } catch (err) {
     console.error('Discover load error:', err);
@@ -97,7 +99,7 @@ async function loadDiscoverProviders() {
 
 function filterDiscoverProviders() {
   const service = (document.getElementById('discoverServiceSearch')?.value || '').toLowerCase().trim();
-  const city    = (document.getElementById('discoverCitySearch')?.value || '').toLowerCase().trim();
+  const city    = (document.getElementById('discoverCitySearch')?.value  || '').toLowerCase().trim();
 
   const filtered = discoverProviders.filter(p => {
     const sText = [p.business_name, p.category, p.services_offered, p.description].join(' ').toLowerCase();
@@ -107,7 +109,6 @@ function filterDiscoverProviders() {
 
   renderDiscoverProviders(filtered);
 
-  // Highlight active filter button
   document.querySelectorAll('#discoverFilters button').forEach(btn => {
     const val = (btn.getAttribute('data-discover-filter') || '').toLowerCase();
     btn.classList.toggle('active', !!service && service.includes(val));
@@ -119,27 +120,26 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   document.getElementById('discoverSearchButton')?.addEventListener('click', filterDiscoverProviders);
 
-  // Allow Enter key in inputs
   ['discoverServiceSearch', 'discoverCitySearch'].forEach(id => {
     document.getElementById(id)?.addEventListener('keydown', e => {
       if (e.key === 'Enter') filterDiscoverProviders();
     });
   });
 
-  // Quick filter chips
   document.querySelectorAll('[data-discover-filter]').forEach(btn => {
     btn.addEventListener('click', () => {
       const value = btn.getAttribute('data-discover-filter') || '';
       const input = document.getElementById('discoverServiceSearch');
-      if (input) {
-        // Toggle: if already set, clear it
-        if (input.value.toLowerCase() === value.toLowerCase()) {
-          input.value = '';
-        } else {
-          input.value = value;
-        }
-      }
+      if (input) input.value = input.value.toLowerCase() === value.toLowerCase() ? '' : value;
       filterDiscoverProviders();
     });
   });
+
+  // Pre-fill from URL params (homepage search or city page link)
+  const params = new URLSearchParams(window.location.search);
+  const svc  = params.get('service');
+  const city = params.get('city');
+  if (svc  && document.getElementById('discoverServiceSearch')) document.getElementById('discoverServiceSearch').value = svc;
+  if (city && document.getElementById('discoverCitySearch'))    document.getElementById('discoverCitySearch').value = city;
+  if (svc || city) setTimeout(filterDiscoverProviders, 400);
 });
