@@ -6,43 +6,49 @@
   <title>Payment Successful — Mortéa</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body class="mortea-luxury">
-<nav class="nav"><a class="brand" href="index.html">Mortéa</a><div class="nav-links"><a href="discover.html">Discover</a><a href="map.html">Map</a><a href="provider-dashboard.html">Dashboard</a></div></nav>
+<nav class="nav">
+  <a class="brand" href="index.html">Mortéa</a>
+  <div class="nav-links">
+    <a href="discover.html">Discover</a>
+    <a href="provider-dashboard.html">Dashboard</a>
+  </div>
+</nav>
 <main>
-  <section class="page-hero" style="text-align:center;max-width:920px;margin:auto">
-    <div class="eyebrow">Payment successful</div>
-    <h1>Welcome to Mortéa.</h1>
-    <p class="lead" id="successMessage">We are activating your profile now.</p>
-    <div class="card" style="margin:32px auto 0;max-width:680px;text-align:left">
-      <h3 id="statusTitle">Activating profile…</h3>
-      <p id="statusText" style="color:var(--muted);line-height:1.7">Please keep this page open for a moment.</p>
-      <div class="hero-actions" style="margin-top:22px">
-        <a class="btn primary" href="provider-dashboard.html?subscribed=1">Go to dashboard</a>
-        <a class="btn secondary" href="discover.html">View Discover</a>
-      </div>
+  <section class="page-hero" style="text-align:center;max-width:640px;margin:0 auto">
+    <div style="font-size:56px;margin-bottom:20px">✓</div>
+    <div class="eyebrow">Payment confirmed</div>
+    <h1>Your profile is now live.</h1>
+    <p class="lead" style="font-size:16px">Welcome to Mortéa. Your professional profile has been activated and is now visible to clients on the discovery map and search pages.</p>
+    <div class="hero-actions" style="justify-content:center;margin-top:28px">
+      <a class="btn primary" href="provider-dashboard.html">Go to my dashboard</a>
+      <a class="btn secondary" href="discover.html">See live discovery</a>
     </div>
   </section>
 </main>
-<footer class="footer"><b>Mortéa</b><span>Professional membership activated</span></footer>
+<footer class="footer"><b>Mortéa</b><span>Welcome to the network.</span></footer>
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="supabase-config.js"></script>
-<script src="checkout-success.js"></script>
 <script>
-document.addEventListener('DOMContentLoaded', async () => {
-  const result = await activatePendingMorteaProfile();
-  const title = document.getElementById('statusTitle');
-  const text = document.getElementById('statusText');
-  if (result.ok) {
-    title.textContent = '✓ Your profile is active';
-    text.textContent = 'Your Mortéa profile has been marked approved and active. It can now appear on Discover and Map.';
-  } else {
-    title.textContent = 'Payment received — profile activation needs review';
-    text.textContent = 'The payment was completed, but we could not automatically match the profile in this browser. Open the dashboard or contact Mortéa if your profile does not appear live.';
-  }
-});
+// Auto-approve provider by email when they land on this page after payment
+(async function() {
+  const params = new URLSearchParams(window.location.search);
+  const email  = params.get('email');
+  if (!email) return;
+
+  // Mark as approved in Supabase
+  const { error } = await supabaseClient
+    .from('professionals')
+    .update({ status: 'approved', updated_at: new Date().toISOString() })
+    .eq('email', decodeURIComponent(email))
+    .eq('status', 'pending');
+
+  if (!error) console.log('Profile approved for:', email);
+})();
 </script>
 </body>
 </html>
