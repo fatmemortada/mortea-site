@@ -2,8 +2,23 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
+  <!-- SEO -->
+  <meta name="description" content="Find beauty salons, Botox clinics, laser clinics, Japanese head spas, lash artists, nail technicians, med spas, and wellness experts near you worldwide.">
+  <meta name="keywords" content="beauty discovery, Botox clinic near me, laser clinic, med spa, Japanese head spa, lash technician, nail technician, beauty professionals worldwide">
+  <link rel="canonical" href="https://www.mortea.ca/">
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website">
+  <meta property="og:site_name"   content="Mortéa">
+  <meta property="og:title"       content="Mortéa — Global Luxury Beauty & Aesthetics Discovery">
+  <meta property="og:description" content="Find beauty salons, Botox clinics, laser clinics, Japanese head spas, lash artists, nail technicians, med spas, and wellness experts near you worldwide.">
+  <meta property="og:url"         content="https://www.mortea.ca/">
+  <meta property="og:image"       content="https://www.mortea.ca/images/mortea-og.jpg">
+  <!-- Twitter Card -->
+  <meta name="twitter:card"        content="summary_large_image">
+  <meta name="twitter:title"       content="Mortéa — Global Luxury Beauty & Aesthetics Discovery">
+  <meta name="twitter:description" content="Find beauty salons, Botox clinics, laser clinics, Japanese head spas, lash artists, nail technicians, med spas, and wellness experts near you worldwide.">
+  <meta name="twitter:image"       content="https://www.mortea.ca/images/mortea-og.jpg">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="Mortéa — The global luxury beauty, wellness & aesthetics discovery platform. Find salons, clinics, med spas, injectors, lash artists, and more worldwide.">
   <title>Mortéa — Global Luxury Beauty & Aesthetics Discovery</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -38,6 +53,26 @@
     @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
     .marquee-item { white-space: nowrap; font-size: 13px; color: var(--champagne); padding: 7px 16px; border: 1px solid var(--line); border-radius: 999px; }
   </style>
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Mortéa",
+    "url": "https://www.mortea.ca",
+    "description": "Global luxury beauty, wellness and aesthetics discovery platform",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": "https://www.mortea.ca/discover.html?service={search_term_string}"
+      },
+      "query-input": "required name=search_term_string"
+    }
+  }
+  </script>
+  <link rel="stylesheet" href="mobile.css">
 </head>
 <body class="mortea-luxury">
 

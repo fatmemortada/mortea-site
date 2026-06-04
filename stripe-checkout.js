@@ -1,6 +1,6 @@
 /* ============================================================
    Mortéa — Stripe Payment Links
-   Uses Stripe Payment Links (no API key needed in frontend)
+   No Stripe.js needed — direct Payment Link redirects
    ============================================================ */
 
 const MORTEA_PAYMENT_LINKS = {
@@ -17,20 +17,19 @@ async function startStripeCheckout(plan, email) {
     if (email) stripeUrl.searchParams.set('prefilled_email', email);
     window.location.href = stripeUrl.toString();
     return true;
-  } catch (error) {
-    console.error('Stripe payment link error:', error);
+  } catch (e) {
+    console.error('Stripe redirect error:', e);
     return false;
   }
 }
 
-// Show success banner if redirected back with ?subscribed=1
+// Show success banner when returning with ?subscribed=1
 document.addEventListener('DOMContentLoaded', () => {
-  const params = new URLSearchParams(window.location.search);
-  if (params.get('subscribed') !== '1') return;
-  const banner = document.createElement('div');
-  banner.style.cssText = 'position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:rgba(162,217,162,.15);border:1px solid rgba(162,217,162,.35);color:#a8e0a8;padding:14px 24px;border-radius:999px;font-size:14px;font-weight:600;z-index:999;backdrop-filter:blur(10px);white-space:nowrap';
-  banner.textContent = '✓ Membership activated! Welcome to Mortéa.';
-  document.body.appendChild(banner);
-  setTimeout(() => banner.remove(), 5000);
+  if (new URLSearchParams(window.location.search).get('subscribed') !== '1') return;
+  const b = document.createElement('div');
+  b.style.cssText = 'position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:rgba(162,217,162,.15);border:1px solid rgba(162,217,162,.35);color:#a8e0a8;padding:14px 24px;border-radius:999px;font-size:14px;font-weight:600;z-index:999;backdrop-filter:blur(10px);white-space:nowrap';
+  b.textContent = '✓ Membership activated! Welcome to Mortéa.';
+  document.body.appendChild(b);
+  setTimeout(() => b.remove(), 5000);
   window.history.replaceState({}, '', window.location.pathname);
 });

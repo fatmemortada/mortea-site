@@ -1,4 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-<url><loc>https://mortea.ca/</loc></url>
+  <url><loc>https://www.mortea.ca/</loc><changefreq>daily</changefreq><priority>1.0</priority></url>
+  <url><loc>https://www.mortea.ca/discover.html</loc><changefreq>daily</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.mortea.ca/map.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.mortea.ca/professional-onboarding.html</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.mortea.ca/pricing.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.mortea.ca/reviews.html</loc><changefreq>daily</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.mortea.ca/montreal.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.mortea.ca/dubai.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.mortea.ca/paris.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.mortea.ca/beirut.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.mortea.ca/riyadh.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.mortea.ca/fr/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.mortea.ca/fr/discover.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.mortea.ca/fr/professional-onboarding.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.mortea.ca/fr/montreal.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.mortea.ca/fr/dubai.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.mortea.ca/fr/paris.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.mortea.ca/fr/beirut.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.mortea.ca/fr/riyadh.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
 </urlset>
