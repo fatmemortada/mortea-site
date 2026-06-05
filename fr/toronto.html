@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Découvrez des professionnels de beauté, cliniques esthétiques et experts bien-être à Toronto sur Mortéa.">
+  <link rel="canonical" href="https://www.mortea.ca/fr/toronto.html">
+  <title>Toronto Beauté &amp; Esthétique — Mortéa</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="../mobile.css">
+</head>
+<body class="mortea-luxury">
+<nav class="nav">
+  <a class="brand" href="index.html">Mortéa</a>
+  <div class="nav-links">
+    <a href="discover.html">Découvrir</a>
+    <a href="professional-onboarding.html">Professionnels</a>
+    <a href="login.html">Accès</a>
+    <a class="lang" href="../toronto.html">EN</a>
+  </div>
+</nav>
+<main>
+  <section class="page-hero">
+    <div class="eyebrow">Canada · Réseau mondial de villes</div>
+    <h1>Beauté &amp; esthétique à <em style="font-style:italic;color:var(--rose)">Toronto.</em></h1>
+    <p class="lead">Découvrez des professionnels beauté, cliniques esthétiques et experts bien-être à Toronto sur Mortéa.</p>
+    <div class="hero-actions">
+      <a class="btn primary" href="discover.html?city=toronto">Trouver à Toronto</a>
+      <a class="btn secondary" href="professional-onboarding.html">Rejoindre Mortéa à Toronto</a>
+    </div>
+  </section>
+  <section class="section" style="padding-top:16px">
+    <div id="cityProviders"><div style="text-align:center;padding:40px;color:var(--muted)">Chargement…</div></div>
+  </section>
+</main>
+<footer class="footer"><b>Mortéa</b><span>Beauté &amp; esthétique à Toronto.</span></footer>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../supabase-config.js"></script>
+<script>
+(async function(){
+  const {data}=await supabaseClient.from('professionals').select('*').ilike('city','%toronto%').eq('status','approved').order('created_at',{ascending:false});
+  const list=document.getElementById('cityProviders');
+  const providers=data||[];
+  if(!providers.length){list.innerHTML='<div class="card"><h3>Soyez le premier à Toronto</h3><p style="color:var(--muted);margin:10px 0 18px">Aucun professionnel inscrit pour l\'instant. Rejoignez Mortéa et soyez découvert à Toronto.</p><a class="btn primary" href="professional-onboarding.html">Postuler maintenant</a></div>';return;}
+  function esc(v){return String(v||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));}
+  list.innerHTML=providers.map(p=>`<div class="result" style="margin-bottom:12px"><div class="thumb" ${p.photo_url?'style="background-image:url('+JSON.stringify(p.photo_url)+');background-size:cover"':''}></div><div><h4><a href="../provider.html?id=${encodeURIComponent(p.id)}">${esc(p.business_name)}</a></h4><p>${esc(p.category||'')} · ${esc(p.city||'')}</p><div class="socials"><a href="booking-request.html?id=${encodeURIComponent(p.id)}">Réserver</a>${p.instagram?`<a href="https://instagram.com/${esc(p.instagram.replace('@',''))}" target="_blank">Instagram</a>`:''}</div></div></div>`).join('');
+})();
+</script>
+</body>
+</html>

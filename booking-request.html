@@ -171,6 +171,16 @@ async function submitBooking() {
     msg.textContent = 'Error: ' + error.message;
     btn.textContent = 'Send booking request →'; btn.disabled = false;
   } else {
+    // Notify provider by email
+    try {
+      const {data:prov} = await supabaseClient.from('professionals').select('email,business_name').eq('id',providerId).maybeSingle();
+      if(prov){
+        fetch(`${SUPABASE_URL}/functions/v1/send-booking-notification`,{
+          method:'POST', headers:{'Content-Type':'application/json','Authorization':`Bearer ${SUPABASE_ANON_KEY}`},
+          body:JSON.stringify({provider_email:prov.email,provider_name:prov.business_name,client_name:name,client_email:email,service:document.getElementById('serviceReq').value.trim(),preferred_date:document.getElementById('prefDate').value,preferred_time:selTimeVal,message:document.getElementById('bookMsg').value.trim()})
+        });
+      }
+    } catch(e){}
     document.getElementById('bookingForm').style.display = 'none';
     document.getElementById('successBox').style.display  = 'block';
     document.getElementById('successName').textContent   = document.getElementById('provName').textContent;

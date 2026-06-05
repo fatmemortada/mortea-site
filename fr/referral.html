@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Référer &amp; Gagner — Mortéa</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="../mobile.css">
+  <style>
+    .ref-card{max-width:640px;margin:0 auto;border:1px solid var(--line);border-radius:34px;padding:36px;background:linear-gradient(165deg,rgba(255,255,255,.07),rgba(255,255,255,.02))}
+    .link-box{display:flex;gap:10px;margin:16px 0}
+    .link-display{flex:1;border:1px solid var(--line-hi);border-radius:999px;padding:12px 18px;background:rgba(255,255,255,.04);font-size:14px;color:var(--champagne);font-family:monospace;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+    .reward-step{display:flex;align-items:flex-start;gap:16px;padding:16px 0;border-bottom:1px solid var(--line)}
+    .reward-step:last-child{border-bottom:none}
+    .step-num{width:36px;height:36px;border-radius:50%;border:1px solid rgba(217,183,162,.35);background:rgba(217,183,162,.08);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;color:var(--champagne);flex-shrink:0}
+    .reward-step h4{margin:0 0 4px;font-size:15px}
+    .reward-step p{margin:0;color:var(--muted);font-size:14px}
+    .stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:20px 0}
+    .stat-box{border:1px solid var(--line);border-radius:18px;padding:16px;text-align:center;background:rgba(255,255,255,.04)}
+    .stat-box .num{font-family:'Playfair Display',serif;font-size:32px;color:var(--sand)}
+    .stat-box .lbl{font-size:12px;color:var(--muted);margin-top:4px}
+  </style>
+</head>
+<body class="mortea-luxury">
+<nav class="nav">
+  <a class="brand" href="index.html">Mortéa</a>
+  <div class="nav-links">
+    <a href="discover.html">Découvrir</a>
+    <a href="../provider-dashboard.html">Tableau de bord</a>
+    <a href="#" id="navSignOut" style="color:var(--rose)">Déconnexion</a>
+    <a class="lang" href="../referral.html">EN</a>
+  </div>
+</nav>
+<main>
+  <section class="page-hero" style="text-align:center;max-width:680px;margin:0 auto;padding-bottom:16px">
+    <div class="eyebrow">Programme de parrainage</div>
+    <h1>Référer &amp; Gagner.</h1>
+    <p class="lead" style="font-size:16px">Invitez d'autres professionnels beauté à rejoindre Mortéa. Pour chaque professionnel qui s'inscrit et paie via votre lien, vous gagnez <strong style="color:var(--champagne)">1 mois gratuit</strong>.</p>
+  </section>
+  <section class="section" style="padding-top:16px">
+    <div class="ref-card">
+      <div id="refNotAuthed" style="text-align:center;padding:20px 0">
+        <p style="color:var(--muted);margin-bottom:18px">Connectez-vous pour accéder à votre lien de parrainage.</p>
+        <a class="btn primary" href="login.html?next=referral.html">Se connecter</a>
+      </div>
+      <div id="refContent" style="display:none">
+        <div class="eyebrow" style="margin-bottom:10px">Votre lien de parrainage</div>
+        <p style="color:var(--muted);font-size:14px;margin-bottom:4px">Partagez ce lien avec d'autres professionnels beauté. Quand ils s'inscrivent et paient, vous recevez automatiquement 1 mois gratuit.</p>
+        <div class="link-box">
+          <div class="link-display" id="refLinkDisplay">Chargement…</div>
+          <button class="btn primary" id="btnCopyLink" onclick="copyLink()" style="white-space:nowrap;padding:12px 18px">Copier</button>
+        </div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px">
+          <button class="btn secondary" onclick="shareWhatsApp()" style="font-size:13px;padding:9px 14px">WhatsApp</button>
+          <button class="btn secondary" onclick="shareEmail()" style="font-size:13px;padding:9px 14px">Courriel</button>
+        </div>
+        <div class="stat-row">
+          <div class="stat-box"><div class="num" id="statSent">0</div><div class="lbl">Parrainages envoyés</div></div>
+          <div class="stat-box"><div class="num" id="statJoined">0</div><div class="lbl">Inscrits</div></div>
+          <div class="stat-box"><div class="num" id="statEarned">0</div><div class="lbl">Mois gratuits gagnés</div></div>
+        </div>
+      </div>
+    </div>
+    <div style="max-width:640px;margin:28px auto 0">
+      <div class="card">
+        <h3 style="margin-bottom:4px">Comment ça fonctionne</h3>
+        <div class="reward-step"><div class="step-num">1</div><div><h4>Partagez votre lien</h4><p>Copiez votre lien unique et partagez-le avec des professionnels beauté sur Instagram, WhatsApp ou par courriel.</p></div></div>
+        <div class="reward-step"><div class="step-num">2</div><div><h4>Ils s'inscrivent et paient</h4><p>Quand un professionnel s'inscrit via votre lien et complète le paiement, il est automatiquement associé à votre compte.</p></div></div>
+        <div class="reward-step"><div class="step-num">3</div><div><h4>Vous gagnez 1 mois gratuit</h4><p>Pour chaque professionnel qui rejoint via votre lien, vous recevez 1 mois gratuit de votre membership Mortéa actuel.</p></div></div>
+      </div>
+    </div>
+  </section>
+</main>
+<footer class="footer"><b>Mortéa</b><span>Référer &amp; Gagner · Professionnels beauté du monde entier.</span></footer>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../supabase-config.js"></script>
+<script src="../auth.js"></script>
+<script>
+let refLink='',currentProvider=null;
+async function init(){
+  const user=await MorteaAuth.getUser(); if(!user) return;
+  const {data}=await supabaseClient.from('professionals').select('*').eq('email',user.email).maybeSingle();
+  if(!data) return;
+  currentProvider=data;
+  document.getElementById('refNotAuthed').style.display='none';
+  document.getElementById('refContent').style.display='block';
+  refLink=`https://www.mortea.ca/professional-onboarding.html?ref=${data.id}`;
+  document.getElementById('refLinkDisplay').textContent=refLink;
+  const {data:refs}=await supabaseClient.from('referrals').select('*').eq('referrer_id',data.id).order('created_at',{ascending:false});
+  if(refs&&refs.length){
+    document.getElementById('statSent').textContent=refs.length;
+    document.getElementById('statJoined').textContent=refs.filter(r=>r.status==='joined'||r.status==='rewarded').length;
+    document.getElementById('statEarned').textContent=refs.filter(r=>r.status==='rewarded').length;
+  }
+}
+function copyLink(){navigator.clipboard.writeText(refLink).then(()=>{const b=document.getElementById('btnCopyLink');b.textContent='✓ Copié !';setTimeout(()=>b.textContent='Copier',2000);});}
+function shareWhatsApp(){window.open(`https://wa.me/?text=${encodeURIComponent('Rejoins-moi sur Mortéa — la plateforme mondiale de découverte beauté de luxe. Postule ici : '+refLink)}`,'_blank');}
+function shareEmail(){window.location.href=`mailto:?subject=Rejoins-moi sur Mortéa&body=${encodeURIComponent('Bonjour,\n\nJe voulais te faire découvrir Mortéa — une plateforme mondiale de découverte beauté de luxe.\n\nPostule pour un membership professionnel ici : '+refLink+'\n\nLes plans commencent à 10$/mois avec un essai gratuit de 5 jours.')}`;}
+document.getElementById('navSignOut')?.addEventListener('click',e=>{e.preventDefault();MorteaAuth.signOut();window.location.href='index.html';});
+init();
+</script>
+</body>
+</html>

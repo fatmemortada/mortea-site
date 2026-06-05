@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Mon Compte — Mortéa</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="../mobile.css">
+  <style>
+    .acc-layout{display:grid;grid-template-columns:220px 1fr;gap:22px;align-items:start}
+    .acc-nav{border:1px solid var(--line);border-radius:24px;padding:14px;background:linear-gradient(165deg,rgba(255,255,255,.055),rgba(255,255,255,.015));position:sticky;top:80px}
+    .acc-btn{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:12px;font-size:14px;font-weight:500;color:var(--champagne);cursor:pointer;transition:all .18s;border:none;background:none;width:100%;text-align:left;margin-bottom:3px}
+    .acc-btn:hover,.acc-btn.active{background:rgba(234,214,198,.09);color:var(--sand)}
+    .acc-sec{display:none} .acc-sec.active{display:block}
+    .fav-card{display:grid;grid-template-columns:60px 1fr;gap:12px;align-items:center;border:1px solid var(--line);border-radius:16px;padding:12px;background:rgba(255,255,255,.04);margin-bottom:10px;transition:all .18s}
+    .fav-card:hover{border-color:var(--line-hi)}
+    .fav-thumb{width:60px;height:60px;border-radius:12px;background:linear-gradient(140deg,#d9b7a2,#3e2218);overflow:hidden;flex-shrink:0}
+    .fav-thumb img{width:100%;height:100%;object-fit:cover}
+    .bk-card{border:1px solid var(--line);border-radius:16px;padding:16px;background:rgba(255,255,255,.04);margin-bottom:10px}
+    .bk-status{display:inline-flex;padding:4px 10px;border-radius:999px;font-size:11px;font-weight:700;border:1px solid}
+    .bk-status.pending{border-color:rgba(217,183,100,.3);color:#e8d080}
+    .bk-status.confirmed{border-color:rgba(162,217,162,.3);color:#a8e0a8}
+    .bk-status.declined{border-color:rgba(217,120,120,.22);color:#e8aaaa}
+    .field-label{display:block;font-size:11px;color:var(--rose);text-transform:uppercase;letter-spacing:.14em;margin-bottom:5px;font-weight:700}
+    .empty-state{text-align:center;padding:44px 20px;color:var(--muted);border:1px solid var(--line);border-radius:20px}
+    .empty-state h3{font-family:'Playfair Display',serif;font-size:22px;color:var(--champagne);margin-bottom:10px}
+    @media(max-width:700px){.acc-layout{grid-template-columns:1fr}.acc-nav{position:static}}
+  </style>
+</head>
+<body class="mortea-luxury">
+<nav class="nav">
+  <a class="brand" href="index.html">Mortéa</a>
+  <div class="nav-links">
+    <a href="discover.html">Découvrir</a>
+    <a href="client-account.html" style="color:var(--sand);font-weight:700">Mon compte</a>
+    <a href="#" id="navSignOut" style="color:var(--rose)">Déconnexion</a>
+    <a class="lang" href="../client-account.html">EN</a>
+  </div>
+</nav>
+<main>
+  <section class="page-hero" style="padding-bottom:20px">
+    <div class="eyebrow">Compte client</div>
+    <h1 id="accGreeting">Mon Compte</h1>
+  </section>
+  <section class="section" style="padding-top:0">
+    <div id="accLoading" style="text-align:center;padding:60px;color:var(--muted)">Chargement…</div>
+    <div class="acc-layout" id="accContent" style="display:none">
+      <div>
+        <div class="acc-nav">
+          <button class="acc-btn active" onclick="showSec('fav')"><span>♡</span> Favoris</button>
+          <button class="acc-btn" onclick="showSec('bookings')"><span>📅</span> Réservations</button>
+          <button class="acc-btn" onclick="showSec('profile')"><span>✦</span> Profil</button>
+        </div>
+      </div>
+      <div>
+        <div class="acc-sec active" id="sec-fav">
+          <h2 style="font-family:'Playfair Display',serif;font-size:28px;margin-bottom:18px">Professionnels sauvegardés</h2>
+          <div id="favList"></div>
+        </div>
+        <div class="acc-sec" id="sec-bookings">
+          <h2 style="font-family:'Playfair Display',serif;font-size:28px;margin-bottom:18px">Demandes de rendez-vous</h2>
+          <div id="bkList"></div>
+        </div>
+        <div class="acc-sec" id="sec-profile">
+          <h2 style="font-family:'Playfair Display',serif;font-size:28px;margin-bottom:18px">Mon profil</h2>
+          <div class="card">
+            <div style="display:grid;gap:12px;max-width:500px">
+              <div><label class="field-label" for="pName">Nom complet</label><input class="input" id="pName" placeholder="Sophie Martin"></div>
+              <div><label class="field-label" for="pEmail">Courriel</label><input class="input" id="pEmail" disabled style="opacity:.6"></div>
+              <div><label class="field-label" for="pPhone">Téléphone</label><input class="input" id="pPhone" placeholder="+1 514 000 0000"></div>
+              <div><label class="field-label" for="pCity">Ville</label><input class="input" id="pCity" placeholder="Montréal"></div>
+              <div><label class="field-label" for="pCountry">Pays</label><input class="input" id="pCountry" placeholder="Canada"></div>
+              <div style="display:flex;gap:10px;padding-top:12px;border-top:1px solid var(--line)">
+                <button class="btn primary" id="btnSaveProf" onclick="saveProfile()">Sauvegarder</button>
+                <span id="saveMsg" style="font-size:14px;color:var(--champagne);align-self:center"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="accNotAuthed" style="display:none;text-align:center;padding:60px">
+      <h2 style="font-family:'Playfair Display',serif;font-size:34px;margin-bottom:12px">Connectez-vous à votre compte</h2>
+      <p style="color:var(--muted);margin-bottom:24px">Sauvegardez vos favoris, suivez vos réservations et gérez votre expérience beauté.</p>
+      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+        <a class="btn primary" href="login.html?next=client-account.html">Se connecter</a>
+        <a class="btn secondary" href="discover.html">Explorer sans compte</a>
+      </div>
+    </div>
+  </section>
+</main>
+<footer class="footer"><b>Mortéa</b><span>Votre compte de découverte beauté.</span></footer>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../supabase-config.js"></script>
+<script src="../auth.js"></script>
+<script>
+let currentUser=null,clientRec=null;
+function esc(v){return String(v||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));}
+function showSec(id){document.querySelectorAll('.acc-sec').forEach(s=>s.classList.remove('active'));document.querySelectorAll('.acc-btn').forEach(b=>b.classList.remove('active'));document.getElementById('sec-'+id)?.classList.add('active');document.querySelector(`.acc-btn[onclick="showSec('${id}')"]`)?.classList.add('active');}
+async function init(){
+  currentUser=await MorteaAuth.getUser();
+  document.getElementById('accLoading').style.display='none';
+  if(!currentUser){document.getElementById('accNotAuthed').style.display='block';return;}
+  document.getElementById('accContent').style.display='grid';
+  const {data:ex}=await supabaseClient.from('clients').select('*').eq('email',currentUser.email).maybeSingle();
+  if(ex){clientRec=ex;}else{const {data}=await supabaseClient.from('clients').insert([{email:currentUser.email}]).select().single();clientRec=data;}
+  if(clientRec){
+    document.getElementById('accGreeting').textContent=clientRec.name?`Bienvenue, ${clientRec.name.split(' ')[0]}`:'Mon Compte';
+    document.getElementById('pName').value=clientRec.name||'';
+    document.getElementById('pEmail').value=clientRec.email||'';
+    document.getElementById('pPhone').value=clientRec.phone||'';
+    document.getElementById('pCity').value=clientRec.city||'';
+    document.getElementById('pCountry').value=clientRec.country||'';
+  }
+  loadFavourites();loadBookings();
+}
+async function loadFavourites(){
+  if(!clientRec)return;
+  const {data}=await supabaseClient.from('favourites').select('id,professionals(id,business_name,category,city,photo_url,instagram,booking_link)').eq('client_id',clientRec.id).order('created_at',{ascending:false});
+  const el=document.getElementById('favList');
+  if(!data||!data.length){el.innerHTML='<div class="empty-state"><h3>Aucun favori</h3><p style="margin-bottom:18px">Appuyez sur ♡ sur un profil professionnel pour le sauvegarder ici.</p><a class="btn primary" href="discover.html">Explorer les professionnels</a></div>';return;}
+  el.innerHTML=data.map(f=>{const p=f.professionals;if(!p)return '';return `<div class="fav-card"><div class="fav-thumb">${p.photo_url?`<img src="${esc(p.photo_url)}" alt="">`:''}</div><div><div style="font-weight:700;font-size:15px"><a href="../provider.html?id=${esc(p.id)}" style="color:inherit">${esc(p.business_name)}</a></div><div style="font-size:13px;color:var(--muted)">${esc(p.category||'')} · ${esc(p.city||'')}</div><div style="display:flex;gap:7px;margin-top:8px;flex-wrap:wrap"><a class="btn primary" href="booking-request.html?id=${esc(p.id)}" style="font-size:12px;padding:6px 12px">Réserver</a>${p.instagram?`<a class="btn secondary" href="https://instagram.com/${esc(p.instagram.replace('@',''))}" target="_blank" style="font-size:12px;padding:6px 12px">Instagram</a>`:''}<button onclick="removeFav('${f.id}')" style="border:none;background:none;color:var(--muted);font-size:12px;cursor:pointer">Retirer ✕</button></div></div></div>`;}).join('');
+}
+async function removeFav(id){await supabaseClient.from('favourites').delete().eq('id',id);loadFavourites();}
+async function loadBookings(){
+  if(!currentUser)return;
+  const {data}=await supabaseClient.from('booking_requests').select('*,professionals(business_name,category,city)').eq('client_email',currentUser.email).order('created_at',{ascending:false});
+  const el=document.getElementById('bkList');
+  if(!data||!data.length){el.innerHTML='<div class="empty-state"><h3>Aucune réservation</h3><p style="margin-bottom:18px">Trouvez un professionnel et envoyez une demande.</p><a class="btn primary" href="discover.html">Trouver des professionnels</a></div>';return;}
+  el.innerHTML=data.map(b=>`<div class="bk-card"><div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:10px;margin-bottom:10px"><div><div style="font-weight:700;font-size:15px">${esc(b.professionals?.business_name||'—')}</div><div style="font-size:13px;color:var(--muted)">${esc(b.professionals?.category||'')} · ${esc(b.professionals?.city||'')}</div></div><span class="bk-status ${b.status||'pending'}">${b.status||'en attente'}</span></div><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:6px;font-size:13px;color:var(--champagne)">${b.service?`<div><span style="color:var(--muted)">Service:</span> ${esc(b.service)}</div>`:''}${b.preferred_date?`<div><span style="color:var(--muted)">Date:</span> ${esc(b.preferred_date)}</div>`:''}${b.preferred_time?`<div><span style="color:var(--muted)">Heure:</span> ${esc(b.preferred_time)}</div>`:''}<div><span style="color:var(--muted)">Envoyé:</span> ${new Date(b.created_at).toLocaleDateString('fr-CA',{month:'short',day:'numeric',year:'numeric'})}</div></div></div>`).join('');
+}
+async function saveProfile(){
+  const btn=document.getElementById('btnSaveProf'),msg=document.getElementById('saveMsg');
+  btn.textContent='Sauvegarde…';btn.disabled=true;
+  const {error}=await supabaseClient.from('clients').update({name:document.getElementById('pName').value.trim(),phone:document.getElementById('pPhone').value.trim(),city:document.getElementById('pCity').value.trim(),country:document.getElementById('pCountry').value.trim()}).eq('id',clientRec.id);
+  msg.style.color=error?'#e8aaaa':'#a8e0a8';msg.textContent=error?'Erreur: '+error.message:'✓ Sauvegardé';
+  btn.textContent='Sauvegarder';btn.disabled=false;setTimeout(()=>msg.textContent='',3000);
+}
+document.getElementById('navSignOut')?.addEventListener('click',e=>{e.preventDefault();MorteaAuth.signOut();window.location.href='index.html';});
+init();
+</script>
+</body>
+</html>

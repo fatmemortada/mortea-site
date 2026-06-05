@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Journal Beauté Mortéa — guides experts, scènes beauté des villes mondiales, et articles sur les traitements esthétiques de luxe.">
+  <link rel="canonical" href="https://www.mortea.ca/fr/blog.html">
+  <title>Journal Beauté — Mortéa</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="../mobile.css">
+  <style>
+    .blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:28px}
+    .blog-card{border:1px solid var(--line);border-radius:26px;overflow:hidden;background:linear-gradient(165deg,rgba(255,255,255,.055),rgba(255,255,255,.015));transition:all .2s}
+    .blog-card:hover{border-color:var(--line-hi);transform:translateY(-2px);box-shadow:0 18px 50px rgba(0,0,0,.30)}
+    .blog-thumb{height:180px;background:linear-gradient(140deg,#d9b7a2 0%,#3e2218 100%);position:relative;overflow:hidden}
+    .blog-thumb.t2{background:linear-gradient(140deg,#c9a890 0%,#2e1510 100%)}
+    .blog-thumb.t3{background:linear-gradient(140deg,#e8c5a8 0%,#5c3020 100%)}
+    .blog-thumb.t4{background:linear-gradient(140deg,#ddb89c 0%,#4a2415 100%)}
+    .blog-cat{position:absolute;bottom:12px;left:12px;background:rgba(7,5,4,.75);border:1px solid var(--line);border-radius:999px;padding:5px 12px;font-size:11px;color:var(--rose);font-weight:700;text-transform:uppercase;letter-spacing:.12em;backdrop-filter:blur(8px)}
+    .blog-body{padding:20px}
+    .blog-body h3{font-family:'Playfair Display',serif;font-size:20px;margin:0 0 8px;line-height:1.2}
+    .blog-body h3 a{color:inherit;transition:color .18s}
+    .blog-body h3 a:hover{color:var(--champagne)}
+    .blog-body p{font-size:14px;color:var(--muted);line-height:1.65;margin:0 0 14px}
+    .blog-meta{font-size:12px;color:var(--muted);display:flex;justify-content:space-between}
+    .featured-post{border:1px solid var(--line);border-radius:26px;overflow:hidden;display:grid;grid-template-columns:1fr 1fr;background:linear-gradient(165deg,rgba(255,255,255,.055),rgba(255,255,255,.015));margin-bottom:24px}
+    .featured-thumb{min-height:320px;background:linear-gradient(135deg,#d9b7a2 0%,#3e2218 100%)}
+    .featured-body{padding:32px;display:flex;flex-direction:column;justify-content:center}
+    .featured-body h2{font-family:'Playfair Display',serif;font-size:clamp(24px,3vw,36px);margin:10px 0 14px}
+    @media(max-width:860px){.blog-grid{grid-template-columns:1fr 1fr}.featured-post{grid-template-columns:1fr}.featured-thumb{min-height:200px}}
+    @media(max-width:560px){.blog-grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body class="mortea-luxury">
+<nav class="nav">
+  <a class="brand" href="index.html">Mortéa</a>
+  <div class="nav-links">
+    <a href="discover.html">Découvrir</a>
+    <a href="blog.html" style="color:var(--sand);font-weight:700">Journal</a>
+    <a href="professional-onboarding.html">Professionnels</a>
+    <a href="login.html">Accès</a>
+    <a class="lang" href="../blog.html">EN</a>
+  </div>
+</nav>
+<main>
+  <section class="page-hero">
+    <div class="eyebrow">Journal Beauté</div>
+    <h1>Guides, tendances &amp; scènes des villes.</h1>
+    <p class="lead">Guides experts beauté, analyses de traitements et scènes beauté des meilleures villes mondiales — par Mortéa.</p>
+  </section>
+  <section class="section" style="padding-top:16px">
+    <a href="../blog-japanese-head-spa.html" style="display:block;text-decoration:none">
+      <div class="featured-post">
+        <div class="featured-thumb"></div>
+        <div class="featured-body">
+          <div class="eyebrow">Guide vedette</div>
+          <h2>Head Spa Japonais : Tout ce que vous devez savoir avant votre premier rendez-vous</h2>
+          <p style="color:var(--muted);font-size:15px;line-height:1.7">Le head spa japonais déferle sur le monde — de Tokyo à Montréal en passant par Dubaï. Voici à quoi s'attendre et comment trouver les meilleurs spécialistes près de vous.</p>
+          <span class="btn primary" style="display:inline-flex;margin-top:8px;font-size:14px">Lire le guide →</span>
+        </div>
+      </div>
+    </a>
+    <div class="blog-grid">
+      <article class="blog-card">
+        <div class="blog-thumb t2"><span class="blog-cat">Esthétique</span></div>
+        <div class="blog-body">
+          <h3><a href="../blog-botox-guide.html">Botox 101 : Ce que c'est, comment ça fonctionne et comment trouver un bon injecteur</a></h3>
+          <p>Tout ce qu'il faut savoir avant votre premier rendez-vous Botox — du choix de la clinique à ce qu'il faut attendre après.</p>
+          <div class="blog-meta"><span>Traitements esthétiques</span><span>8 min</span></div>
+        </div>
+      </article>
+      <article class="blog-card">
+        <div class="blog-thumb t3"><span class="blog-cat">Guide de ville</span></div>
+        <div class="blog-body">
+          <h3><a href="../blog-montreal-beauty.html">Les meilleurs professionnels beauté à Montréal en ce moment</a></h3>
+          <p>Des head spas japonais à Longueuil aux cliniques laser à Westmount — le guide définitif de la scène beauté luxe à Montréal.</p>
+          <div class="blog-meta"><span>Montréal</span><span>6 min</span></div>
+        </div>
+      </article>
+      <article class="blog-card">
+        <div class="blog-thumb t4"><span class="blog-cat">Soins de la peau</span></div>
+        <div class="blog-body">
+          <h3><a href="../blog.html">Hydrafacial vs Soin Visage Traditionnel : Lequel vous convient ?</a></h3>
+          <p>Nous détaillons les différences clés, les avantages et les types de peau pour lesquels chaque traitement est le plus adapté.</p>
+          <div class="blog-meta"><span>Soins de la peau</span><span>5 min</span></div>
+        </div>
+      </article>
+    </div>
+    <div style="margin-top:48px;border:1px solid var(--line);border-radius:26px;padding:36px;text-align:center;background:linear-gradient(165deg,rgba(255,255,255,.055),rgba(255,255,255,.015))">
+      <div class="eyebrow" style="margin-bottom:12px">Vous êtes professionnel beauté ?</div>
+      <h2 style="font-family:'Playfair Display',serif;font-size:clamp(28px,4vw,44px);margin-bottom:14px">Soyez mis en avant sur Mortéa.</h2>
+      <p style="color:var(--muted);font-size:16px;max-width:600px;margin:0 auto 24px">Rejoignez la plateforme et atteignez des clients qui recherchent exactement ce que vous offrez — à Montréal, Dubaï, Paris et dans les villes du monde entier.</p>
+      <a class="btn primary" href="professional-onboarding.html">Postuler pour un membership</a>
+    </div>
+  </section>
+</main>
+<footer class="footer"><b>Mortéa</b><span>Journal Beauté · Découverte beauté de luxe mondiale.</span></footer>
+</body>
+</html>

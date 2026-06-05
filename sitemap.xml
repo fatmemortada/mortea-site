@@ -20,7 +20,18 @@
   <url><loc>https://www.mortea.ca/toronto.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://www.mortea.ca/seoul.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://www.mortea.ca/milan.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.mortea.ca/booking-request.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.mortea.ca/referral.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://www.mortea.ca/fr/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://www.mortea.ca/fr/discover.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <url><loc>https://www.mortea.ca/fr/professional-onboarding.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.mortea.ca/fr/blog.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.mortea.ca/fr/montreal.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.mortea.ca/fr/dubai.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.mortea.ca/fr/paris.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.mortea.ca/fr/london.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.mortea.ca/fr/toronto.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.mortea.ca/fr/new-york.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.mortea.ca/fr/seoul.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.mortea.ca/fr/milan.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
 </urlset>
