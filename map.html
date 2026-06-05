@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="mobile.css">
   <style>
     .map-layout { display: grid; grid-template-columns: 360px 1fr; gap: 0; height: calc(100vh - 64px); overflow: hidden; }
     .map-sidebar { overflow-y: auto; padding: 20px; border-right: 1px solid var(--line); background: rgba(7,5,4,.92); }
@@ -33,7 +34,6 @@
     .result-count-bar { font-size: 12px; color: var(--rose); text-transform: uppercase; letter-spacing: .12em; font-weight: 700; margin-bottom: 12px; padding-bottom: 10px; border-bottom: 1px solid var(--line); }
     .location-btn { display: flex; align-items: center; gap: 8px; border: 1px solid var(--line); border-radius: 999px; background: rgba(255,255,255,.04); color: var(--champagne); padding: 8px 14px; font-size: 13px; cursor: pointer; transition: all .18s; width: 100%; justify-content: center; margin-bottom: 10px; }
     .location-btn:hover { background: rgba(255,255,255,.08); border-color: var(--line-hi); }
-    .no-api-notice { border: 1px solid rgba(217,183,100,.22); border-radius: 18px; padding: 14px; background: rgba(217,183,100,.05); color: #e8d080; font-size: 13px; margin-bottom: 14px; }
     @media(max-width:800px){
       .map-layout { grid-template-columns: 1fr; height: auto; }
       #googleMap { height: 320px; }
@@ -59,7 +59,7 @@
   <aside class="map-sidebar">
     <div class="map-search-box">
       <input class="input" id="serviceSearch" placeholder="Botox, lashes, facial..." style="font-size:13px">
-      <input class="input" id="citySearch"    placeholder="City or country..." style="font-size:13px">
+      <input class="input" id="citySearch" placeholder="City or country..." style="font-size:13px">
       <button class="btn primary" id="mapSearchButton" style="padding:11px">Search</button>
     </div>
 
@@ -83,34 +83,36 @@
     <div id="mapResults"></div>
   </aside>
 
-  <!-- Map canvas -->
-  <div id="googleMap">
-    <!-- Placeholder until real API key is added -->
-    <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:16px;color:var(--muted)">
-      <div style="font-size:48px">🗺</div>
-      <p style="font-size:15px;text-align:center;max-width:300px">Add your Google Maps API key to <strong style="color:var(--champagne)">supabase-config.js</strong> to enable the live interactive map.</p>
-      <a class="btn secondary" href="discover.html">Use list discovery instead</a>
-    </div>
-  </div>
+  <!-- Map canvas — loads immediately with hardcoded key -->
+  <div id="googleMap"></div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="supabase-config.js"></script>
 <script src="map-foundation.js"></script>
+
+<!-- Load Google Maps directly with hardcoded key — no config dependency -->
 <script>
-// If GOOGLE_MAPS_KEY is defined in supabase-config.js, load real map
-if (typeof GOOGLE_MAPS_KEY !== 'undefined' && GOOGLE_MAPS_KEY) {
-  document.getElementById('apiNotice').style.display = 'none';
+(function() {
   const s = document.createElement('script');
-  s.src = `https://maps.googleapis.com/maps/api/js?key=${GOOGLE_MAPS_KEY}&callback=initGoogleMap`;
-  s.async = true; s.defer = true;
+  s.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyCBoCytiF2MhVT585EALvA3J70KoR8MQ88&callback=initGoogleMap&libraries=places';
+  s.async = true;
+  s.defer = true;
+  s.onerror = function() {
+    document.getElementById('googleMap').innerHTML =
+      '<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:16px;color:var(--muted);padding:40px;text-align:center">' +
+      '<div style="font-size:48px">🗺</div>' +
+      '<p style="font-size:15px;max-width:300px">Map unavailable. Check that the Maps JavaScript API is enabled in Google Cloud Console.</p>' +
+      '<a class="btn secondary" href="discover.html">Use list discovery instead</a></div>';
+  };
   document.head.appendChild(s);
-}
+})();
 
 let map, markers = [];
+
 function initGoogleMap() {
   map = new google.maps.Map(document.getElementById('googleMap'), {
-    zoom: 12,
+    zoom: 5,
     center: { lat: 45.5017, lng: -73.5673 },
     styles: [
       { elementType: 'geometry', stylers: [{ color: '#0e0a07' }] },
@@ -118,16 +120,17 @@ function initGoogleMap() {
       { elementType: 'labels.text.stroke', stylers: [{ color: '#070504' }] },
       { featureType: 'road', elementType: 'geometry', stylers: [{ color: '#271310' }] },
       { featureType: 'water', elementType: 'geometry', stylers: [{ color: '#130d0a' }] },
-      { featureType: 'poi', stylers: [{ visibility: 'off' }] }
+      { featureType: 'poi', stylers: [{ visibility: 'off' }] },
+      { featureType: 'transit', stylers: [{ visibility: 'off' }] }
     ]
   });
 }
 
-// Override renderProviders to also drop map markers
-const origRender = window.renderProviders;
+// Override renderProviders to drop map markers
+const _origRender = window.renderProviders;
 window.renderProviders = function(list) {
-  if (origRender) origRender(list);
-  if (!map || !list.length) return;
+  if (_origRender) _origRender(list);
+  if (!map) return;
   markers.forEach(m => m.setMap(null));
   markers = [];
   list.forEach(p => {
@@ -138,18 +141,22 @@ window.renderProviders = function(list) {
       title: p.business_name,
       icon: {
         path: google.maps.SymbolPath.CIRCLE,
-        scale: 8,
+        scale: 9,
         fillColor: '#ead6c6',
         fillOpacity: 1,
         strokeColor: '#070504',
         strokeWeight: 2
       }
     });
-    const infoWindow = new google.maps.InfoWindow({
-      content: `<div style="font-family:Inter,sans-serif;padding:4px"><strong>${p.business_name}</strong><br><span style="font-size:12px;color:#555">${p.category||''}</span></div>`
+    const iw = new google.maps.InfoWindow({
+      content: `<div style="font-family:Inter,sans-serif;padding:6px 4px">
+        <strong style="font-size:14px">${p.business_name}</strong>
+        <br><span style="font-size:12px;color:#666">${p.category||''}</span>
+        <br><a href="provider.html?id=${p.id}" style="font-size:12px;color:#d9b7a2">View profile →</a>
+      </div>`
     });
     marker.addListener('click', () => {
-      infoWindow.open(map, marker);
+      iw.open(map, marker);
       document.getElementById('card-' + p.id)?.scrollIntoView({ behavior: 'smooth', block: 'center' });
     });
     markers.push(marker);
