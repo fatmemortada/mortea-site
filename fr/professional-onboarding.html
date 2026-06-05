@@ -3,193 +3,173 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="Rejoignez Mortéa en tant que professionnel de beauté, clinique ou créateur. Postulez pour un membership et soyez découvert par des clients dans le monde entier.">
-  <title>Professionnels — Mortéa</title>
+  <meta name="description" content="Rejoignez Mortéa gratuitement — aucun abonnement. Fixez vos propres prix. Mortéa prend 10% par réservation, vous gardez 90%.">
+  <link rel="canonical" href="https://www.mortea.ca/fr/professional-onboarding.html">
+  <title>Rejoindre Mortéa — Gratuit pour les professionnels</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="../mobile.css">
   <style>
-    .form-section { background:linear-gradient(165deg,rgba(255,255,255,.055),rgba(255,255,255,.015)); border:1px solid var(--line); border-radius:34px; padding:36px; }
-    .form-section h2 { font-family:'Playfair Display',serif; font-size:clamp(30px,4vw,46px); margin-bottom:6px; }
-    .form-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:20px; }
-    .form-grid .full { grid-column:1 / -1; }
-    .field-label { display:block; font-size:12px; color:var(--rose); text-transform:uppercase; letter-spacing:.12em; margin-bottom:6px; font-weight:700; }
-    .input-wrap { display:flex; flex-direction:column; }
-    @media(max-width:640px) { .form-grid { grid-template-columns:1fr; } .form-section { padding:22px 18px; } }
+    .form-section{background:linear-gradient(165deg,rgba(255,255,255,.055),rgba(255,255,255,.015));border:1px solid var(--line);border-radius:34px;padding:36px}
+    .form-section h2{font-family:'Playfair Display',serif;font-size:clamp(30px,4vw,46px);margin-bottom:6px}
+    .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:20px}
+    .form-grid .full{grid-column:1/-1}
+    .field-label{display:block;font-size:12px;color:var(--rose);text-transform:uppercase;letter-spacing:.12em;margin-bottom:6px;font-weight:700}
+    .input-wrap{display:flex;flex-direction:column}
+    .benefit-row{display:flex;align-items:flex-start;gap:14px;padding:16px 0;border-bottom:1px solid var(--line)}
+    .benefit-row:last-child{border-bottom:none}
+    .benefit-icon{width:42px;height:42px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.045);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+    .benefit-row h4{margin:0 0 3px;font-size:16px}
+    .benefit-row p{margin:0;color:var(--muted);font-size:14px}
+    .free-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(162,217,162,.10);border:1px solid rgba(162,217,162,.3);color:#a8e0a8;border-radius:999px;padding:10px 18px;font-size:14px;font-weight:700;margin-bottom:20px}
+    .steps-bar{display:flex;align-items:flex-start;margin-bottom:28px}
+    .step-item{display:flex;flex-direction:column;align-items:center;flex:1}
+    .step-dot{width:30px;height:30px;border-radius:50%;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:var(--muted);transition:all .2s}
+    .step-dot.active{border-color:var(--rose);color:var(--rose);background:rgba(217,183,162,.08)}
+    .step-dot.complete{border-color:rgba(162,217,162,.4);color:#a8e0a8;background:rgba(162,217,162,.08)}
+    .step-label{font-size:11px;color:var(--muted);margin-top:5px;text-align:center}
+    .step-line{flex:1;height:1px;background:var(--line);margin-top:15px}
+    @media(max-width:640px){.form-grid{grid-template-columns:1fr}.form-section{padding:22px 18px}}
   </style>
 </head>
 <body class="mortea-luxury">
-
 <nav class="nav">
   <a class="brand" href="index.html">Mortéa</a>
   <div class="nav-links">
     <a href="discover.html">Découvrir</a>
     <a href="professional-onboarding.html">Professionnels</a>
-    <a href="login.html">Accès</a>
     <a href="blog.html">Journal</a>
+    <a href="login.html">Accès</a>
     <a class="lang" href="../professional-onboarding.html">EN</a>
   </div>
 </nav>
-
 <main>
   <section class="page-hero">
-    <div class="eyebrow">Membership professionnel</div>
+    <div class="eyebrow">Gratuit pour les professionnels</div>
     <h1>Rejoignez le réseau beauté luxe mondial.</h1>
-    <p class="lead">Mortéa offre aux professionnels, créateurs, experts bien-être, med spas et cliniques esthétiques un profil premium, une présence sur la carte, des liens sociaux et un futur calendrier de réservation — conçu pour les clients qui recherchent déjà votre service.</p>
+    <p class="lead">Mortéa est <strong style="color:var(--champagne)">entièrement gratuit</strong> pour les professionnels beauté. Fixez vos propres prix. Nous prenons seulement 10% quand un client réserve via Mortéa — vous gardez 90%.</p>
   </section>
-
   <section class="section" style="padding-top:16px">
     <div class="two" style="align-items:start;gap:24px">
-
       <div>
         <div class="card" style="margin-bottom:18px">
+          <div class="free-badge">✓ Gratuit — aucun abonnement</div>
+          <h3>Comment ça fonctionne</h3>
+          <div class="benefit-row"><div class="benefit-icon">📝</div><div><h4>Inscrivez-vous gratuitement</h4><p>Aucune carte de crédit, aucun abonnement. Votre profil est activé immédiatement.</p></div></div>
+          <div class="benefit-row"><div class="benefit-icon">💰</div><div><h4>Fixez vos propres prix</h4><p>Ajoutez vos services avec vos propres tarifs depuis votre tableau de bord.</p></div></div>
+          <div class="benefit-row"><div class="benefit-icon">📍</div><div><h4>Soyez découvert</h4><p>Les clients près de vous trouvent votre profil sur la carte et la page découverte.</p></div></div>
+          <div class="benefit-row"><div class="benefit-icon">💳</div><div><h4>Les clients paient à l'avance</h4><p>Quand un client réserve via Mortéa, il paie à l'avance. Vous recevez 90% directement.</p></div></div>
+          <div class="benefit-row"><div class="benefit-icon">🌍</div><div><h4>Paiement en devise locale</h4><p>Stripe convertit automatiquement vos prix en devise locale du client — CAD, USD, EUR, GBP, AED et plus.</p></div></div>
+          <div style="margin-top:18px;padding:14px;background:rgba(217,183,162,.08);border-radius:18px;border:1px solid var(--line)">
+            <p style="font-size:14px;color:var(--champagne);margin:0"><strong>Exemple :</strong> Vous chargez 100$ pour un soin → le client paie 100$ → vous recevez 90$ → Mortéa gagne 10$.</p>
+          </div>
+        </div>
+        <div class="card">
           <h3>Qui peut rejoindre ?</h3>
-          <p style="margin-bottom:14px">Salons de beauté, esthéticiennes, techniciennes de cils, d'ongles, soins du visage, head spa japonais, sourcils, massage, maquillage, cheveux, skincare, cliniques Botox, cliniques laser, med spas, injecteurs cosmétiques, PRP, microneedling, remodelage corporel, cliniques bien-être, maquillage permanent, tatouage cosmétique, blogueurs et influenceurs beauté.</p>
+          <p style="margin-bottom:12px;color:var(--muted);font-size:14px">Salons, esthéticiennes, techniciennes de cils et d'ongles, head spa japonais, cliniques Botox, laser, med spas, massothérapeutes, maquilleurs, coiffeurs, experts bien-être, et plus.</p>
           <div id="category-tags-fr" class="taglist"></div>
         </div>
+      </div>
+      <div class="form-section">
+        <div class="steps-bar">
+          <div class="step-item"><div class="step-dot active" id="stepDot1">1</div><div class="step-label">Profil</div></div>
+          <div class="step-line"></div>
+          <div class="step-item"><div class="step-dot" id="stepDot2">2</div><div class="step-label">Confirmer</div></div>
+        </div>
 
-        <div class="card">
-          <h3>Pourquoi un abonnement ?</h3>
-          <p style="color:var(--muted);font-size:15px;line-height:1.7">Au lieu de payer des publicités génériques, les professionnels paient pour être trouvés directement par des clients qui cherchent déjà leurs services : visibilité sur carte, portfolio, trafic social, demandes de réservation et environnement de marque premium.</p>
-          <div style="margin-top:18px;padding:14px;background:rgba(217,183,162,.08);border-radius:18px;border:1px solid var(--line)">
-            <p style="font-size:14px;color:var(--champagne);margin:0">À partir de <strong>10$/mois</strong> · Chaque membership inclut un <strong>essai gratuit de 5 jours</strong></p>
+        <!-- STEP 1 -->
+        <div id="step1">
+          <div class="eyebrow" style="margin-bottom:10px">Étape 1 sur 2 · Votre profil</div>
+          <h2>Votre profil professionnel</h2>
+          <p style="color:var(--muted);font-size:14px;margin-top:6px">Adresse requise — Mortéa l'utilise pour vous placer sur la carte.</p>
+          <form class="form-grid" onsubmit="return false">
+            <div class="input-wrap"><label class="field-label" for="business_name">Nom professionnel *</label><input class="input" id="business_name" placeholder="Maison Lumière" required></div>
+            <div class="input-wrap"><label class="field-label" for="owner_name">Nom du propriétaire *</label><input class="input" id="owner_name" placeholder="Sophie Martin" required></div>
+            <div class="input-wrap"><label class="field-label" for="email">Courriel *</label><input class="input" id="email" type="email" placeholder="bonjour@maisonlumiere.com" required></div>
+            <div class="input-wrap"><label class="field-label" for="phone">Téléphone</label><input class="input" id="phone" placeholder="+1 514 000 0000"></div>
+            <div class="input-wrap"><label class="field-label" for="category">Catégorie *</label><input class="input" id="category" placeholder="Clinique Botox, Technicienne de cils..." required></div>
+            <div class="input-wrap"><label class="field-label" for="country">Pays *</label><input class="input" id="country" placeholder="Canada" required></div>
+            <div class="input-wrap"><label class="field-label" for="province">Province / État *</label><input class="input" id="province" placeholder="Québec" required></div>
+            <div class="input-wrap"><label class="field-label" for="city">Ville *</label><input class="input" id="city" placeholder="Montréal" required></div>
+            <div class="input-wrap full"><label class="field-label" for="address">Adresse complète *</label><input class="input" id="address" placeholder="1234 Rue Saint-Denis, Montréal, QC H2X 1K4" required></div>
+            <div class="input-wrap"><label class="field-label" for="instagram">Instagram</label><input class="input" id="instagram" placeholder="@maisonlumiere"></div>
+            <div class="input-wrap"><label class="field-label" for="tiktok">TikTok</label><input class="input" id="tiktok" placeholder="@maisonlumiere"></div>
+            <div class="input-wrap"><label class="field-label" for="website">Site web</label><input class="input" id="website" placeholder="https://maisonlumiere.com"></div>
+            <div class="input-wrap"><label class="field-label" for="booking_link">Lien de réservation externe</label><input class="input" id="booking_link" placeholder="https://book.maisonlumiere.com"></div>
+            <div class="input-wrap full"><label class="field-label" for="description">À propos de votre travail *</label><textarea class="input textarea" id="description" placeholder="Décrivez vos services, spécialités et expérience..." required></textarea></div>
+            <div class="full">
+              <button class="btn primary" id="btnStep1" type="button" style="width:100%;padding:16px">Continuer →</button>
+              <p id="step1Message" style="margin-top:12px;text-align:center;font-size:14px;color:#e8aaaa"></p>
+            </div>
+          </form>
+        </div>
+
+        <!-- STEP 2 -->
+        <div id="step2" style="display:none">
+          <div class="eyebrow" style="margin-bottom:10px">Étape 2 sur 2 · Confirmer</div>
+          <h2>Vous êtes presque en ligne !</h2>
+          <p style="color:var(--muted);font-size:14px;margin-top:6px">Vérifiez vos informations et confirmez. Votre profil sera activé immédiatement — aucun paiement requis.</p>
+          <div style="border:1px solid var(--line);border-radius:22px;padding:20px;background:rgba(255,255,255,.04);margin:20px 0" id="confirmSummary"></div>
+          <div style="padding:16px;background:rgba(162,217,162,.07);border:1px solid rgba(162,217,162,.2);border-radius:18px;margin-bottom:20px">
+            <p style="font-size:14px;color:#a8e0a8;margin:0">
+              ✓ <strong>Gratuit</strong> — aucune carte de crédit requise<br>
+              ✓ Profil <strong>activé immédiatement</strong><br>
+              ✓ Ajoutez vos services et prix depuis le tableau de bord<br>
+              ✓ Mortéa prend <strong>10% par réservation</strong> — vous gardez 90%
+            </p>
           </div>
+          <div style="display:flex;gap:10px">
+            <button class="btn secondary" onclick="goToStep(1)" style="padding:14px 20px">← Retour</button>
+            <button class="btn primary" id="btnConfirm" onclick="confirmApplication()" style="flex:1;padding:14px">Rejoindre Mortéa gratuitement →</button>
+          </div>
+          <p id="confirmMsg" style="margin-top:12px;text-align:center;font-size:14px;color:#e8aaaa"></p>
         </div>
       </div>
-
-      <div class="form-section">
-        <div class="eyebrow" style="margin-bottom:10px">Demande d'accès</div>
-        <h2>Votre profil professionnel</h2>
-        <p style="color:var(--muted);font-size:14px;margin-top:6px">L'adresse est requise — Mortéa l'utilise pour placer votre entreprise correctement sur la carte.</p>
-
-        <form class="form-grid" id="professionalFormFr" onsubmit="return false">
-          <div class="input-wrap">
-            <label class="field-label" for="business_name_fr">Nom professionnel / entreprise *</label>
-            <input class="input" id="business_name_fr" placeholder="Maison Lumière" required>
-          </div>
-          <div class="input-wrap">
-            <label class="field-label" for="owner_name_fr">Nom du propriétaire *</label>
-            <input class="input" id="owner_name_fr" placeholder="Sophie Martin" required>
-          </div>
-          <div class="input-wrap">
-            <label class="field-label" for="email_fr">Adresse courriel *</label>
-            <input class="input" id="email_fr" type="email" placeholder="bonjour@maisonlumiere.com" required>
-          </div>
-          <div class="input-wrap">
-            <label class="field-label" for="phone_fr">Téléphone</label>
-            <input class="input" id="phone_fr" placeholder="+1 514 000 0000">
-          </div>
-          <div class="input-wrap">
-            <label class="field-label" for="category_fr">Catégorie de service *</label>
-            <input class="input" id="category_fr" placeholder="Clinique Botox, Technicienne de cils..." required>
-          </div>
-          <div class="input-wrap">
-            <label class="field-label" for="country_fr">Pays *</label>
-            <input class="input" id="country_fr" placeholder="Canada" required>
-          </div>
-          <div class="input-wrap">
-            <label class="field-label" for="province_fr">Province / État *</label>
-            <input class="input" id="province_fr" placeholder="Québec" required>
-          </div>
-          <div class="input-wrap">
-            <label class="field-label" for="city_fr">Ville *</label>
-            <input class="input" id="city_fr" placeholder="Montréal" required>
-          </div>
-          <div class="input-wrap full">
-            <label class="field-label" for="address_fr">Adresse complète *</label>
-            <input class="input" id="address_fr" placeholder="1234 Rue Saint-Denis, Montréal, QC H2X 1K4" required>
-          </div>
-          <div class="input-wrap">
-            <label class="field-label" for="instagram_fr">Instagram</label>
-            <input class="input" id="instagram_fr" placeholder="@maisonlumiere">
-          </div>
-          <div class="input-wrap">
-            <label class="field-label" for="tiktok_fr">TikTok</label>
-            <input class="input" id="tiktok_fr" placeholder="@maisonlumiere">
-          </div>
-          <div class="input-wrap">
-            <label class="field-label" for="website_fr">Site web</label>
-            <input class="input" id="website_fr" placeholder="https://maisonlumiere.com">
-          </div>
-          <div class="input-wrap">
-            <label class="field-label" for="booking_link_fr">Lien de réservation</label>
-            <input class="input" id="booking_link_fr" placeholder="https://book.maisonlumiere.com">
-          </div>
-          <div class="input-wrap full">
-            <label class="field-label" for="description_fr">À propos de votre travail *</label>
-            <textarea class="input textarea" id="description_fr" placeholder="Décrivez vos services, clinique, portfolio, spécialités et besoins de réservation..." required></textarea>
-          </div>
-          <div class="full">
-            <button class="btn primary" id="submitProfessionalFr" type="button" style="width:100%;padding:16px">Soumettre la demande</button>
-            <p id="formMessageFr" style="margin-top:12px;text-align:center;font-size:14px;color:var(--champagne)"></p>
-          </div>
-        </form>
-      </div>
-
     </div>
   </section>
 </main>
-
-<footer class="footer">
-  <b>Mortéa</b>
-  <span>Pour les professionnels beauté, bien-être et esthétique du monde entier.</span>
-</footer>
-
+<footer class="footer"><b>Mortéa</b><span>Gratuit pour les professionnels · 10% par réservation · Vous gardez 90%</span></footer>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="../supabase-config.js"></script>
 <script src="../script.js"></script>
 <script>
-// French form submission
-async function submitFrForm() {
-  const btn = document.getElementById('submitProfessionalFr');
-  const msg = document.getElementById('formMessageFr');
-  if (!btn) return;
-
-  const required = ['business_name_fr','owner_name_fr','email_fr','category_fr','country_fr','province_fr','city_fr','address_fr','description_fr'];
-  for (const id of required) {
-    const el = document.getElementById(id);
-    if (el && !el.value.trim()) {
-      if (msg) { msg.textContent = 'Veuillez remplir tous les champs obligatoires.'; }
-      el.focus(); return;
-    }
-  }
-
-  if (typeof supabaseClient === 'undefined') {
-    if (msg) msg.textContent = 'Base de données non connectée.';
-    return;
-  }
-
-  btn.textContent = 'Envoi en cours…'; btn.disabled = true;
-
-  const payload = {
-    business_name: document.getElementById('business_name_fr')?.value?.trim(),
-    owner_name: document.getElementById('owner_name_fr')?.value?.trim(),
-    email: document.getElementById('email_fr')?.value?.trim(),
-    phone: document.getElementById('phone_fr')?.value?.trim(),
-    category: document.getElementById('category_fr')?.value?.trim(),
-    country: document.getElementById('country_fr')?.value?.trim(),
-    province: document.getElementById('province_fr')?.value?.trim(),
-    city: document.getElementById('city_fr')?.value?.trim(),
-    address: document.getElementById('address_fr')?.value?.trim(),
-    instagram: document.getElementById('instagram_fr')?.value?.trim(),
-    tiktok: document.getElementById('tiktok_fr')?.value?.trim(),
-    website: document.getElementById('website_fr')?.value?.trim(),
-    booking_link: document.getElementById('booking_link_fr')?.value?.trim(),
-    description: document.getElementById('description_fr')?.value?.trim()
-  };
-
-  try {
-    const { error } = await supabaseClient.from('professionals').insert([payload]);
-    if (error) { if (msg) msg.textContent = 'Erreur : ' + error.message; }
-    else { if (msg) msg.textContent = '✓ Demande soumise avec succès ! Nous examinerons votre profil et vous contacterons.'; document.getElementById('professionalFormFr')?.reset(); }
-  } catch (e) {
-    if (msg) msg.textContent = 'Erreur inattendue. Veuillez réessayer.';
-  } finally {
-    btn.textContent = 'Soumettre la demande'; btn.disabled = false;
-  }
+let savedProviderId=null;
+function goToStep(n){
+  [1,2].forEach(i=>{document.getElementById('step'+i).style.display=i===n?'block':'none';const d=document.getElementById('stepDot'+i);d.classList.remove('active','complete');if(i<n)d.classList.add('complete');if(i===n)d.classList.add('active');});
+  if(n===2)buildSummary();
+  window.scrollTo({top:document.querySelector('.form-section').offsetTop-80,behavior:'smooth'});
 }
-document.getElementById('submitProfessionalFr')?.addEventListener('click', submitFrForm);
+function buildSummary(){
+  function esc(v){return String(v||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));}
+  document.getElementById('confirmSummary').innerHTML=`<div class="eyebrow" style="margin-bottom:12px">Votre profil</div><div style="display:grid;gap:8px;font-size:14px;color:var(--champagne)"><div><span style="color:var(--muted)">Entreprise:</span> <strong>${esc(document.getElementById('business_name').value.trim())}</strong></div><div><span style="color:var(--muted)">Catégorie:</span> ${esc(document.getElementById('category').value.trim())}</div><div><span style="color:var(--muted)">Ville:</span> ${esc(document.getElementById('city').value.trim())}, ${esc(document.getElementById('country').value.trim())}</div><div><span style="color:var(--muted)">Courriel:</span> ${esc(document.getElementById('email').value.trim())}</div></div>`;
+}
+document.getElementById('btnStep1').addEventListener('click',async()=>{
+  const btn=document.getElementById('btnStep1'),msg=document.getElementById('step1Message');
+  const required=['business_name','owner_name','email','category','country','province','city','address','description'];
+  for(const id of required){const el=document.getElementById(id);if(!el.value.trim()){msg.textContent='Veuillez remplir tous les champs obligatoires.';el.focus();return;}}
+  const emailVal=document.getElementById('email').value.trim();
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailVal)){msg.textContent='Veuillez entrer un courriel valide.';return;}
+  btn.textContent='Enregistrement…';btn.disabled=true;msg.textContent='';
+  const payload={business_name:document.getElementById('business_name').value.trim(),owner_name:document.getElementById('owner_name').value.trim(),email:emailVal,phone:document.getElementById('phone').value.trim(),category:document.getElementById('category').value.trim(),country:document.getElementById('country').value.trim(),province:document.getElementById('province').value.trim(),city:document.getElementById('city').value.trim(),address:document.getElementById('address').value.trim(),instagram:document.getElementById('instagram').value.trim(),tiktok:document.getElementById('tiktok').value.trim(),website:document.getElementById('website').value.trim(),booking_link:document.getElementById('booking_link').value.trim(),description:document.getElementById('description').value.trim(),status:'pending'};
+  try{
+    const {data:ex}=await supabaseClient.from('professionals').select('id').eq('email',emailVal).maybeSingle();
+    if(ex){await supabaseClient.from('professionals').update(payload).eq('id',ex.id);savedProviderId=ex.id;}
+    else{const {data,error}=await supabaseClient.from('professionals').insert([payload]).select('id').single();if(error)throw error;savedProviderId=data.id;}
+    goToStep(2);
+  }catch(e){msg.textContent='Erreur: '+(e.message||'Veuillez réessayer.');}
+  finally{btn.textContent='Continuer →';btn.disabled=false;}
+});
+async function confirmApplication(){
+  const btn=document.getElementById('btnConfirm'),msg=document.getElementById('confirmMsg');
+  btn.textContent='Activation du profil…';btn.disabled=true;
+  try{
+    const {error}=await supabaseClient.from('professionals').update({status:'approved',updated_at:new Date().toISOString()}).eq('id',savedProviderId);
+    if(error)throw error;
+    window.location.href=`../provider-dashboard.html?welcome=1&id=${savedProviderId}`;
+  }catch(e){msg.textContent='Erreur: '+(e.message||'Veuillez réessayer.');btn.textContent='Rejoindre Mortéa gratuitement →';btn.disabled=false;}
+}
 </script>
 </body>
 </html>

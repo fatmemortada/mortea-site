@@ -3,100 +3,43 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="Join Mortéa as a beauty professional, clinic, or creator. Apply for a membership and get discovered by clients worldwide.">
-  <title>Professionals — Mortéa</title>
+  <meta name="description" content="Join Mortéa as a beauty professional — free to join. Set your service prices and get discovered by clients worldwide. Mortéa takes 10% per booking.">
+  <title>Join Mortéa — Free for Professionals</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="mobile.css">
   <style>
-    .form-section {
-      background: linear-gradient(165deg, rgba(255,255,255,.055), rgba(255,255,255,.015));
-      border: 1px solid var(--line);
-      border-radius: 34px;
-      padding: 36px;
-    }
-    .form-section h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(30px,4vw,46px);
-      margin-bottom: 6px;
-    }
-    .form-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      margin-top: 20px;
-    }
-    .form-grid .full { grid-column: 1 / -1; }
-    .field-label {
-      display: block;
-      font-size: 12px;
-      color: var(--rose);
-      text-transform: uppercase;
-      letter-spacing: .12em;
-      margin-bottom: 6px;
-      font-weight: 700;
-    }
-    .input-wrap { display: flex; flex-direction: column; }
-    .benefit-row {
-      display: flex; align-items: flex-start; gap: 14px;
-      padding: 16px 0; border-bottom: 1px solid var(--line);
-    }
-    .benefit-row:last-child { border-bottom: none; }
-    .benefit-icon {
-      width: 42px; height: 42px; border: 1px solid var(--line);
-      border-radius: 14px; background: rgba(255,255,255,.045);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 18px; flex-shrink: 0;
-    }
-    .benefit-row h4 { margin: 0 0 3px; font-size: 16px; }
-    .benefit-row p  { margin: 0; color: var(--muted); font-size: 14px; }
-
-    /* Steps */
-    .steps-bar { display: flex; align-items: flex-start; gap: 0; margin-bottom: 28px; }
-    .step-item { display: flex; flex-direction: column; align-items: center; flex: 1; }
-    .step-dot  { width: 30px; height: 30px; border-radius: 50%; border: 1px solid var(--line); display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; color: var(--muted); transition: all .2s; }
-    .step-dot.active   { border-color: var(--rose); color: var(--rose); background: rgba(217,183,162,.08); }
-    .step-dot.complete { border-color: rgba(162,217,162,.4); color: #a8e0a8; background: rgba(162,217,162,.08); }
-    .step-label { font-size: 11px; color: var(--muted); margin-top: 5px; text-align: center; }
-    .step-line  { flex: 1; height: 1px; background: var(--line); margin-top: 15px; }
-
-    /* Billing toggle */
-    .billing-toggle { display: flex; align-items: center; gap: 0; border: 1px solid var(--line); border-radius: 999px; padding: 4px; background: rgba(255,255,255,.03); width: fit-content; margin: 18px auto; }
-    .billing-btn { padding: 9px 22px; border-radius: 999px; font-size: 13px; font-weight: 600; cursor: pointer; border: none; background: none; color: var(--muted); transition: all .18s; }
-    .billing-btn.active { background: var(--sand); color: #130d0a; }
-    .save-badge { background: rgba(162,217,162,.12); border: 1px solid rgba(162,217,162,.3); color: #a8e0a8; font-size: 11px; font-weight: 700; padding: 3px 9px; border-radius: 999px; margin-left: 6px; }
-
-    /* Plan cards */
-    .plan-selector { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; margin: 4px 0; }
-    .plan-option   { border: 1px solid var(--line); border-radius: 18px; padding: 16px 12px; text-align: center; cursor: pointer; transition: all .18s; background: rgba(255,255,255,.03); position: relative; }
-    .plan-option:hover   { border-color: var(--line-hi); background: rgba(255,255,255,.07); }
-    .plan-option.selected { border-color: rgba(217,183,162,.55); background: rgba(217,183,162,.12); }
-    .plan-option .plan-name  { font-weight: 700; font-size: 14px; color: var(--sand); margin-bottom: 6px; }
-    .plan-option .plan-price { font-family: 'Playfair Display', serif; font-size: 28px; color: var(--champagne); line-height: 1; }
-    .plan-option .plan-per   { font-size: 12px; color: var(--muted); margin-top: 3px; }
-    .plan-option .plan-yearly-note { font-size: 11px; color: #a8e0a8; margin-top: 5px; display: none; }
-    .plan-option.selected .plan-yearly-note { display: block; }
-    .popular-badge { position: absolute; top: -10px; left: 50%; transform: translateX(-50%); background: var(--rose); color: #130d0a; font-size: 10px; font-weight: 800; padding: 3px 10px; border-radius: 999px; white-space: nowrap; }
-
-    /* Checkout summary */
-    .checkout-plan-summary { border: 1px solid rgba(217,183,162,.35); border-radius: 22px; padding: 20px; background: rgba(217,183,162,.08); margin: 20px 0; }
-
-    @media (max-width:640px) {
-      .form-grid { grid-template-columns: 1fr; }
-      .form-section { padding: 22px 18px; }
-      .plan-selector { grid-template-columns: 1fr; }
-    }
+    .form-section { background:linear-gradient(165deg,rgba(255,255,255,.055),rgba(255,255,255,.015)); border:1px solid var(--line); border-radius:34px; padding:36px; }
+    .form-section h2 { font-family:'Playfair Display',serif; font-size:clamp(30px,4vw,46px); margin-bottom:6px; }
+    .form-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:20px; }
+    .form-grid .full { grid-column:1/-1; }
+    .field-label { display:block; font-size:12px; color:var(--rose); text-transform:uppercase; letter-spacing:.12em; margin-bottom:6px; font-weight:700; }
+    .input-wrap { display:flex; flex-direction:column; }
+    .benefit-row { display:flex; align-items:flex-start; gap:14px; padding:16px 0; border-bottom:1px solid var(--line); }
+    .benefit-row:last-child { border-bottom:none; }
+    .benefit-icon { width:42px;height:42px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.045);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0; }
+    .benefit-row h4 { margin:0 0 3px;font-size:16px; }
+    .benefit-row p  { margin:0;color:var(--muted);font-size:14px; }
+    .free-badge { display:inline-flex;align-items:center;gap:8px;background:rgba(162,217,162,.10);border:1px solid rgba(162,217,162,.3);color:#a8e0a8;border-radius:999px;padding:10px 18px;font-size:14px;font-weight:700;margin-bottom:20px; }
+    .steps-bar { display:flex;align-items:flex-start;margin-bottom:28px; }
+    .step-item { display:flex;flex-direction:column;align-items:center;flex:1; }
+    .step-dot  { width:30px;height:30px;border-radius:50%;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:var(--muted);transition:all .2s; }
+    .step-dot.active   { border-color:var(--rose);color:var(--rose);background:rgba(217,183,162,.08); }
+    .step-dot.complete { border-color:rgba(162,217,162,.4);color:#a8e0a8;background:rgba(162,217,162,.08); }
+    .step-label { font-size:11px;color:var(--muted);margin-top:5px;text-align:center; }
+    .step-line  { flex:1;height:1px;background:var(--line);margin-top:15px; }
+    .fee-notice { background:rgba(217,183,162,.07);border:1px solid var(--line);border-radius:18px;padding:14px 16px;font-size:13px;color:var(--champagne);margin-top:14px; }
+    @media(max-width:640px){ .form-grid{grid-template-columns:1fr;} .form-section{padding:22px 18px;} }
   </style>
 </head>
 <body class="mortea-luxury">
-
 <nav class="nav">
   <a class="brand" href="index.html">Mortéa</a>
   <div class="nav-links">
     <a href="discover.html">Discover</a>
     <a href="professional-onboarding.html">Professionals</a>
-    <a href="pricing.html">Memberships</a>
     <a href="blog.html">Journal</a>
     <a href="login.html">Access</a>
     <a class="lang" href="fr/professional-onboarding.html">FR</a>
@@ -105,69 +48,64 @@
 
 <main>
   <section class="page-hero">
-    <div class="eyebrow">Professional membership</div>
+    <div class="eyebrow">Free for professionals</div>
     <h1>Join the global luxury<br>beauty network.</h1>
-    <p class="lead">Mortéa gives beauty professionals, creators, wellness experts, med spas, and aesthetic clinics a premium profile, discovery placement, social portfolio links, and a future booking calendar — built for clients already searching for their service.</p>
+    <p class="lead">Mortéa is <strong style="color:var(--champagne)">completely free</strong> for beauty professionals to join. Set your own service prices. We only take a small 10% fee when a client books through Mortéa — you keep 90%.</p>
   </section>
 
   <section class="section" style="padding-top:16px">
     <div class="two" style="align-items:start;gap:24px">
 
-      <!-- Left: Benefits -->
+      <!-- Benefits -->
       <div>
         <div class="card" style="margin-bottom:18px">
-          <h3>Who can join?</h3>
-          <p style="margin-bottom:14px">Beauty salons, estheticians, lash technicians, nail technicians, facial specialists, Japanese head spa studios, eyebrow artists, massage therapists, makeup artists, hair professionals, skincare clinics, Botox clinics, laser clinics, med spas, cosmetic injectors, PRP specialists, microneedling specialists, body contouring clinics, wellness clinics, permanent makeup artists, cosmetic tattoo artists, beauty bloggers, influencers, and similar fields.</p>
-          <div id="category-tags" class="taglist"></div>
-        </div>
-        <div class="card">
-          <h3>Why membership?</h3>
+          <div class="free-badge">✓ Free to join — no subscription fees</div>
+          <h3>How it works</h3>
+          <div class="benefit-row">
+            <div class="benefit-icon">📝</div>
+            <div><h4>Apply for free</h4><p>Fill in your profile — no credit card, no subscription. Your profile goes live instantly after approval.</p></div>
+          </div>
+          <div class="benefit-row">
+            <div class="benefit-icon">💰</div>
+            <div><h4>Set your own prices</h4><p>Add your services and set your own prices from your dashboard. You control what you charge.</p></div>
+          </div>
           <div class="benefit-row">
             <div class="benefit-icon">📍</div>
-            <div><h4>Map visibility</h4><p>Your business appears on Mortéa's discovery map, reachable by clients searching near you.</p></div>
+            <div><h4>Get discovered</h4><p>Clients near you find your profile on the map and discover page. Social portfolio links included.</p></div>
           </div>
           <div class="benefit-row">
-            <div class="benefit-icon">📸</div>
-            <div><h4>Social portfolio</h4><p>Link Instagram, TikTok, website, and a booking page directly on your profile.</p></div>
+            <div class="benefit-icon">💳</div>
+            <div><h4>Clients pay upfront</h4><p>When a client books through Mortéa, they pay upfront. You receive 90% directly — Mortéa keeps 10%.</p></div>
           </div>
           <div class="benefit-row">
-            <div class="benefit-icon">⭐</div>
-            <div><h4>Reviews &amp; credibility</h4><p>Clients can leave reviews, building trust before they book.</p></div>
+            <div class="benefit-icon">🌍</div>
+            <div><h4>Clients pay in their currency</h4><p>Stripe automatically converts your prices to the client's local currency — CAD, USD, EUR, GBP, AED, and more.</p></div>
           </div>
-          <div class="benefit-row">
-            <div class="benefit-icon">📅</div>
-            <div><h4>Booking readiness</h4><p>Receive booking requests and prepare for the full calendar management app coming soon.</p></div>
+          <div class="fee-notice">
+            <strong>Fee structure:</strong> Mortéa takes 10% of each completed booking. You keep 90%. No monthly fees, no setup costs.
+            <br><br>
+            <strong>Example:</strong> You charge $100 for a facial → client pays $100 → you receive $90 → Mortéa earns $10.
           </div>
-          <div style="margin-top:18px;padding:14px;background:rgba(217,183,162,.08);border-radius:18px;border:1px solid var(--line)">
-            <p style="font-size:14px;color:var(--champagne);margin:0">Plans from <strong>$10/month</strong> · <strong>5-day free trial</strong> · <strong>Auto-approved</strong> after payment</p>
-          </div>
+        </div>
+
+        <div class="card">
+          <h3>Who can join?</h3>
+          <p style="margin-bottom:12px;color:var(--muted);font-size:14px">Beauty salons, estheticians, lash technicians, nail technicians, Japanese head spa specialists, Botox clinics, laser clinics, med spas, massage therapists, makeup artists, hair professionals, wellness experts, and more.</p>
+          <div id="category-tags" class="taglist"></div>
         </div>
       </div>
 
-      <!-- Right: Multi-step form -->
+      <!-- Form -->
       <div class="form-section">
-
-        <!-- Steps indicator -->
         <div class="steps-bar">
-          <div class="step-item">
-            <div class="step-dot active" id="stepDot1">1</div>
-            <div class="step-label">Profile</div>
-          </div>
+          <div class="step-item"><div class="step-dot active" id="stepDot1">1</div><div class="step-label">Profile</div></div>
           <div class="step-line"></div>
-          <div class="step-item">
-            <div class="step-dot" id="stepDot2">2</div>
-            <div class="step-label">Plan</div>
-          </div>
-          <div class="step-line"></div>
-          <div class="step-item">
-            <div class="step-dot" id="stepDot3">3</div>
-            <div class="step-label">Payment</div>
-          </div>
+          <div class="step-item"><div class="step-dot" id="stepDot2">2</div><div class="step-label">Confirm</div></div>
         </div>
 
-        <!-- ── STEP 1: Profile ── -->
+        <!-- STEP 1: Profile -->
         <div id="step1">
-          <div class="eyebrow" style="margin-bottom:10px">Step 1 of 3 · Your profile</div>
+          <div class="eyebrow" style="margin-bottom:10px">Step 1 of 2 · Your profile</div>
           <h2>Your professional profile</h2>
           <p style="color:var(--muted);font-size:14px;margin-top:6px">Address required — Mortéa uses it to place your business on the map correctly.</p>
 
@@ -221,89 +159,43 @@
               <input class="input" id="website" placeholder="https://maisonlumiere.com">
             </div>
             <div class="input-wrap">
-              <label class="field-label" for="booking_link">Booking Link</label>
+              <label class="field-label" for="booking_link">External Booking Link</label>
               <input class="input" id="booking_link" placeholder="https://book.maisonlumiere.com">
             </div>
             <div class="input-wrap full">
               <label class="field-label" for="description">About your work *</label>
-              <textarea class="input textarea" id="description" placeholder="Tell us about your services, clinic, portfolio, specialties, and booking needs..." required></textarea>
+              <textarea class="input textarea" id="description" placeholder="Tell us about your services, specialties, and experience..." required></textarea>
             </div>
             <div class="full">
-              <button class="btn primary" id="btnStep1" type="button" style="width:100%;padding:16px">Continue to plan selection →</button>
+              <button class="btn primary" id="btnStep1" type="button" style="width:100%;padding:16px">Continue →</button>
               <p id="step1Message" style="margin-top:12px;text-align:center;font-size:14px;color:#e8aaaa"></p>
             </div>
           </form>
         </div>
 
-        <!-- ── STEP 2: Plan ── -->
+        <!-- STEP 2: Confirm -->
         <div id="step2" style="display:none">
-          <div class="eyebrow" style="margin-bottom:10px">Step 2 of 3 · Choose your plan</div>
-          <h2>Select a membership</h2>
-          <p style="color:var(--muted);font-size:14px;margin-top:6px">All plans include a <strong style="color:var(--champagne)">5-day free trial</strong>. You won't be charged until the trial ends.</p>
+          <div class="eyebrow" style="margin-bottom:10px">Step 2 of 2 · Confirm</div>
+          <h2>You're almost live!</h2>
+          <p style="color:var(--muted);font-size:14px;margin-top:6px">Review your details and confirm. Your profile will go live immediately — no payment required.</p>
 
-          <!-- Monthly / Yearly toggle -->
-          <div style="text-align:center">
-            <div class="billing-toggle">
-              <button class="billing-btn active" id="btnMonthly" onclick="setBilling('monthly')">Monthly</button>
-              <button class="billing-btn" id="btnYearly" onclick="setBilling('yearly')">
-                Yearly <span class="save-badge">Save 20%</span>
-              </button>
-            </div>
-          </div>
+          <div style="border:1px solid var(--line);border-radius:22px;padding:20px;background:rgba(255,255,255,.04);margin:20px 0" id="confirmSummary"></div>
 
-          <div class="plan-selector">
-            <!-- Single User -->
-            <div class="plan-option" data-plan="independent" onclick="selectPlan(this)">
-              <div class="plan-name">Single User</div>
-              <div class="plan-price" id="priceIndependent">$10</div>
-              <div class="plan-per" id="perIndependent">/month</div>
-              <div class="plan-yearly-note" id="noteIndependent">$96/year · save $24</div>
-            </div>
-            <!-- Professional -->
-            <div class="plan-option selected" data-plan="professional" onclick="selectPlan(this)">
-              <div class="popular-badge">Most popular</div>
-              <div class="plan-name">Professional</div>
-              <div class="plan-price" id="priceProf">$35</div>
-              <div class="plan-per" id="perProf">/month</div>
-              <div class="plan-yearly-note" id="noteProf">$336/year · save $84</div>
-            </div>
-            <!-- Beauty Creator -->
-            <div class="plan-option" data-plan="creator" onclick="selectPlan(this)">
-              <div class="plan-name">Beauty Creator</div>
-              <div class="plan-price" id="priceCreator">$30</div>
-              <div class="plan-per" id="perCreator">/month</div>
-              <div class="plan-yearly-note" id="noteCreator">$288/year · save $72</div>
-            </div>
-          </div>
-
-          <div style="margin-top:14px;padding:13px 16px;background:rgba(162,217,162,.06);border:1px solid rgba(162,217,162,.2);border-radius:18px">
-            <p style="font-size:13px;color:#a8e0a8;margin:0">✓ Your profile goes <strong>live automatically</strong> the moment payment is completed — no waiting for manual approval.</p>
-          </div>
-
-          <div style="display:flex;gap:10px;margin-top:20px">
-            <button class="btn secondary" onclick="goToStep(1)" style="padding:14px 20px">← Back</button>
-            <button class="btn primary" onclick="goToStep(3)" style="flex:1;padding:14px">Continue to payment →</button>
-          </div>
-        </div>
-
-        <!-- ── STEP 3: Confirm & pay ── -->
-        <div id="step3" style="display:none">
-          <div class="eyebrow" style="margin-bottom:10px">Step 3 of 3 · Payment</div>
-          <h2>Confirm &amp; pay</h2>
-          <p style="color:var(--muted);font-size:14px;margin-top:6px">Your profile activates instantly after payment.</p>
-
-          <div class="checkout-plan-summary" id="checkoutSummary"></div>
-
-          <div style="padding:14px;background:rgba(217,183,162,.06);border:1px solid var(--line);border-radius:18px;margin-bottom:20px;font-size:13px;color:var(--champagne)">
-            🔒 Payment handled securely by <strong>Stripe</strong>. Mortéa never stores your card details.
-            <br><span style="color:var(--muted);margin-top:4px;display:block">After payment your profile is immediately visible on www.mortea.ca</span>
+          <div style="padding:16px;background:rgba(162,217,162,.07);border:1px solid rgba(162,217,162,.2);border-radius:18px;margin-bottom:20px">
+            <p style="font-size:14px;color:#a8e0a8;margin:0">
+              ✓ <strong>Free to join</strong> — no credit card needed<br>
+              ✓ Your profile goes <strong>live immediately</strong><br>
+              ✓ Add your services &amp; prices from your dashboard<br>
+              ✓ Connect your Stripe account to receive payouts<br>
+              ✓ Mortéa takes <strong>10% per booking</strong> — you keep 90%
+            </p>
           </div>
 
           <div style="display:flex;gap:10px">
-            <button class="btn secondary" onclick="goToStep(2)" style="padding:14px 20px">← Back</button>
-            <button class="btn primary" id="btnPay" onclick="handlePayment()" style="flex:1;padding:14px">Pay &amp; activate profile →</button>
+            <button class="btn secondary" onclick="goToStep(1)" style="padding:14px 20px">← Back</button>
+            <button class="btn primary" id="btnConfirm" onclick="confirmApplication()" style="flex:1;padding:14px">Join Mortéa for free →</button>
           </div>
-          <p id="payMessage" style="margin-top:12px;text-align:center;font-size:14px"></p>
+          <p id="confirmMsg" style="margin-top:12px;text-align:center;font-size:14px;color:#e8aaaa"></p>
         </div>
 
       </div>
@@ -313,102 +205,49 @@
 
 <footer class="footer">
   <b>Mortéa</b>
-  <span>Built for beauty, wellness, and aesthetics professionals worldwide.</span>
+  <span>Free for professionals · 10% per booking · You keep 90%</span>
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="supabase-config.js"></script>
 <script src="script.js"></script>
 <script>
-/* ── Stripe Payment Links ────────────────────────────────── */
-const PAYMENT_LINKS = {
-  independent: {
-    monthly: 'https://buy.stripe.com/aFa5kwadZ2ob58davF3VC05',
-    yearly:  'https://buy.stripe.com/3cI28k99VfaX58d5bl3VC02'
-  },
-  professional: {
-    monthly: 'https://buy.stripe.com/14AaEQ71N2ob1W147h3VC00',
-    yearly:  'https://buy.stripe.com/7sYaEQfyj8Mz58d6fp3VC01'
-  },
-  creator: {
-    monthly: 'https://buy.stripe.com/aFa7sE5XJd2PdEJ9rB3VC03',
-    yearly:  'https://buy.stripe.com/00w4gs1Ht4wjeIN8nx3VC04'
-  }
-};
-
-/* ── State ─────────────────────────────────────────────────── */
 let savedProviderId = null;
-let selectedPlan    = 'professional';
-let billingCycle    = 'monthly';
 
-/* ── Billing toggle ────────────────────────────────────────── */
-function setBilling(cycle) {
-  billingCycle = cycle;
-  document.getElementById('btnMonthly').classList.toggle('active', cycle === 'monthly');
-  document.getElementById('btnYearly').classList.toggle('active',  cycle === 'yearly');
-
-  if (cycle === 'monthly') {
-    document.getElementById('priceIndependent').textContent = '$10';
-    document.getElementById('perIndependent').textContent   = '/month';
-    document.getElementById('priceProf').textContent        = '$35';
-    document.getElementById('perProf').textContent          = '/month';
-    document.getElementById('priceCreator').textContent     = '$30';
-    document.getElementById('perCreator').textContent       = '/month';
-  } else {
-    document.getElementById('priceIndependent').textContent = '$8';
-    document.getElementById('perIndependent').textContent   = '/month, billed yearly';
-    document.getElementById('priceProf').textContent        = '$28';
-    document.getElementById('perProf').textContent          = '/month, billed yearly';
-    document.getElementById('priceCreator').textContent     = '$24';
-    document.getElementById('perCreator').textContent       = '/month, billed yearly';
-  }
-
-  // Show/hide yearly savings note on selected card
-  document.querySelectorAll('.plan-yearly-note').forEach(n => {
-    n.style.display = cycle === 'yearly' ? 'block' : 'none';
-  });
-}
-
-/* ── Plan selection ────────────────────────────────────────── */
-function selectPlan(el) {
-  document.querySelectorAll('.plan-option').forEach(p => p.classList.remove('selected'));
-  el.classList.add('selected');
-  selectedPlan = el.dataset.plan;
-}
-
-/* ── Step navigation ───────────────────────────────────────── */
 function goToStep(n) {
-  [1, 2, 3].forEach(i => {
-    document.getElementById('step' + i).style.display = i === n ? 'block' : 'none';
-    const dot = document.getElementById('stepDot' + i);
-    dot.classList.remove('active', 'complete');
-    if (i < n)   dot.classList.add('complete');
+  [1,2].forEach(i => {
+    document.getElementById('step'+i).style.display = i===n ? 'block' : 'none';
+    const dot = document.getElementById('stepDot'+i);
+    dot.classList.remove('active','complete');
+    if (i < n)  dot.classList.add('complete');
     if (i === n) dot.classList.add('active');
   });
-  if (n === 3) buildCheckoutSummary();
+  if (n === 2) buildSummary();
   window.scrollTo({ top: document.querySelector('.form-section').offsetTop - 80, behavior: 'smooth' });
 }
 
-/* ── Step 1: validate + save to Supabase ───────────────────── */
+function buildSummary() {
+  document.getElementById('confirmSummary').innerHTML = `
+    <div class="eyebrow" style="margin-bottom:12px">Your profile</div>
+    <div style="display:grid;gap:8px;font-size:14px;color:var(--champagne)">
+      <div><span style="color:var(--muted)">Business:</span> <strong>${esc(document.getElementById('business_name').value.trim())}</strong></div>
+      <div><span style="color:var(--muted)">Category:</span> ${esc(document.getElementById('category').value.trim())}</div>
+      <div><span style="color:var(--muted)">Location:</span> ${esc(document.getElementById('city').value.trim())}, ${esc(document.getElementById('country').value.trim())}</div>
+      <div><span style="color:var(--muted)">Email:</span> ${esc(document.getElementById('email').value.trim())}</div>
+    </div>`;
+}
+
 document.getElementById('btnStep1').addEventListener('click', async () => {
   const btn = document.getElementById('btnStep1');
   const msg = document.getElementById('step1Message');
-
   const required = ['business_name','owner_name','email','category','country','province','city','address','description'];
   for (const id of required) {
     const el = document.getElementById(id);
-    if (!el.value.trim()) {
-      msg.textContent = 'Please fill in all required fields.';
-      el.focus(); return;
-    }
+    if (!el.value.trim()) { msg.textContent='Please fill in all required fields.'; el.focus(); return; }
   }
   const emailVal = document.getElementById('email').value.trim();
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailVal)) {
-    msg.textContent = 'Please enter a valid email address.';
-    document.getElementById('email').focus(); return;
-  }
-
-  btn.textContent = 'Saving…'; btn.disabled = true; msg.textContent = '';
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailVal)) { msg.textContent='Please enter a valid email.'; return; }
+  btn.textContent='Saving…'; btn.disabled=true; msg.textContent='';
 
   const payload = {
     business_name: document.getElementById('business_name').value.trim(),
@@ -425,150 +264,47 @@ document.getElementById('btnStep1').addEventListener('click', async () => {
     website:       document.getElementById('website').value.trim(),
     booking_link:  document.getElementById('booking_link').value.trim(),
     description:   document.getElementById('description').value.trim(),
-    status:        'pending',
-    membership_plan: selectedPlan,
-    billing_cycle:   billingCycle,
-    subscription_status: 'pending_payment'
+    status:        'pending'
   };
 
   try {
-    const { data: existing } = await supabaseClient
-      .from('professionals')
-      .select('id')
-      .eq('email', emailVal)
-      .maybeSingle();
-
+    const { data: existing } = await supabaseClient.from('professionals').select('id').eq('email', emailVal).maybeSingle();
     if (existing) {
-      const { error } = await supabaseClient.from('professionals').update(payload).eq('id', existing.id);
-      if (error) throw error;
+      await supabaseClient.from('professionals').update(payload).eq('id', existing.id);
       savedProviderId = existing.id;
     } else {
       const { data, error } = await supabaseClient.from('professionals').insert([payload]).select('id').single();
       if (error) throw error;
       savedProviderId = data.id;
     }
-    
-    // Track referral if present
-    const refId = sessionStorage.getItem('mortea_ref') || new URLSearchParams(window.location.search).get('ref');
-    if (refId && savedProviderId) {
-      await supabaseClient.from('referrals').insert([{
-        referrer_id: refId,
-        referred_email: emailVal,
-        referred_id: savedProviderId,
-        status: 'pending'
-      }]).then(() => sessionStorage.removeItem('mortea_ref'));
-    }
     goToStep(2);
-  } catch (e) {
-    msg.textContent = 'Error saving profile: ' + (e.message || 'Please try again.');
-  } finally {
-    btn.textContent = 'Continue to plan selection →';
-    btn.disabled = false;
-  }
+  } catch(e) { msg.textContent = 'Error: ' + (e.message||'Please try again.'); }
+  finally { btn.textContent='Continue →'; btn.disabled=false; }
 });
 
-/* ── Build checkout summary ────────────────────────────────── */
-function buildCheckoutSummary() {
-  const planLabels = {
-    independent:  'Single User',
-    professional: 'Professional',
-    creator:      'Beauty Creator'
-  };
-  const prices = {
-    independent:  { monthly: '$10/month', yearly: '$96/year ($8/month)' },
-    professional: { monthly: '$35/month', yearly: '$336/year ($28/month)' },
-    creator:      { monthly: '$30/month', yearly: '$288/year ($24/month)' }
-  };
+async function confirmApplication() {
+  const btn = document.getElementById('btnConfirm');
+  const msg = document.getElementById('confirmMsg');
+  btn.textContent='Activating profile…'; btn.disabled=true;
 
-  document.getElementById('checkoutSummary').innerHTML = `
-    <div class="eyebrow" style="margin-bottom:14px">Order summary</div>
-    <div style="display:grid;gap:9px;font-size:14px;color:var(--champagne)">
-      <div><span style="color:var(--muted)">Business:</span> <strong>${esc(document.getElementById('business_name').value.trim())}</strong></div>
-      <div><span style="color:var(--muted)">Category:</span> ${esc(document.getElementById('category').value.trim())}</div>
-      <div><span style="color:var(--muted)">City:</span> ${esc(document.getElementById('city').value.trim())}</div>
-      <div><span style="color:var(--muted)">Email:</span> ${esc(document.getElementById('email').value.trim())}</div>
-      <div style="padding-top:12px;border-top:1px solid var(--line);margin-top:4px">
-        <span style="color:var(--muted)">Plan:</span>
-        <strong style="color:var(--sand)">${planLabels[selectedPlan]} — ${prices[selectedPlan][billingCycle]}</strong>
-      </div>
-      <div><span style="color:var(--muted)">Billing:</span> ${billingCycle === 'monthly' ? 'Monthly' : 'Yearly (20% off)'}</div>
-      <div><span style="color:var(--muted)">Trial:</span> <span style="color:#a8e0a8">✓ 5-day free trial included</span></div>
-    </div>`;
-}
+  try {
+    // Auto-approve immediately — free model
+    const { error } = await supabaseClient
+      .from('professionals')
+      .update({ status: 'approved', updated_at: new Date().toISOString() })
+      .eq('id', savedProviderId);
 
-/* ── Handle Stripe payment with direct Payment Links ──────── */
-function withStripeParams(baseUrl, params) {
-  const url = new URL(baseUrl);
-  Object.entries(params).forEach(([key, value]) => {
-    if (value !== undefined && value !== null && String(value).trim() !== '') {
-      url.searchParams.set(key, value);
-    }
-  });
-  return url.toString();
-}
+    if (error) throw error;
 
-async function markProfilePendingPayment() {
-  if (!savedProviderId || typeof supabaseClient === 'undefined') return;
-  const updates = {
-    membership_plan: selectedPlan,
-    billing_cycle: billingCycle,
-    subscription_status: 'pending_payment',
-    updated_at: new Date().toISOString()
-  };
-  await supabaseClient.from('professionals').update(updates).eq('id', savedProviderId);
-}
-
-async function handlePayment() {
-  const btn = document.getElementById('btnPay');
-  const msg = document.getElementById('payMessage');
-  msg.textContent = '';
-
-  const paymentUrl = PAYMENT_LINKS[selectedPlan] && PAYMENT_LINKS[selectedPlan][billingCycle];
-
-  if (!paymentUrl) {
-    msg.style.color = '#e8aaaa';
-    msg.textContent = 'Payment link not found for this plan. Please choose another plan or contact Mortéa.';
-    return;
+    // Redirect to dashboard with welcome flag
+    window.location.href = `provider-dashboard.html?welcome=1&id=${savedProviderId}`;
+  } catch(e) {
+    msg.textContent = 'Error: ' + (e.message||'Please try again.');
+    btn.textContent='Join Mortéa for free →'; btn.disabled=false;
   }
-
-  btn.textContent = 'Redirecting to Stripe…';
-  btn.disabled = true;
-
-  const email = document.getElementById('email').value.trim();
-  const businessName = document.getElementById('business_name').value.trim();
-  const checkoutState = {
-    providerId: savedProviderId,
-    email,
-    businessName,
-    plan: selectedPlan,
-    billingCycle,
-    startedAt: new Date().toISOString()
-  };
-
-  localStorage.setItem('mortea_pending_checkout', JSON.stringify(checkoutState));
-  await markProfilePendingPayment();
-
-  window.location.href = withStripeParams(paymentUrl, {
-    prefilled_email: email,
-    client_reference_id: savedProviderId || email
-  });
 }
 
-/* ── Cancelled return from Stripe ──────────────────────────── */
-if (new URLSearchParams(window.location.search).get('cancelled') === '1') {
-  window.addEventListener('DOMContentLoaded', () => {
-    const toast = document.createElement('div');
-    toast.style.cssText = 'position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:rgba(217,183,100,.12);border:1px solid rgba(217,183,100,.3);color:#e8d080;padding:12px 22px;border-radius:999px;font-size:14px;font-weight:600;z-index:99;white-space:nowrap';
-    toast.textContent = 'Payment cancelled — your profile is saved. Choose a plan to continue.';
-    document.body.appendChild(toast);
-    setTimeout(() => toast.remove(), 6000);
-  });
-}
-
-/* ── Utility ────────────────────────────────────────────────── */
-function esc(v) {
-  return String(v || '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));
-}
+function esc(v) { return String(v||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c])); }
 </script>
 </body>
 </html>

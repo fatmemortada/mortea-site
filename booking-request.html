@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="Request a booking appointment with your Mortéa beauty professional.">
+  <meta name="description" content="Book a beauty appointment on Mortéa — secure upfront payment, client pays in their local currency.">
   <title>Book Appointment — Mortéa</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,8 +11,8 @@
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="mobile.css">
   <style>
-    .booking-wrap { max-width:640px; margin:0 auto; }
-    .provider-banner { display:grid; grid-template-columns:64px 1fr; gap:14px; align-items:center; border:1px solid var(--line); border-radius:20px; padding:14px 16px; background:rgba(255,255,255,.04); margin-bottom:24px; }
+    .booking-wrap { max-width:680px; margin:0 auto; }
+    .prov-banner { display:grid; grid-template-columns:64px 1fr; gap:14px; align-items:center; border:1px solid var(--line); border-radius:20px; padding:14px 16px; background:rgba(255,255,255,.04); margin-bottom:24px; }
     .prov-avatar { width:64px; height:64px; border-radius:14px; background:linear-gradient(140deg,#d9b7a2,#3e2218); overflow:hidden; flex-shrink:0; }
     .prov-avatar img { width:100%; height:100%; object-fit:cover; }
     .field-label { display:block; font-size:11px; color:var(--rose); text-transform:uppercase; letter-spacing:.14em; margin-bottom:6px; font-weight:700; }
@@ -21,8 +21,16 @@
     .time-slots { display:flex; gap:8px; flex-wrap:wrap; margin-top:6px; }
     .time-slot { border:1px solid var(--line); border-radius:999px; padding:8px 14px; font-size:13px; color:var(--champagne); background:rgba(255,255,255,.04); cursor:pointer; transition:all .18s; }
     .time-slot:hover, .time-slot.sel { background:rgba(234,214,198,.12); border-color:var(--line-hi); color:var(--sand); }
+    /* Services */
+    .service-card { border:1px solid var(--line); border-radius:18px; padding:16px; background:rgba(255,255,255,.04); margin-bottom:10px; cursor:pointer; transition:all .18s; display:flex; justify-content:space-between; align-items:center; gap:12px; }
+    .service-card:hover { border-color:var(--line-hi); background:rgba(255,255,255,.07); }
+    .service-card.selected { border-color:rgba(217,183,162,.5); background:rgba(217,183,162,.09); }
+    .service-name { font-weight:700; font-size:15px; margin-bottom:3px; }
+    .service-desc { font-size:13px; color:var(--muted); }
+    .service-price { font-family:'Playfair Display',serif; font-size:22px; color:var(--sand); white-space:nowrap; flex-shrink:0; }
+    .service-duration { font-size:12px; color:var(--muted); text-align:right; }
+    .payment-notice { background:rgba(162,217,162,.07); border:1px solid rgba(162,217,162,.2); border-radius:18px; padding:14px 16px; font-size:13px; color:#a8e0a8; margin:16px 0; }
     .success-box { text-align:center; padding:32px 20px; display:none; }
-    .success-box .icon { font-size:52px; margin-bottom:16px; }
     @media(max-width:560px){ .form-grid{grid-template-columns:1fr;} }
   </style>
 </head>
@@ -35,16 +43,17 @@
   </div>
 </nav>
 <main>
-  <section class="page-hero" style="padding-bottom:16px;text-align:center;max-width:640px;margin:0 auto">
-    <div class="eyebrow">Appointment request</div>
+  <section class="page-hero" style="padding-bottom:16px;text-align:center;max-width:680px;margin:0 auto">
+    <div class="eyebrow">Book appointment</div>
     <h1>Book your appointment.</h1>
-    <p class="lead" style="font-size:16px">Send a booking request directly to the professional. They will confirm your appointment by email.</p>
+    <p class="lead" style="font-size:16px">Select a service, fill in your details, and pay securely. Your appointment is confirmed instantly.</p>
   </section>
+
   <section class="section" style="padding-top:16px">
     <div class="booking-wrap">
       <div class="card">
         <!-- Provider banner -->
-        <div class="provider-banner" id="providerBanner">
+        <div class="prov-banner" id="provBanner">
           <div class="prov-avatar"><img id="provPhoto" src="" alt="" style="display:none"></div>
           <div>
             <div style="font-weight:700;font-size:16px" id="provName">Loading…</div>
@@ -53,54 +62,57 @@
           </div>
         </div>
 
-        <!-- Booking form -->
-        <div id="bookingForm">
-          <div class="form-grid">
-            <div class="full">
-              <label class="field-label" for="clientName">Your name *</label>
-              <input class="input" id="clientName" placeholder="Sophie Martin" required>
+        <div id="bookingContent">
+          <!-- Step 1: Choose service -->
+          <div id="serviceStep">
+            <div class="field-label" style="margin-bottom:12px">Choose a service</div>
+            <div id="servicesList">
+              <div style="text-align:center;padding:30px;color:var(--muted)">Loading services…</div>
             </div>
-            <div>
-              <label class="field-label" for="clientEmail">Email *</label>
-              <input class="input" id="clientEmail" type="email" placeholder="you@example.com" required>
+            <div id="noServices" style="display:none" class="card">
+              <p style="color:var(--muted);font-size:15px;margin-bottom:14px">This professional hasn't set up online booking yet.</p>
+              <p style="font-size:14px;color:var(--champagne)">Contact them directly:</p>
+              <div id="directContact" style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap"></div>
             </div>
-            <div>
-              <label class="field-label" for="clientPhone">Phone</label>
-              <input class="input" id="clientPhone" placeholder="+1 514 000 0000">
-            </div>
-            <div class="full">
-              <label class="field-label" for="serviceReq">Service requested</label>
-              <input class="input" id="serviceReq" placeholder="e.g. Botox, Lash extensions, Facial…">
-            </div>
-            <div>
-              <label class="field-label" for="prefDate">Preferred date</label>
-              <input class="input" id="prefDate" type="date">
-            </div>
-            <div>
-              <label class="field-label">Preferred time</label>
-              <div class="time-slots">
-                <span class="time-slot" onclick="selTime(this,'Morning')">Morning</span>
-                <span class="time-slot" onclick="selTime(this,'Afternoon')">Afternoon</span>
-                <span class="time-slot" onclick="selTime(this,'Evening')">Evening</span>
-                <span class="time-slot" onclick="selTime(this,'Flexible')">Flexible</span>
-              </div>
-            </div>
-            <div class="full">
-              <label class="field-label" for="bookMsg">Message</label>
-              <textarea class="input textarea" id="bookMsg" placeholder="Any details, questions, or special requests…"></textarea>
-            </div>
+            <button class="btn primary" id="btnChooseService" onclick="goToDetails()" style="width:100%;padding:15px;margin-top:16px;display:none">Continue with selected service →</button>
           </div>
-          <button class="btn primary" id="btnBook" onclick="submitBooking()" style="width:100%;padding:15px;margin-top:20px">Send booking request →</button>
-          <p id="bookingFeedback" style="margin-top:12px;text-align:center;font-size:14px;color:#e8aaaa"></p>
+
+          <!-- Step 2: Your details -->
+          <div id="detailsStep" style="display:none">
+            <div style="border:1px solid rgba(217,183,162,.35);border-radius:18px;padding:14px 16px;background:rgba(217,183,162,.07);margin-bottom:20px" id="selectedServiceSummary"></div>
+            <div class="form-grid">
+              <div class="full"><label class="field-label" for="clientName">Your name *</label><input class="input" id="clientName" placeholder="Sophie Martin" required></div>
+              <div><label class="field-label" for="clientEmail">Email *</label><input class="input" id="clientEmail" type="email" placeholder="you@example.com" required></div>
+              <div><label class="field-label" for="clientPhone">Phone</label><input class="input" id="clientPhone" placeholder="+1 514 000 0000"></div>
+              <div><label class="field-label" for="prefDate">Preferred date</label><input class="input" id="prefDate" type="date"></div>
+              <div><label class="field-label">Preferred time</label>
+                <div class="time-slots">
+                  <span class="time-slot" onclick="selTime(this,'Morning')">Morning</span>
+                  <span class="time-slot" onclick="selTime(this,'Afternoon')">Afternoon</span>
+                  <span class="time-slot" onclick="selTime(this,'Evening')">Evening</span>
+                  <span class="time-slot" onclick="selTime(this,'Flexible')">Flexible</span>
+                </div>
+              </div>
+              <div class="full"><label class="field-label" for="bookMsg">Message</label><textarea class="input textarea" id="bookMsg" placeholder="Any details or special requests…" style="min-height:90px"></textarea></div>
+            </div>
+            <div class="payment-notice">
+              🔒 <strong>Secure upfront payment via Stripe.</strong> Your card will be charged once you click "Pay &amp; book". Price shown in your local currency. Mortéa takes 10% — the professional receives 90%.
+            </div>
+            <div style="display:flex;gap:10px">
+              <button class="btn secondary" onclick="goToServiceStep()" style="padding:14px 20px">← Back</button>
+              <button class="btn primary" id="btnPay" onclick="proceedToPayment()" style="flex:1;padding:14px">Pay &amp; book →</button>
+            </div>
+            <p id="bookFeedback" style="margin-top:12px;text-align:center;font-size:14px;color:#e8aaaa"></p>
+          </div>
         </div>
 
-        <!-- Success -->
+        <!-- Success (fallback if no Stripe Connect yet) -->
         <div class="success-box" id="successBox">
-          <div class="icon">✓</div>
+          <div style="font-size:52px;margin-bottom:16px">✓</div>
           <h2 style="font-family:'Playfair Display',serif;font-size:32px;margin-bottom:10px">Request sent!</h2>
-          <p style="color:var(--muted);font-size:15px;margin-bottom:24px">Your booking request has been sent to <strong id="successName" style="color:var(--champagne)"></strong>. They will contact you at your email address to confirm.</p>
+          <p style="color:var(--muted);font-size:15px;margin-bottom:24px">Your booking request has been sent to <strong id="successName" style="color:var(--champagne)"></strong>. They will contact you to confirm and arrange payment.</p>
           <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
-            <a class="btn primary" href="discover.html">Explore more professionals</a>
+            <a class="btn primary" href="discover.html">Explore more</a>
             <a class="btn secondary" href="client-account.html">My bookings</a>
           </div>
         </div>
@@ -108,28 +120,30 @@
     </div>
   </section>
 </main>
-<footer class="footer"><b>Mortéa</b><span>Booking requests · Beauty professionals worldwide.</span></footer>
+<footer class="footer"><b>Mortéa</b><span>Secure bookings · Pay in your currency.</span></footer>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="supabase-config.js"></script>
+<script src="stripe-connect.js"></script>
 <script>
-let selTimeVal = '', providerId = null;
+let providerId = null, providerData = null;
+let selectedService = null, selTimeVal = '';
+
+function esc(v) { return String(v||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c])); }
 
 function selTime(el, val) {
   document.querySelectorAll('.time-slot').forEach(s => s.classList.remove('sel'));
   el.classList.add('sel'); selTimeVal = val;
 }
 
-function esc(v) { return String(v||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c])); }
-
 async function loadProvider() {
   const params = new URLSearchParams(window.location.search);
   providerId   = params.get('id');
   if (!providerId) return;
 
-  const { data } = await supabaseClient
-    .from('professionals').select('*').eq('id', providerId).maybeSingle();
+  const { data } = await supabaseClient.from('professionals').select('*').eq('id', providerId).maybeSingle();
   if (!data) return;
+  providerData = data;
 
   document.getElementById('provName').textContent = data.business_name || '—';
   document.getElementById('provCat').textContent  = data.category || '';
@@ -138,53 +152,126 @@ async function loadProvider() {
     const img = document.getElementById('provPhoto');
     img.src = data.photo_url; img.style.display = 'block';
   }
-  const svc = params.get('service');
-  if (svc) document.getElementById('serviceReq').value = svc;
-  // Set min date to today
+
   document.getElementById('prefDate').min = new Date().toISOString().split('T')[0];
+
+  // Load services
+  const { data: services } = await supabaseClient
+    .from('services').select('*')
+    .eq('provider_id', providerId).eq('is_active', true)
+    .order('price_usd', { ascending: true });
+
+  const list = document.getElementById('servicesList');
+
+  if (!services || !services.length) {
+    list.style.display = 'none';
+    document.getElementById('noServices').style.display = 'block';
+    const dc = document.getElementById('directContact');
+    dc.innerHTML = [
+      data.booking_link ? `<a class="btn primary" href="${esc(data.booking_link)}" target="_blank">Book externally →</a>` : '',
+      data.instagram    ? `<a class="btn secondary" href="https://instagram.com/${esc(data.instagram.replace('@',''))}" target="_blank">Instagram</a>` : '',
+      data.phone        ? `<a class="btn secondary" href="tel:${esc(data.phone)}">Call</a>` : ''
+    ].join('');
+    return;
+  }
+
+  list.innerHTML = services.map(s => `
+    <div class="service-card" id="svc-${s.id}" onclick="selectService('${s.id}', '${esc(s.name)}', ${s.price_usd}, ${s.duration_min||0})">
+      <div>
+        <div class="service-name">${esc(s.name)}</div>
+        ${s.description ? `<div class="service-desc">${esc(s.description)}</div>` : ''}
+      </div>
+      <div style="text-align:right;flex-shrink:0">
+        <div class="service-price">$${parseFloat(s.price_usd).toFixed(0)} USD</div>
+        ${s.duration_min ? `<div class="service-duration">${s.duration_min} min</div>` : ''}
+      </div>
+    </div>`).join('');
+
+  document.getElementById('btnChooseService').style.display = 'block';
 }
 
-async function submitBooking() {
-  const btn = document.getElementById('btnBook');
-  const msg = document.getElementById('bookingFeedback');
+function selectService(id, name, price, duration) {
+  document.querySelectorAll('.service-card').forEach(c => c.classList.remove('selected'));
+  document.getElementById('svc-'+id)?.classList.add('selected');
+  selectedService = { id, name, price, duration };
+}
+
+function goToDetails() {
+  if (!selectedService) {
+    alert('Please select a service first.');
+    return;
+  }
+  document.getElementById('serviceStep').style.display  = 'none';
+  document.getElementById('detailsStep').style.display  = 'block';
+  document.getElementById('selectedServiceSummary').innerHTML = `
+    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px">
+      <div>
+        <div style="font-weight:700;font-size:15px;color:var(--sand)">${esc(selectedService.name)}</div>
+        ${selectedService.duration ? `<div style="font-size:13px;color:var(--muted)">${selectedService.duration} min</div>` : ''}
+      </div>
+      <div style="font-family:'Playfair Display',serif;font-size:26px;color:var(--champagne)">$${parseFloat(selectedService.price).toFixed(0)} USD</div>
+    </div>
+    <div style="font-size:12px;color:var(--muted);margin-top:6px">Stripe will show the price in your local currency at checkout.</div>`;
+}
+
+function goToServiceStep() {
+  document.getElementById('serviceStep').style.display  = 'block';
+  document.getElementById('detailsStep').style.display  = 'none';
+}
+
+async function proceedToPayment() {
+  const btn  = document.getElementById('btnPay');
+  const msg  = document.getElementById('bookFeedback');
   const name  = document.getElementById('clientName').value.trim();
   const email = document.getElementById('clientEmail').value.trim();
-  if (!name)       { msg.textContent='Please enter your name.'; return; }
-  if (!email)      { msg.textContent='Please enter your email.'; return; }
-  if (!providerId) { msg.textContent='No provider selected.'; return; }
+  if (!name)  { msg.textContent='Please enter your name.'; return; }
+  if (!email) { msg.textContent='Please enter your email.'; return; }
+  btn.textContent='Redirecting to payment…'; btn.disabled=true;
 
-  btn.textContent = 'Sending…'; btn.disabled = true;
-
-  const { error } = await supabaseClient.from('booking_requests').insert([{
-    provider_id:    providerId,
-    client_name:    name,
-    client_email:   email,
-    client_phone:   document.getElementById('clientPhone').value.trim(),
-    service:        document.getElementById('serviceReq').value.trim(),
-    preferred_date: document.getElementById('prefDate').value,
-    preferred_time: selTimeVal,
-    message:        document.getElementById('bookMsg').value.trim(),
-    status:         'pending'
-  }]);
-
-  if (error) {
-    msg.textContent = 'Error: ' + error.message;
-    btn.textContent = 'Send booking request →'; btn.disabled = false;
-  } else {
-    // Notify provider by email
-    try {
-      const {data:prov} = await supabaseClient.from('professionals').select('email,business_name').eq('id',providerId).maybeSingle();
-      if(prov){
-        fetch(`${SUPABASE_URL}/functions/v1/send-booking-notification`,{
-          method:'POST', headers:{'Content-Type':'application/json','Authorization':`Bearer ${SUPABASE_ANON_KEY}`},
-          body:JSON.stringify({provider_email:prov.email,provider_name:prov.business_name,client_name:name,client_email:email,service:document.getElementById('serviceReq').value.trim(),preferred_date:document.getElementById('prefDate').value,preferred_time:selTimeVal,message:document.getElementById('bookMsg').value.trim()})
-        });
+  // If provider has Stripe Connect, use checkout
+  if (providerData?.stripe_account_id && providerData?.stripe_onboarded) {
+    await createBookingCheckout({
+      serviceId:               selectedService.id,
+      serviceName:             selectedService.name,
+      priceUsd:                selectedService.price,
+      providerId:              providerId,
+      providerStripeAccountId: providerData.stripe_account_id,
+      clientEmail:             email,
+      bookingData: {
+        client_name:    name,
+        client_email:   email,
+        client_phone:   document.getElementById('clientPhone').value.trim(),
+        preferred_date: document.getElementById('prefDate').value,
+        preferred_time: selTimeVal,
+        message:        document.getElementById('bookMsg').value.trim()
       }
-    } catch(e){}
-    document.getElementById('bookingForm').style.display = 'none';
-    document.getElementById('successBox').style.display  = 'block';
-    document.getElementById('successName').textContent   = document.getElementById('provName').textContent;
+    });
+  } else {
+    // Fallback: save booking request without payment (provider not on Stripe Connect yet)
+    const { error } = await supabaseClient.from('booking_requests').insert([{
+      provider_id:    providerId,
+      service_id:     selectedService.id,
+      client_name:    name,
+      client_email:   email,
+      client_phone:   document.getElementById('clientPhone').value.trim(),
+      service:        selectedService.name,
+      preferred_date: document.getElementById('prefDate').value,
+      preferred_time: selTimeVal,
+      message:        document.getElementById('bookMsg').value.trim(),
+      price_usd:      selectedService.price,
+      payment_status: 'pending',
+      status:         'pending'
+    }]);
+
+    if (!error) {
+      document.getElementById('bookingContent').style.display = 'none';
+      document.getElementById('successBox').style.display     = 'block';
+      document.getElementById('successName').textContent      = providerData?.business_name || '—';
+    } else {
+      msg.textContent = 'Error: ' + error.message;
+    }
   }
+  btn.textContent='Pay & book →'; btn.disabled=false;
 }
 
 loadProvider();

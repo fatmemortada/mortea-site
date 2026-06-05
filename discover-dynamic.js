@@ -29,9 +29,10 @@ function providerCard(provider) {
         <h4><a href="provider.html?id=${encodeURIComponent(provider.id)}">${escapeHtml(name)}</a></h4>
         <p>${escapeHtml(category)}${location ? ' · ' + escapeHtml(location) : ''}</p>
         <div class="socials">
+          <a href="booking-request.html?id=${encodeURIComponent(provider.id)}" rel="noopener">Book</a>
           ${provider.booking_link
-            ? `<a href="${escapeHtml(provider.booking_link)}" target="_blank" rel="noopener">Book</a>`
-            : `<span>Profile</span>`}
+            ? `<a href="${escapeHtml(provider.booking_link)}" target="_blank" rel="noopener">External booking</a>`
+            : ``}
           ${provider.instagram
             ? `<a href="${provider.instagram.startsWith('http') ? escapeHtml(provider.instagram) : 'https://instagram.com/' + escapeHtml(provider.instagram.replace('@',''))}" target="_blank" rel="noopener">Instagram</a>`
             : ''}

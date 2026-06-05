@@ -73,6 +73,8 @@
           <button class="dash-nav-item" onclick="showSection('photos')"><span class="icon">📸</span> Photos</button>
           <button class="dash-nav-item" onclick="showSection('reviews')"><span class="icon">⭐</span> Reviews</button>
           <button class="dash-nav-item" onclick="showSection('membership')"><span class="icon">💳</span> Membership</button>
+          <button class="dash-nav-item" onclick="showSection('services')"><span class="icon">🛎</span> My Services</button>
+          <button class="dash-nav-item" onclick="showSection('payouts')"><span class="icon">💸</span> Payouts</button>
           <a class="dash-nav-item" href="provider-inbox.html"><span class="icon">📬</span> Inbox</a>
         </div>
         <div style="margin-top:14px;border:1px solid var(--line);border-radius:18px;padding:16px;background:rgba(255,255,255,.03)">
@@ -213,6 +215,7 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="supabase-config.js"></script>
 <script src="auth.js"></script>
+<script src="stripe-connect.js"></script>
 <script src="checkout-success.js"></script>
 <script>
 let currentProvider = null;
@@ -315,6 +318,8 @@ async function init() {
 
   // Reviews
   loadReviews(data.id);
+  loadServices(data.id);
+  renderStripeConnectStatus(data);
 }
 
 async function loadReviews(providerId) {
@@ -428,6 +433,112 @@ async function startCheckout(plan) {
 function escHtml(v) { return String(v||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c])); }
 function capitalize(s) { return s ? s.charAt(0).toUpperCase() + s.slice(1) : s; }
 
+
+// ── Services Management ────────────────────────────────────────
+async function loadServices(providerId) {
+  const { data } = await supabaseClient
+    .from('services').select('*').eq('provider_id', providerId)
+    .eq('is_active', true).order('price_usd');
+  
+  const list = document.getElementById('servicesList');
+  if (!list) return;
+  if (!data || !data.length) {
+    list.innerHTML = '<div style="text-align:center;padding:24px;color:var(--muted);border:1px solid var(--line);border-radius:18px">No services added yet. Add your first service above.</div>';
+    return;
+  }
+  list.innerHTML = data.map(s => `
+    <div style="border:1px solid var(--line);border-radius:18px;padding:14px 16px;background:rgba(255,255,255,.04);display:flex;justify-content:space-between;align-items:center;gap:12px">
+      <div>
+        <div style="font-weight:700;font-size:15px">${esc(s.name)}</div>
+        <div style="font-size:13px;color:var(--muted)">${s.description ? esc(s.description) : ''}${s.duration_min ? ' · '+s.duration_min+' min' : ''}</div>
+      </div>
+      <div style="text-align:right;flex-shrink:0">
+        <div style="font-family:Playfair Display,serif;font-size:22px;color:var(--sand)">$${parseFloat(s.price_usd).toFixed(0)}</div>
+        <button onclick="deleteService('${s.id}')" style="font-size:12px;color:var(--muted);border:none;background:none;cursor:pointer;padding:4px 0">Remove</button>
+      </div>
+    </div>`).join('');
+}
+
+async function addService() {
+  const btn  = document.getElementById('btnAddService');
+  const msg  = document.getElementById('svcMsg');
+  const name  = document.getElementById('svcName').value.trim();
+  const price = document.getElementById('svcPrice').value;
+  if (!name || !price) { msg.style.color='#e8aaaa'; msg.textContent='Please enter a name and price.'; return; }
+  btn.textContent='Adding…'; btn.disabled=true;
+  const { error } = await supabaseClient.from('services').insert([{
+    provider_id:  currentProvider.id,
+    name,
+    price_usd:    parseFloat(price),
+    duration_min: parseInt(document.getElementById('svcDuration').value) || null,
+    description:  document.getElementById('svcDesc').value.trim(),
+    is_active:    true
+  }]);
+  if (error) { msg.style.color='#e8aaaa'; msg.textContent='Error: '+error.message; }
+  else {
+    msg.style.color='#a8e0a8'; msg.textContent='✓ Service added!';
+    document.getElementById('svcName').value='';
+    document.getElementById('svcPrice').value='';
+    document.getElementById('svcDuration').value='';
+    document.getElementById('svcDesc').value='';
+    loadServices(currentProvider.id);
+    setTimeout(()=>msg.textContent='', 2500);
+  }
+  btn.textContent='Add service'; btn.disabled=false;
+}
+
+async function deleteService(id) {
+  await supabaseClient.from('services').update({ is_active: false }).eq('id', id);
+  loadServices(currentProvider.id);
+}
+
+// ── Stripe Connect Status ──────────────────────────────────────
+function renderStripeConnectStatus(provider) {
+  const el = document.getElementById('stripeConnectStatus');
+  if (!el) return;
+  if (provider.stripe_onboarded) {
+    el.innerHTML = `
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px">
+        <span style="background:rgba(162,217,162,.12);border:1px solid rgba(162,217,162,.3);color:#a8e0a8;padding:6px 14px;border-radius:999px;font-size:13px;font-weight:700">✓ Connected</span>
+      </div>
+      <p style="color:var(--muted);font-size:14px">Your Stripe account is connected. Clients can book and pay through Mortéa — you receive 90% of each booking.</p>`;
+  } else {
+    el.innerHTML = `
+      <p style="color:var(--muted);font-size:15px;margin-bottom:18px">Connect your Stripe account to start receiving payments from client bookings.</p>
+      <button class="btn primary" onclick="connectStripe()" id="btnConnectStripe">Connect Stripe account →</button>
+      <p style="font-size:12px;color:var(--muted);margin-top:10px">Takes 5 minutes. You'll need your bank account details.</p>`;
+  }
+}
+
+async function connectStripe() {
+  const btn = document.getElementById('btnConnectStripe');
+  if (btn) { btn.textContent='Loading…'; btn.disabled=true; }
+  await createConnectOnboardingLink(currentProvider.id, currentUser.email);
+}
+
+// Handle Stripe Connect return
+const stripeParams = new URLSearchParams(window.location.search);
+if (stripeParams.get('stripe_connected') === '1') {
+  supabaseClient.from('professionals')
+    .update({ stripe_onboarded: true }).eq('id', stripeParams.get('id') || '');
+  const banner = document.createElement('div');
+  banner.style.cssText='position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:rgba(162,217,162,.15);border:1px solid rgba(162,217,162,.35);color:#a8e0a8;padding:14px 24px;border-radius:999px;font-size:14px;font-weight:600;z-index:999;white-space:nowrap';
+  banner.textContent='✓ Stripe account connected! You can now receive payouts.';
+  document.body.appendChild(banner);
+  setTimeout(()=>banner.remove(),5000);
+}
+
+// Welcome banner for new sign-ups
+const wpParams = new URLSearchParams(window.location.search);
+if (wpParams.get('welcome') === '1') {
+  window.addEventListener('DOMContentLoaded', () => {
+    const banner = document.createElement('div');
+    banner.style.cssText = 'position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:rgba(162,217,162,.15);border:1px solid rgba(162,217,162,.35);color:#a8e0a8;padding:14px 24px;border-radius:18px;font-size:14px;font-weight:600;z-index:999;max-width:90vw;text-align:center;backdrop-filter:blur(10px)';
+    banner.innerHTML = '✓ Welcome to Mortéa! Your profile is live. Now add your services and connect Stripe to receive payments.';
+    document.body.appendChild(banner);
+    setTimeout(() => banner.remove(), 8000);
+  });
+}
 document.getElementById('navSignOut')?.addEventListener('click', e => { e.preventDefault(); MorteaAuth.signOut(); });
 init();
 </script>

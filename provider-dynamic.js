@@ -136,3 +136,32 @@ function showNotFound() {
 }
 
 document.addEventListener('DOMContentLoaded', loadProviderProfile);
+
+
+// ── Load services with prices ──────────────────────────────────
+async function loadProviderServices(providerId) {
+  const { data: services } = await supabaseClient
+    .from('services').select('*')
+    .eq('provider_id', providerId).eq('is_active', true)
+    .order('price_usd');
+
+  const section = document.getElementById('profileServicesSection');
+  if (!section) return;
+
+  if (!services || !services.length) return;
+
+  section.style.display = 'block';
+  document.getElementById('profileServices').innerHTML = services.map(s => `
+    <div style="border:1px solid var(--line);border-radius:18px;padding:14px 16px;background:rgba(255,255,255,.04);display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:8px;cursor:pointer;transition:all .18s"
+         onclick="window.location.href='booking-request.html?id=${providerId}&service='+encodeURIComponent('${escapeHtml(s.name||'')}')">
+      <div>
+        <div style="font-weight:700;font-size:15px">${escapeHtml(s.name)}</div>
+        ${s.description ? `<div style="font-size:13px;color:var(--muted)">${escapeHtml(s.description)}</div>` : ''}
+        ${s.duration_min ? `<div style="font-size:12px;color:var(--muted);margin-top:2px">${s.duration_min} min</div>` : ''}
+      </div>
+      <div style="text-align:right;flex-shrink:0">
+        <div style="font-family:Playfair Display,serif;font-size:22px;color:var(--sand)">$${parseFloat(s.price_usd).toFixed(0)}</div>
+        <div style="font-size:11px;color:var(--rose);margin-top:2px">Book →</div>
+      </div>
+    </div>`).join('');
+}

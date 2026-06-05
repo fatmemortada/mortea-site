@@ -3,54 +3,37 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="Mortéa professional membership plans — Independent $10/month, Creator $30/month, Professional $35/month. 5-day free trial on all plans.">
-  <title>Memberships — Mortéa</title>
+  <meta name="description" content="Mortéa is free for beauty professionals to join. We take 10% per booking — you keep 90%. No subscriptions, no setup fees.">
+  <link rel="canonical" href="https://www.mortea.ca/pricing.html">
+  <title>How It Works — Mortéa</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="mobile.css">
   <style>
-    .pricing-hero { padding:92px 6vw 42px; text-align:center; }
-    .pricing-hero h1 { font-family:'Playfair Display',serif; font-size:clamp(48px,8vw,94px); line-height:.92; margin:18px auto; max-width:980px; }
-    .pricing-hero .lead { margin:0 auto; max-width:820px; color:#dfcdc1; }
-    .pricing-note { margin:28px auto 0; max-width:720px; border:1px solid var(--line); border-radius:999px; padding:12px 20px; background:rgba(255,255,255,.05); color:var(--champagne); font-size:14px; }
-    .pricing-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px; margin-top:34px; }
-    .plan-card { border:1px solid var(--line); border-radius:34px; padding:30px; background:linear-gradient(165deg,rgba(255,255,255,.07),rgba(255,255,255,.02)); position:relative; transition:transform .22s,border-color .22s,box-shadow .22s; }
-    .plan-card:hover { transform:translateY(-3px); box-shadow:0 24px 64px rgba(0,0,0,.35); }
-    .plan-card.featured { border-color:rgba(217,183,162,.42); background:linear-gradient(165deg,rgba(217,183,162,.15),rgba(255,255,255,.03)); }
-    .plan-label { color:var(--rose); text-transform:uppercase; letter-spacing:.2em; font-size:11px; font-weight:800; margin-bottom:10px; }
-    .plan-card h3 { font-family:'Playfair Display',serif; font-size:32px; margin:0 0 8px; }
-    .plan-card > p { color:var(--muted); font-size:14px; line-height:1.6; margin-bottom:18px; }
-    .price-line { display:flex; align-items:flex-end; gap:6px; margin:16px 0 4px; }
-    .price-line strong { font-family:'Playfair Display',serif; font-size:54px; line-height:.9; }
-    .price-line span { color:var(--muted); margin-bottom:6px; font-size:15px; }
-    .trial-pill { display:inline-flex; border:1px solid var(--line); border-radius:999px; padding:7px 13px; color:var(--champagne); background:rgba(255,255,255,.04); font-size:12px; font-weight:700; margin-bottom:18px; }
-    .plan-features { list-style:none; padding:0; margin:0 0 22px; }
-    .plan-features li { padding:9px 0; border-bottom:1px solid var(--line); color:#e0cfc8; font-size:14px; display:flex; align-items:center; gap:8px; }
-    .plan-features li::before { content:'✓'; color:var(--rose); font-weight:700; font-size:13px; flex-shrink:0; }
-    .plan-features li:last-child { border-bottom:none; }
-    .plan-cta { width:100%; padding:14px; }
-    .clinic-strip { display:flex; gap:8px; flex-wrap:wrap; margin-top:14px; }
-    .clinic-strip span { border:1px solid var(--line); border-radius:999px; padding:7px 12px; color:var(--champagne); font-size:13px; }
-    .faq-item { border-bottom:1px solid var(--line); padding:20px 0; cursor:pointer; }
-    .faq-item h4 { font-size:16px; font-weight:600; display:flex; justify-content:space-between; gap:12px; }
+    .model-card { border:1px solid var(--line); border-radius:34px; padding:36px; background:linear-gradient(165deg,rgba(255,255,255,.07),rgba(255,255,255,.02)); }
+    .big-num { font-family:'Playfair Display',serif; font-size:80px; line-height:1; color:var(--sand); }
+    .example-row { display:flex; justify-content:space-between; align-items:center; padding:14px 0; border-bottom:1px solid var(--line); font-size:15px; }
+    .example-row:last-child { border-bottom:none; }
+    .faq-item { border-bottom:1px solid var(--line); padding:18px 0; cursor:pointer; }
+    .faq-item h4 { font-size:15px; font-weight:600; display:flex; justify-content:space-between; gap:12px; }
+    .faq-item h4::after { content:'+'; color:var(--rose); flex-shrink:0; }
+    .faq-item.open h4::after { content:'−'; }
     .faq-item p { color:var(--muted); font-size:14px; line-height:1.7; margin-top:10px; display:none; }
     .faq-item.open p { display:block; }
-    .faq-item.open h4::after { content:'−'; }
-    .faq-item h4::after { content:'+'; color:var(--rose); }
-    .bottom-cta { text-align:center; border:1px solid var(--line); border-radius:34px; padding:48px; background:linear-gradient(165deg,rgba(255,255,255,.07),rgba(255,255,255,.02)); }
-    @media(max-width:960px){ .pricing-grid{grid-template-columns:1fr;} .pricing-hero{text-align:left;} .pricing-note{border-radius:24px;} }
+    .step-num { width:40px; height:40px; border-radius:50%; border:1px solid rgba(217,183,162,.35); background:rgba(217,183,162,.08); display:flex; align-items:center; justify-content:center; font-size:16px; font-weight:800; color:var(--champagne); flex-shrink:0; }
+    .step-row { display:flex; align-items:flex-start; gap:16px; padding:16px 0; border-bottom:1px solid var(--line); }
+    .step-row:last-child { border-bottom:none; }
   </style>
 </head>
 <body class="mortea-luxury">
-
 <nav class="nav">
   <a class="brand" href="index.html">Mortéa</a>
   <div class="nav-links">
     <a href="discover.html">Discover</a>
     <a href="map.html">Map</a>
-    <a href="professional-onboarding.html">Professionals</a>
-    <a href="pricing.html">Memberships</a>
+    <a href="professional-onboarding.html">Join free</a>
     <a href="blog.html">Journal</a>
     <a href="login.html">Access</a>
     <a class="lang" href="fr/index.html">FR</a>
@@ -58,127 +41,81 @@
 </nav>
 
 <main>
-  <section class="pricing-hero">
-    <div class="eyebrow">Professional memberships</div>
-    <h1>Luxury discovery plans for beauty professionals worldwide.</h1>
-    <p class="lead">Mortéa helps salons, clinics, creators, and independent beauty professionals become discoverable through premium profiles, map-ready visibility, social links, reviews, and future booking calendars.</p>
-    <div class="pricing-note">Every paid profile begins with a <strong>5-day free trial</strong> before monthly membership starts · Cancel anytime</div>
+  <section class="page-hero" style="text-align:center;max-width:760px;margin:0 auto">
+    <div class="eyebrow">No subscriptions · No setup fees</div>
+    <h1>Free to join.<br><em style="font-style:italic;color:var(--rose)">10%</em> per booking.</h1>
+    <p class="lead">Mortéa is completely free for beauty professionals. We only earn when you earn — 10% of each booking made through the platform. You keep 90%.</p>
+    <div class="hero-actions" style="justify-content:center;margin-top:28px">
+      <a class="btn primary" href="professional-onboarding.html">Join for free</a>
+      <a class="btn secondary" href="discover.html">Explore professionals</a>
+    </div>
   </section>
 
   <section class="section">
-    <div class="pricing-grid">
+    <div class="two" style="gap:24px;align-items:start">
 
-      <!-- Independent -->
-      <article class="plan-card">
-        <div class="plan-label">Independent</div>
-        <h3>Single User</h3>
-        <p>For solo beauty professionals without a studio or physical location.</p>
-        <div class="price-line"><strong>$10</strong><span>/ month</span></div>
-        <div class="trial-pill">5-day free trial</div>
-        <ul class="plan-features">
-          <li>Solo professional profile</li>
-          <li>Discovery & map eligibility</li>
-          <li>Instagram, TikTok & booking links</li>
-          <li>Client review eligibility</li>
-          <li>Dashboard access</li>
-        </ul>
-        <a class="btn secondary plan-cta" href="https://buy.stripe.com/aFa5kwadZ2ob58davF3VC05">Start free trial</a>
-      </article>
+      <!-- Fee model -->
+      <div class="model-card" style="text-align:center">
+        <div class="eyebrow" style="margin-bottom:16px">Mortéa's fee</div>
+        <div class="big-num">10%</div>
+        <p style="color:var(--muted);font-size:16px;margin:12px 0 24px">of each booking through Mortéa</p>
+        <div style="background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:22px;padding:20px">
+          <div class="example-row"><span style="color:var(--muted)">Client pays</span><strong style="color:var(--sand)">$100</strong></div>
+          <div class="example-row"><span style="color:var(--muted)">Mortéa fee (10%)</span><span style="color:var(--rose)">−$10</span></div>
+          <div class="example-row" style="font-size:17px"><span style="color:var(--muted)">You receive</span><strong style="color:#a8e0a8;font-size:20px">$90</strong></div>
+        </div>
+        <p style="font-size:13px;color:var(--muted);margin-top:14px">Stripe handles the split automatically. Funds deposited to your bank within 2–7 days.</p>
+      </div>
 
-      <!-- Professional (featured) -->
-      <article class="plan-card featured">
-        <div class="plan-label">Most popular</div>
-        <h3>Professional</h3>
-        <p>For salons, spas, aesthetic clinics, med spas, laser clinics, lash artists, nail technicians, and wellness studios.</p>
-        <div class="price-line"><strong>$35</strong><span>/ month</span></div>
-        <div class="trial-pill">5-day free trial</div>
-        <ul class="plan-features">
-          <li>Premium public profile after approval</li>
-          <li>Priority map & city discovery visibility</li>
-          <li>Portfolio, social links & reviews</li>
-          <li>Booking link integration</li>
-          <li>Dashboard with stats & photo upload</li>
-          <li>Ready for mobile app features</li>
-        </ul>
-        <a class="btn primary plan-cta" href="https://buy.stripe.com/14AaEQ71N2ob1W147h3VC00">Apply now</a>
-      </article>
-
-      <!-- Creator -->
-      <article class="plan-card">
-        <div class="plan-label">Creator</div>
-        <h3>Beauty Creator</h3>
-        <p>For beauty bloggers, influencers, educators, reviewers, and luxury lifestyle creators.</p>
-        <div class="price-line"><strong>$30</strong><span>/ month</span></div>
-        <div class="trial-pill">5-day free trial</div>
-        <ul class="plan-features">
-          <li>Creator profile positioning</li>
-          <li>Instagram & TikTok visibility</li>
-          <li>Collaboration eligibility</li>
-          <li>Future campaign opportunities</li>
-          <li>Dashboard access</li>
-        </ul>
-        <a class="btn secondary plan-cta" href="https://buy.stripe.com/aFa7sE5XJd2PdEJ9rB3VC03">Join as creator</a>
-      </article>
-    </div>
-
-    <!-- Clinics panel -->
-    <div style="margin-top:24px;border:1px solid var(--line);border-radius:32px;padding:30px;background:radial-gradient(circle at top right,rgba(217,183,162,.12),transparent 40%),rgba(255,255,255,.04)">
-      <div class="eyebrow">For clinics and advanced providers</div>
-      <h2 style="margin-top:12px">Built for medical aesthetics and wellness.</h2>
-      <p class="section-intro">Mortéa is designed for Botox clinics, laser clinics, cosmetic injectors, med spas, body contouring clinics, wellness clinics, PRP specialists, and similar beautifying services.</p>
-      <div class="clinic-strip">
-        <span>Botox Clinics</span><span>Laser Clinics</span><span>Med Spas</span><span>Cosmetic Injectors</span>
-        <span>Body Contouring</span><span>PRP</span><span>Hydrafacial</span><span>Hair Restoration</span>
-        <span>Japanese Head Spa</span><span>Lashes</span><span>Nails</span><span>Facials</span>
+      <!-- What you get -->
+      <div>
+        <div class="card" style="margin-bottom:16px">
+          <h3>What's included — free</h3>
+          <div style="display:grid;gap:10px;margin-top:14px;font-size:14px;color:var(--champagne)">
+            <div>✓ Public profile on Mortéa discover &amp; map</div>
+            <div>✓ Instagram, TikTok, website &amp; booking links</div>
+            <div>✓ Set your own service prices</div>
+            <div>✓ Secure upfront client payments via Stripe</div>
+            <div>✓ Client pays in their local currency (auto-converted)</div>
+            <div>✓ Booking requests &amp; inbox management</div>
+            <div>✓ Client reviews on your profile</div>
+            <div>✓ Professional dashboard with stats</div>
+            <div>✓ Referral program — earn for inviting others</div>
+          </div>
+        </div>
+        <div class="card">
+          <h3>How the split works</h3>
+          <div class="step-row"><div class="step-num">1</div><div><strong>Client books &amp; pays</strong><p style="color:var(--muted);font-size:14px;margin:4px 0 0">Client selects your service, pays upfront via Stripe Checkout in their local currency.</p></div></div>
+          <div class="step-row"><div class="step-num">2</div><div><strong>Stripe splits automatically</strong><p style="color:var(--muted);font-size:14px;margin:4px 0 0">90% is instantly transferred to your connected Stripe account. 10% goes to Mortéa.</p></div></div>
+          <div class="step-row"><div class="step-num">3</div><div><strong>You receive your payout</strong><p style="color:var(--muted);font-size:14px;margin:4px 0 0">Funds are deposited to your bank account within 2–7 business days via Stripe.</p></div></div>
+        </div>
       </div>
     </div>
 
     <!-- FAQ -->
-    <div style="margin-top:48px;max-width:760px">
+    <div style="max-width:760px;margin:48px auto 0">
       <div class="eyebrow" style="margin-bottom:20px">Common questions</div>
-      <div class="faq-item" onclick="this.classList.toggle('open')">
-        <h4>How does the free trial work?</h4>
-        <p>Every new membership starts with a 5-day free trial. You won't be charged until the trial ends. Cancel anytime before the trial ends and you won't be billed.</p>
-      </div>
-      <div class="faq-item" onclick="this.classList.toggle('open')">
-        <h4>When does my profile go live?</h4>
-        <p>After submitting your application, our team reviews it before activating your public profile. This typically takes 24–48 hours. Once approved, you'll appear on Mortéa's map and discovery pages.</p>
-      </div>
-      <div class="faq-item" onclick="this.classList.toggle('open')">
-        <h4>Can I upgrade or change my plan?</h4>
-        <p>Yes. You can upgrade, downgrade, or cancel at any time from your dashboard. Changes take effect on your next billing cycle.</p>
-      </div>
-      <div class="faq-item" onclick="this.classList.toggle('open')">
-        <h4>What payment methods are accepted?</h4>
-        <p>All major credit and debit cards via Stripe. All payments are secure and PCI-compliant.</p>
-      </div>
-      <div class="faq-item" onclick="this.classList.toggle('open')">
-        <h4>What is Mortéa's refund policy?</h4>
-        <p>Memberships can be cancelled at any time. We don't offer prorated refunds for partial months, but you'll retain access until the end of the current billing period.</p>
-      </div>
+      <div class="faq-item" onclick="this.classList.toggle('open')"><h4>Is it really free to join?</h4><p>Yes — completely free. No credit card, no subscription, no setup fees. You only pay 10% when a client books through Mortéa. If no bookings come in, you pay nothing.</p></div>
+      <div class="faq-item" onclick="this.classList.toggle('open')"><h4>What currencies do clients pay in?</h4><p>Stripe automatically detects the client's location and shows prices in their local currency — CAD, USD, EUR, GBP, AED, and 135+ other currencies. You always receive payouts in your local currency.</p></div>
+      <div class="faq-item" onclick="this.classList.toggle('open')"><h4>How do I receive my payouts?</h4><p>Connect your Stripe account from your dashboard. Stripe deposits funds directly to your bank account within 2–7 business days after each booking.</p></div>
+      <div class="faq-item" onclick="this.classList.toggle('open')"><h4>Do I have to use Mortéa's payment system?</h4><p>No — you can also list an external booking link (Calendly, Jane App, etc.) on your profile. The 10% fee only applies to bookings made through Mortéa's built-in booking system.</p></div>
+      <div class="faq-item" onclick="this.classList.toggle('open')"><h4>Can I set my own prices?</h4><p>Yes — you set the price for each service from your dashboard. There are no restrictions on what you charge.</p></div>
+      <div class="faq-item" onclick="this.classList.toggle('open')"><h4>What if a client cancels?</h4><p>Cancellation and refund policies are managed through Stripe. You can set your own policy in your Stripe dashboard settings.</p></div>
     </div>
 
-    <!-- Bottom CTA -->
-    <div class="bottom-cta" style="margin-top:48px">
-      <div class="eyebrow">Start with trial access</div>
-      <h2>Join Mortéa before full launch.</h2>
-      <p class="section-intro" style="margin:12px auto 24px">Early professionals help shape the global luxury beauty discovery ecosystem. Founding members get priority placement when we expand to new cities.</p>
-      <div class="hero-actions" style="justify-content:center">
-        <a class="btn primary" href="professional-onboarding.html">Apply now</a>
-        <a class="btn secondary" href="discover.html">Explore first</a>
-      </div>
+    <!-- CTA -->
+    <div style="margin-top:48px;border:1px solid var(--line);border-radius:34px;padding:48px;text-align:center;background:linear-gradient(165deg,rgba(255,255,255,.055),rgba(255,255,255,.015))">
+      <div class="eyebrow" style="margin-bottom:12px">Ready to start?</div>
+      <h2 style="font-family:'Playfair Display',serif;font-size:clamp(32px,5vw,56px);margin-bottom:14px">Join Mortéa for free.</h2>
+      <p style="color:var(--muted);font-size:16px;max-width:560px;margin:0 auto 28px">Create your profile, add your services, connect Stripe, and start getting discovered by clients worldwide.</p>
+      <a class="btn primary" href="professional-onboarding.html" style="font-size:16px;padding:16px 32px">Get started — it's free</a>
     </div>
   </section>
 </main>
 
 <footer class="footer">
   <b>Mortéa</b>
-  <span>Professional $35/mo · Creator $30/mo · Independent $10/mo · 5-day free trial</span>
+  <span>Free to join · 10% per booking · You keep 90%</span>
 </footer>
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="supabase-config.js"></script>
-<script src="auth.js"></script>
-
 </body>
 </html>
