@@ -3,90 +3,46 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Welcome to Mortéa — Payment Confirmed</title>
+  <title>Payment Successful — Mortéa</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
-  <style>
-    .success-icon { width:80px;height:80px;border-radius:50%;background:rgba(162,217,162,.12);border:1px solid rgba(162,217,162,.3);display:flex;align-items:center;justify-content:center;font-size:36px;margin:0 auto 24px; }
-    .step-checklist { list-style:none;padding:0;margin:28px 0;display:grid;gap:12px;text-align:left; }
-    .step-checklist li { display:flex;align-items:center;gap:12px;font-size:15px;color:var(--champagne); }
-    .step-checklist li .check { width:26px;height:26px;border-radius:50%;background:rgba(162,217,162,.12);border:1px solid rgba(162,217,162,.3);display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;color:#a8e0a8; }
-  </style>
-  <link rel="stylesheet" href="mobile.css">
 </head>
 <body class="mortea-luxury">
-<nav class="nav">
-  <a class="brand" href="index.html">Mortéa</a>
-  <div class="nav-links">
-    <a href="discover.html">Discover</a>
-    <a href="provider-dashboard.html">Dashboard</a>
-  </div>
-</nav>
+<nav class="nav"><a class="brand" href="index.html">Mortéa</a><div class="nav-links"><a href="discover.html">Discover</a><a href="map.html">Map</a><a href="provider-dashboard.html">Dashboard</a></div></nav>
 <main>
-  <section class="page-hero" style="text-align:center;max-width:640px;margin:0 auto">
-    <div class="success-icon">✓</div>
-    <div class="eyebrow">Payment confirmed</div>
-    <h1 id="successHeading">Your profile is now live.</h1>
-    <p class="lead" style="font-size:16px" id="successSubtitle">Welcome to Mortéa. Your professional profile is activated and visible to clients worldwide.</p>
-
-    <ul class="step-checklist">
-      <li><span class="check">✓</span> Profile saved to Mortéa database</li>
-      <li><span class="check">✓</span> Membership activated</li>
-      <li><span class="check">✓</span> Profile visible on discover &amp; map pages</li>
-      <li><span class="check">✓</span> Welcome email sent to your inbox</li>
-    </ul>
-
-    <div class="hero-actions" style="justify-content:center">
-      <a class="btn primary" href="provider-dashboard.html">Go to my dashboard</a>
-      <a class="btn secondary" href="discover.html">See live discovery</a>
+  <section class="page-hero" style="text-align:center;max-width:920px;margin:auto">
+    <div class="eyebrow">Payment successful</div>
+    <h1>Welcome to Mortéa.</h1>
+    <p class="lead" id="successMessage">We are activating your profile now.</p>
+    <div class="card" style="margin:32px auto 0;max-width:680px;text-align:left">
+      <h3 id="statusTitle">Activating profile…</h3>
+      <p id="statusText" style="color:var(--muted);line-height:1.7">Please keep this page open for a moment.</p>
+      <div class="hero-actions" style="margin-top:22px">
+        <a class="btn primary" href="provider-dashboard.html?subscribed=1">Go to dashboard</a>
+        <a class="btn secondary" href="discover.html">View Discover</a>
+      </div>
     </div>
   </section>
 </main>
-<footer class="footer"><b>Mortéa</b><span>Welcome to the network.</span></footer>
-
+<footer class="footer"><b>Mortéa</b><span>Professional membership activated</span></footer>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="supabase-config.js"></script>
+<script src="checkout-success.js"></script>
 <script>
-(async function() {
-  const params       = new URLSearchParams(window.location.search);
-  const emailParam   = params.get('email');
-  const email        = emailParam ? decodeURIComponent(emailParam) : null;
-
-  if (!email) return;
-
-  // 1. Auto-approve in Supabase
-  const { data, error } = await supabaseClient
-    .from('professionals')
-    .update({ status: 'approved', updated_at: new Date().toISOString() })
-    .eq('email', email)
-    .select('business_name, membership_plan')
-    .single();
-
-  if (!error && data) {
-    const name = data.business_name || 'Professional';
-    document.getElementById('successHeading').textContent   = `Welcome, ${name}!`;
-    document.getElementById('successSubtitle').textContent  =
-      `Your Mortéa profile is live and visible to clients worldwide. Check your inbox for a welcome email.`;
-
-    // 2. Send welcome email via Edge Function
-    try {
-      await fetch(`${SUPABASE_URL}/functions/v1/send-welcome-email`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
-        },
-        body: JSON.stringify({
-          email,
-          business_name: name,
-          plan: data.membership_plan || 'professional'
-        })
-      });
-    } catch(e) { console.log('Email send skipped:', e.message); }
+document.addEventListener('DOMContentLoaded', async () => {
+  const result = await activatePendingMorteaProfile();
+  const title = document.getElementById('statusTitle');
+  const text = document.getElementById('statusText');
+  if (result.ok) {
+    title.textContent = '✓ Your profile is active';
+    text.textContent = 'Your Mortéa profile has been marked approved and active. It can now appear on Discover and Map.';
+  } else {
+    title.textContent = 'Payment received — profile activation needs review';
+    text.textContent = 'The payment was completed, but we could not automatically match the profile in this browser. Open the dashboard or contact Mortéa if your profile does not appear live.';
   }
-})();
+});
 </script>
 </body>
 </html>

@@ -1,7 +1,3 @@
 User-agent: *
 Allow: /
-Disallow: /admin.html
-Disallow: /provider-dashboard.html
-Disallow: /supabase/
-
-Sitemap: https://www.mortea.ca/sitemap.xml
+Sitemap: https://mortea.ca/sitemap.xml

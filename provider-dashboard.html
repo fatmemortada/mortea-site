@@ -41,7 +41,6 @@
     @media(max-width:880px){ .dash-grid{ grid-template-columns:1fr; } .dash-sidebar{ position:static; } .stat-row{ grid-template-columns:1fr 1fr; } .profile-form .row2{ grid-template-columns:1fr; } }
     @media(max-width:560px){ .stat-row{ grid-template-columns:1fr; } }
   </style>
-  <link rel="stylesheet" href="mobile.css">
 </head>
 <body class="mortea-luxury">
 
@@ -49,7 +48,8 @@
   <a class="brand" href="index.html">Mortéa</a>
   <div class="nav-links">
     <a href="discover.html">Discover</a>
-    <a href="provider-dashboard.html">Dashboard</a>
+    <a href="provider-dashboard.html" style="color:var(--sand);font-weight:700">Dashboard</a>
+    <a href="provider-inbox.html">Inbox</a>
     <a href="#" id="navSignOut" style="color:var(--rose)">Sign out</a>
   </div>
 </nav>
@@ -73,6 +73,7 @@
           <button class="dash-nav-item" onclick="showSection('photos')"><span class="icon">📸</span> Photos</button>
           <button class="dash-nav-item" onclick="showSection('reviews')"><span class="icon">⭐</span> Reviews</button>
           <button class="dash-nav-item" onclick="showSection('membership')"><span class="icon">💳</span> Membership</button>
+          <a class="dash-nav-item" href="provider-inbox.html"><span class="icon">📬</span> Inbox</a>
         </div>
         <div style="margin-top:14px;border:1px solid var(--line);border-radius:18px;padding:16px;background:rgba(255,255,255,.03)">
           <div class="eyebrow" style="margin-bottom:8px">Profile status</div>

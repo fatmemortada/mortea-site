@@ -70,8 +70,10 @@ async function loadProviderProfile() {
 
   // CTAs
   const ctas = document.getElementById('profileCtas');
+  const pid = provider.id || '';
   ctas.innerHTML = [
-    linkButton('Book appointment', provider.booking_link, true),
+    `<a class="btn primary" href="booking-request.html?id=${encodeURIComponent(pid)}" style="font-size:14px">📅 Request booking</a>`,
+    provider.booking_link ? linkButton('External booking →', provider.booking_link) : '',
     provider.instagram ? linkButton('Instagram', normaliseIG(provider.instagram)) : '',
     provider.tiktok    ? linkButton('TikTok',    normaliseTK(provider.tiktok))    : '',
     provider.website   ? linkButton('Website',   provider.website)                : ''

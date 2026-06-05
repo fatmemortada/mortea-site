@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Refer other beauty professionals to Mortéa and earn rewards. Share your referral link and get 1 free month for every professional who joins.">
+  <link rel="canonical" href="https://www.mortea.ca/referral.html">
+  <title>Refer &amp; Earn — Mortéa</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="mobile.css">
+  <style>
+    .ref-card { max-width:640px; margin:0 auto; border:1px solid var(--line); border-radius:34px; padding:36px; background:linear-gradient(165deg,rgba(255,255,255,.07),rgba(255,255,255,.02)); }
+    .link-box  { display:flex; gap:10px; margin:16px 0; }
+    .link-display { flex:1; border:1px solid var(--line-hi); border-radius:999px; padding:12px 18px; background:rgba(255,255,255,.04); font-size:14px; color:var(--champagne); font-family:monospace; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+    .reward-step { display:flex; align-items:flex-start; gap:16px; padding:16px 0; border-bottom:1px solid var(--line); }
+    .reward-step:last-child { border-bottom:none; }
+    .step-num { width:36px; height:36px; border-radius:50%; border:1px solid rgba(217,183,162,.35); background:rgba(217,183,162,.08); display:flex; align-items:center; justify-content:center; font-size:14px; font-weight:800; color:var(--champagne); flex-shrink:0; }
+    .reward-step h4 { margin:0 0 4px; font-size:15px; }
+    .reward-step p  { margin:0; color:var(--muted); font-size:14px; }
+    .stat-row { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin:20px 0; }
+    .stat-box { border:1px solid var(--line); border-radius:18px; padding:16px; text-align:center; background:rgba(255,255,255,.04); }
+    .stat-box .num { font-family:'Playfair Display',serif; font-size:32px; color:var(--sand); }
+    .stat-box .lbl { font-size:12px; color:var(--muted); margin-top:4px; }
+    .ref-row { border:1px solid var(--line); border-radius:14px; padding:12px 16px; margin-bottom:8px; display:flex; justify-content:space-between; align-items:center; font-size:14px; }
+    .ref-row .status { font-size:11px; font-weight:700; padding:3px 10px; border-radius:999px; border:1px solid; }
+    .ref-row .status.pending  { border-color:rgba(217,183,100,.3); color:#e8d080; }
+    .ref-row .status.joined   { border-color:rgba(162,217,162,.3); color:#a8e0a8; }
+    .ref-row .status.rewarded { border-color:rgba(217,183,162,.35); color:var(--champagne); }
+    @media(max-width:560px){ .stat-row{grid-template-columns:1fr}; .link-box{flex-direction:column;} }
+  </style>
+</head>
+<body class="mortea-luxury">
+<nav class="nav">
+  <a class="brand" href="index.html">Mortéa</a>
+  <div class="nav-links">
+    <a href="discover.html">Discover</a>
+    <a href="provider-dashboard.html">Dashboard</a>
+    <a href="#" id="navSignOut" style="color:var(--rose)">Sign out</a>
+  </div>
+</nav>
+
+<main>
+  <section class="page-hero" style="text-align:center;max-width:680px;margin:0 auto;padding-bottom:16px">
+    <div class="eyebrow">Referral program</div>
+    <h1>Refer &amp; earn.</h1>
+    <p class="lead" style="font-size:16px">Invite other beauty professionals to join Mortéa. For every professional who signs up and pays through your link, you earn <strong style="color:var(--champagne)">1 free month</strong> of membership.</p>
+  </section>
+
+  <section class="section" style="padding-top:16px">
+    <div class="ref-card">
+
+      <!-- Not authed state -->
+      <div id="refNotAuthed" style="text-align:center;padding:20px 0">
+        <p style="color:var(--muted);margin-bottom:18px">Sign in to access your referral link and track your rewards.</p>
+        <a class="btn primary" href="login.html?next=referral.html">Sign in</a>
+      </div>
+
+      <!-- Authed state -->
+      <div id="refContent" style="display:none">
+        <div class="eyebrow" style="margin-bottom:10px">Your referral link</div>
+        <p style="color:var(--muted);font-size:14px;margin-bottom:4px">Share this link with other beauty professionals. When they sign up and pay, you automatically get 1 free month.</p>
+        <div class="link-box">
+          <div class="link-display" id="refLinkDisplay">Loading…</div>
+          <button class="btn primary" id="btnCopyLink" onclick="copyLink()" style="white-space:nowrap;padding:12px 18px">Copy link</button>
+        </div>
+
+        <!-- Share buttons -->
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px">
+          <button class="btn secondary" onclick="shareWhatsApp()" style="font-size:13px;padding:9px 14px">WhatsApp</button>
+          <button class="btn secondary" onclick="shareEmail()"    style="font-size:13px;padding:9px 14px">Email</button>
+          <button class="btn secondary" onclick="shareIG()"       style="font-size:13px;padding:9px 14px">Instagram DM</button>
+        </div>
+
+        <!-- Stats -->
+        <div class="stat-row">
+          <div class="stat-box"><div class="num" id="statSent">0</div><div class="lbl">Referrals sent</div></div>
+          <div class="stat-box"><div class="num" id="statJoined">0</div><div class="lbl">Joined</div></div>
+          <div class="stat-box"><div class="num" id="statEarned">0</div><div class="lbl">Free months earned</div></div>
+        </div>
+
+        <!-- Referral history -->
+        <div style="margin-top:20px">
+          <div class="eyebrow" style="margin-bottom:14px">Referral history</div>
+          <div id="refHistory">
+            <div style="text-align:center;padding:24px;color:var(--muted);font-size:14px">No referrals sent yet. Share your link to get started!</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- How it works -->
+    <div style="max-width:640px;margin:28px auto 0">
+      <div class="card">
+        <h3 style="margin-bottom:4px">How it works</h3>
+        <div class="reward-step">
+          <div class="step-num">1</div>
+          <div><h4>Share your link</h4><p>Copy your unique referral link and share it with beauty professionals — on Instagram, WhatsApp, TikTok, or by email.</p></div>
+        </div>
+        <div class="reward-step">
+          <div class="step-num">2</div>
+          <div><h4>They sign up and pay</h4><p>When a professional applies through your link and completes payment, they're automatically tracked to your account.</p></div>
+        </div>
+        <div class="reward-step">
+          <div class="step-num">3</div>
+          <div><h4>You earn 1 free month</h4><p>For each professional who joins through your link, you receive 1 free month of your current Mortéa membership plan — automatically applied.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+<footer class="footer"><b>Mortéa</b><span>Refer &amp; earn · Beauty professionals worldwide.</span></footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase-config.js"></script>
+<script src="auth.js"></script>
+<script>
+let currentProvider = null;
+let refLink = '';
+
+async function init() {
+  const user = await MorteaAuth.getUser();
+  if (!user) return;
+
+  const { data } = await supabaseClient
+    .from('professionals').select('*').eq('email', user.email).maybeSingle();
+  if (!data) return;
+
+  currentProvider = data;
+  document.getElementById('refNotAuthed').style.display = 'none';
+  document.getElementById('refContent').style.display   = 'block';
+
+  // Build referral link
+  refLink = `https://www.mortea.ca/professional-onboarding.html?ref=${data.id}`;
+  document.getElementById('refLinkDisplay').textContent = refLink;
+
+  // Load referrals
+  const { data: refs } = await supabaseClient
+    .from('referrals').select('*').eq('referrer_id', data.id).order('created_at', { ascending: false });
+
+  if (refs && refs.length) {
+    const joined   = refs.filter(r => r.status === 'joined' || r.status === 'rewarded').length;
+    const rewarded = refs.filter(r => r.status === 'rewarded').length;
+    document.getElementById('statSent').textContent   = refs.length;
+    document.getElementById('statJoined').textContent = joined;
+    document.getElementById('statEarned').textContent = rewarded;
+
+    document.getElementById('refHistory').innerHTML = refs.map(r => `
+      <div class="ref-row">
+        <span style="color:var(--champagne)">${r.referred_email}</span>
+        <span class="status ${r.status}">${r.status}</span>
+      </div>`).join('');
+  }
+}
+
+function copyLink() {
+  navigator.clipboard.writeText(refLink).then(() => {
+    const btn = document.getElementById('btnCopyLink');
+    btn.textContent = '✓ Copied!'; btn.style.background = 'rgba(162,217,162,.15)';
+    setTimeout(() => { btn.textContent = 'Copy link'; btn.style.background = ''; }, 2000);
+  });
+}
+
+function shareWhatsApp() {
+  window.open(`https://wa.me/?text=${encodeURIComponent('Join me on Mortéa — the global luxury beauty discovery platform. Apply for a professional membership here: ' + refLink)}`, '_blank');
+}
+
+function shareEmail() {
+  window.location.href = `mailto:?subject=Join me on Mortéa&body=${encodeURIComponent('Hi,\n\nI wanted to share Mortéa with you — it\'s a global luxury beauty discovery platform where beauty professionals can get discovered by clients worldwide.\n\nApply for a professional membership here: ' + refLink + '\n\nPlans start at $10/month with a 5-day free trial.')}`;
+}
+
+function shareIG() {
+  copyLink();
+  alert('Link copied! Paste it in your Instagram DM or bio.');
+}
+
+document.getElementById('navSignOut')?.addEventListener('click', e => { e.preventDefault(); MorteaAuth.signOut(); window.location.href = 'index.html'; });
+
+// Track referral on onboarding page load
+const refParam = new URLSearchParams(window.location.search).get('ref');
+if (refParam && window.location.pathname.includes('onboarding')) {
+  sessionStorage.setItem('mortea_ref', refParam);
+}
+
+init();
+</script>
+</body>
+</html>

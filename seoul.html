@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Discover luxury beauty professionals, aesthetic clinics, and wellness experts in Seoul on Mortéa — the global beauty discovery platform.">
+  <meta property="og:title" content="Seoul Beauty & Aesthetics — Mortéa">
+  <meta property="og:description" content="Find the best beauty professionals and aesthetic clinics in Seoul on Mortéa.">
+  <link rel="canonical" href="https://www.mortea.ca/seoul.html">
+  <title>Seoul Beauty &amp; Aesthetics — Mortéa</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="mobile.css">
+  <style>
+    .svc-chip { border:1px solid var(--line); border-radius:999px; padding:8px 14px; font-size:13px; color:var(--champagne); }
+  </style>
+</head>
+<body class="mortea-luxury">
+<nav class="nav">
+  <a class="brand" href="index.html">Mortéa</a>
+  <div class="nav-links">
+    <a href="discover.html">Discover</a>
+    <a href="map.html">Map</a>
+    <a href="professional-onboarding.html">Professionals</a>
+    <a href="login.html">Access</a>
+  </div>
+</nav>
+<main>
+  <section class="page-hero">
+    <div class="eyebrow">South Korea · Global city network</div>
+    <h1>Beauty &amp; aesthetics in <em style="font-style:italic;color:var(--rose)">Seoul.</em></h1>
+    <p class="lead">Discover Seoul's world-class beauty and aesthetics scene — luxury skincare clinics, Korean beauty specialists, Botox, laser, and innovative wellness treatments.</p>
+    <div class="hero-actions">
+      <a class="btn primary" href="discover.html?city=seoul">Find providers in Seoul</a>
+      <a class="btn secondary" href="professional-onboarding.html?city=Seoul">Join Mortéa in Seoul</a>
+    </div>
+  </section>
+  <section class="section" style="padding-top:12px">
+    <div class="two" style="gap:24px;align-items:start">
+      <div>
+        <div class="eyebrow" style="margin-bottom:12px">Services in Seoul</div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:28px"><span class="svc-chip">Skincare</span><span class="svc-chip">Botox</span><span class="svc-chip">Laser</span><span class="svc-chip">Korean Beauty</span><span class="svc-chip">Facials</span><span class="svc-chip">Head Spa</span><span class="svc-chip">Med Spa</span></div>
+        <div id="cityProviders"><div style="text-align:center;padding:40px;color:var(--muted)">Loading providers…</div></div>
+      </div>
+      <div>
+        <div class="card" style="margin-bottom:16px">
+          <h3>Are you a Seoul professional?</h3>
+          <p style="color:var(--muted);font-size:15px;margin:10px 0 18px">Join Mortéa and get discovered by clients searching for beauty and aesthetic services in Seoul and worldwide.</p>
+          <a class="btn primary" href="professional-onboarding.html?city=Seoul" style="display:block;text-align:center">Apply now</a>
+        </div>
+        <div class="card">
+          <h3>Why Mortéa in Seoul?</h3>
+          <p style="color:var(--muted);font-size:15px;line-height:1.7">Mortéa builds the premium beauty discovery layer for Seoul — connecting clients with the city's best professionals through curated profiles, map search, social links, and booking requests.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+<footer class="footer"><b>Mortéa</b><span>Beauty &amp; aesthetics in Seoul.</span></footer>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase-config.js"></script>
+<script>
+(async function(){
+  const {data}=await supabaseClient.from('professionals').select('*')
+    .ilike('city','%Seoul%').eq('status','approved').order('created_at',{ascending:false});
+  const list=document.getElementById('cityProviders');
+  const providers=data||[];
+  if(!providers.length){
+    list.innerHTML='<div class="card"><h3>Be the first in Seoul</h3><p style="color:var(--muted);margin:10px 0 18px">No providers listed yet. Join Mortéa and be the first beauty professional discovered by clients searching in Seoul.</p><a class="btn primary" href="professional-onboarding.html?city=Seoul">Apply now</a></div>';
+    return;
+  }
+  function esc(v){return String(v||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));}
+  list.innerHTML=providers.map(p=>`<div class="result" style="margin-bottom:12px">
+    <div class="thumb" ${p.photo_url?'style="background-image:url('+JSON.stringify(p.photo_url)+');background-size:cover;background-position:center"':''}></div>
+    <div>
+      <h4><a href="provider.html?id=${encodeURIComponent(p.id)}">${esc(p.business_name)}</a></h4>
+      <p>${esc(p.category||'')} · ${esc(p.city||'')}</p>
+      <div class="socials">
+        <a href="booking-request.html?id=${encodeURIComponent(p.id)}">Book</a>
+        ${p.instagram?`<a href="https://instagram.com/${esc(p.instagram.replace('@',''))}" target="_blank">Instagram</a>`:''}
+      </div>
+    </div>
+  </div>`).join('');
+})();
+</script>
+</body>
+</html>

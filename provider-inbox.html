@@ -1,16 +1,203 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Provider Inbox | Mortéa</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Inbox — Mortéa</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="mobile.css">
+  <style>
+    .tab-bar { display:flex; border-bottom:1px solid var(--line); margin-bottom:22px; }
+    .tab-btn { flex:1; padding:13px; font-size:14px; font-weight:600; border:none; background:none; color:var(--muted); cursor:pointer; border-bottom:2px solid transparent; transition:all .18s; }
+    .tab-btn.active { color:var(--sand); border-bottom-color:var(--rose); }
+    .badge { background:var(--rose); color:#130d0a; font-size:10px; font-weight:800; padding:2px 7px; border-radius:999px; margin-left:6px; }
+    .bk-card { border:1px solid var(--line); border-radius:18px; padding:16px; background:rgba(255,255,255,.04); margin-bottom:12px; }
+    .bk-status { display:inline-flex; padding:4px 10px; border-radius:999px; font-size:11px; font-weight:700; border:1px solid; }
+    .bk-status.pending   { border-color:rgba(217,183,100,.3); color:#e8d080; }
+    .bk-status.confirmed { border-color:rgba(162,217,162,.3); color:#a8e0a8; }
+    .bk-status.declined  { border-color:rgba(217,120,120,.22); color:#e8aaaa; }
+    .bk-status.completed { border-color:rgba(162,162,217,.3); color:#a8a8e8; }
+    .bk-actions { display:flex; gap:8px; margin-top:12px; flex-wrap:wrap; }
+    .btn-confirm { border:1px solid rgba(162,217,162,.3); background:rgba(162,217,162,.08); color:#a8e0a8; border-radius:999px; padding:8px 16px; font-size:13px; cursor:pointer; transition:all .18s; }
+    .btn-confirm:hover { background:rgba(162,217,162,.18); }
+    .btn-decline { border:1px solid rgba(217,120,120,.22); background:rgba(217,120,120,.06); color:#e8aaaa; border-radius:999px; padding:8px 16px; font-size:13px; cursor:pointer; transition:all .18s; }
+    .btn-decline:hover { background:rgba(217,120,120,.14); }
+    .inbox-wrap  { display:grid; grid-template-columns:300px 1fr; border:1px solid var(--line); border-radius:22px; overflow:hidden; min-height:400px; }
+    .msg-list    { border-right:1px solid var(--line); background:rgba(255,255,255,.03); overflow-y:auto; max-height:560px; }
+    .msg-item    { padding:13px 15px; border-bottom:1px solid var(--line); cursor:pointer; transition:all .18s; }
+    .msg-item:hover { background:rgba(255,255,255,.06); }
+    .msg-item.active { background:rgba(217,183,162,.08); border-left:3px solid var(--rose); }
+    .msg-item.unread .msg-from { font-weight:700; color:var(--sand); }
+    .msg-from    { font-size:14px; color:var(--champagne); margin-bottom:2px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .msg-subj    { font-size:12px; color:var(--muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .msg-preview { font-size:12px; color:var(--muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; margin-top:2px; }
+    .unread-dot  { width:7px; height:7px; background:var(--rose); border-radius:50%; flex-shrink:0; }
+    .msg-detail  { padding:24px; overflow-y:auto; max-height:560px; }
+    .msg-empty   { display:flex; align-items:center; justify-content:center; padding:60px; color:var(--muted); text-align:center; }
+    @media(max-width:680px){ .inbox-wrap{grid-template-columns:1fr;} .msg-list{max-height:36vh;border-right:none;border-bottom:1px solid var(--line);} }
+  </style>
 </head>
-<body>
-  <main class="provider-inbox-page">
-    <h1>Provider Inbox</h1>
-    <section id="provider-conversations"></section>
-  </main>
-  <script src="messages.js"></script>
+<body class="mortea-luxury">
+<nav class="nav">
+  <a class="brand" href="index.html">Mortéa</a>
+  <div class="nav-links">
+    <a href="provider-dashboard.html">Dashboard</a>
+    <a href="provider-inbox.html" style="color:var(--sand);font-weight:700">Inbox</a>
+    <a href="#" id="navSignOut" style="color:var(--rose)">Sign out</a>
+  </div>
+</nav>
+
+<main>
+  <section class="page-hero" style="padding-bottom:20px">
+    <div class="eyebrow">Professional inbox</div>
+    <h1>Booking requests &amp; messages.</h1>
+  </section>
+
+  <section class="section" style="padding-top:0">
+    <div id="inboxLoading" style="text-align:center;padding:60px;color:var(--muted)">Loading inbox…</div>
+    <div id="inboxContent" style="display:none">
+      <div class="tab-bar">
+        <button class="tab-btn active" id="tabBk" onclick="switchTab('bk')">
+          Booking requests <span class="badge" id="bkBadge" style="display:none"></span>
+        </button>
+        <button class="tab-btn" id="tabMsg" onclick="switchTab('msg')">
+          Messages <span class="badge" id="msgBadge" style="display:none"></span>
+        </button>
+      </div>
+
+      <div id="tabBkContent"><div id="bkList" style="display:grid;gap:12px"></div></div>
+
+      <div id="tabMsgContent" style="display:none">
+        <div class="inbox-wrap">
+          <div class="msg-list" id="msgList"></div>
+          <div class="msg-detail" id="msgDetail">
+            <div class="msg-empty"><div><div style="font-size:36px;margin-bottom:12px">✉️</div><p>Select a message to read</p></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="inboxNotAuthed" style="display:none;text-align:center;padding:60px">
+      <h2 style="font-family:'Playfair Display',serif;font-size:34px;margin-bottom:12px">Sign in required</h2>
+      <a class="btn primary" href="login.html?next=provider-inbox.html">Sign in</a>
+    </div>
+  </section>
+</main>
+<footer class="footer"><b>Mortéa</b><span>Professional inbox.</span></footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase-config.js"></script>
+<script src="auth.js"></script>
+<script>
+let provider = null, allMsgs = [];
+function esc(v){return String(v||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));}
+
+function switchTab(t){
+  document.getElementById('tabBkContent').style.display  = t==='bk'  ? 'block':'none';
+  document.getElementById('tabMsgContent').style.display = t==='msg' ? 'block':'none';
+  document.getElementById('tabBk').classList.toggle('active',  t==='bk');
+  document.getElementById('tabMsg').classList.toggle('active', t==='msg');
+}
+
+async function init(){
+  const user = await MorteaAuth.getUser();
+  if(!user){ document.getElementById('inboxLoading').style.display='none'; document.getElementById('inboxNotAuthed').style.display='block'; return; }
+  const {data}=await supabaseClient.from('professionals').select('*').eq('email',user.email).maybeSingle();
+  document.getElementById('inboxLoading').style.display='none';
+  if(!data){ document.getElementById('inboxNotAuthed').style.display='block'; return; }
+  provider=data;
+  document.getElementById('inboxContent').style.display='block';
+  loadBookings(); loadMessages();
+}
+
+async function loadBookings(){
+  const {data}=await supabaseClient.from('booking_requests').select('*').eq('provider_id',provider.id).order('created_at',{ascending:false});
+  const pending=(data||[]).filter(b=>b.status==='pending').length;
+  const badge=document.getElementById('bkBadge');
+  badge.textContent=pending; badge.style.display=pending?'inline':'none';
+
+  const list=document.getElementById('bkList');
+  if(!data||!data.length){
+    list.innerHTML='<div style="text-align:center;padding:40px;color:var(--muted)">No booking requests yet. Share your profile link to start receiving requests.</div>';
+    return;
+  }
+  list.innerHTML=data.map(b=>`
+    <div class="bk-card">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:10px;margin-bottom:12px">
+        <div>
+          <div style="font-weight:700;font-size:16px">${esc(b.client_name)}</div>
+          <div style="font-size:13px;color:var(--muted)">${esc(b.client_email)}${b.client_phone?' · '+esc(b.client_phone):''}</div>
+        </div>
+        <span class="bk-status ${b.status||'pending'}">${b.status||'pending'}</span>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:7px;font-size:13px;color:var(--champagne)">
+        ${b.service?`<div><span style="color:var(--muted)">Service:</span> ${esc(b.service)}</div>`:''}
+        ${b.preferred_date?`<div><span style="color:var(--muted)">Date:</span> ${esc(b.preferred_date)}</div>`:''}
+        ${b.preferred_time?`<div><span style="color:var(--muted)">Time:</span> ${esc(b.preferred_time)}</div>`:''}
+        <div><span style="color:var(--muted)">Received:</span> ${new Date(b.created_at).toLocaleDateString('en-CA',{month:'short',day:'numeric'})}</div>
+      </div>
+      ${b.message?`<p style="font-size:14px;color:#d4c4b8;margin-top:10px;padding-top:10px;border-top:1px solid var(--line)">${esc(b.message)}</p>`:''}
+      ${b.status==='pending'?`
+      <div class="bk-actions">
+        <button class="btn-confirm" onclick="updateBk('${b.id}','confirmed')">✓ Confirm</button>
+        <button class="btn-decline" onclick="updateBk('${b.id}','declined')">✗ Decline</button>
+        <a class="btn secondary" href="mailto:${esc(b.client_email)}?subject=Your+Mortéa+booking+request" style="font-size:13px;padding:8px 14px">Reply by email</a>
+      </div>`:''}
+    </div>`).join('');
+}
+
+async function updateBk(id,status){
+  await supabaseClient.from('booking_requests').update({status,updated_at:new Date().toISOString()}).eq('id',id);
+  loadBookings();
+}
+
+async function loadMessages(){
+  const {data}=await supabaseClient.from('messages').select('*').eq('provider_id',provider.id).order('created_at',{ascending:false});
+  allMsgs=data||[];
+  const unread=allMsgs.filter(m=>!m.is_read).length;
+  const badge=document.getElementById('msgBadge');
+  badge.textContent=unread; badge.style.display=unread?'inline':'none';
+
+  const list=document.getElementById('msgList');
+  if(!allMsgs.length){list.innerHTML='<div style="padding:24px;text-align:center;color:var(--muted);font-size:14px">No messages yet.</div>';return;}
+  list.innerHTML=allMsgs.map(m=>`
+    <div class="msg-item ${m.is_read?'':'unread'}" id="mi-${m.id}" onclick="openMsg('${m.id}')">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <div class="msg-from">${esc(m.sender_name||m.sender_email)}</div>
+        ${m.is_read?'':'<span class="unread-dot"></span>'}
+      </div>
+      <div class="msg-subj">${esc(m.subject||'Message')}</div>
+      <div class="msg-preview">${esc((m.body||'').substring(0,55))}…</div>
+    </div>`).join('');
+}
+
+async function openMsg(id){
+  const m=allMsgs.find(x=>x.id===id); if(!m) return;
+  document.querySelectorAll('.msg-item').forEach(i=>i.classList.remove('active'));
+  document.getElementById('mi-'+id)?.classList.add('active');
+  document.getElementById('msgDetail').innerHTML=`
+    <div style="margin-bottom:20px">
+      <div style="font-weight:700;font-size:18px;margin-bottom:4px">${esc(m.subject||'Message')}</div>
+      <div style="font-size:13px;color:var(--muted)">From: ${esc(m.sender_name||'')} &lt;${esc(m.sender_email)}&gt;</div>
+      <div style="font-size:12px;color:var(--muted);margin-top:2px">${new Date(m.created_at).toLocaleDateString('en-CA',{year:'numeric',month:'long',day:'numeric'})}</div>
+    </div>
+    <div style="font-size:15px;color:#d4c4b8;line-height:1.75;padding:18px;background:rgba(255,255,255,.04);border-radius:14px;border:1px solid var(--line)">${esc(m.body||'').replace(/\n/g,'<br>')}</div>
+    <div style="margin-top:16px"><a class="btn primary" href="mailto:${esc(m.sender_email)}?subject=Re:+${esc(m.subject||'')}" style="font-size:14px">Reply by email →</a></div>`;
+  if(!m.is_read){
+    await supabaseClient.from('messages').update({is_read:true}).eq('id',id);
+    m.is_read=true;
+    document.getElementById('mi-'+id)?.classList.remove('unread');
+    const unread=allMsgs.filter(x=>!x.is_read).length;
+    const badge=document.getElementById('msgBadge');
+    badge.textContent=unread; badge.style.display=unread?'inline':'none';
+  }
+}
+
+document.getElementById('navSignOut')?.addEventListener('click',e=>{e.preventDefault();MorteaAuth.signOut();window.location.href='index.html';});
+init();
+</script>
 </body>
 </html>
