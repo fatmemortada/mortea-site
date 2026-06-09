@@ -119,6 +119,7 @@
       .cover { min-height: 230px; }
     }
   </style>
+  <link rel="stylesheet" href="mobile.css">
 </head>
 <body>
   <header class="hero">
@@ -133,7 +134,7 @@
           <a id="instagramLink" class="btn secondary" href="#" target="_blank">Instagram</a>
         </div>
       </div>
-      <img id="providerCover" class="cover" alt="Provider cover image" />
+      <img loading="lazy" id="providerCover" class="cover" alt="Provider cover image" />
     </div>
   </header>
 
@@ -254,7 +255,7 @@
 
       grid.innerHTML = data.map(image => `
         <figure class="gallery-card">
-          <img src="${escapeAttribute(image.image_url)}" alt="${escapeAttribute(image.image_alt || "Mortéa gallery image")}" />
+          <img loading="lazy" src="${escapeAttribute(image.image_url)}" alt="${escapeAttribute(image.image_alt || "Mortéa gallery image")}" />
         </figure>
       `).join("");
     }

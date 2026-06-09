@@ -159,7 +159,7 @@ async function loadFavourites(){
   el.innerHTML=data.map(f=>{
     const p=f.professionals; if(!p) return '';
     return `<div class="fav-card">
-      <div class="fav-thumb">${p.photo_url?`<img src="${esc(p.photo_url)}" alt="">`:''}</div>
+      <div class="fav-thumb">${p.photo_url?`<img loading="lazy" src="${esc(p.photo_url)}" alt="">`:''}</div>
       <div>
         <div style="font-weight:700;font-size:15px"><a href="provider.html?id=${esc(p.id)}" style="color:inherit">${esc(p.business_name)}</a></div>
         <div style="font-size:13px;color:var(--muted)">${esc(p.category||'')} · ${esc(p.city||'')}</div>

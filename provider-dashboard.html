@@ -41,6 +41,7 @@
     @media(max-width:880px){ .dash-grid{ grid-template-columns:1fr; } .dash-sidebar{ position:static; } .stat-row{ grid-template-columns:1fr 1fr; } .profile-form .row2{ grid-template-columns:1fr; } }
     @media(max-width:560px){ .stat-row{ grid-template-columns:1fr; } }
   </style>
+  <link rel="stylesheet" href="mobile.css">
 </head>
 <body class="mortea-luxury">
 
@@ -142,7 +143,7 @@
           <h2 style="font-family:'Playfair Display',serif;font-size:32px;margin-bottom:20px">Profile Photo</h2>
           <div class="card">
             <div class="profile-img-preview" id="currentPhotoWrap">
-              <img id="currentPhoto" src="" alt="Profile" style="display:none">
+              <img loading="lazy" id="currentPhoto" src="" alt="Profile" style="display:none">
             </div>
             <p style="text-align:center;color:var(--muted);font-size:14px;margin-bottom:20px">Upload a photo that represents your business</p>
             <div class="upload-area" id="uploadArea" onclick="document.getElementById('photoInput').click()">
@@ -290,7 +291,7 @@ async function init() {
   document.getElementById('dashProfilePreview').innerHTML = `
     <div style="display:grid;grid-template-columns:70px 1fr;gap:14px;align-items:center">
       <div style="width:70px;height:70px;border-radius:50%;background:linear-gradient(140deg,#d9b7a2,#3e2218);border:1px solid var(--line);overflow:hidden">
-        ${data.photo_url ? `<img src="${data.photo_url}" style="width:100%;height:100%;object-fit:cover">` : ''}
+        ${data.photo_url ? `<img loading="lazy" src="${data.photo_url}" style="width:100%;height:100%;object-fit:cover">` : ''}
       </div>
       <div>
         <div style="font-weight:700;font-size:17px">${escHtml(data.business_name)}</div>

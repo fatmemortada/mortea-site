@@ -32,6 +32,7 @@
     .stat-mini strong { color:var(--sand); }
     @media(max-width:800px){ .profile-hero{grid-template-columns:1fr;} .profile-avatar{width:100px;height:100px;border-radius:22px;} .profile-body{grid-template-columns:1fr;} }
   </style>
+  <link rel="stylesheet" href="mobile.css">
 </head>
 <body class="mortea-luxury">
 <nav class="nav">
@@ -47,7 +48,7 @@
 <div id="profileContent" style="display:none">
   <div class="profile-hero">
     <div class="profile-avatar" id="avatarWrap">
-      <img id="profilePhoto" src="" alt="" style="display:none">
+      <img loading="lazy" id="profilePhoto" src="" alt="" style="display:none">
     </div>
     <div>
       <div class="profile-cat" id="profileCategory"></div>

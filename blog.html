@@ -3,9 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="Mortéa Beauty Journal — expert guides, city beauty scenes, aesthetic treatments, and luxury wellness articles from around the world.">
+  <meta name="description" content="Mortéa Beauty Journal — expert guides, city beauty scenes, treatment deep-dives, and luxury wellness articles from around the world.">
   <meta property="og:title" content="Beauty Journal — Mortéa">
-  <meta property="og:description" content="Expert beauty guides, city scenes, and aesthetic treatment articles.">
   <link rel="canonical" href="https://www.mortea.ca/blog.html">
   <title>Beauty Journal — Mortéa</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,24 +16,26 @@
     .blog-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:28px; }
     .blog-card { border:1px solid var(--line); border-radius:26px; overflow:hidden; background:linear-gradient(165deg,rgba(255,255,255,.055),rgba(255,255,255,.015)); transition:all .2s; }
     .blog-card:hover { border-color:var(--line-hi); transform:translateY(-2px); box-shadow:0 18px 50px rgba(0,0,0,.30); }
-    .blog-thumb { height:180px; background:linear-gradient(140deg,#d9b7a2 0%,#3e2218 100%); position:relative; overflow:hidden; }
-    .blog-thumb.t2 { background:linear-gradient(140deg,#c9a890 0%,#2e1510 100%); }
-    .blog-thumb.t3 { background:linear-gradient(140deg,#e8c5a8 0%,#5c3020 100%); }
-    .blog-thumb.t4 { background:linear-gradient(140deg,#ddb89c 0%,#4a2415 100%); }
-    .blog-thumb.t5 { background:linear-gradient(140deg,#cdb0a0 0%,#3a1e14 100%); }
-    .blog-thumb.t6 { background:linear-gradient(140deg,#e0c4b0 0%,#4e281a 100%); }
-    .blog-cat   { position:absolute; bottom:12px; left:12px; background:rgba(7,5,4,.75); border:1px solid var(--line); border-radius:999px; padding:5px 12px; font-size:11px; color:var(--rose); font-weight:700; text-transform:uppercase; letter-spacing:.12em; backdrop-filter:blur(8px); }
-    .blog-body  { padding:20px; }
-    .blog-body h3 { font-family:'Playfair Display',serif; font-size:20px; margin:0 0 8px; line-height:1.2; }
+    .blog-thumb { height:180px; position:relative; overflow:hidden; }
+    .blog-thumb.t1{background:linear-gradient(140deg,#d9b7a2,#3e2218)}
+    .blog-thumb.t2{background:linear-gradient(140deg,#c9a890,#2e1510)}
+    .blog-thumb.t3{background:linear-gradient(140deg,#e8c5a8,#5c3020)}
+    .blog-thumb.t4{background:linear-gradient(140deg,#ddb89c,#4a2415)}
+    .blog-thumb.t5{background:linear-gradient(140deg,#cdb0a0,#3a1e14)}
+    .blog-thumb.t6{background:linear-gradient(140deg,#e0c4b0,#4e281a)}
+    .blog-thumb.t7{background:linear-gradient(140deg,#d4b8a6,#422016)}
+    .blog-cat { position:absolute; bottom:12px; left:12px; background:rgba(7,5,4,.75); border:1px solid var(--line); border-radius:999px; padding:5px 12px; font-size:11px; color:var(--rose); font-weight:700; text-transform:uppercase; letter-spacing:.12em; backdrop-filter:blur(8px); }
+    .blog-body { padding:20px; }
+    .blog-body h3 { font-family:'Playfair Display',serif; font-size:19px; margin:0 0 8px; line-height:1.2; }
     .blog-body h3 a { color:inherit; transition:color .18s; }
     .blog-body h3 a:hover { color:var(--champagne); }
-    .blog-body p { font-size:14px; color:var(--muted); line-height:1.65; margin:0 0 14px; }
+    .blog-body p { font-size:14px; color:var(--muted); line-height:1.65; margin:0 0 12px; }
     .blog-meta { font-size:12px; color:var(--muted); display:flex; justify-content:space-between; }
-    .featured-post { border:1px solid var(--line); border-radius:26px; overflow:hidden; display:grid; grid-template-columns:1fr 1fr; background:linear-gradient(165deg,rgba(255,255,255,.055),rgba(255,255,255,.015)); margin-bottom:24px; }
+    .featured-post { border:1px solid var(--line); border-radius:26px; overflow:hidden; display:grid; grid-template-columns:1fr 1fr; background:linear-gradient(165deg,rgba(255,255,255,.055),rgba(255,255,255,.015)); margin-bottom:28px; }
     .featured-thumb { min-height:320px; background:linear-gradient(135deg,#d9b7a2 0%,#3e2218 100%); }
-    .featured-body  { padding:32px; display:flex; flex-direction:column; justify-content:center; }
-    .featured-body h2 { font-family:'Playfair Display',serif; font-size:clamp(24px,3vw,36px); margin:10px 0 14px; }
-    @media(max-width:860px){ .blog-grid{grid-template-columns:1fr 1fr;} .featured-post{grid-template-columns:1fr;} .featured-thumb{min-height:200px;} }
+    .featured-body { padding:36px; display:flex; flex-direction:column; justify-content:center; }
+    .featured-body h2 { font-family:'Playfair Display',serif; font-size:clamp(24px,3vw,38px); margin:10px 0 14px; line-height:1.05; }
+    @media(max-width:900px){ .blog-grid{grid-template-columns:1fr 1fr;} .featured-post{grid-template-columns:1fr;} .featured-thumb{min-height:200px;} }
     @media(max-width:560px){ .blog-grid{grid-template-columns:1fr;} }
   </style>
 </head>
@@ -44,18 +45,19 @@
   <div class="nav-links">
     <a href="discover.html">Discover</a>
     <a href="blog.html" style="color:var(--sand);font-weight:700">Journal</a>
-    <a href="professional-onboarding.html">Professionals</a>
+    <a href="professional-onboarding.html">Join free</a>
     <a href="login.html">Access</a>
+    <a class="lang" href="fr/blog.html">FR</a>
   </div>
 </nav>
 <main>
   <section class="page-hero">
     <div class="eyebrow">Beauty Journal</div>
-    <h1>Guides, trends &amp; city scenes.</h1>
+    <h1>Guides, treatments &amp; city scenes.</h1>
     <p class="lead">Expert beauty guides, treatment deep-dives, and the world's best city beauty scenes — curated by Mortéa.</p>
   </section>
-  <section class="section" style="padding-top:16px">
 
+  <section class="section" style="padding-top:16px">
     <!-- Featured -->
     <a href="blog-japanese-head-spa.html" style="display:block;text-decoration:none">
       <div class="featured-post">
@@ -63,8 +65,8 @@
         <div class="featured-body">
           <div class="eyebrow">Featured guide</div>
           <h2>Japanese Head Spa: Everything You Need to Know Before Your First Appointment</h2>
-          <p style="color:var(--muted);font-size:15px;line-height:1.7">The Japanese head spa experience is sweeping the world — from Tokyo to Montréal to Dubai. Here's what to expect, how to prepare, and how to find the best specialists near you.</p>
-          <span class="btn primary" style="display:inline-flex;margin-top:8px;font-size:14px">Read guide →</span>
+          <p style="color:var(--muted);font-size:15px;line-height:1.7">The Japanese head spa is sweeping the world — from Tokyo to Montréal to Dubai. Here's what to expect, how to prepare, and how to find the best specialists near you.</p>
+          <span class="btn primary" style="display:inline-flex;margin-top:12px;font-size:14px">Read guide →</span>
         </div>
       </div>
     </a>
@@ -75,58 +77,58 @@
         <div class="blog-thumb t2"><span class="blog-cat">Aesthetics</span></div>
         <div class="blog-body">
           <h3><a href="blog-botox-guide.html">Botox 101: What It Is, How It Works, and How to Find a Trusted Injector</a></h3>
-          <p>Everything you need to know before your first Botox appointment — from choosing the right clinic to what to expect during and after treatment.</p>
-          <div class="blog-meta"><span>Aesthetic treatments</span><span>8 min read</span></div>
+          <p>Everything you need to know before your first Botox appointment — from choosing the right clinic to what to expect.</p>
+          <div class="blog-meta"><span>Aesthetics</span><span>8 min read</span></div>
         </div>
       </article>
       <article class="blog-card">
-        <div class="blog-thumb t3"><span class="blog-cat">City guide</span></div>
-        <div class="blog-body">
-          <h3><a href="blog-montreal-beauty.html">The Best Beauty Professionals in Montréal Right Now</a></h3>
-          <p>From Japanese head spas in Longueuil to laser clinics in Westmount — the definitive guide to Montréal's luxury beauty scene.</p>
-          <div class="blog-meta"><span>Montréal</span><span>6 min read</span></div>
-        </div>
-      </article>
-      <article class="blog-card">
-        <div class="blog-thumb t4"><span class="blog-cat">Skincare</span></div>
+        <div class="blog-thumb t3"><span class="blog-cat">Skincare</span></div>
         <div class="blog-body">
           <h3><a href="blog-hydrafacial.html">Hydrafacial vs Traditional Facial: Which Is Right for You?</a></h3>
-          <p>We break down the key differences, benefits, and what skin types each treatment works best for — so you can choose with confidence.</p>
+          <p>A clear, honest breakdown of the key differences, benefits, and which skin types each treatment works best for.</p>
           <div class="blog-meta"><span>Skincare</span><span>5 min read</span></div>
+        </div>
+      </article>
+      <article class="blog-card">
+        <div class="blog-thumb t4"><span class="blog-cat">Lashes</span></div>
+        <div class="blog-body">
+          <h3><a href="blog-lash-extensions.html">Classic vs Hybrid vs Volume Lashes: The Complete Guide</a></h3>
+          <p>Not sure which lash style is right for you? We break down every option with pros, cons, and how to choose.</p>
+          <div class="blog-meta"><span>Lashes</span><span>6 min read</span></div>
         </div>
       </article>
       <article class="blog-card">
         <div class="blog-thumb t5"><span class="blog-cat">City guide</span></div>
         <div class="blog-body">
+          <h3><a href="blog-montreal-beauty.html">The Best Beauty Professionals in Montréal Right Now</a></h3>
+          <p>From Japanese head spas in Longueuil to laser clinics in Westmount — the definitive guide to Montréal's beauty scene.</p>
+          <div class="blog-meta"><span>Montréal</span><span>6 min read</span></div>
+        </div>
+      </article>
+      <article class="blog-card">
+        <div class="blog-thumb t6"><span class="blog-cat">City guide</span></div>
+        <div class="blog-body">
           <h3><a href="blog-dubai-beauty.html">Dubai's Luxury Beauty Scene: Where to Go and What to Book</a></h3>
-          <p>From JBR clinics to Downtown med spas — our guide to finding the best beauty and aesthetic professionals in Dubai.</p>
+          <p>From JBR clinics to Downtown med spas — our guide to the best beauty and aesthetic professionals in Dubai.</p>
           <div class="blog-meta"><span>Dubai</span><span>7 min read</span></div>
         </div>
       </article>
       <article class="blog-card">
-        <div class="blog-thumb t6"><span class="blog-cat">Lashes</span></div>
-        <div class="blog-body">
-          <h3><a href="blog-lash-extensions.html">Classic vs Hybrid vs Volume Lashes: The Complete Guide</a></h3>
-          <p>Not sure which lash style is right for you? We break down every option with photos, pros, cons, and how to find a trusted lash technician.</p>
-          <div class="blog-meta"><span>Lashes</span><span>6 min read</span></div>
-        </div>
-      </article>
-      <article class="blog-card">
-        <div class="blog-thumb t2"><span class="blog-cat">Wellness</span></div>
+        <div class="blog-thumb t7"><span class="blog-cat">Body</span></div>
         <div class="blog-body">
           <h3><a href="blog-body-contouring.html">Body Contouring in 2025: The Non-Surgical Options Worth Knowing</a></h3>
-          <p>From laser lipo to cryo to RF — a clear breakdown of today's non-surgical body contouring treatments and what results to expect.</p>
+          <p>From cryo to RF to EMS — a clear breakdown of today's non-surgical body contouring treatments and what results to expect.</p>
           <div class="blog-meta"><span>Body contouring</span><span>9 min read</span></div>
         </div>
       </article>
     </div>
 
     <!-- CTA -->
-    <div style="margin-top:48px;border:1px solid var(--line);border-radius:26px;padding:36px;text-align:center;background:linear-gradient(165deg,rgba(255,255,255,.055),rgba(255,255,255,.015))">
+    <div style="margin-top:48px;border:1px solid var(--line);border-radius:26px;padding:40px;text-align:center;background:linear-gradient(165deg,rgba(255,255,255,.055),rgba(255,255,255,.015))">
       <div class="eyebrow" style="margin-bottom:12px">Are you a beauty professional?</div>
-      <h2 style="font-family:'Playfair Display',serif;font-size:clamp(28px,4vw,44px);margin-bottom:14px">Get featured on Mortéa.</h2>
-      <p style="color:var(--muted);font-size:16px;max-width:600px;margin:0 auto 24px">Join the platform and reach clients searching for exactly what you offer — across Montréal, Dubai, Paris, and cities worldwide.</p>
-      <a class="btn primary" href="professional-onboarding.html">Apply for membership</a>
+      <h2 style="font-family:'Playfair Display',serif;font-size:clamp(28px,4vw,44px);margin-bottom:14px">Get discovered on Mortéa — free.</h2>
+      <p style="color:var(--muted);font-size:16px;max-width:600px;margin:0 auto 24px">Join the platform, set your service prices, and reach clients searching for exactly what you offer. Mortéa takes 10% per booking — you keep 90%.</p>
+      <a class="btn primary" href="professional-onboarding.html">Join for free →</a>
     </div>
   </section>
 </main>

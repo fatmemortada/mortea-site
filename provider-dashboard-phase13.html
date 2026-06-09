@@ -136,6 +136,7 @@
       header { align-items: flex-start; }
     }
   </style>
+  <link rel="stylesheet" href="mobile.css">
 </head>
 <body>
   <main class="wrap">
@@ -306,7 +307,7 @@
       list.innerHTML = data.map(image => `
         <article class="item">
           <h3>${escapeHtml(image.image_alt || "Gallery image")}</h3>
-          <img class="gallery-preview" src="${escapeAttribute(image.image_url)}" alt="${escapeAttribute(image.image_alt || "Gallery image")}" />
+          <img loading="lazy" class="gallery-preview" src="${escapeAttribute(image.image_url)}" alt="${escapeAttribute(image.image_alt || "Gallery image")}" />
           <div class="meta">Order: ${image.display_order || 0}</div>
           <div class="actions">
             <button class="secondary" onclick='editGallery(${JSON.stringify(image)})'>Edit</button>
