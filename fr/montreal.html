@@ -53,5 +53,6 @@
   list.innerHTML=providers.map(p=>'<div class="result" style="margin-bottom:14px"><div class="thumb"></div><div><h4><a href="../provider.html?id='+encodeURIComponent(p.id)+'">'+esc(p.business_name)+'</a></h4><p>'+esc(p.category||'')+' · '+esc(p.city||'')+'</p><div class="socials">'+(p.booking_link?'<a href="'+esc(p.booking_link)+'" target="_blank">Réserver</a>':'<span>Profil</span>')+(p.instagram?'<a href="https://instagram.com/'+esc(p.instagram.replace('@',''))+'" target="_blank">Instagram</a>':'')+'</div></div></div>').join('');
 })();
 </script>
+<script src="../mortea-ui.js"></script>
 </body>
 </html>

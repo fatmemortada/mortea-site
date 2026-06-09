@@ -88,3 +88,16 @@ DROP TRIGGER IF EXISTS trg_booking_updated ON booking_requests;
 CREATE TRIGGER trg_booking_updated
   BEFORE UPDATE ON booking_requests
   FOR EACH ROW EXECUTE FUNCTION update_updated_at();
+
+-- Contact messages table
+CREATE TABLE IF NOT EXISTS contact_messages (
+  id         UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  name       TEXT NOT NULL,
+  email      TEXT NOT NULL,
+  type       TEXT DEFAULT 'client',
+  subject    TEXT,
+  message    TEXT NOT NULL,
+  is_read    BOOLEAN DEFAULT false,
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+ALTER TABLE contact_messages DISABLE ROW LEVEL SECURITY;

@@ -130,7 +130,17 @@
     </div>
   </section>
 </main>
-<footer class="footer"><b>Mortéa</b><span>Gratuit pour les professionnels · 10% par réservation · Vous gardez 90%</span></footer>
+<footer class="footer">
+  <b>Mortéa</b>
+  <span>Découverte beauté de luxe mondiale · Montréal, Canada</span>
+  <span style="display:flex;gap:14px;flex-wrap:wrap;justify-content:center">
+    <a href="about.html" style="color:var(--muted)">À propos</a>
+    <a href="blog.html" style="color:var(--muted)">Journal</a>
+    <a href="contact.html" style="color:var(--muted)">Contact</a>
+    <a href="../terms.html" style="color:var(--muted)">Conditions</a>
+    <a href="../privacy.html" style="color:var(--muted)">Confidentialité</a>
+  </span>
+</footer>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="../supabase-config.js"></script>
 <script src="../script.js"></script>
@@ -171,5 +181,6 @@ async function confirmApplication(){
   }catch(e){msg.textContent='Erreur: '+(e.message||'Veuillez réessayer.');btn.textContent='Rejoindre Mortéa gratuitement →';btn.disabled=false;}
 }
 </script>
+<script src="../mortea-ui.js"></script>
 </body>
 </html>

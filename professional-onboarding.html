@@ -205,7 +205,14 @@
 
 <footer class="footer">
   <b>Mortéa</b>
-  <span>Free for professionals · 10% per booking · You keep 90%</span>
+  <span>Global luxury beauty discovery · Montréal, Canada</span>
+  <span style="display:flex;gap:14px;flex-wrap:wrap;justify-content:center">
+    <a href="about.html" style="color:var(--muted)">About</a>
+    <a href="blog.html" style="color:var(--muted)">Journal</a>
+    <a href="contact.html" style="color:var(--muted)">Contact</a>
+    <a href="terms.html" style="color:var(--muted)">Terms</a>
+    <a href="privacy.html" style="color:var(--muted)">Privacy</a>
+  </span>
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -306,5 +313,6 @@ async function confirmApplication() {
 
 function esc(v) { return String(v||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c])); }
 </script>
+<script src="mortea-ui.js"></script>
 </body>
 </html>

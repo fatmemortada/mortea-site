@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Contact Mortéa — support for beauty professionals and clients. Get help with your profile, bookings, or account.">
+  <link rel="canonical" href="https://www.mortea.ca/contact.html">
+  <title>Contact — Mortéa</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="mobile.css">
+  <style>
+    .contact-grid { display:grid; grid-template-columns:1fr 1fr; gap:24px; align-items:start; }
+    .contact-card { border:1px solid var(--line); border-radius:26px; padding:28px; background:linear-gradient(165deg,rgba(255,255,255,.055),rgba(255,255,255,.015)); }
+    .contact-method { display:flex; align-items:flex-start; gap:14px; padding:16px 0; border-bottom:1px solid var(--line); }
+    .contact-method:last-child { border-bottom:none; }
+    .contact-icon { width:42px; height:42px; border:1px solid var(--line); border-radius:14px; background:rgba(255,255,255,.045); display:flex; align-items:center; justify-content:center; font-size:18px; flex-shrink:0; }
+    .contact-method h4 { margin:0 0 3px; font-size:15px; }
+    .contact-method p { margin:0; color:var(--muted); font-size:14px; }
+    .contact-method a { color:var(--rose); }
+    .field-label { display:block; font-size:11px; color:var(--rose); text-transform:uppercase; letter-spacing:.14em; margin-bottom:6px; font-weight:700; }
+    .form-grid { display:grid; gap:12px; }
+    .success-msg { background:rgba(162,217,162,.10); border:1px solid rgba(162,217,162,.3); border-radius:18px; padding:16px; color:#a8e0a8; font-size:14px; display:none; margin-top:12px; }
+    @media(max-width:760px){ .contact-grid{grid-template-columns:1fr;} }
+  </style>
+</head>
+<body class="mortea-luxury">
+<nav class="nav">
+  <a class="brand" href="index.html">Mortéa</a>
+  <div class="nav-links">
+    <a href="discover.html">Discover</a>
+    <a href="professional-onboarding.html">Join free</a>
+    <a href="blog.html">Journal</a>
+    <a href="contact.html" style="color:var(--sand);font-weight:700">Contact</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+    <a href="login.html">Access</a>
+    <a class="lang" href="fr/contact.html">FR</a>
+  </div>
+</nav>
+<main>
+  <section class="page-hero" style="padding-bottom:20px">
+    <div class="eyebrow">Get in touch</div>
+    <h1>We're here to help.</h1>
+    <p class="lead">Questions about your profile, a booking, or the platform? Reach out and we'll get back to you within 24 hours.</p>
+  </section>
+  <section class="section" style="padding-top:16px">
+    <div class="contact-grid">
+      <!-- Contact methods -->
+      <div>
+        <div class="contact-card" style="margin-bottom:18px">
+          <h3 style="font-family:'Playfair Display',serif;font-size:24px;margin-bottom:4px">Contact us</h3>
+          <p style="color:var(--muted);font-size:14px;margin-bottom:18px">We typically respond within 24 hours.</p>
+          <div class="contact-method">
+            <div class="contact-icon">✉️</div>
+            <div>
+              <h4>Email</h4>
+              <p>General inquiries: <a href="mailto:hello@mortea.ca">hello@mortea.ca</a></p>
+              <p>Professional support: <a href="mailto:pro@mortea.ca">pro@mortea.ca</a></p>
+            </div>
+          </div>
+          <div class="contact-method">
+            <div class="contact-icon">📸</div>
+            <div>
+              <h4>Instagram</h4>
+              <p><a href="https://instagram.com/mortea.ca" target="_blank" rel="noopener">@mortea.ca</a> — DM us for quick questions</p>
+            </div>
+          </div>
+          <div class="contact-method">
+            <div class="contact-icon">🌍</div>
+            <div>
+              <h4>Location</h4>
+              <p>Montréal, Québec, Canada<br>Serving professionals worldwide</p>
+            </div>
+          </div>
+        </div>
+        <div class="contact-card">
+          <h3 style="font-family:'Playfair Display',serif;font-size:22px;margin-bottom:14px">Quick links</h3>
+          <div style="display:grid;gap:10px">
+            <a href="professional-onboarding.html" class="btn secondary" style="display:flex;justify-content:space-between;align-items:center;border-radius:16px;padding:12px 16px;font-size:14px">Join as a professional <span>→</span></a>
+            <a href="pricing.html" class="btn secondary" style="display:flex;justify-content:space-between;align-items:center;border-radius:16px;padding:12px 16px;font-size:14px">How it works <span>→</span></a>
+            <a href="provider-dashboard.html" class="btn secondary" style="display:flex;justify-content:space-between;align-items:center;border-radius:16px;padding:12px 16px;font-size:14px">Professional dashboard <span>→</span></a>
+            <a href="blog.html" class="btn secondary" style="display:flex;justify-content:space-between;align-items:center;border-radius:16px;padding:12px 16px;font-size:14px">Beauty Journal <span>→</span></a>
+          </div>
+        </div>
+      </div>
+      <!-- Contact form -->
+      <div class="contact-card">
+        <div class="eyebrow" style="margin-bottom:14px">Send a message</div>
+        <h2 style="font-family:'Playfair Display',serif;font-size:clamp(26px,3vw,36px);margin-bottom:6px">How can we help?</h2>
+        <p style="color:var(--muted);font-size:14px;margin-bottom:20px">Fill in the form and we'll get back to you within 24 hours.</p>
+        <div class="form-grid">
+          <div>
+            <label class="field-label" for="contactName">Your name *</label>
+            <input class="input" id="contactName" placeholder="Sophie Martin" required>
+          </div>
+          <div>
+            <label class="field-label" for="contactEmail">Email address *</label>
+            <input class="input" id="contactEmail" type="email" placeholder="you@example.com" required>
+          </div>
+          <div>
+            <label class="field-label" for="contactType">I am a</label>
+            <select class="input" id="contactType" style="cursor:pointer">
+              <option value="client">Client looking for beauty services</option>
+              <option value="professional">Beauty professional</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <div>
+            <label class="field-label" for="contactSubject">Subject *</label>
+            <input class="input" id="contactSubject" placeholder="Question about my profile, booking issue…" required>
+          </div>
+          <div>
+            <label class="field-label" for="contactMessage">Message *</label>
+            <textarea class="input textarea" id="contactMessage" placeholder="Tell us how we can help…" required></textarea>
+          </div>
+          <button class="btn primary" id="btnContact" onclick="submitContact()" style="padding:15px">Send message →</button>
+          <div class="success-msg" id="contactSuccess">✓ Message sent! We'll get back to you within 24 hours.</div>
+          <p id="contactError" style="font-size:14px;color:#e8aaaa;display:none"></p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+<footer class="footer"><b>Mortéa</b><span>Contact us · hello@mortea.ca</span></footer>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase-config.js"></script>
+<script>
+async function submitContact() {
+  const btn = document.getElementById('btnContact');
+  const err = document.getElementById('contactError');
+  const name    = document.getElementById('contactName').value.trim();
+  const email   = document.getElementById('contactEmail').value.trim();
+  const subject = document.getElementById('contactSubject').value.trim();
+  const message = document.getElementById('contactMessage').value.trim();
+  if (!name||!email||!subject||!message) { err.textContent='Please fill in all required fields.'; err.style.display='block'; return; }
+  btn.textContent='Sending…'; btn.disabled=true; err.style.display='none';
+  // Save to Supabase contact_messages table (create it if needed)
+  try {
+    await supabaseClient.from('contact_messages').insert([{
+      name, email,
+      type:    document.getElementById('contactType').value,
+      subject, message,
+      created_at: new Date().toISOString()
+    }]);
+    document.getElementById('contactSuccess').style.display='block';
+    document.getElementById('contactName').value='';
+    document.getElementById('contactEmail').value='';
+    document.getElementById('contactSubject').value='';
+    document.getElementById('contactMessage').value='';
+  } catch(e) {
+    // Fallback: open email client
+    window.location.href=`mailto:hello@mortea.ca?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent('From: '+name+' ('+email+')\n\n'+message)}`;
+  }
+  btn.textContent='Send message →'; btn.disabled=false;
+}
+</script>
+<script src="mortea-ui.js"></script>
+</body>
+</html>
