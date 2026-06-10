@@ -44,11 +44,14 @@
 
 <nav class="nav">
   <a class="brand" href="index.html">Mortéa</a>
-  <div class="nav-links">
+  <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="nav-links" id="navLinks">
     <a href="discover.html">Discover</a>
     <a href="map.html">Map</a>
     <a href="professional-onboarding.html">Professionals</a>
-    <a href="pricing.html">Memberships</a>
+    <a href="pricing.html">How it works</a>
     <a href="blog.html">Journal</a>
     <a href="login.html" id="navAuthLink">Access</a>
     <a class="lang" href="fr/index.html">FR</a>
@@ -79,8 +82,6 @@
       <div class="sp-stat"><div class="num" id="spCities">—</div><div class="lbl">Cities covered</div></div>
       <div class="sp-divider"></div>
       <div class="sp-stat"><div class="num" id="spCountries">—</div><div class="lbl">Countries</div></div>
-      <div class="sp-divider"></div>
-      <div class="sp-stat"><div class="num">5</div><div class="lbl">Day free trial</div></div>
     </div>
   </div>
   <div class="hero-panel">
@@ -115,6 +116,51 @@
     <div class="card">
       <h3>Reviews &amp; trust</h3>
       <p>Verified client reviews on every profile build credibility and help clients choose with confidence.</p>
+    </div>
+  </div>
+</section>
+
+<!-- How it works -->
+<section class="section" style="padding-top:0">
+  <div class="eyebrow">How it works</div>
+  <h2>Discovery made simple.</h2>
+  <p class="section-intro">For clients and professionals — the experience is effortless.</p>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:34px">
+    <div style="border:1px solid var(--line);border-radius:var(--radius-lg);padding:30px;background:linear-gradient(165deg,rgba(255,255,255,.055),rgba(255,255,255,.015))">
+      <div class="eyebrow" style="margin-bottom:20px">For clients</div>
+      <div style="display:grid;gap:0">
+        <div style="display:flex;align-items:flex-start;gap:14px;padding:14px 0;border-bottom:1px solid var(--line)">
+          <div style="width:36px;height:36px;border-radius:50%;border:1px solid rgba(217,183,162,.35);background:rgba(217,183,162,.08);display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:800;color:var(--champagne);flex-shrink:0">1</div>
+          <div><strong style="font-size:15px;display:block;margin-bottom:3px">Search by service or city</strong><span style="font-size:13px;color:var(--muted)">Filter by category, location, and specialty to find the right expert.</span></div>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:14px;padding:14px 0;border-bottom:1px solid var(--line)">
+          <div style="width:36px;height:36px;border-radius:50%;border:1px solid rgba(217,183,162,.35);background:rgba(217,183,162,.08);display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:800;color:var(--champagne);flex-shrink:0">2</div>
+          <div><strong style="font-size:15px;display:block;margin-bottom:3px">Browse portfolios &amp; reviews</strong><span style="font-size:13px;color:var(--muted)">See real work, client reviews, and social portfolios before choosing.</span></div>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:14px;padding:14px 0">
+          <div style="width:36px;height:36px;border-radius:50%;border:1px solid rgba(217,183,162,.35);background:rgba(217,183,162,.08);display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:800;color:var(--champagne);flex-shrink:0">3</div>
+          <div><strong style="font-size:15px;display:block;margin-bottom:3px">Book &amp; pay securely</strong><span style="font-size:13px;color:var(--muted)">Instant booking with secure Stripe payments in your local currency.</span></div>
+        </div>
+      </div>
+      <div style="margin-top:20px"><a class="btn primary btn sm" href="discover.html">Find an expert</a></div>
+    </div>
+    <div style="border:1px solid rgba(217,183,162,.25);border-radius:var(--radius-lg);padding:30px;background:linear-gradient(165deg,rgba(217,183,162,.10),rgba(255,255,255,.015))">
+      <div class="eyebrow" style="margin-bottom:20px">For professionals</div>
+      <div style="display:grid;gap:0">
+        <div style="display:flex;align-items:flex-start;gap:14px;padding:14px 0;border-bottom:1px solid var(--line)">
+          <div style="width:36px;height:36px;border-radius:50%;border:1px solid rgba(217,183,162,.35);background:rgba(217,183,162,.08);display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:800;color:var(--champagne);flex-shrink:0">1</div>
+          <div><strong style="font-size:15px;display:block;margin-bottom:3px">Apply in minutes</strong><span style="font-size:13px;color:var(--muted)">Free to join. Fill in your profile, add your services, and go live.</span></div>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:14px;padding:14px 0;border-bottom:1px solid var(--line)">
+          <div style="width:36px;height:36px;border-radius:50%;border:1px solid rgba(217,183,162,.35);background:rgba(217,183,162,.08);display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:800;color:var(--champagne);flex-shrink:0">2</div>
+          <div><strong style="font-size:15px;display:block;margin-bottom:3px">Get discovered globally</strong><span style="font-size:13px;color:var(--muted)">Appear in search, the map, and city pages. Clients find you directly.</span></div>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:14px;padding:14px 0">
+          <div style="width:36px;height:36px;border-radius:50%;border:1px solid rgba(217,183,162,.35);background:rgba(217,183,162,.08);display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:800;color:var(--champagne);flex-shrink:0">3</div>
+          <div><strong style="font-size:15px;display:block;margin-bottom:3px">Earn — keep 90%</strong><span style="font-size:13px;color:var(--muted)">Stripe pays you directly. We take 10% only when a booking is made.</span></div>
+        </div>
+      </div>
+      <div style="margin-top:20px"><a class="btn primary btn sm" href="professional-onboarding.html">Join for free</a></div>
     </div>
   </div>
 </section>
@@ -170,40 +216,76 @@
 
 <section class="section">
   <div class="eyebrow">Simple, fair pricing</div>
-  <h2>Free to join. 10% per booking.</h2>
-  <p class="section-intro">No subscriptions. No setup fees. Mortéa is free for beauty professionals. We only take 10% when a client books — you keep 90%.</p>
-  <div class="grid pricing">
-    <div class="price">
-      <h3>Independent</h3>
-      <div><strong>$10</strong><span>/month</span></div>
-      <ul><li>Solo profile</li><li>Social links</li><li>Discovery listing</li><li>5-day free trial</li></ul>
-      <div style="margin-top:20px"><a class="btn secondary btn sm" href="pricing.html">Get started</a></div>
+  <h2>Free to join.<br><em style="font-style:italic;color:var(--rose)">10%</em> per booking.</h2>
+  <p class="section-intro">No subscriptions. No setup fees. Mortéa is completely free for beauty professionals — we only earn when you earn. 10% of each booking. You keep 90%.</p>
+  <div class="two" style="margin-top:34px;gap:22px;align-items:start;max-width:900px">
+    <div style="border:1px solid var(--line);border-radius:var(--radius-lg);padding:32px;background:linear-gradient(165deg,rgba(255,255,255,.07),rgba(255,255,255,.02));text-align:center">
+      <div class="eyebrow" style="margin-bottom:14px">Our fee</div>
+      <div style="font-family:'Playfair Display',serif;font-size:72px;line-height:1;color:var(--sand)">10%</div>
+      <p style="color:var(--muted);font-size:15px;margin:10px 0 20px">of each booking through Mortéa</p>
+      <div style="background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:20px;padding:18px;text-align:left">
+        <div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--line);font-size:14px"><span style="color:var(--muted)">Client pays</span><strong style="color:var(--sand)">$100</strong></div>
+        <div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--line);font-size:14px"><span style="color:var(--muted)">Mortéa fee</span><span style="color:var(--rose)">−$10</span></div>
+        <div style="display:flex;justify-content:space-between;padding:10px 0;font-size:16px"><span style="color:var(--muted)">You receive</span><strong style="color:#a8e0a8;font-size:18px">$90</strong></div>
+      </div>
     </div>
-    <div class="price" style="border-color:rgba(217,183,162,.35);background:linear-gradient(165deg,rgba(217,183,162,.12),rgba(255,255,255,.025))">
-      <h3 style="color:var(--sand)">Professional</h3>
-      <div><strong>$35</strong><span>/month</span></div>
-      <ul><li>Premium clinic or studio profile</li><li>Map discovery placement</li><li>Reviews and booking flow</li><li>Dashboard &amp; stats</li><li>5-day free trial</li></ul>
-      <div style="margin-top:20px"><a class="btn primary btn sm" href="professional-onboarding.html">Apply now</a></div>
-    </div>
-    <div class="price">
-      <h3>Creator</h3>
-      <div><strong>$30</strong><span>/month</span></div>
-      <ul><li>Portfolio profile</li><li>Featured content sections</li><li>Instagram/TikTok traffic</li><li>5-day free trial</li></ul>
-      <div style="margin-top:20px"><a class="btn secondary btn sm" href="pricing.html">Join as creator</a></div>
+    <div>
+      <div class="card" style="margin-bottom:16px">
+        <h3>Everything included — free</h3>
+        <div style="display:grid;gap:9px;margin-top:14px;font-size:14px;color:var(--champagne)">
+          <div>✓ Public profile on Mortéa discover &amp; map</div>
+          <div>✓ Instagram, TikTok, website &amp; booking links</div>
+          <div>✓ Set your own service prices</div>
+          <div>✓ Secure upfront client payments via Stripe</div>
+          <div>✓ Automatic local currency conversion</div>
+          <div>✓ Booking requests &amp; inbox management</div>
+          <div>✓ Client reviews &amp; star ratings</div>
+          <div>✓ Verified profile badge</div>
+        </div>
+      </div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <a class="btn primary" href="professional-onboarding.html">Join for free</a>
+        <a class="btn secondary" href="pricing.html">How it works</a>
+      </div>
     </div>
   </div>
 </section>
 
-<footer class="footer">
-  <b>Mortéa</b>
-  <span>Global luxury beauty discovery · Montréal, Canada</span>
-  <span style="display:flex;gap:14px;flex-wrap:wrap;justify-content:center">
-    <a href="about.html" style="color:var(--muted)">About</a>
-    <a href="blog.html" style="color:var(--muted)">Journal</a>
-    <a href="contact.html" style="color:var(--muted)">Contact</a>
-    <a href="terms.html" style="color:var(--muted)">Terms</a>
-    <a href="privacy.html" style="color:var(--muted)">Privacy</a>
-  </span>
+<footer class="footer-full">
+  <div class="footer-grid">
+    <div class="footer-brand-col">
+      <a class="brand" href="index.html" style="font-size:26px">Mortéa</a>
+      <p style="color:var(--muted);font-size:13px;line-height:1.7;margin-top:10px;max-width:220px">Global luxury beauty, wellness &amp; aesthetics discovery. Curated professionals worldwide.</p>
+      <a class="lang" href="fr/index.html" style="display:inline-block;margin-top:14px;font-size:11px">FR · Français</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Discover</div>
+      <a href="discover.html">Search professionals</a>
+      <a href="map.html">Map view</a>
+      <a href="montreal.html">Montréal</a>
+      <a href="dubai.html">Dubai</a>
+      <a href="paris.html">Paris</a>
+      <a href="london.html">London</a>
+      <a href="new-york.html">New York</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Professionals</div>
+      <a href="professional-onboarding.html">Join for free</a>
+      <a href="pricing.html">How it works</a>
+      <a href="login.html">Dashboard login</a>
+      <a href="blog.html">Journal</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Company</div>
+      <a href="about.html">About Mortéa</a>
+      <a href="contact.html">Contact</a>
+      <a href="terms.html">Terms of Service</a>
+      <a href="privacy.html">Privacy Policy</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Mortéa — Global luxury beauty discovery · Montréal, Canada</span>
+  </div>
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>

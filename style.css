@@ -453,7 +453,7 @@ body.mortea-luxury {
   font-size: 15px;
 }
 
-/* ── Footer ── */
+/* ── Footer (legacy single-line) ── */
 .footer {
   padding: 40px 6vw;
   border-top: 1px solid var(--line);
@@ -472,6 +472,67 @@ body.mortea-luxury {
   font-weight: normal;
   letter-spacing: .04em;
 }
+
+/* ── Footer full ── */
+.footer-full {
+  border-top: 1px solid var(--line);
+  padding: 56px 6vw 28px;
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1fr;
+  gap: 40px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid var(--line);
+}
+.footer-brand-col {}
+.footer-col {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.footer-col-title {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: .18em;
+  color: var(--rose);
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.footer-col a {
+  font-size: 13px;
+  color: var(--muted);
+  transition: color var(--transition);
+}
+.footer-col a:hover { color: var(--champagne); }
+.footer-bottom {
+  padding-top: 20px;
+  font-size: 12px;
+  color: #7a6a60;
+  text-align: center;
+}
+
+/* ── Hamburger nav ── */
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 6px;
+  background: none;
+  border: none;
+}
+.nav-toggle span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--champagne);
+  border-radius: 2px;
+  transition: all var(--transition);
+}
+.nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-toggle.open span:nth-child(2) { opacity: 0; }
+.nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
 /* ── Inner Page Hero ── */
 .page-hero {
@@ -526,8 +587,10 @@ body.mortea-luxury {
 
 /* ── Responsive ── */
 @media (max-width: 900px) {
-  .nav { align-items: flex-start; flex-wrap: wrap; gap: 12px; padding: 16px 5vw; }
-  .nav-links { gap: 12px; flex-wrap: wrap; }
+  .nav { align-items: center; gap: 12px; padding: 14px 5vw; }
+  .nav-links { display: none; flex-direction: column; gap: 10px; width: 100%; padding: 14px 0 6px; }
+  .nav-links.open { display: flex; }
+  .nav-toggle { display: flex; }
   .hero, .discovery, .two { grid-template-columns: 1fr; }
   .hero { padding-top: 48px; min-height: auto; }
   .hero-panel { min-height: 480px; }
@@ -535,11 +598,13 @@ body.mortea-luxury {
   .cards, .pricing { grid-template-columns: 1fr; }
   .section { padding: 60px 5vw; }
   .hide-mobile { display: none; }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 28px; }
+  .footer-brand-col { grid-column: 1 / -1; }
 }
 @media (max-width: 560px) {
   .brand { font-size: 22px; }
   .nav { padding: 14px 4vw; }
-  .nav-links { font-size: 12px; gap: 10px; }
+  .nav-links { font-size: 13px; gap: 12px; }
   .hero { padding: 36px 4vw 44px; }
   .hero h1 { font-size: 46px; }
   .page-hero { padding: 52px 4vw 20px; }
@@ -549,5 +614,6 @@ body.mortea-luxury {
   .result { grid-template-columns: 1fr; }
   .thumb { height: 110px; }
   .footer { flex-direction: column; gap: 10px; text-align: center; }
+  .footer-grid { grid-template-columns: 1fr; }
   .hero-panel { min-height: 400px; }
 }

@@ -51,6 +51,25 @@ document.addEventListener('DOMContentLoaded', () => {
     backTop.style.display = window.scrollY > 400 ? 'flex' : 'none';
   }, { passive: true });
 
+  // ── Mobile hamburger menu ─────────────────────────────────
+  const navToggle = document.getElementById('navToggle');
+  const navLinks  = document.getElementById('navLinks');
+  if (navToggle && navLinks) {
+    navToggle.addEventListener('click', () => {
+      const open = navLinks.classList.toggle('open');
+      navToggle.classList.toggle('open', open);
+      navToggle.setAttribute('aria-expanded', open);
+    });
+    // Close on outside click
+    document.addEventListener('click', (e) => {
+      if (!navToggle.contains(e.target) && !navLinks.contains(e.target)) {
+        navLinks.classList.remove('open');
+        navToggle.classList.remove('open');
+        navToggle.setAttribute('aria-expanded', 'false');
+      }
+    });
+  }
+
   // ── Global search shortcut (Ctrl+K or Cmd+K) ─────────────
   document.addEventListener('keydown', (e) => {
     if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
@@ -74,6 +93,56 @@ function declineCookies() {
   localStorage.setItem('mortea_cookies_accepted', '0');
   document.getElementById('cookieBanner')?.remove();
 }
+
+// ── Upgrade legacy footers ────────────────────────────────────
+(function upgradeFooter() {
+  const existing = document.querySelector('footer.footer');
+  if (!existing) return;
+  const b = location.pathname.includes('/fr/') ? '../' : '';
+  const isFr = location.pathname.includes('/fr/');
+  const html = `
+<footer class="footer-full">
+  <div class="footer-grid">
+    <div class="footer-brand-col">
+      <a class="brand" href="${b}index.html" style="font-size:26px">Mortéa</a>
+      <p style="color:var(--muted);font-size:13px;line-height:1.7;margin-top:10px;max-width:220px">Global luxury beauty, wellness &amp; aesthetics discovery. Curated professionals worldwide.</p>
+      ${isFr
+        ? `<a class="lang" href="${b}index.html" style="display:inline-block;margin-top:14px;font-size:11px">EN · English</a>`
+        : `<a class="lang" href="fr/index.html" style="display:inline-block;margin-top:14px;font-size:11px">FR · Français</a>`
+      }
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Discover</div>
+      <a href="${b}discover.html">Search professionals</a>
+      <a href="${b}map.html">Map view</a>
+      <a href="${b}montreal.html">Montréal</a>
+      <a href="${b}dubai.html">Dubai</a>
+      <a href="${b}paris.html">Paris</a>
+      <a href="${b}london.html">London</a>
+      <a href="${b}new-york.html">New York</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Professionals</div>
+      <a href="${b}professional-onboarding.html">Join for free</a>
+      <a href="${b}pricing.html">How it works</a>
+      <a href="${b}login.html">Dashboard login</a>
+      <a href="${b}blog.html">Journal</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Company</div>
+      <a href="${b}about.html">About Mortéa</a>
+      <a href="${b}contact.html">Contact</a>
+      <a href="${b}terms.html">Terms of Service</a>
+      <a href="${b}privacy.html">Privacy Policy</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Mortéa — Global luxury beauty discovery · Montréal, Canada</span>
+  </div>
+</footer>`;
+  existing.insertAdjacentHTML('afterend', html);
+  existing.remove();
+})();
 
 // ── Share provider profile ────────────────────────────────────
 function shareProfile(name, url) {
