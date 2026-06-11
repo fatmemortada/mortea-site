@@ -94,6 +94,62 @@ function declineCookies() {
   document.getElementById('cookieBanner')?.remove();
 }
 
+// ── Country auto-detect → city suggestion banner ─────────────
+(async function cityDetect() {
+  if (localStorage.getItem('mortea_city_dismissed')) return;
+
+  const CITY_MAP = {
+    AE: { name: 'Dubai',     page: 'dubai.html',     flag: '🇦🇪' },
+    SA: { name: 'Riyadh',    page: 'riyadh.html',    flag: '🇸🇦' },
+    LB: { name: 'Beirut',    page: 'beirut.html',    flag: '🇱🇧' },
+    FR: { name: 'Paris',     page: 'paris.html',     flag: '🇫🇷' },
+    GB: { name: 'London',    page: 'london.html',    flag: '🇬🇧' },
+    CA: { name: 'Montréal',  page: 'montreal.html',  flag: '🇨🇦' },
+    US: { name: 'New York',  page: 'new-york.html',  flag: '🇺🇸' },
+    KR: { name: 'Seoul',     page: 'seoul.html',     flag: '🇰🇷' },
+    IT: { name: 'Milan',     page: 'milan.html',     flag: '🇮🇹' },
+  };
+
+  try {
+    const res  = await fetch('https://ipapi.co/json/');
+    const data = await res.json();
+    const city = CITY_MAP[data.country_code];
+    if (!city) return;
+
+    const base    = location.pathname.includes('/fr/') ? '../' : '';
+    const citySlug = city.page.replace('.html', '');
+    if (location.pathname.includes(citySlug)) return; // already on that city page
+
+    const bar = document.createElement('div');
+    bar.id = 'cityBanner';
+    bar.style.cssText = [
+      'display:flex', 'align-items:center', 'justify-content:center', 'gap:16px',
+      'padding:10px 6vw', 'background:rgba(217,183,162,.07)',
+      'border-bottom:1px solid rgba(234,214,198,.12)',
+      'font-size:13px', 'color:var(--champagne)', 'position:relative',
+      'flex-wrap:wrap', 'gap:10px'
+    ].join(';');
+
+    bar.innerHTML = `
+      <span>${city.flag} Mortéa covers <strong style="color:var(--sand)">${city.name}</strong> — beauty &amp; aesthetics professionals near you.</span>
+      <a href="${base}${city.page}"
+         style="background:var(--sand);color:#130d0a;border-radius:999px;padding:6px 16px;font-size:12px;font-weight:700;white-space:nowrap;text-decoration:none">
+        Explore ${city.name}
+      </a>
+      <button onclick="
+        localStorage.setItem('mortea_city_dismissed','1');
+        document.getElementById('cityBanner').remove();
+      " style="position:absolute;right:16px;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--muted);font-size:18px;cursor:pointer;line-height:1;padding:4px" aria-label="Dismiss">×</button>`;
+
+    const nav = document.querySelector('.nav, nav');
+    const marquee = document.querySelector('.marquee-wrap');
+    const anchor = marquee || nav;
+    if (anchor) anchor.insertAdjacentElement('afterend', bar);
+    else document.body.prepend(bar);
+
+  } catch (_) { /* silently fail — never break the page */ }
+})();
+
 // ── Upgrade legacy footers ────────────────────────────────────
 (function upgradeFooter() {
   const existing = document.querySelector('footer.footer');
