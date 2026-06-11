@@ -91,15 +91,71 @@
     </div>
   </section>
 </main>
-<footer class="footer">
-  <b>Mortéa</b>
-  <div style="display:flex;gap:18px;flex-wrap:wrap;align-items:center">
-    <a href="about.html" style="font-size:13px;color:var(--muted)">About</a>
-    <a href="blog.html" style="font-size:13px;color:var(--muted)">Journal</a>
-    <a href="contact.html" style="font-size:13px;color:var(--muted)">Contact</a>
-    <a href="terms.html" style="font-size:13px;color:var(--muted)">Terms</a>
-    <a href="privacy.html" style="font-size:13px;color:var(--muted)">Privacy</a>
-    <span style="font-size:13px;color:#7a6a60">Beauty &amp; aesthetics discovery in Montréal.</span>
+<footer class="footer-full">
+  <div class="footer-grid">
+    <div class="footer-brand-col">
+      <a class="brand" href="index.html" style="font-size:26px">Mortéa</a>
+      <p style="color:var(--muted);font-size:13px;line-height:1.7;margin-top:10px;max-width:240px">Global luxury beauty, wellness &amp; aesthetics discovery. Curated professionals worldwide.</p>
+      <div style="margin-top:16px;display:flex;gap:12px;align-items:center">
+        <a class="lang" href="fr/index.html" style="font-size:11px">FR</a>
+        <a class="lang" href="ar/index.html" style="font-size:11px">AR</a>
+      </div>
+      <div style="margin-top:18px">
+        <div style="font-size:11px;text-transform:uppercase;letter-spacing:.14em;color:var(--rose);font-weight:700;margin-bottom:8px">Newsletter</div>
+        <form class="newsletter-form" onsubmit="event.preventDefault();var e=this.querySelector('input');if(e.value){showToast('Welcome to Mortéa! ✨','success');e.value=''}">
+          <input class="input" type="email" placeholder="Your email" style="font-size:13px;padding:10px 14px" required aria-label="Newsletter email">
+          <button class="btn primary sm" type="submit" style="white-space:nowrap">Join</button>
+        </form>
+        <div style="margin-top:14px;display:flex;gap:10px;align-items:center">
+          <a href="https://instagram.com/mortea.beauty" target="_blank" rel="noopener" style="font-size:13px;color:var(--muted);transition:color .15s" onmouseover="this.style.color='var(--champagne)'" onmouseout="this.style.color='var(--muted)'">Instagram</a>
+          <a href="https://tiktok.com/@mortea.beauty" target="_blank" rel="noopener" style="font-size:13px;color:var(--muted);transition:color .15s" onmouseover="this.style.color='var(--champagne)'" onmouseout="this.style.color='var(--muted)'">TikTok</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Discover</div>
+      <a href="discover.html">Search professionals</a>
+      <a href="map.html">Map view</a>
+      <a href="montreal.html">Montréal</a>
+      <a href="dubai.html">Dubai</a>
+      <a href="paris.html">Paris</a>
+      <a href="london.html">London</a>
+      <a href="new-york.html">New York</a>
+      <a href="riyadh.html">Riyadh</a>
+      <a href="seoul.html">Seoul</a>
+      <a href="milan.html">Milan</a>
+      <a href="beirut.html">Beirut</a>
+      <a href="toronto.html">Toronto</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">For Professionals</div>
+      <a href="professional-onboarding.html">Join for free</a>
+      <a href="pricing.html">How it works</a>
+      <a href="login.html">Dashboard login</a>
+      <a href="provider.html">Provider resources</a>
+      <a href="blog.html">Journal</a>
+      <a href="referral.html">Refer a professional</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Company</div>
+      <a href="about.html">About Mortéa</a>
+      <a href="contact.html">Contact us</a>
+      <a href="blog.html">Blog</a>
+      <a href="reviews.html">Reviews</a>
+      <a href="terms.html">Terms of Service</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="beta.html">Beta program</a>
+    </div>
+  </div>
+  <div class="security-strip">
+    <div class="security-badge"><span class="sb-icon">🔒</span> Stripe Secure Payments</div>
+    <div class="security-badge"><span class="sb-icon">🌍</span> Local Currency Support</div>
+    <div class="security-badge"><span class="sb-icon">⭐</span> Verified Reviews</div>
+    <div class="security-badge"><span class="sb-icon">🛡️</span> Privacy First</div>
+    <div class="security-badge"><span class="sb-icon">📱</span> Mobile Friendly</div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Mortéa — Global luxury beauty discovery · Montréal, Canada · All rights reserved.</span>
   </div>
 </footer>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
