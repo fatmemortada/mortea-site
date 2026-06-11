@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="مورتيا — منصة اكتشاف الجمال الفاخر العالمية. ابحث عن صالونات التجميل، عيادات الإجراءات الجمالية، سبا طبية، فنانات الرموش والأظافر حول العالم.">
+  <link rel="alternate" hreflang="en" href="https://www.mortea.ca/index.html">
+  <link rel="alternate" hreflang="fr" href="https://www.mortea.ca/fr/index.html">
+  <link rel="alternate" hreflang="ar" href="https://www.mortea.ca/ar/index.html">
+  <link rel="alternate" hreflang="x-default" href="https://www.mortea.ca/index.html">
+  <title>مورتيا — اكتشاف الجمال الفاخر العالمي</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Tajawal:wght@400;500;700&family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="../mobile.css">
+  <link rel="stylesheet" href="style-rtl.css">
+  <style>
+    .social-proof-bar { display:flex; align-items:center; gap:24px; flex-wrap:wrap; margin-top:32px; padding-top:28px; border-top:1px solid var(--line); }
+    .sp-stat { text-align:center; }
+    .sp-stat .num { font-family:'Cairo',serif; font-size:28px; color:var(--sand); }
+    .sp-stat .lbl { font-size:12px; color:var(--muted); margin-top:2px; }
+    .sp-divider { width:1px; height:36px; background:var(--line); }
+    .trust-badge { display:inline-flex; align-items:center; gap:7px; border:1px solid rgba(162,217,162,.28); border-radius:999px; padding:8px 14px; background:rgba(162,217,162,.05); color:#a8e0a8; font-size:12px; font-weight:700; }
+    .marquee-wrap { overflow:hidden; position:relative; margin-top:0; padding:18px 0; border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+    .marquee-wrap::before,.marquee-wrap::after { content:''; position:absolute; top:0; bottom:0; width:80px; z-index:2; }
+    .marquee-wrap::before { right:0; background:linear-gradient(270deg,var(--noir),transparent); }
+    .marquee-wrap::after  { left:0;  background:linear-gradient(90deg,var(--noir),transparent); }
+    .marquee-track { display:flex; gap:22px; width:max-content; animation:marquee 28s linear infinite reverse; }
+    .marquee-track:hover { animation-play-state:paused; }
+    @keyframes marquee { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+    .marquee-item { white-space:nowrap; font-size:13px; color:var(--champagne); padding:7px 16px; border:1px solid var(--line); border-radius:999px; font-family:'Tajawal',sans-serif; }
+  </style>
+</head>
+<body class="mortea-luxury">
+
+<nav class="nav">
+  <a class="brand" href="../index.html">Mortéa</a>
+  <button class="nav-toggle" id="navToggle" aria-label="القائمة" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="nav-links" id="navLinks">
+    <a href="discover.html">اكتشف</a>
+    <a href="../map.html">الخريطة</a>
+    <a href="professional-onboarding.html">المحترفون</a>
+    <a href="../pricing.html">كيف يعمل</a>
+    <a href="../blog.html">المدونة</a>
+    <a href="../login.html">الدخول</a>
+    <a class="lang" href="../index.html">EN</a>
+    <a class="lang" href="../fr/index.html">FR</a>
+    <a class="pill" href="professional-onboarding.html">انضم</a>
+  </div>
+</nav>
+
+<div class="marquee-wrap">
+  <div class="marquee-track" id="marqueeTrack"></div>
+</div>
+
+<header class="hero">
+  <div>
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;flex-wrap:wrap;flex-direction:row-reverse">
+      <div class="trust-badge">⬤ <span id="liveCount">—</span> محترف مسجّل</div>
+      <div class="eyebrow" style="margin:0">الجمال والعافية والإجراءات الجمالية حول العالم</div>
+    </div>
+    <h1>منصة الجمال الفاخرة<br><em style="font-style:normal;color:var(--rose)">العالمية.</em></h1>
+    <p class="lead">مورتيا تربطك بمحترفي الجمال والعيادات الجمالية المختارة — صالونات، متخصصون في العناية بالبشرة، فنانات الرموش والأظافر، سبا الرأس الياباني، عيادات البوتوكس، عيادات الليزر، سبا طبية، والمزيد في جميع أنحاء العالم.</p>
+    <div class="hero-actions">
+      <a class="btn primary" href="discover.html">استكشف بالقرب منك</a>
+      <a class="btn secondary" href="professional-onboarding.html">انضم كمحترف</a>
+    </div>
+    <div class="social-proof-bar">
+      <div class="sp-stat"><div class="num" id="spProviders">—</div><div class="lbl">محترف انضم</div></div>
+      <div class="sp-divider"></div>
+      <div class="sp-stat"><div class="num" id="spCities">—</div><div class="lbl">مدينة مشمولة</div></div>
+      <div class="sp-divider"></div>
+      <div class="sp-stat"><div class="num" id="spCountries">—</div><div class="lbl">دولة</div></div>
+    </div>
+  </div>
+  <div class="hero-panel">
+    <div class="map-glow"></div>
+    <span class="dot one"></span>
+    <span class="dot two"></span>
+    <span class="dot three"></span>
+    <div class="search-card">
+      <div class="eyebrow">ابحث حسب الخدمة أو المدينة أو موقعك الحالي</div>
+      <div class="search-row">
+        <input class="input" id="heroServiceInput" placeholder="بوتوكس، رموش، فيشل، سبا الرأس...">
+        <input class="input" id="heroCityInput" placeholder="بالقرب مني، دبي، بيروت، الرياض...">
+        <button class="btn primary" id="heroSearchBtn">بحث</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="section">
+  <div class="eyebrow">أفضل من الإعلانات العامة</div>
+  <h2>بحث مصمّم للاكتشاف المباشر.</h2>
+  <p class="section-intro">عندما يبحث العميل عن خدمة على مورتيا، يظهر المحترف أو العيادة المناسبة مباشرةً — مع الموقع والمحفظة وروابط انستغرام/تيك توك والمراجعات وإمكانية الحجز.</p>
+  <div class="grid cards">
+    <div class="card">
+      <h3>الاكتشاف عبر الخريطة</h3>
+      <p>يجد العملاء المحترفين والعيادات القريبة في أي مكان في العالم من خلال تجربة خريطة وبطاقات متميزة.</p>
+    </div>
+    <div class="card">
+      <h3>المحفظة الاجتماعية</h3>
+      <p>يربط كل ملف شخصي بانستغرام وتيك توك والأعمال المرئية حتى يتمكن العملاء من الوثوق بالمحترف قبل الحجز.</p>
+    </div>
+    <div class="card">
+      <h3>المراجعات والثقة</h3>
+      <p>مراجعات العملاء الموثقة على كل ملف شخصي تبني المصداقية وتساعد العملاء على الاختيار بثقة.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0">
+  <div class="eyebrow">كيف يعمل</div>
+  <h2>اكتشاف بسيط.</h2>
+  <p class="section-intro">للعملاء وللمحترفين — التجربة سلسة وبديهية.</p>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:34px">
+    <div style="border:1px solid var(--line);border-radius:var(--radius-lg);padding:30px;background:linear-gradient(165deg,rgba(255,255,255,.055),rgba(255,255,255,.015))">
+      <div class="eyebrow" style="margin-bottom:20px">للعملاء</div>
+      <div style="display:grid;gap:0">
+        <div style="display:flex;align-items:flex-start;gap:14px;padding:14px 0;border-bottom:1px solid var(--line);flex-direction:row-reverse">
+          <div style="width:36px;height:36px;border-radius:50%;border:1px solid rgba(217,183,162,.35);background:rgba(217,183,162,.08);display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:800;color:var(--champagne);flex-shrink:0">١</div>
+          <div><strong style="font-size:15px;display:block;margin-bottom:3px">ابحث حسب الخدمة أو المدينة</strong><span style="font-size:13px;color:var(--muted)">صفّ حسب الفئة والموقع والتخصص للعثور على الخبير المناسب.</span></div>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:14px;padding:14px 0;border-bottom:1px solid var(--line);flex-direction:row-reverse">
+          <div style="width:36px;height:36px;border-radius:50%;border:1px solid rgba(217,183,162,.35);background:rgba(217,183,162,.08);display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:800;color:var(--champagne);flex-shrink:0">٢</div>
+          <div><strong style="font-size:15px;display:block;margin-bottom:3px">تصفّح المحافظ والمراجعات</strong><span style="font-size:13px;color:var(--muted)">شاهد الأعمال الحقيقية ومراجعات العملاء والمحافظ الاجتماعية قبل الاختيار.</span></div>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:14px;padding:14px 0;flex-direction:row-reverse">
+          <div style="width:36px;height:36px;border-radius:50%;border:1px solid rgba(217,183,162,.35);background:rgba(217,183,162,.08);display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:800;color:var(--champagne);flex-shrink:0">٣</div>
+          <div><strong style="font-size:15px;display:block;margin-bottom:3px">احجز وادفع بأمان</strong><span style="font-size:13px;color:var(--muted)">حجز فوري مع دفع آمن عبر Stripe بعملتك المحلية.</span></div>
+        </div>
+      </div>
+      <div style="margin-top:20px"><a class="btn primary btn sm" href="discover.html">ابحث عن خبير</a></div>
+    </div>
+    <div style="border:1px solid rgba(217,183,162,.25);border-radius:var(--radius-lg);padding:30px;background:linear-gradient(165deg,rgba(217,183,162,.10),rgba(255,255,255,.015))">
+      <div class="eyebrow" style="margin-bottom:20px">للمحترفين</div>
+      <div style="display:grid;gap:0">
+        <div style="display:flex;align-items:flex-start;gap:14px;padding:14px 0;border-bottom:1px solid var(--line);flex-direction:row-reverse">
+          <div style="width:36px;height:36px;border-radius:50%;border:1px solid rgba(217,183,162,.35);background:rgba(217,183,162,.08);display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:800;color:var(--champagne);flex-shrink:0">١</div>
+          <div><strong style="font-size:15px;display:block;margin-bottom:3px">سجّل في دقائق</strong><span style="font-size:13px;color:var(--muted)">الانضمام مجاني. أكمل ملفك الشخصي وأضف خدماتك وابدأ فوراً.</span></div>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:14px;padding:14px 0;border-bottom:1px solid var(--line);flex-direction:row-reverse">
+          <div style="width:36px;height:36px;border-radius:50%;border:1px solid rgba(217,183,162,.35);background:rgba(217,183,162,.08);display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:800;color:var(--champagne);flex-shrink:0">٢</div>
+          <div><strong style="font-size:15px;display:block;margin-bottom:3px">اظهر عالمياً</strong><span style="font-size:13px;color:var(--muted)">يجدك العملاء عبر البحث والخريطة وصفحات المدن. مباشرة.</span></div>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:14px;padding:14px 0;flex-direction:row-reverse">
+          <div style="width:36px;height:36px;border-radius:50%;border:1px solid rgba(217,183,162,.35);background:rgba(217,183,162,.08);display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:800;color:var(--champagne);flex-shrink:0">٣</div>
+          <div><strong style="font-size:15px;display:block;margin-bottom:3px">اكسب — احتفظ بـ 90%</strong><span style="font-size:13px;color:var(--muted)">يدفع لك Stripe مباشرة. نأخذ 10% فقط عند إتمام الحجز.</span></div>
+        </div>
+      </div>
+      <div style="margin-top:20px"><a class="btn primary btn sm" href="professional-onboarding.html">انضم مجاناً</a></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0">
+  <div class="eyebrow">محترفون حقيقيون على مورتيا</div>
+  <h2>ابحث عن خبراء الجمال بالقرب منك.</h2>
+  <p class="section-intro">محترفون حقيقيون متاحون على المنصة الآن.</p>
+  <div class="results" id="homepageProviders">
+    <div style="text-align:center;padding:30px;color:var(--muted)">جارٍ التحميل…</div>
+  </div>
+  <div style="margin-top:18px;display:flex;gap:10px;flex-wrap:wrap;flex-direction:row-reverse">
+    <a class="btn primary" href="discover.html">استكشف جميع المحترفين</a>
+    <a class="btn secondary" href="../map.html">افتح الخريطة</a>
+  </div>
+</section>
+
+<section class="section">
+  <div class="eyebrow">شبكة المدن العالمية</div>
+  <h2>متاح في هذه المدن. ينمو حول العالم.</h2>
+  <p class="section-intro">من مونتريال إلى باريس، دبي، بيروت، الرياض، لندن، سيول، طوكيو، ميلانو ونيويورك — تتوسع مورتيا مدينة تلو الأخرى.</p>
+  <div class="grid cards">
+    <div class="card"><h3><a href="dubai.html">دبي</a></h3><p>عيادات البوتوكس والليزر، سبا طبية، صالونات فاخرة، رموش، أظافر وعافية متميزة.</p></div>
+    <div class="card"><h3><a href="riyadh.html">الرياض</a></h3><p>صالونات فاخرة خاصة، عيادات الليزر، سبا طبية، عافية، بشرة وجمال الجسم.</p></div>
+    <div class="card"><h3><a href="beirut.html">بيروت</a></h3><p>حقن جمالية، عيادات إجراءات جمالية، شعر، مكياج، رموش، أظافر ومحافظ.</p></div>
+    <div class="card"><h3><a href="../paris.html">باريس</a></h3><p>عناية متطورة بالبشرة، صالونات راقية، عيادات تجميل، فيشل ووجهات جمال.</p></div>
+    <div class="card"><h3><a href="../london.html">لندن</a></h3><p>صالونات فاخرة، عيادات بوتوكس، ليزر، سبا طبية ووجهات عافية.</p></div>
+    <div class="card"><h3><a href="../montreal.html">مونتريال</a></h3><p>محترفو جمال ثنائيو اللغة، سبا طبية، استوديوهات عافية، رموش وفيشل.</p></div>
+    <div class="card"><h3><a href="../new-york.html">نيويورك</a></h3><p>عيادات بوتوكس وليزر، سبا الرأس، فنانات الرموش، سبا طبية وتقنيات أظافر.</p></div>
+    <div class="card"><h3><a href="../seoul.html">سيول</a></h3><p>عيادات عناية بالبشرة عالمية المستوى، متخصصو الجمال الكوري، بوتوكس وعلاجات الليزر.</p></div>
+    <div class="card"><h3>قادم قريباً</h3><p>طوكيو، لوس أنجلوس، الدوحة، الكويت، إسطنبول، سنغافورة والمزيد.</p></div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="eyebrow">تسعير بسيط وعادل</div>
+  <h2>الانضمام مجاني.<br><em style="font-style:normal;color:var(--rose)">10%</em> لكل حجز.</h2>
+  <p class="section-intro">لا اشتراكات. لا رسوم إعداد. مورتيا مجانية تماماً للمحترفين — نكسب فقط عندما تكسب. 10% من كل حجز. تحتفظ بـ 90%.</p>
+  <div class="two" style="margin-top:34px;gap:22px;align-items:start;max-width:900px">
+    <div style="border:1px solid var(--line);border-radius:var(--radius-lg);padding:32px;background:linear-gradient(165deg,rgba(255,255,255,.07),rgba(255,255,255,.02));text-align:center">
+      <div class="eyebrow" style="margin-bottom:14px">رسوم مورتيا</div>
+      <div style="font-family:'Cairo',serif;font-size:72px;line-height:1;color:var(--sand)">10%</div>
+      <p style="color:var(--muted);font-size:15px;margin:10px 0 20px">من كل حجز عبر مورتيا</p>
+      <div style="background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:20px;padding:18px;text-align:right">
+        <div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--line);font-size:14px"><span style="color:var(--muted)">العميل يدفع</span><strong style="color:var(--sand)">100$</strong></div>
+        <div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--line);font-size:14px"><span style="color:var(--muted)">رسوم مورتيا</span><span style="color:var(--rose)">10$−</span></div>
+        <div style="display:flex;justify-content:space-between;padding:10px 0;font-size:16px"><span style="color:var(--muted)">تستلم</span><strong style="color:#a8e0a8;font-size:18px">90$</strong></div>
+      </div>
+    </div>
+    <div>
+      <div class="card" style="margin-bottom:16px">
+        <h3>كل شيء مشمول — مجاناً</h3>
+        <div style="display:grid;gap:9px;margin-top:14px;font-size:14px;color:var(--champagne)">
+          <div>✓ ملف شخصي عام على اكتشاف مورتيا والخريطة</div>
+          <div>✓ روابط انستغرام، تيك توك، الموقع والحجز</div>
+          <div>✓ حدد أسعار خدماتك بنفسك</div>
+          <div>✓ مدفوعات آمنة من العملاء عبر Stripe</div>
+          <div>✓ تحويل العملة المحلية تلقائياً</div>
+          <div>✓ طلبات الحجز وإدارة صندوق الوارد</div>
+          <div>✓ مراجعات العملاء والتقييمات بالنجوم</div>
+          <div>✓ شارة الملف الشخصي الموثق</div>
+        </div>
+      </div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;flex-direction:row-reverse">
+        <a class="btn primary" href="professional-onboarding.html">انضم مجاناً</a>
+        <a class="btn secondary" href="../pricing.html">كيف يعمل</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer-full">
+  <div class="footer-grid">
+    <div class="footer-brand-col">
+      <a class="brand" href="../index.html" style="font-size:26px">Mortéa</a>
+      <p style="color:var(--muted);font-size:13px;line-height:1.7;margin-top:10px;max-width:220px">اكتشاف الجمال الفاخر العالمي. محترفون مختارون في جميع أنحاء العالم.</p>
+      <div style="display:flex;gap:8px;margin-top:14px;flex-wrap:wrap">
+        <a class="lang" href="../index.html" style="font-size:11px">EN</a>
+        <a class="lang" href="../fr/index.html" style="font-size:11px">FR</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">اكتشف</div>
+      <a href="discover.html">ابحث عن محترفين</a>
+      <a href="../map.html">عرض الخريطة</a>
+      <a href="dubai.html">دبي</a>
+      <a href="riyadh.html">الرياض</a>
+      <a href="beirut.html">بيروت</a>
+      <a href="../paris.html">باريس</a>
+      <a href="../london.html">لندن</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">للمحترفين</div>
+      <a href="professional-onboarding.html">انضم مجاناً</a>
+      <a href="../pricing.html">كيف يعمل</a>
+      <a href="../login.html">الدخول</a>
+      <a href="../blog.html">المدونة</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">الشركة</div>
+      <a href="../about.html">من نحن</a>
+      <a href="../contact.html">تواصل معنا</a>
+      <a href="../terms.html">شروط الخدمة</a>
+      <a href="../privacy.html">سياسة الخصوصية</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Mortéa — اكتشاف الجمال الفاخر العالمي · مونتريال، كندا</span>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../supabase-config.js"></script>
+<script src="../auth.js"></script>
+<script src="../script.js"></script>
+<script>
+  document.getElementById('heroSearchBtn').addEventListener('click', function() {
+    const svc  = document.getElementById('heroServiceInput').value.trim();
+    const city = document.getElementById('heroCityInput').value.trim();
+    const params = new URLSearchParams();
+    if (svc)  params.set('service', svc);
+    if (city) params.set('city', city);
+    window.location.href = 'discover.html' + (params.toString() ? '?' + params.toString() : '');
+  });
+  ['heroServiceInput','heroCityInput'].forEach(id =>
+    document.getElementById(id)?.addEventListener('keydown', e => {
+      if (e.key === 'Enter') document.getElementById('heroSearchBtn').click();
+    })
+  );
+
+  const marqueeItems = [
+    'عيادات البوتوكس','عيادات الليزر','سبا الرأس الياباني','فنانات الرموش','تقنيات الأظافر',
+    'سبا طبية','فيشل','مساج','نحت الجسم','مكياج','مصففو الشعر',
+    'فنانات الحواجب','ماسحات بشرة','حقن جمالية','مايكرونيدلينج','هيدرافيشل','عيادات العافية',
+    'متخصصو PRP','تجديد البشرة','استعادة الشعر','مبدعو الجمال','مكياج دائم'
+  ];
+  const track = document.getElementById('marqueeTrack');
+  if (track) {
+    const double = [...marqueeItems, ...marqueeItems];
+    track.innerHTML = double.map(i => `<span class="marquee-item">${i}</span>`).join('');
+  }
+
+  (async function() {
+    try {
+      const { data } = await supabaseClient
+        .from('professionals')
+        .select('id,business_name,category,city,country,instagram,tiktok,booking_link,photo_url,status')
+        .order('created_at', { ascending: false });
+      const all      = data || [];
+      const approved = all.filter(p => p.status === 'approved');
+      const cities   = new Set(all.map(p => p.city).filter(Boolean));
+      const countries= new Set(all.map(p => p.country).filter(Boolean));
+      document.getElementById('liveCount').textContent    = approved.length || all.length;
+      document.getElementById('spProviders').textContent  = all.length;
+      document.getElementById('spCities').textContent     = cities.size;
+      document.getElementById('spCountries').textContent  = countries.size;
+      const show = (approved.length ? approved : all).slice(0, 4);
+      function esc(v){return String(v||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));}
+      const gradients=['linear-gradient(140deg,#d9b7a2,#3e2218)','linear-gradient(140deg,#c9a890,#2e1510)','linear-gradient(140deg,#e8c5a8,#5c3020)','linear-gradient(140deg,#ddb89c,#4a2415)'];
+      document.getElementById('homepageProviders').innerHTML = show.length
+        ? show.map((p,i)=>`<div class="result"><div class="thumb" style="background:${gradients[i%4]}${p.photo_url?`;background-image:url('${esc(p.photo_url)}');background-size:cover;background-position:center`:''}"></div><div><h4><a href="../provider.html?id=${encodeURIComponent(p.id)}">${esc(p.business_name)}</a></h4><p>${esc(p.category||'')}${p.city?' · '+esc(p.city):''}${p.country?', '+esc(p.country):''}</p><div class="socials">${p.booking_link?`<a href="${esc(p.booking_link)}" target="_blank" rel="noopener">احجز</a>`:'<span>الملف</span>'}${p.instagram?`<a href="https://instagram.com/${esc(p.instagram.replace('@',''))}" target="_blank" rel="noopener">Instagram</a>`:''}</div></div></div>`).join('')
+        : '<div style="color:var(--muted);text-align:center;padding:20px">لا يوجد محترفون بعد. <a href="professional-onboarding.html" style="color:var(--rose)">كن الأول.</a></div>';
+    } catch(e) { console.error(e); }
+  })();
+</script>
+<script src="../mortea-ui.js"></script>
+</body>
+</html>

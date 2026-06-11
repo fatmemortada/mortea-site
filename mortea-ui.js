@@ -94,6 +94,41 @@ function declineCookies() {
   document.getElementById('cookieBanner')?.remove();
 }
 
+// ── hreflang SEO tags ─────────────────────────────────────────
+(function injectHreflang() {
+  const BASE  = 'https://www.mortea.ca';
+  const path  = location.pathname;
+  const file  = path.split('/').pop() || 'index.html';
+  let enPath, frPath, arPath;
+
+  if (path.includes('/fr/')) {
+    frPath = path;
+    enPath = '/' + file;
+    arPath = '/ar/' + file;
+  } else if (path.includes('/ar/')) {
+    arPath = path;
+    enPath = '/' + file;
+    frPath = '/fr/' + file;
+  } else {
+    enPath = path === '/' ? '/index.html' : path;
+    frPath = '/fr/' + file;
+    arPath = '/ar/' + file;
+  }
+
+  [
+    { hreflang: 'x-default', href: BASE + enPath },
+    { hreflang: 'en',        href: BASE + enPath },
+    { hreflang: 'fr',        href: BASE + frPath },
+    { hreflang: 'ar',        href: BASE + arPath },
+  ].forEach(({ hreflang, href }) => {
+    const l = document.createElement('link');
+    l.rel = 'alternate';
+    l.setAttribute('hreflang', hreflang);
+    l.href = href;
+    document.head.appendChild(l);
+  });
+})();
+
 // ── Country auto-detect → city suggestion banner ─────────────
 (async function cityDetect() {
   if (localStorage.getItem('mortea_city_dismissed')) return;

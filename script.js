@@ -77,6 +77,7 @@ async function submitProfessionalApplication() {
     owner_name:     document.getElementById('owner_name')?.value?.trim(),
     email:          document.getElementById('email')?.value?.trim(),
     phone:          document.getElementById('phone')?.value?.trim(),
+    whatsapp:       document.getElementById('whatsapp')?.value?.trim(),
     category:       document.getElementById('category')?.value?.trim(),
     country:        document.getElementById('country')?.value?.trim(),
     province:       document.getElementById('province')?.value?.trim(),

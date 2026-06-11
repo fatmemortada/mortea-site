@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="اكتشف محترفي الجمال الفاخر والعيادات الجمالية وخبراء العافية بالقرب منك. ابحث حسب الخدمة والمدينة والفئة على مورتيا.">
+  <title>اكتشف محترفي الجمال — Mortéa</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Tajawal:wght@400;500;700&family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="../mobile.css">
+  <link rel="stylesheet" href="style-rtl.css">
+  <style>
+    .discover-toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:16px 0;flex-direction:row-reverse}
+    .filter-select{border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.04);color:var(--champagne);padding:9px 16px;font-size:13px;cursor:pointer;font-family:'Tajawal',inherit;transition:all .18s;appearance:none;-webkit-appearance:none}
+    .filter-chip{border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.04);color:var(--champagne);padding:8px 14px;font-size:13px;cursor:pointer;transition:all .18s;white-space:nowrap;font-family:'Tajawal',inherit}
+    .filter-chip:hover,.filter-chip.active{background:rgba(234,214,198,.12);border-color:var(--line-hi);color:var(--sand)}
+    .chips-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;flex-direction:row-reverse}
+    .result-bar{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:20px}
+    .result-count{font-size:13px;color:var(--rose);text-transform:uppercase;letter-spacing:.06em;font-weight:700}
+    .providers-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
+    .provider-grid-card{border:1px solid var(--line);border-radius:24px;overflow:hidden;background:linear-gradient(165deg,rgba(255,255,255,.055),rgba(255,255,255,.015));transition:all .2s;text-align:right}
+    .provider-grid-card:hover{border-color:var(--line-hi);transform:translateY(-2px);box-shadow:0 16px 44px rgba(0,0,0,.32)}
+    .grid-thumb{height:160px;background:linear-gradient(140deg,#d9b7a2,#3e2218);background-size:cover;background-position:center;position:relative}
+    .grid-cat-badge{position:absolute;bottom:10px;right:10px;background:rgba(7,5,4,.78);border:1px solid var(--line);border-radius:999px;padding:4px 10px;font-size:11px;color:var(--rose);font-weight:700;letter-spacing:.05em;backdrop-filter:blur(6px)}
+    .grid-body{padding:16px}
+    .grid-body h3{font-size:16px;font-weight:700;margin:0 0 4px}
+    .grid-body h3 a{color:inherit}
+    .grid-body h3 a:hover{color:var(--champagne)}
+    .grid-loc{font-size:13px;color:var(--muted);margin-bottom:10px}
+    .grid-actions{display:flex;gap:7px;flex-direction:row-reverse}
+    .empty-state{text-align:center;padding:60px 20px;border:1px solid var(--line);border-radius:26px;color:var(--muted)}
+    .empty-state h3{font-family:'Cairo',serif;font-size:26px;color:var(--champagne);margin-bottom:10px}
+    .loading-shimmer{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
+    .shimmer-card{height:280px;border-radius:24px;background:linear-gradient(90deg,rgba(255,255,255,.04) 25%,rgba(255,255,255,.08) 50%,rgba(255,255,255,.04) 75%);background-size:200% 100%;animation:shimmer 1.4s infinite}
+    @keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+  </style>
+</head>
+<body class="mortea-luxury">
+<nav class="nav">
+  <a class="brand" href="../index.html">Mortéa</a>
+  <button class="nav-toggle" id="navToggle" aria-label="القائمة" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="nav-links" id="navLinks">
+    <a href="discover.html" style="color:var(--sand);font-weight:700">اكتشف</a>
+    <a href="../map.html">الخريطة</a>
+    <a href="professional-onboarding.html">انضم مجاناً</a>
+    <a href="../pricing.html">كيف يعمل</a>
+    <a href="../blog.html">المدونة</a>
+    <a href="../login.html">الدخول</a>
+    <a class="lang" href="../discover.html">EN</a>
+    <a class="lang" href="../fr/discover.html">FR</a>
+  </div>
+</nav>
+
+<main>
+  <section class="page-hero" style="padding-bottom:16px">
+    <div class="eyebrow">بحث مباشر في الجمال والعافية والإجراءات الجمالية</div>
+    <h1>اكتشف خبراء الجمال بالقرب منك.</h1>
+    <p class="lead">ابحث عن محترفي مورتيا الحقيقيين حسب الخدمة والمدينة والفئة أو المحفظة الاجتماعية.</p>
+  </section>
+
+  <section class="section" style="padding-top:8px">
+    <div style="display:grid;grid-template-columns:1fr 1fr auto;gap:10px;max-width:860px;margin-bottom:14px;direction:rtl" id="searchBar">
+      <input class="input" id="discoverServiceSearch" placeholder="بوتوكس، رموش، سبا الرأس، فيشل…">
+      <input class="input" id="discoverCitySearch" placeholder="المدينة أو الدولة">
+      <button class="btn primary" id="discoverSearchButton">بحث</button>
+    </div>
+
+    <div class="discover-toolbar">
+      <select class="filter-select" id="sortFilter" onchange="applyFilters()">
+        <option value="">ترتيب: افتراضي</option>
+        <option value="name">ترتيب: أ-ي</option>
+        <option value="rating">ترتيب: الأعلى تقييماً</option>
+        <option value="reviews">ترتيب: الأكثر مراجعات</option>
+      </select>
+      <select class="filter-select" id="categoryFilter" onchange="applyFilters()">
+        <option value="">جميع الفئات</option>
+        <option value="Botox">عيادات البوتوكس</option>
+        <option value="Laser">عيادات الليزر</option>
+        <option value="Med Spa">سبا طبية</option>
+        <option value="Head Spa">سبا الرأس الياباني</option>
+        <option value="Lash">فنانات الرموش</option>
+        <option value="Nail">تقنيات الأظافر</option>
+        <option value="Facial">فيشل</option>
+        <option value="Massage">مساج</option>
+        <option value="Makeup">مكياج</option>
+        <option value="Hair">مصففو الشعر</option>
+        <option value="Body Contouring">نحت الجسم</option>
+        <option value="Wellness">عافية</option>
+      </select>
+      <select class="filter-select" id="cityFilter" onchange="applyFilters()">
+        <option value="">جميع المدن</option>
+      </select>
+      <button class="filter-chip" id="btnClearFilters" onclick="clearFilters()" style="display:none">✕ مسح الفلاتر</button>
+    </div>
+
+    <div class="chips-row" id="quickChips">
+      <button class="filter-chip" data-service="Botox">بوتوكس</button>
+      <button class="filter-chip" data-service="Laser">ليزر</button>
+      <button class="filter-chip" data-service="Head Spa">سبا الرأس</button>
+      <button class="filter-chip" data-service="Lash">رموش</button>
+      <button class="filter-chip" data-service="Nail">أظافر</button>
+      <button class="filter-chip" data-service="Med Spa">سبا طبي</button>
+      <button class="filter-chip" data-service="Facial">فيشل</button>
+      <button class="filter-chip" data-service="Massage">مساج</button>
+    </div>
+
+    <div class="result-bar">
+      <span class="result-count" id="discoverProviderCount">جارٍ التحميل…</span>
+    </div>
+
+    <div id="discoverProviderResults">
+      <div class="loading-shimmer">
+        <div class="shimmer-card"></div><div class="shimmer-card"></div>
+        <div class="shimmer-card"></div><div class="shimmer-card"></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer-full">
+  <div class="footer-grid">
+    <div class="footer-brand-col">
+      <a class="brand" href="../index.html" style="font-size:26px">Mortéa</a>
+      <p style="color:var(--muted);font-size:13px;line-height:1.7;margin-top:10px;max-width:220px">اكتشاف الجمال الفاخر العالمي.</p>
+      <div style="display:flex;gap:8px;margin-top:14px"><a class="lang" href="../discover.html" style="font-size:11px">EN</a><a class="lang" href="../fr/discover.html" style="font-size:11px">FR</a></div>
+    </div>
+    <div class="footer-col"><div class="footer-col-title">اكتشف</div><a href="discover.html">بحث</a><a href="../map.html">الخريطة</a><a href="dubai.html">دبي</a><a href="riyadh.html">الرياض</a><a href="beirut.html">بيروت</a></div>
+    <div class="footer-col"><div class="footer-col-title">للمحترفين</div><a href="professional-onboarding.html">انضم مجاناً</a><a href="../pricing.html">كيف يعمل</a><a href="../login.html">الدخول</a></div>
+    <div class="footer-col"><div class="footer-col-title">الشركة</div><a href="../about.html">من نحن</a><a href="../contact.html">تواصل</a><a href="../terms.html">الشروط</a><a href="../privacy.html">الخصوصية</a></div>
+  </div>
+  <div class="footer-bottom"><span>© 2025 Mortéa — اكتشاف الجمال الفاخر العالمي</span></div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../supabase-config.js"></script>
+<script src="../auth.js"></script>
+<script src="../discover-dynamic.js"></script>
+<script>
+function applyFilters(){ filterDiscoverProviders(); }
+function clearFilters(){
+  ['discoverServiceSearch','discoverCitySearch'].forEach(id=>{ const el=document.getElementById(id); if(el) el.value=''; });
+  ['sortFilter','categoryFilter','cityFilter'].forEach(id=>{ const el=document.getElementById(id); if(el) el.value=''; });
+  document.getElementById('btnClearFilters').style.display='none';
+  renderDiscoverProviders(discoverProviders);
+}
+document.querySelectorAll('[data-service]').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const val=btn.getAttribute('data-service');
+    const inp=document.getElementById('discoverServiceSearch');
+    if(inp){ inp.value=inp.value===val?'':val; filterDiscoverProviders(); }
+    btn.classList.toggle('active');
+  });
+});
+</script>
+<script src="../mortea-ui.js"></script>
+</body>
+</html>

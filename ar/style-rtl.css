@@ -1,0 +1,69 @@
+/* Mortéa — RTL Arabic overrides */
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Tajawal:wght@400;500;700&display=swap');
+
+html { direction: rtl; }
+
+body {
+  font-family: 'Tajawal', 'Inter', system-ui, sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6,
+.brand, .page-hero h1, .hero h1, .section h2 {
+  font-family: 'Cairo', 'Playfair Display', Georgia, serif;
+}
+
+/* Nav */
+.nav { flex-direction: row-reverse; }
+.nav-links { flex-direction: row-reverse; }
+
+/* Hero — swap columns: text on right, panel on left */
+.hero { direction: rtl; }
+.hero-actions { flex-direction: row; }
+.social-proof-bar { flex-direction: row-reverse; }
+
+/* Search row inside hero panel */
+.search-row { direction: rtl; }
+
+/* Sections */
+.section { direction: rtl; }
+.discovery { direction: rtl; }
+.two { direction: rtl; }
+
+/* Cards */
+.card, .price, .result { text-align: right; }
+.result { direction: rtl; }
+
+/* Footer */
+.footer-full { direction: rtl; }
+.footer-grid { direction: rtl; }
+.footer-col { text-align: right; }
+.footer-bottom { text-align: center; }
+
+/* Marquee — right to left */
+.marquee-track { animation-direction: reverse; }
+
+/* Form */
+.form, .form-grid, .input-wrap { direction: rtl; }
+.field-label { text-align: right; }
+
+/* Eyebrow */
+.eyebrow { letter-spacing: 0.08em; }
+
+/* Buttons */
+.btn { font-family: 'Cairo', 'Inter', sans-serif; }
+
+/* Social links */
+.social-link { flex-direction: row-reverse; }
+
+/* Profile */
+.profile-hero { direction: rtl; }
+.profile-body { direction: rtl; }
+.profile-ctas { flex-direction: row-reverse; }
+.stat-mini { flex-direction: row-reverse; }
+
+/* City banner */
+#cityBanner { direction: rtl; }
+
+/* Discover toolbar */
+.discover-toolbar { flex-direction: row-reverse; }
+.chips-row { flex-direction: row-reverse; }

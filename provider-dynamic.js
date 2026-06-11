@@ -14,6 +14,11 @@ function linkButton(label, url, primary = false) {
   return `<a class="btn ${primary ? 'primary' : 'secondary'}" href="${escapeHtml(href)}" target="_blank" rel="noopener" style="font-size:14px">${escapeHtml(label)}</a>`;
 }
 
+function normaliseWA(number) {
+  if (!number) return '';
+  return 'https://wa.me/' + number.replace(/[^\d]/g, '');
+}
+
 function normaliseIG(handle) {
   if (!handle) return '';
   if (handle.startsWith('http')) return handle;
@@ -73,6 +78,7 @@ async function loadProviderProfile() {
   const pid = provider.id || '';
   ctas.innerHTML = [
     `<a class="btn primary" href="booking-request.html?id=${encodeURIComponent(pid)}" style="font-size:14px">📅 Request booking</a>`,
+    provider.whatsapp  ? `<a class="btn secondary" href="${normaliseWA(provider.whatsapp)}" target="_blank" rel="noopener" style="font-size:14px;background:rgba(37,211,102,.12);border-color:rgba(37,211,102,.35);color:#25d366">💬 WhatsApp</a>` : '',
     provider.booking_link ? linkButton('External booking →', provider.booking_link) : '',
     provider.instagram ? linkButton('Instagram', normaliseIG(provider.instagram)) : '',
     provider.tiktok    ? linkButton('TikTok',    normaliseTK(provider.tiktok))    : '',
@@ -101,6 +107,7 @@ async function loadProviderProfile() {
   const socials = document.getElementById('socialLinks');
   const socialItems = [
     provider.booking_link ? `<a class="social-link" href="${escapeHtml(provider.booking_link)}" target="_blank"><span class="icon">📅</span> Book appointment</a>` : '',
+    provider.whatsapp     ? `<a class="social-link" href="${normaliseWA(provider.whatsapp)}" target="_blank" rel="noopener" style="border-color:rgba(37,211,102,.25);background:rgba(37,211,102,.06)"><span class="icon">💬</span> WhatsApp</a>` : '',
     provider.instagram    ? `<a class="social-link" href="${normaliseIG(provider.instagram)}" target="_blank"><span class="icon">📸</span> Instagram</a>` : '',
     provider.tiktok       ? `<a class="social-link" href="${normaliseTK(provider.tiktok)}" target="_blank"><span class="icon">🎵</span> TikTok</a>` : '',
     provider.website      ? `<a class="social-link" href="${escapeHtml(provider.website)}" target="_blank"><span class="icon">🌐</span> Website</a>` : '',
