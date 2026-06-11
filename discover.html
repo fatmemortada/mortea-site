@@ -42,7 +42,7 @@
     .loading-shimmer { display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:16px; }
     .shimmer-card { height:280px; border-radius:24px; background:linear-gradient(90deg,rgba(255,255,255,.04) 25%,rgba(255,255,255,.08) 50%,rgba(255,255,255,.04) 75%); background-size:200% 100%; animation:shimmer 1.4s infinite; }
     @keyframes shimmer { 0%{background-position:200% 0} 100%{background-position:-200% 0} }
-    @media(max-width:600px){ .providers-grid{grid-template-columns:1fr} .discover-toolbar{gap:7px} }
+    @media(max-width:600px){ .providers-grid{grid-template-columns:1fr} .discover-toolbar{gap:7px} #searchBar{grid-template-columns:1fr 1fr!important} #searchBar #nearMeBtn{display:none} }
   </style>
 </head>
 <body class="mortea-luxury">
@@ -72,9 +72,10 @@
   <section class="section" style="padding-top:8px">
 
     <!-- Search bar -->
-    <div style="display:grid;grid-template-columns:1fr 1fr auto;gap:10px;max-width:860px;margin-bottom:14px" id="searchBar">
+    <div style="display:grid;grid-template-columns:1fr 1fr auto auto;gap:10px;max-width:860px;margin-bottom:14px" id="searchBar">
       <input class="input" id="discoverServiceSearch" placeholder="Botox, lashes, head spa, facial…">
       <input class="input" id="discoverCitySearch" placeholder="City or country">
+      <button class="btn secondary" id="nearMeBtn" title="Use my location" style="white-space:nowrap;font-size:14px">📍 Near me</button>
       <button class="btn primary" id="discoverSearchButton">Search</button>
     </div>
 
@@ -240,6 +241,34 @@ function clearFilters() {
 const params = new URLSearchParams(window.location.search);
 if (params.get('service')) document.getElementById('discoverServiceSearch').value = params.get('service');
 if (params.get('city'))    document.getElementById('discoverCitySearch').value    = params.get('city');
+
+// Near me button
+(function() {
+  const btn = document.getElementById('nearMeBtn');
+  if (!btn || !navigator.geolocation) { if (btn) btn.style.display = 'none'; return; }
+  btn.addEventListener('click', () => {
+    btn.textContent = '…';
+    btn.disabled = true;
+    navigator.geolocation.getCurrentPosition(async pos => {
+      try {
+        const { latitude: lat, longitude: lng } = pos.coords;
+        const res  = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&result_type=locality&key=${GOOGLE_MAPS_KEY}`);
+        const data = await res.json();
+        const city = data.results?.[0]?.address_components?.find(c => c.types.includes('locality'))?.long_name
+                  || data.results?.[0]?.formatted_address?.split(',')[0];
+        if (city) {
+          document.getElementById('discoverCitySearch').value = city;
+          applyFilters();
+        }
+      } catch(e) {}
+      btn.textContent = '📍 Near me';
+      btn.disabled = false;
+    }, () => {
+      btn.textContent = '📍 Near me';
+      btn.disabled = false;
+    }, { timeout: 8000 });
+  });
+})();
 </script>
 <script src="mortea-ui.js"></script>
 </body>
