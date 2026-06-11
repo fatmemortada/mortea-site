@@ -1,0 +1,32 @@
+{
+  "appId": "com.mortea.app",
+  "appName": "Mortéa",
+  "webDir": "www",
+  "bundledWebRuntime": false,
+  "server": {
+    "url": "https://www.mortea.ca",
+    "cleartext": false,
+    "allowNavigation": [
+      "mortea.ca",
+      "www.mortea.ca",
+      "gnlglfjtgfygpybqlcpa.supabase.co",
+      "fonts.googleapis.com",
+      "fonts.gstatic.com",
+      "cdn.jsdelivr.net",
+      "ipapi.co",
+      "maps.googleapis.com",
+      "api.stripe.com",
+      "js.stripe.com"
+    ]
+  },
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 2000,
+      "backgroundColor": "#070504",
+      "showSpinner": false
+    },
+    "PushNotifications": {
+      "presentationOptions": ["badge", "sound", "alert"]
+    }
+  }
+}

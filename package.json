@@ -1,0 +1,36 @@
+{
+  "name": "mortea-app",
+  "version": "1.0.0",
+  "description": "Mortéa — Global Luxury Beauty & Aesthetics Discovery",
+  "main": "index.html",
+  "scripts": {
+    "app:init": "npx cap init Mortéa com.mortea.app --web-dir=.",
+    "app:install": "npm run app:init && npx cap add ios && npx cap add android",
+    "app:sync": "npx cap sync",
+    "app:open:ios": "npx cap open ios",
+    "app:open:android": "npx cap open android"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fatmemortada/mortea-site.git"
+  },
+  "keywords": [
+    "beauty",
+    "wellness",
+    "aesthetics",
+    "marketplace"
+  ],
+  "author": "Mortéa",
+  "license": "UNLICENSED",
+  "homepage": "https://www.mortea.ca",
+  "dependencies": {
+    "@capacitor/android": "^8.4.0",
+    "@capacitor/camera": "^8.2.0",
+    "@capacitor/cli": "^8.4.0",
+    "@capacitor/core": "^8.4.0",
+    "@capacitor/geolocation": "^8.2.0",
+    "@capacitor/ios": "^8.4.0",
+    "@capacitor/push-notifications": "^8.1.1",
+    "@capacitor/splash-screen": "^8.0.1"
+  }
+}
