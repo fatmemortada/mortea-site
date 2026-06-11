@@ -37,6 +37,11 @@
   <url><loc>https://www.mortea.ca/fr/paris.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <url><loc>https://www.mortea.ca/fr/london.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <url><loc>https://www.mortea.ca/fr/toronto.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.mortea.ca/fr/beirut.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.mortea.ca/fr/riyadh.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.mortea.ca/fr/new-york.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.mortea.ca/fr/seoul.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.mortea.ca/fr/milan.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <url><loc>https://www.mortea.ca/about.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://www.mortea.ca/contact.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://www.mortea.ca/terms.html</loc><changefreq>yearly</changefreq><priority>0.4</priority></url>

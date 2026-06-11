@@ -3,7 +3,7 @@
    Caches static assets for performance + basic offline page
    ============================================================ */
 
-const CACHE_NAME = 'mortea-v2-' + '20260610';
+const CACHE_NAME = 'mortea-v3-' + '20260611';
 const STATIC_ASSETS = [
   '/',
   '/index.html',
@@ -19,6 +19,9 @@ const STATIC_ASSETS = [
   '/style.css',
   '/mobile.css',
   '/mortea-ui.js',
+  '/supabase-config.js',
+  '/auth.js',
+  '/script.js',
   '/manifest.json',
 ];
 
