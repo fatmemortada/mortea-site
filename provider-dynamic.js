@@ -31,6 +31,40 @@ function normaliseTK(handle) {
   return 'https://tiktok.com/@' + handle.replace('@', '');
 }
 
+function injectProviderSchema(provider) {
+  const schema = {
+    '@context': 'https://schema.org',
+    '@type': 'LocalBusiness',
+    'name': provider.business_name,
+    'url': window.location.href,
+    ...(provider.description && { 'description': provider.description }),
+    ...(provider.photo_url   && { 'image': provider.photo_url }),
+    ...(provider.phone       && { 'telephone': provider.phone }),
+    ...(provider.website     && { 'sameAs': [provider.website] }),
+    'address': {
+      '@type': 'PostalAddress',
+      ...(provider.streetAddress && { 'streetAddress': provider.address }),
+      ...(provider.city          && { 'addressLocality': provider.city }),
+      ...(provider.province      && { 'addressRegion': provider.province }),
+      ...(provider.country       && { 'addressCountry': provider.country })
+    },
+    ...(provider.latitude && provider.longitude && {
+      'geo': { '@type': 'GeoCoordinates', 'latitude': provider.latitude, 'longitude': provider.longitude }
+    }),
+    ...(provider.avg_rating && {
+      'aggregateRating': {
+        '@type': 'AggregateRating',
+        'ratingValue': parseFloat(provider.avg_rating).toFixed(1),
+        'reviewCount': provider.review_count || 1
+      }
+    })
+  };
+  const s = document.createElement('script');
+  s.type = 'application/ld+json';
+  s.textContent = JSON.stringify(schema);
+  document.head.appendChild(s);
+}
+
 function setOgTags(provider) {
   const title = `${provider.business_name} — ${provider.category || 'Beauty Professional'} | Mortéa`;
   const desc  = (provider.description || `${provider.business_name} · ${provider.category || ''} in ${provider.city || ''} on Mortéa.`).slice(0, 160);
@@ -77,8 +111,9 @@ async function loadProviderProfile() {
   document.getElementById('profileLoading').style.display = 'none';
   document.getElementById('profileContent').style.display = 'block';
 
-  // OG + meta tags for social sharing
+  // OG + meta tags + structured data for social sharing & SEO
   setOgTags(provider);
+  injectProviderSchema(provider);
 
   // Avatar
   if (provider.photo_url) {

@@ -51,16 +51,25 @@ document.addEventListener('DOMContentLoaded', () => {
     backTop.style.display = window.scrollY > 400 ? 'flex' : 'none';
   }, { passive: true });
 
-  // ── Mobile hamburger menu ─────────────────────────────────
-  const navToggle = document.getElementById('navToggle');
-  const navLinks  = document.getElementById('navLinks');
+  // ── Mobile hamburger menu (auto-injects if missing) ──────────
+  let navToggle = document.getElementById('navToggle');
+  let navLinks  = document.getElementById('navLinks') || document.querySelector('nav .nav-links');
+  if (navLinks && !navLinks.id) navLinks.id = 'navLinks';
+  if (navLinks && !navToggle) {
+    navToggle = document.createElement('button');
+    navToggle.id = 'navToggle';
+    navToggle.className = 'nav-toggle';
+    navToggle.setAttribute('aria-label', 'Menu');
+    navToggle.setAttribute('aria-expanded', 'false');
+    navToggle.innerHTML = '<span></span><span></span><span></span>';
+    navLinks.insertAdjacentElement('beforebegin', navToggle);
+  }
   if (navToggle && navLinks) {
     navToggle.addEventListener('click', () => {
       const open = navLinks.classList.toggle('open');
       navToggle.classList.toggle('open', open);
-      navToggle.setAttribute('aria-expanded', open);
+      navToggle.setAttribute('aria-expanded', String(open));
     });
-    // Close on outside click
     document.addEventListener('click', (e) => {
       if (!navToggle.contains(e.target) && !navLinks.contains(e.target)) {
         navLinks.classList.remove('open');
