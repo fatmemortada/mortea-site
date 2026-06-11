@@ -13,6 +13,7 @@ Thumbs.db
 node_modules/
 
 # Capacitor native build artifacts (keep project configs)
+android/local.properties
 ios/DerivedData/
 ios/build/
 ios/App/Pods/
