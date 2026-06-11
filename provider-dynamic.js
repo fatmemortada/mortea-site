@@ -31,6 +31,29 @@ function normaliseTK(handle) {
   return 'https://tiktok.com/@' + handle.replace('@', '');
 }
 
+function setOgTags(provider) {
+  const title = `${provider.business_name} — ${provider.category || 'Beauty Professional'} | Mortéa`;
+  const desc  = (provider.description || `${provider.business_name} · ${provider.category || ''} in ${provider.city || ''} on Mortéa.`).slice(0, 160);
+  const img   = provider.photo_url || 'https://www.mortea.ca/og-default.jpg';
+  function setMeta(attr, val, content) {
+    let el = document.querySelector(`meta[${attr}="${val}"]`);
+    if (!el) { el = document.createElement('meta'); el.setAttribute(attr, val); document.head.appendChild(el); }
+    el.setAttribute('content', content);
+  }
+  document.title = title;
+  setMeta('name',     'description',         desc);
+  setMeta('property', 'og:title',            title);
+  setMeta('property', 'og:description',      desc);
+  setMeta('property', 'og:image',            img);
+  setMeta('property', 'og:url',              window.location.href);
+  setMeta('property', 'og:type',             'profile');
+  setMeta('property', 'og:site_name',        'Mortéa');
+  setMeta('name',     'twitter:card',        'summary_large_image');
+  setMeta('name',     'twitter:title',       title);
+  setMeta('name',     'twitter:description', desc);
+  if (provider.photo_url) setMeta('name', 'twitter:image', img);
+}
+
 async function loadProviderProfile() {
   const params = new URLSearchParams(window.location.search);
   const providerId = params.get('id');
@@ -54,10 +77,8 @@ async function loadProviderProfile() {
   document.getElementById('profileLoading').style.display = 'none';
   document.getElementById('profileContent').style.display = 'block';
 
-  // Update page title & meta
-  document.title = `${provider.business_name || 'Professional'} — Mortéa`;
-  const metaDesc = document.querySelector('meta[name="description"]');
-  if (metaDesc) metaDesc.content = `${provider.business_name} · ${provider.category || 'Beauty Professional'} in ${provider.city || ''} on Mortéa.`;
+  // OG + meta tags for social sharing
+  setOgTags(provider);
 
   // Avatar
   if (provider.photo_url) {
@@ -84,6 +105,17 @@ async function loadProviderProfile() {
     provider.tiktok    ? linkButton('TikTok',    normaliseTK(provider.tiktok))    : '',
     provider.website   ? linkButton('Website',   provider.website)                : ''
   ].join('');
+
+  // Share button (uses shareProfile from mortea-ui.js)
+  const shareBtn = document.createElement('button');
+  shareBtn.className = 'btn secondary';
+  shareBtn.style.fontSize = '14px';
+  shareBtn.textContent = '🔗 Share';
+  shareBtn.addEventListener('click', () => {
+    if (typeof shareProfile === 'function') shareProfile(provider.business_name || 'Professional');
+    else { navigator.clipboard?.writeText(window.location.href); }
+  });
+  ctas.appendChild(shareBtn);
 
   // Bio
   if (provider.description) {

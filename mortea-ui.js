@@ -293,6 +293,23 @@ function declineCookies() {
   existing.remove();
 })();
 
+// ── Inject AR language link into nav on EN/FR pages ──────────
+(function injectArNavLink() {
+  if (location.pathname.includes('/ar/')) return;
+  const navLinks = document.getElementById('navLinks');
+  if (!navLinks) return;
+  if (navLinks.querySelector('[href*="ar/"]')) return; // already there
+  const file = location.pathname.split('/').pop() || 'index.html';
+  const base = location.pathname.includes('/fr/') ? '../' : '';
+  const a = document.createElement('a');
+  a.className = 'lang';
+  a.href = `${base}ar/${file}`;
+  a.textContent = 'AR';
+  const lastLang = [...navLinks.querySelectorAll('.lang')].pop();
+  if (lastLang) lastLang.insertAdjacentElement('afterend', a);
+  else navLinks.appendChild(a);
+})();
+
 // ── Share provider profile ────────────────────────────────────
 function shareProfile(name, url) {
   const shareUrl = url || window.location.href;
