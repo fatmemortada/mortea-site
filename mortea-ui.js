@@ -163,33 +163,6 @@ function declineCookies() {
     VN: { name: 'Seoul',     page: 'seoul.html',     flag: '🇻🇳' },
   };
 
-  // Countries that should see a generic discovery banner instead
-  // (rest of world → discover.html)
-  const GENERIC_REGIONS = {
-    // Europe
-    DE: '🇩🇪', NL: '🇳🇱', ES: '🇪🇸', PT: '🇵🇹', SE: '🇸🇪', NO: '🇳🇴',
-    DK: '🇩🇰', FI: '🇫🇮', PL: '🇵🇱', AT: '🇦🇹', CZ: '🇨🇿', SK: '🇸🇰',
-    HU: '🇭🇺', RO: '🇷🇴', BG: '🇧🇬', GR: '🇬🇷', RS: '🇷🇸', UA: '🇺🇦',
-    TR: '🇹🇷', RU: '🇷🇺', BY: '🇧🇾', LT: '🇱🇹', LV: '🇱🇻', EE: '🇪🇪',
-    IS: '🇮🇸', MK: '🇲🇰', AL: '🇦🇱', BA: '🇧🇦', ME: '🇲🇪', GE: '🇬🇪',
-    AM: '🇦🇲', AZ: '🇦🇿', MD: '🇲🇩',
-    // Africa
-    LY: '🇱🇾', SD: '🇸🇩', NG: '🇳🇬', GH: '🇬🇭', KE: '🇰🇪', ET: '🇪🇹',
-    TZ: '🇹🇿', UG: '🇺🇬', RW: '🇷🇼', ZA: '🇿🇦', ZW: '🇿🇼', ZM: '🇿🇲',
-    AO: '🇦🇴', MZ: '🇲🇿', BJ: '🇧🇯', TG: '🇹🇬', BF: '🇧🇫', ML: '🇲🇱',
-    NE: '🇳🇪', MR: '🇲🇷', GN: '🇬🇳', SL: '🇸🇱', LR: '🇱🇷',
-    // Latin America
-    BR: '🇧🇷', AR: '🇦🇷', CO: '🇨🇴', CL: '🇨🇱', PE: '🇵🇪', VE: '🇻🇪',
-    EC: '🇪🇨', UY: '🇺🇾', PY: '🇵🇾', BO: '🇧🇴', GT: '🇬🇹', HN: '🇭🇳',
-    SV: '🇸🇻', NI: '🇳🇮', CR: '🇨🇷', PA: '🇵🇦', CU: '🇨🇺', DO: '🇩🇴',
-    // Oceania
-    AU: '🇦🇺', NZ: '🇳🇿',
-    // Central & South Asia
-    AF: '🇦🇫', IR: '🇮🇷', UZ: '🇺🇿', KZ: '🇰🇿',
-    // Caribbean
-    JM: '🇯🇲', TT: '🇹🇹', BB: '🇧🇧',
-  };
-
   try {
     const res  = await fetch('https://ipapi.co/json/');
     const data = await res.json();
@@ -205,14 +178,11 @@ function declineCookies() {
       msg  = `${city.flag} Mortéa covers <strong style="color:var(--sand)">${city.name}</strong> — beauty &amp; aesthetics professionals near you.`;
       cta  = `Explore ${city.name}`;
       href = `${base}${city.page}`;
-    } else if (GENERIC_REGIONS[cc]) {
-      const flag = GENERIC_REGIONS[cc];
-      const cityName = data.city || data.country_name || 'your city';
-      msg  = `${flag} Mortéa is available near you — discover beauty &amp; aesthetics professionals worldwide.`;
+    } else {
+      // Every other country gets the generic discovery banner
+      msg  = `Mortéa is available near you — discover beauty &amp; aesthetics professionals worldwide.`;
       cta  = 'Search near you';
       href = `${base}discover.html`;
-    } else {
-      return; // truly unknown — stay silent
     }
 
     const bar = document.createElement('div');
