@@ -50,14 +50,20 @@
 <body class="mortea-luxury" style="overflow:hidden">
 <a class="skip-to-content" href="#main">Skip to content</a>
 
-<nav class="nav" style="height:64px">
+<nav class="nav">
   <a class="brand" href="index.html">Mortéa</a>
-  <div class="nav-links">
+  <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="nav-links" id="navLinks">
     <a href="discover.html">Discover</a>
     <a href="map.html" style="color:var(--sand);font-weight:700">Map</a>
-    <a href="professional-onboarding.html">Professionals</a>
-    <a href="login.html">Access</a>
-    <a class="lang" href="fr/index.html">FR</a>
+    <a href="professional-onboarding.html">Join free</a>
+    <a href="pricing.html">How it works</a>
+    <a href="blog.html">Journal</a>
+    <a href="login.html" id="navAuthLink">Access</a>
+    <a class="lang" href="fr/map.html">FR</a>
+    <a class="lang" href="ar/index.html">AR</a>
   </div>
 </nav>
 
@@ -180,5 +186,16 @@ window.renderProviders = function(list) {
 };
 </script>
 <script src="mortea-ui.js"></script>
+<footer class="footer">
+  <b>Mortéa</b>
+  <div style="display:flex;gap:18px;flex-wrap:wrap;align-items:center">
+    <a href="about.html" style="font-size:13px;color:var(--muted)">About</a>
+    <a href="blog.html" style="font-size:13px;color:var(--muted)">Journal</a>
+    <a href="contact.html" style="font-size:13px;color:var(--muted)">Contact</a>
+    <a href="terms.html" style="font-size:13px;color:var(--muted)">Terms</a>
+    <a href="privacy.html" style="font-size:13px;color:var(--muted)">Privacy</a>
+    <span style="font-size:13px;color:#7a6a60">Live beauty discovery map.</span>
+  </div>
+</footer>
 </body>
 </html>
