@@ -4,8 +4,18 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="description" content="Discover luxury beauty professionals, aesthetic clinics, and wellness experts in New York on Mortéa — the global beauty discovery platform.">
-  <meta property="og:title" content="New York Beauty & Aesthetics — Mortéa">
-  <meta property="og:description" content="Find the best beauty professionals and aesthetic clinics in New York on Mortéa.">
+  <meta property="og:title" content="New York Beauty &amp; Aesthetics — Mortéa">
+  <meta property="og:description" content="Discover luxury beauty professionals and aesthetic clinics in New York on Mortéa.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.mortea.ca/new-york.html">
+  <meta property="og:site_name" content="Mortéa">
+  <meta property="og:image" content="https://www.mortea.ca/mortea-og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="New York Beauty &amp; Aesthetics — Mortéa">
+  <meta name="twitter:description" content="Discover luxury beauty professionals and aesthetic clinics in New York on Mortéa.">
+  <meta name="twitter:image" content="https://www.mortea.ca/mortea-og.jpg">
   <link rel="canonical" href="https://www.mortea.ca/new-york.html">
   <title>New York Beauty &amp; Aesthetics — Mortéa</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,6 +28,7 @@
   </style>
 </head>
 <body class="mortea-luxury">
+<a class="skip-to-content" href="#main">Skip to content</a>
 <nav class="nav">
   <a class="brand" href="index.html">Mortéa</a>
   <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false">
@@ -34,7 +45,7 @@
     <a class="lang" href="ar/index.html">AR</a>
   </div>
 </nav>
-<main>
+<main id="main">
   <section class="page-hero">
     <div class="eyebrow">United States · Global city network</div>
     <h1>Beauty &amp; aesthetics in <em style="font-style:italic;color:var(--rose)">New York.</em></h1>
@@ -58,14 +69,24 @@
           <a class="btn primary" href="professional-onboarding.html?city=New York" style="display:block;text-align:center">Apply now</a>
         </div>
         <div class="card">
-          <h3>Why Mortéa in New York?</h3>
-          <p style="color:var(--muted);font-size:15px;line-height:1.7">Mortéa builds the premium beauty discovery layer for New York — connecting clients with the city's best professionals through curated profiles, map search, social links, and booking requests.</p>
+          <h3>New York's beauty scene</h3>
+          <p style="color:var(--muted);font-size:15px;line-height:1.7">From Upper East Side dermatology clinics to SoHo's trendsetting beauty studios, Tribeca wellness destinations, and Midtown's medical aesthetic practices — New York's beauty ecosystem is unmatched. Mortéa puts the city's top professionals at your fingertips.</p>
         </div>
       </div>
     </div>
   </section>
 </main>
-<footer class="footer"><b>Mortéa</b><span>Beauty &amp; aesthetics in New York.</span></footer>
+<footer class="footer">
+  <b>Mortéa</b>
+  <div style="display:flex;gap:18px;flex-wrap:wrap;align-items:center">
+    <a href="about.html" style="font-size:13px;color:var(--muted)">About</a>
+    <a href="blog.html" style="font-size:13px;color:var(--muted)">Journal</a>
+    <a href="contact.html" style="font-size:13px;color:var(--muted)">Contact</a>
+    <a href="terms.html" style="font-size:13px;color:var(--muted)">Terms</a>
+    <a href="privacy.html" style="font-size:13px;color:var(--muted)">Privacy</a>
+    <span style="font-size:13px;color:#7a6a60">Beauty &amp; aesthetics in New York.</span>
+  </div>
+</footer>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="supabase-config.js"></script>
 <script>
@@ -86,7 +107,7 @@
       <p>${esc(p.category||'')} · ${esc(p.city||'')}</p>
       <div class="socials">
         <a href="booking-request.html?id=${encodeURIComponent(p.id)}">Book</a>
-        ${p.instagram?`<a href="https://instagram.com/${esc(p.instagram.replace('@',''))}" target="_blank">Instagram</a>`:''}
+        ${p.instagram?`<a href="https://instagram.com/${esc(p.instagram.replace('@',''))}" target="_blank" rel="noopener">Instagram</a>`:''}
       </div>
     </div>
   </div>`).join('');

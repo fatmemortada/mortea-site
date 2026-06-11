@@ -33,6 +33,7 @@
   </style>
 </head>
 <body class="mortea-luxury">
+<a class="skip-to-content" href="#main">Skip to content</a>
 <nav class="nav">
   <a class="brand" href="index.html">Mortéa</a>
   <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false">
@@ -50,7 +51,7 @@
   </div>
 </nav>
 
-<main>
+<main id="main">
   <section class="page-hero" style="text-align:center;max-width:680px;margin:0 auto;padding-bottom:16px">
     <div class="eyebrow">Referral program</div>
     <h1>Refer &amp; earn.</h1>
@@ -186,7 +187,7 @@ function shareWhatsApp() {
 }
 
 function shareEmail() {
-  window.location.href = `mailto:?subject=Join me on Mortéa&body=${encodeURIComponent('Hi,\n\nI wanted to share Mortéa with you — it\'s a global luxury beauty discovery platform where beauty professionals can get discovered by clients worldwide.\n\nApply for a professional membership here: ' + refLink + '\n\nPlans start at $10/month with a 5-day free trial.')}`;
+  window.location.href = `mailto:?subject=Join me on Mortéa&body=${encodeURIComponent('Hi,\n\nI wanted to share Mortéa with you — it\'s a global luxury beauty discovery platform where beauty professionals can get discovered by clients worldwide.\n\nJoin for free here: ' + refLink + '\n\nIt\'s completely free to join — Mortéa only takes 10% when you get a booking. You keep 90%.')}`;
 }
 
 function shareIG() {

@@ -4,8 +4,18 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="description" content="Discover luxury beauty professionals, aesthetic clinics, and wellness experts in Seoul on Mortéa — the global beauty discovery platform.">
-  <meta property="og:title" content="Seoul Beauty & Aesthetics — Mortéa">
-  <meta property="og:description" content="Find the best beauty professionals and aesthetic clinics in Seoul on Mortéa.">
+  <meta property="og:title" content="Seoul Beauty &amp; Aesthetics — Mortéa">
+  <meta property="og:description" content="Discover luxury beauty professionals and aesthetic clinics in Seoul on Mortéa.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.mortea.ca/seoul.html">
+  <meta property="og:site_name" content="Mortéa">
+  <meta property="og:image" content="https://www.mortea.ca/mortea-og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Seoul Beauty &amp; Aesthetics — Mortéa">
+  <meta name="twitter:description" content="Discover luxury beauty professionals and aesthetic clinics in Seoul on Mortéa.">
+  <meta name="twitter:image" content="https://www.mortea.ca/mortea-og.jpg">
   <link rel="canonical" href="https://www.mortea.ca/seoul.html">
   <title>Seoul Beauty &amp; Aesthetics — Mortéa</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,6 +28,7 @@
   </style>
 </head>
 <body class="mortea-luxury">
+<a class="skip-to-content" href="#main">Skip to content</a>
 <nav class="nav">
   <a class="brand" href="index.html">Mortéa</a>
   <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false">
@@ -34,7 +45,7 @@
     <a class="lang" href="ar/index.html">AR</a>
   </div>
 </nav>
-<main>
+<main id="main">
   <section class="page-hero">
     <div class="eyebrow">South Korea · Global city network</div>
     <h1>Beauty &amp; aesthetics in <em style="font-style:italic;color:var(--rose)">Seoul.</em></h1>
@@ -58,14 +69,24 @@
           <a class="btn primary" href="professional-onboarding.html?city=Seoul" style="display:block;text-align:center">Apply now</a>
         </div>
         <div class="card">
-          <h3>Why Mortéa in Seoul?</h3>
-          <p style="color:var(--muted);font-size:15px;line-height:1.7">Mortéa builds the premium beauty discovery layer for Seoul — connecting clients with the city's best professionals through curated profiles, map search, social links, and booking requests.</p>
+          <h3>Seoul's beauty scene</h3>
+          <p style="color:var(--muted);font-size:15px;line-height:1.7">From Gangnam's world-famous skincare clinics to Myeongdong's beauty flagships, Hongdae's trendsetting studios, and Apgujeong's luxury aesthetic practices — Seoul leads the world in beauty innovation. Mortéa brings you Korea's most sought-after professionals.</p>
         </div>
       </div>
     </div>
   </section>
 </main>
-<footer class="footer"><b>Mortéa</b><span>Beauty &amp; aesthetics in Seoul.</span></footer>
+<footer class="footer">
+  <b>Mortéa</b>
+  <div style="display:flex;gap:18px;flex-wrap:wrap;align-items:center">
+    <a href="about.html" style="font-size:13px;color:var(--muted)">About</a>
+    <a href="blog.html" style="font-size:13px;color:var(--muted)">Journal</a>
+    <a href="contact.html" style="font-size:13px;color:var(--muted)">Contact</a>
+    <a href="terms.html" style="font-size:13px;color:var(--muted)">Terms</a>
+    <a href="privacy.html" style="font-size:13px;color:var(--muted)">Privacy</a>
+    <span style="font-size:13px;color:#7a6a60">Beauty &amp; aesthetics in Seoul.</span>
+  </div>
+</footer>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="supabase-config.js"></script>
 <script>
@@ -86,7 +107,7 @@
       <p>${esc(p.category||'')} · ${esc(p.city||'')}</p>
       <div class="socials">
         <a href="booking-request.html?id=${encodeURIComponent(p.id)}">Book</a>
-        ${p.instagram?`<a href="https://instagram.com/${esc(p.instagram.replace('@',''))}" target="_blank">Instagram</a>`:''}
+        ${p.instagram?`<a href="https://instagram.com/${esc(p.instagram.replace('@',''))}" target="_blank" rel="noopener">Instagram</a>`:''}
       </div>
     </div>
   </div>`).join('');

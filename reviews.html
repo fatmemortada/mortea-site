@@ -27,6 +27,7 @@
   <link rel="stylesheet" href="mobile.css">
 </head>
 <body class="mortea-luxury">
+<a class="skip-to-content" href="#main">Skip to content</a>
 <nav class="nav">
   <a class="brand" href="index.html">Mortéa</a>
   <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false">
@@ -44,7 +45,7 @@
   </div>
 </nav>
 
-<main>
+<main id="main">
   <section class="page-hero" style="text-align:center;max-width:640px;margin:0 auto;padding-bottom:16px">
     <div class="eyebrow">Client reviews</div>
     <h1>Share your experience.</h1>
@@ -121,6 +122,17 @@
       <a class="brand" href="index.html" style="font-size:26px">Mortéa</a>
       <p style="color:var(--muted);font-size:13px;line-height:1.7;margin-top:10px;max-width:220px">Global luxury beauty, wellness &amp; aesthetics discovery.</p>
       <a class="lang" href="fr/index.html" style="display:inline-block;margin-top:14px;font-size:11px">FR · Français</a>
+      <div style="margin-top:18px">
+        <div style="font-size:11px;text-transform:uppercase;letter-spacing:.14em;color:var(--rose);font-weight:700;margin-bottom:8px">Newsletter</div>
+        <form class="newsletter-form" onsubmit="event.preventDefault();var e=this.querySelector('input');if(e.value){showToast('Welcome to Mortéa! ✨','success');e.value=''}">
+          <input class="input" type="email" placeholder="Your email" style="font-size:13px;padding:10px 14px" required>
+          <button class="btn primary sm" type="submit" style="white-space:nowrap">Join</button>
+        </form>
+        <div style="margin-top:14px;display:flex;gap:10px;align-items:center">
+          <a href="https://instagram.com/mortea.beauty" target="_blank" rel="noopener" style="font-size:13px;color:var(--muted);transition:color .15s" onmouseover="this.style.color='var(--champagne)'" onmouseout="this.style.color='var(--muted)'">Instagram</a>
+          <a href="https://tiktok.com/@mortea.beauty" target="_blank" rel="noopener" style="font-size:13px;color:var(--muted);transition:color .15s" onmouseover="this.style.color='var(--champagne)'" onmouseout="this.style.color='var(--muted)'">TikTok</a>
+        </div>
+      </div>
     </div>
     <div class="footer-col">
       <div class="footer-col-title">Discover</div>

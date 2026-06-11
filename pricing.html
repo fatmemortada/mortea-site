@@ -32,6 +32,7 @@
   </style>
 </head>
 <body class="mortea-luxury">
+<a class="skip-to-content" href="#main">Skip to content</a>
 <nav class="nav">
   <a class="brand" href="index.html">Mortéa</a>
   <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false">
@@ -48,7 +49,7 @@
   </div>
 </nav>
 
-<main>
+<main id="main">
   <section class="page-hero" style="text-align:center;max-width:760px;margin:0 auto">
     <div class="eyebrow">No subscriptions · No setup fees</div>
     <h1>Free to join.<br><em style="font-style:italic;color:var(--rose)">10%</em> per booking.</h1>
@@ -109,6 +110,18 @@
       <div class="faq-item" onclick="this.classList.toggle('open')"><h4>Do I have to use Mortéa's payment system?</h4><p>No — you can also list an external booking link (Calendly, Jane App, etc.) on your profile. The 10% fee only applies to bookings made through Mortéa's built-in booking system.</p></div>
       <div class="faq-item" onclick="this.classList.toggle('open')"><h4>Can I set my own prices?</h4><p>Yes — you set the price for each service from your dashboard. There are no restrictions on what you charge.</p></div>
       <div class="faq-item" onclick="this.classList.toggle('open')"><h4>What if a client cancels?</h4><p>Cancellation and refund policies are managed through Stripe. You can set your own policy in your Stripe dashboard settings.</p></div>
+    </div>
+
+    <!-- Testimonial -->
+    <div style="max-width:600px;margin:48px auto 0">
+      <div style="border:1px solid var(--line);border-radius:var(--radius-lg);padding:24px;background:linear-gradient(165deg,rgba(255,255,255,.04),rgba(255,255,255,.01))">
+        <div style="font-size:18px;color:#f0c060;letter-spacing:2px;margin-bottom:12px">★★★★★</div>
+        <p style="font-style:italic;color:#d4c4b8;font-size:15px;line-height:1.7;margin-bottom:16px">"I joined Mortéa and within two weeks had three new clients find me. The setup took 5 minutes. It's the professional presence I always wanted."</p>
+        <div style="display:flex;align-items:center;gap:12px">
+          <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#d9b7a2,#3e2218);flex-shrink:0"></div>
+          <div><strong style="font-size:14px;color:var(--champagne)">Nadia R.</strong><span style="font-size:12px;color:var(--muted);margin-left:8px">Lash Artist, Montréal</span></div>
+        </div>
+      </div>
     </div>
 
     <!-- CTA -->

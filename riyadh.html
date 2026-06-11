@@ -5,6 +5,18 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="description" content="Discover luxury beauty professionals, aesthetic clinics, and wellness experts in Riyadh on Mortéa — the global beauty discovery platform.">
   <title>Riyadh Beauty &amp; Aesthetics — Mortéa</title>
+  <meta property="og:title" content="Riyadh Beauty &amp; Aesthetics — Mortéa">
+  <meta property="og:description" content="Discover luxury beauty professionals and aesthetic clinics in Riyadh on Mortéa.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.mortea.ca/riyadh.html">
+  <meta property="og:site_name" content="Mortéa">
+  <meta property="og:image" content="https://www.mortea.ca/mortea-og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Riyadh Beauty &amp; Aesthetics — Mortéa">
+  <meta name="twitter:description" content="Discover luxury beauty professionals and aesthetic clinics in Riyadh on Mortéa.">
+  <meta name="twitter:image" content="https://www.mortea.ca/mortea-og.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
@@ -17,9 +29,11 @@
     .city-stat .num { font-family:'Playfair Display',serif;font-size:42px;color:var(--sand); }
     .city-stat .lbl { font-size:13px;color:var(--muted);margin-top:4px; }
   </style>
+  <link rel="canonical" href="https://www.mortea.ca/riyadh.html">
   <link rel="stylesheet" href="mobile.css">
 </head>
 <body class="mortea-luxury">
+<a class="skip-to-content" href="#main">Skip to content</a>
 <nav class="nav">
   <a class="brand" href="index.html">Mortéa</a>
   <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false">
@@ -36,7 +50,7 @@
     <a class="lang" href="ar/riyadh.html">AR</a>
   </div>
 </nav>
-<main>
+<main id="main">
   <section class="page-hero">
     <div class="eyebrow">Saudi Arabia · Global city network</div>
     <h1>Discover beauty &amp; aesthetics<br>in <em style="font-style:italic;color:var(--rose)">Riyadh.</em></h1>
@@ -79,7 +93,14 @@
 </main>
 <footer class="footer">
   <b>Mortéa</b>
-  <span>Beauty &amp; aesthetics discovery in Riyadh.</span>
+  <div style="display:flex;gap:18px;flex-wrap:wrap;align-items:center">
+    <a href="about.html" style="font-size:13px;color:var(--muted)">About</a>
+    <a href="blog.html" style="font-size:13px;color:var(--muted)">Journal</a>
+    <a href="contact.html" style="font-size:13px;color:var(--muted)">Contact</a>
+    <a href="terms.html" style="font-size:13px;color:var(--muted)">Terms</a>
+    <a href="privacy.html" style="font-size:13px;color:var(--muted)">Privacy</a>
+    <span style="font-size:13px;color:#7a6a60">Beauty &amp; aesthetics discovery in Riyadh.</span>
+  </div>
 </footer>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="supabase-config.js"></script>
@@ -115,8 +136,8 @@
         <h4><a href="provider.html?id=${encodeURIComponent(p.id)}">${esc(p.business_name)}</a></h4>
         <p>${esc(p.category)} · ${esc(p.city)}</p>
         <div class="socials">
-          ${p.booking_link ? `<a href="${esc(p.booking_link)}" target="_blank">Book</a>` : '<span>Profile</span>'}
-          ${p.instagram ? `<a href="https://instagram.com/${esc(p.instagram.replace('@',''))}" target="_blank">Instagram</a>` : ''}
+          ${p.booking_link ? `<a href="${esc(p.booking_link)}" target="_blank" rel="noopener">Book</a>` : '<span>Profile</span>'}
+          ${p.instagram ? `<a href="https://instagram.com/${esc(p.instagram.replace('@',''))}" target="_blank" rel="noopener">Instagram</a>` : ''}
         </div>
       </div>
     </div>`).join('');
