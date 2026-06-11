@@ -98,32 +98,127 @@ function declineCookies() {
 (async function cityDetect() {
   if (localStorage.getItem('mortea_city_dismissed')) return;
 
+  // Countries with a dedicated city page
   const CITY_MAP = {
-    AE: { name: 'Dubai',     page: 'dubai.html',     flag: '🇦🇪' },
-    SA: { name: 'Riyadh',    page: 'riyadh.html',    flag: '🇸🇦' },
-    LB: { name: 'Beirut',    page: 'beirut.html',    flag: '🇱🇧' },
-    FR: { name: 'Paris',     page: 'paris.html',     flag: '🇫🇷' },
-    GB: { name: 'London',    page: 'london.html',    flag: '🇬🇧' },
+    // North America
     CA: { name: 'Montréal',  page: 'montreal.html',  flag: '🇨🇦' },
     US: { name: 'New York',  page: 'new-york.html',  flag: '🇺🇸' },
-    KR: { name: 'Seoul',     page: 'seoul.html',     flag: '🇰🇷' },
+    MX: { name: 'New York',  page: 'new-york.html',  flag: '🇲🇽' },
+    // United Kingdom & nearby
+    GB: { name: 'London',    page: 'london.html',    flag: '🇬🇧' },
+    IE: { name: 'London',    page: 'london.html',    flag: '🇮🇪' },
+    // France & Francophone Europe / Africa
+    FR: { name: 'Paris',     page: 'paris.html',     flag: '🇫🇷' },
+    BE: { name: 'Paris',     page: 'paris.html',     flag: '🇧🇪' },
+    LU: { name: 'Paris',     page: 'paris.html',     flag: '🇱🇺' },
+    CH: { name: 'Paris',     page: 'paris.html',     flag: '🇨🇭' },
+    MC: { name: 'Paris',     page: 'paris.html',     flag: '🇲🇨' },
+    MA: { name: 'Paris',     page: 'paris.html',     flag: '🇲🇦' },
+    DZ: { name: 'Paris',     page: 'paris.html',     flag: '🇩🇿' },
+    TN: { name: 'Paris',     page: 'paris.html',     flag: '🇹🇳' },
+    SN: { name: 'Paris',     page: 'paris.html',     flag: '🇸🇳' },
+    CI: { name: 'Paris',     page: 'paris.html',     flag: '🇨🇮' },
+    CM: { name: 'Paris',     page: 'paris.html',     flag: '🇨🇲' },
+    MG: { name: 'Paris',     page: 'paris.html',     flag: '🇲🇬' },
+    GA: { name: 'Paris',     page: 'paris.html',     flag: '🇬🇦' },
+    // Italy & nearby
     IT: { name: 'Milan',     page: 'milan.html',     flag: '🇮🇹' },
+    SM: { name: 'Milan',     page: 'milan.html',     flag: '🇸🇲' },
+    VA: { name: 'Milan',     page: 'milan.html',     flag: '🇻🇦' },
+    HR: { name: 'Milan',     page: 'milan.html',     flag: '🇭🇷' },
+    SI: { name: 'Milan',     page: 'milan.html',     flag: '🇸🇮' },
+    // Lebanon & Levant
+    LB: { name: 'Beirut',    page: 'beirut.html',    flag: '🇱🇧' },
+    SY: { name: 'Beirut',    page: 'beirut.html',    flag: '🇸🇾' },
+    JO: { name: 'Beirut',    page: 'beirut.html',    flag: '🇯🇴' },
+    PS: { name: 'Beirut',    page: 'beirut.html',    flag: '🇵🇸' },
+    CY: { name: 'Beirut',    page: 'beirut.html',    flag: '🇨🇾' },
+    // UAE & Gulf
+    AE: { name: 'Dubai',     page: 'dubai.html',     flag: '🇦🇪' },
+    KW: { name: 'Dubai',     page: 'dubai.html',     flag: '🇰🇼' },
+    QA: { name: 'Dubai',     page: 'dubai.html',     flag: '🇶🇦' },
+    BH: { name: 'Dubai',     page: 'dubai.html',     flag: '🇧🇭' },
+    OM: { name: 'Dubai',     page: 'dubai.html',     flag: '🇴🇲' },
+    EG: { name: 'Dubai',     page: 'dubai.html',     flag: '🇪🇬' },
+    IQ: { name: 'Dubai',     page: 'dubai.html',     flag: '🇮🇶' },
+    PK: { name: 'Dubai',     page: 'dubai.html',     flag: '🇵🇰' },
+    IN: { name: 'Dubai',     page: 'dubai.html',     flag: '🇮🇳' },
+    LK: { name: 'Dubai',     page: 'dubai.html',     flag: '🇱🇰' },
+    BD: { name: 'Dubai',     page: 'dubai.html',     flag: '🇧🇩' },
+    NP: { name: 'Dubai',     page: 'dubai.html',     flag: '🇳🇵' },
+    PH: { name: 'Dubai',     page: 'dubai.html',     flag: '🇵🇭' },
+    // Saudi Arabia
+    SA: { name: 'Riyadh',    page: 'riyadh.html',    flag: '🇸🇦' },
+    YE: { name: 'Riyadh',    page: 'riyadh.html',    flag: '🇾🇪' },
+    // South Korea & East Asia
+    KR: { name: 'Seoul',     page: 'seoul.html',     flag: '🇰🇷' },
+    JP: { name: 'Seoul',     page: 'seoul.html',     flag: '🇯🇵' },
+    TW: { name: 'Seoul',     page: 'seoul.html',     flag: '🇹🇼' },
+    CN: { name: 'Seoul',     page: 'seoul.html',     flag: '🇨🇳' },
+    HK: { name: 'Seoul',     page: 'seoul.html',     flag: '🇭🇰' },
+    SG: { name: 'Seoul',     page: 'seoul.html',     flag: '🇸🇬' },
+    MY: { name: 'Seoul',     page: 'seoul.html',     flag: '🇲🇾' },
+    TH: { name: 'Seoul',     page: 'seoul.html',     flag: '🇹🇭' },
+    ID: { name: 'Seoul',     page: 'seoul.html',     flag: '🇮🇩' },
+    VN: { name: 'Seoul',     page: 'seoul.html',     flag: '🇻🇳' },
+  };
+
+  // Countries that should see a generic discovery banner instead
+  // (rest of world → discover.html)
+  const GENERIC_REGIONS = {
+    // Europe
+    DE: '🇩🇪', NL: '🇳🇱', ES: '🇪🇸', PT: '🇵🇹', SE: '🇸🇪', NO: '🇳🇴',
+    DK: '🇩🇰', FI: '🇫🇮', PL: '🇵🇱', AT: '🇦🇹', CZ: '🇨🇿', SK: '🇸🇰',
+    HU: '🇭🇺', RO: '🇷🇴', BG: '🇧🇬', GR: '🇬🇷', RS: '🇷🇸', UA: '🇺🇦',
+    TR: '🇹🇷', RU: '🇷🇺', BY: '🇧🇾', LT: '🇱🇹', LV: '🇱🇻', EE: '🇪🇪',
+    IS: '🇮🇸', MK: '🇲🇰', AL: '🇦🇱', BA: '🇧🇦', ME: '🇲🇪', GE: '🇬🇪',
+    AM: '🇦🇲', AZ: '🇦🇿', MD: '🇲🇩',
+    // Africa
+    LY: '🇱🇾', SD: '🇸🇩', NG: '🇳🇬', GH: '🇬🇭', KE: '🇰🇪', ET: '🇪🇹',
+    TZ: '🇹🇿', UG: '🇺🇬', RW: '🇷🇼', ZA: '🇿🇦', ZW: '🇿🇼', ZM: '🇿🇲',
+    AO: '🇦🇴', MZ: '🇲🇿', BJ: '🇧🇯', TG: '🇹🇬', BF: '🇧🇫', ML: '🇲🇱',
+    NE: '🇳🇪', MR: '🇲🇷', GN: '🇬🇳', SL: '🇸🇱', LR: '🇱🇷',
+    // Latin America
+    BR: '🇧🇷', AR: '🇦🇷', CO: '🇨🇴', CL: '🇨🇱', PE: '🇵🇪', VE: '🇻🇪',
+    EC: '🇪🇨', UY: '🇺🇾', PY: '🇵🇾', BO: '🇧🇴', GT: '🇬🇹', HN: '🇭🇳',
+    SV: '🇸🇻', NI: '🇳🇮', CR: '🇨🇷', PA: '🇵🇦', CU: '🇨🇺', DO: '🇩🇴',
+    // Oceania
+    AU: '🇦🇺', NZ: '🇳🇿',
+    // Central & South Asia
+    AF: '🇦🇫', IR: '🇮🇷', UZ: '🇺🇿', KZ: '🇰🇿',
+    // Caribbean
+    JM: '🇯🇲', TT: '🇹🇹', BB: '🇧🇧',
   };
 
   try {
     const res  = await fetch('https://ipapi.co/json/');
     const data = await res.json();
-    const city = CITY_MAP[data.country_code];
-    if (!city) return;
+    const cc   = data.country_code;
+    const base = location.pathname.includes('/fr/') ? '../' : '';
 
-    const base    = location.pathname.includes('/fr/') ? '../' : '';
-    const citySlug = city.page.replace('.html', '');
-    if (location.pathname.includes(citySlug)) return; // already on that city page
+    let msg, cta, href;
+
+    const city = CITY_MAP[cc];
+    if (city) {
+      const citySlug = city.page.replace('.html', '');
+      if (location.pathname.includes(citySlug)) return;
+      msg  = `${city.flag} Mortéa covers <strong style="color:var(--sand)">${city.name}</strong> — beauty &amp; aesthetics professionals near you.`;
+      cta  = `Explore ${city.name}`;
+      href = `${base}${city.page}`;
+    } else if (GENERIC_REGIONS[cc]) {
+      const flag = GENERIC_REGIONS[cc];
+      const cityName = data.city || data.country_name || 'your city';
+      msg  = `${flag} Mortéa is available near you — discover beauty &amp; aesthetics professionals worldwide.`;
+      cta  = 'Search near you';
+      href = `${base}discover.html`;
+    } else {
+      return; // truly unknown — stay silent
+    }
 
     const bar = document.createElement('div');
     bar.id = 'cityBanner';
     bar.style.cssText = [
-      'display:flex', 'align-items:center', 'justify-content:center', 'gap:16px',
+      'display:flex', 'align-items:center', 'justify-content:center',
       'padding:10px 6vw', 'background:rgba(217,183,162,.07)',
       'border-bottom:1px solid rgba(234,214,198,.12)',
       'font-size:13px', 'color:var(--champagne)', 'position:relative',
@@ -131,19 +226,12 @@ function declineCookies() {
     ].join(';');
 
     bar.innerHTML = `
-      <span>${city.flag} Mortéa covers <strong style="color:var(--sand)">${city.name}</strong> — beauty &amp; aesthetics professionals near you.</span>
-      <a href="${base}${city.page}"
-         style="background:var(--sand);color:#130d0a;border-radius:999px;padding:6px 16px;font-size:12px;font-weight:700;white-space:nowrap;text-decoration:none">
-        Explore ${city.name}
-      </a>
-      <button onclick="
-        localStorage.setItem('mortea_city_dismissed','1');
-        document.getElementById('cityBanner').remove();
-      " style="position:absolute;right:16px;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--muted);font-size:18px;cursor:pointer;line-height:1;padding:4px" aria-label="Dismiss">×</button>`;
+      <span>${msg}</span>
+      <a href="${href}" style="background:var(--sand);color:#130d0a;border-radius:999px;padding:6px 16px;font-size:12px;font-weight:700;white-space:nowrap;text-decoration:none">${cta}</a>
+      <button onclick="localStorage.setItem('mortea_city_dismissed','1');document.getElementById('cityBanner').remove()"
+        style="position:absolute;right:16px;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--muted);font-size:18px;cursor:pointer;line-height:1;padding:4px" aria-label="Dismiss">×</button>`;
 
-    const nav = document.querySelector('.nav, nav');
-    const marquee = document.querySelector('.marquee-wrap');
-    const anchor = marquee || nav;
+    const anchor = document.querySelector('.marquee-wrap') || document.querySelector('.nav');
     if (anchor) anchor.insertAdjacentElement('afterend', bar);
     else document.body.prepend(bar);
 
