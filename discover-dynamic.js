@@ -94,6 +94,16 @@ function renderDiscoverProviders(list) {
   }
 }
 
+function populateCityDropdown(providers) {
+  const select = document.getElementById('cityFilter');
+  if (!select) return;
+  const cities = [...new Set(
+    providers.map(p => (p.city||'').trim()).filter(Boolean)
+  )].sort((a, b) => a.localeCompare(b));
+  select.innerHTML = '<option value="">All cities</option>' +
+    cities.map(c => `<option value="${c.toLowerCase()}">${c}</option>`).join('');
+}
+
 async function loadDiscoverProviders() {
   const count = document.getElementById('discoverProviderCount');
   if (count) count.textContent = 'Loading…';
@@ -110,6 +120,7 @@ async function loadDiscoverProviders() {
 
     const approved = (data||[]).filter(p => p.status === 'approved');
     discoverProviders = approved.length ? approved : (data||[]);
+    populateCityDropdown(discoverProviders);
     renderDiscoverProviders(discoverProviders);
   } catch(err) {
     console.error('Discover load error:', err);

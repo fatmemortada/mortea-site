@@ -94,6 +94,21 @@ async function submitProfessionalApplication() {
   const urlCity = new URLSearchParams(window.location.search).get('city');
   if (urlCity && !payload.city) payload.city = urlCity;
 
+  // ── Geocode address → lat/lng so the professional appears on the map ──
+  try {
+    btn.textContent = 'Locating address…';
+    const fullAddress = [payload.address, payload.city, payload.province, payload.country].filter(Boolean).join(', ');
+    const geoUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(fullAddress)}&key=${GOOGLE_MAPS_KEY}`;
+    const geoRes  = await fetch(geoUrl);
+    const geoData = await geoRes.json();
+    if (geoData.results && geoData.results[0]) {
+      const loc = geoData.results[0].geometry.location;
+      payload.latitude  = loc.lat;
+      payload.longitude = loc.lng;
+    }
+  } catch (_) { /* geocoding failure is non-fatal — submit anyway without coords */ }
+  btn.textContent = 'Submitting…';
+
   try {
     const { error } = await supabaseClient.from('professionals').insert([payload]);
     if (error) {
