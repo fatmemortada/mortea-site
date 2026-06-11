@@ -1,57 +1,93 @@
 /* ============================================================
-   Mortéa — UI Components
-   Cookie banner, back-to-top, profile share buttons
+   Mortéa — UI Components v2
+   Cookie banner · Back-to-top · Toast system · Skip-to-content
+   Hamburger nav · Scroll reveal · Lazy images · Lang switcher
+   hreflang · Country detect · Footer upgrade · Search shortcut
    ============================================================ */
+
+// ── Register Service Worker ──────────────────────────────────
+if ('serviceWorker' in navigator && location.hostname !== 'localhost') {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js').catch(() => {
+      // Fail silently — service worker is a progressive enhancement
+    });
+  });
+}
 
 document.addEventListener('DOMContentLoaded', () => {
 
-  // ── Cookie consent banner ─────────────────────────────────
+  // ── Skip-to-content (Accessibility) ──────────────────────────
+  if (!document.getElementById('skipToContent')) {
+    const skip = document.createElement('a');
+    skip.id = 'skipToContent';
+    skip.className = 'skip-to-content';
+    skip.href = '#main-content';
+    skip.textContent = 'Skip to main content';
+    document.body.prepend(skip);
+  }
+
+  // Ensure main content has an id for skip link
+  const main = document.querySelector('main');
+  if (main && !main.id) main.id = 'main-content';
+
+  // ── Cookie consent banner ─────────────────────────────────────
   if (!localStorage.getItem('mortea_cookies_accepted')) {
     const banner = document.createElement('div');
     banner.id = 'cookieBanner';
-    banner.style.cssText = `
-      position:fixed;bottom:0;left:0;right:0;z-index:1000;
-      background:rgba(7,5,4,.95);border-top:1px solid rgba(234,214,198,.14);
-      backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
-      padding:16px 6vw;display:flex;align-items:center;justify-content:space-between;
-      gap:16px;flex-wrap:wrap;
-    `;
+    banner.className = 'cookie-banner';
     banner.innerHTML = `
-      <p style="font-size:14px;color:#d4c4b8;margin:0;max-width:680px">
-        Mortéa uses essential cookies for authentication and session management. 
-        We don't use advertising cookies. 
-        <a href="/privacy.html" style="color:var(--rose)">Privacy Policy</a>
-      </p>
-      <div style="display:flex;gap:10px;flex-shrink:0">
-        <button onclick="acceptCookies()" style="background:var(--sand);color:#130d0a;border:none;border-radius:999px;padding:10px 20px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit">Accept</button>
-        <button onclick="declineCookies()" style="background:none;border:1px solid rgba(234,214,198,.2);border-radius:999px;padding:10px 16px;font-size:14px;color:var(--muted);cursor:pointer;font-family:inherit">Decline</button>
+      <p>Mortéa uses essential cookies for authentication and session management. We do not use advertising or tracking cookies. See our <a href="/privacy.html">Privacy Policy</a>.</p>
+      <div class="cookie-banner-actions">
+        <button class="btn primary sm" id="acceptCookiesBtn">Accept</button>
+        <button class="btn secondary sm" id="declineCookiesBtn">Decline</button>
       </div>`;
     document.body.appendChild(banner);
+    // Trigger animation
+    requestAnimationFrame(() => banner.classList.add('show'));
+
+    banner.querySelector('#acceptCookiesBtn').addEventListener('click', () => {
+      localStorage.setItem('mortea_cookies_accepted', '1');
+      banner.classList.remove('show');
+      setTimeout(() => banner.remove(), 400);
+    });
+    banner.querySelector('#declineCookiesBtn').addEventListener('click', () => {
+      localStorage.setItem('mortea_cookies_accepted', '0');
+      banner.classList.remove('show');
+      setTimeout(() => banner.remove(), 400);
+    });
   }
 
-  // ── Back to top button ─────────────────────────────────────
-  const backTop = document.createElement('button');
-  backTop.id = 'backToTop';
-  backTop.innerHTML = '↑';
-  backTop.title = 'Back to top';
-  backTop.style.cssText = `
-    position:fixed;bottom:80px;right:24px;z-index:90;
-    width:42px;height:42px;border-radius:50%;
-    background:rgba(7,5,4,.85);border:1px solid rgba(234,214,198,.2);
-    color:var(--champagne);font-size:18px;cursor:pointer;
-    display:none;align-items:center;justify-content:center;
-    backdrop-filter:blur(10px);transition:all .2s;font-family:inherit;
-  `;
-  backTop.addEventListener('click', () => window.scrollTo({ top:0, behavior:'smooth' }));
-  backTop.addEventListener('mouseover', () => backTop.style.borderColor='rgba(234,214,198,.4)');
-  backTop.addEventListener('mouseout',  () => backTop.style.borderColor='rgba(234,214,198,.2)');
-  document.body.appendChild(backTop);
+  // ── Back to top button ────────────────────────────────────────
+  if (!document.getElementById('backToTop')) {
+    const backTop = document.createElement('button');
+    backTop.id = 'backToTop';
+    backTop.className = 'back-to-top';
+    backTop.innerHTML = '↑';
+    backTop.setAttribute('aria-label', 'Back to top');
+    backTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+    document.body.appendChild(backTop);
 
-  window.addEventListener('scroll', () => {
-    backTop.style.display = window.scrollY > 400 ? 'flex' : 'none';
-  }, { passive: true });
+    let scrollTicking = false;
+    window.addEventListener('scroll', () => {
+      if (!scrollTicking) {
+        requestAnimationFrame(() => {
+          backTop.classList.toggle('visible', window.scrollY > 500);
+          scrollTicking = false;
+        });
+        scrollTicking = true;
+      }
+    }, { passive: true });
+  }
 
-  // ── Mobile hamburger menu (auto-injects if missing) ──────────
+  // ── Toast container ───────────────────────────────────────────
+  if (!document.getElementById('toastContainer')) {
+    const container = document.createElement('div');
+    container.id = 'toastContainer';
+    container.className = 'toast-container';
+    document.body.appendChild(container);
+  }
+
+  // ── Mobile hamburger menu ─────────────────────────────────────
   let navToggle = document.getElementById('navToggle');
   let navLinks  = document.getElementById('navLinks') || document.querySelector('nav .nav-links');
   if (navLinks && !navLinks.id) navLinks.id = 'navLinks';
@@ -59,51 +95,197 @@ document.addEventListener('DOMContentLoaded', () => {
     navToggle = document.createElement('button');
     navToggle.id = 'navToggle';
     navToggle.className = 'nav-toggle';
-    navToggle.setAttribute('aria-label', 'Menu');
+    navToggle.setAttribute('aria-label', 'Toggle menu');
     navToggle.setAttribute('aria-expanded', 'false');
     navToggle.innerHTML = '<span></span><span></span><span></span>';
-    navLinks.insertAdjacentElement('beforebegin', navToggle);
+    const nav = navLinks.closest('nav');
+    if (nav) {
+      const brand = nav.querySelector('.brand');
+      if (brand) brand.insertAdjacentElement('afterend', navToggle);
+      else nav.prepend(navToggle);
+    }
   }
   if (navToggle && navLinks) {
     navToggle.addEventListener('click', () => {
-      const open = navLinks.classList.toggle('open');
-      navToggle.classList.toggle('open', open);
-      navToggle.setAttribute('aria-expanded', String(open));
+      const isOpen = navLinks.classList.toggle('open');
+      navToggle.classList.toggle('open', isOpen);
+      navToggle.setAttribute('aria-expanded', String(isOpen));
+      document.body.style.overflow = isOpen ? 'hidden' : '';
     });
+    // Close on outside click
     document.addEventListener('click', (e) => {
-      if (!navToggle.contains(e.target) && !navLinks.contains(e.target)) {
+      if (navLinks.classList.contains('open') &&
+          !navToggle.contains(e.target) &&
+          !navLinks.contains(e.target)) {
         navLinks.classList.remove('open');
         navToggle.classList.remove('open');
         navToggle.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+      }
+    });
+    // Close on Escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && navLinks.classList.contains('open')) {
+        navLinks.classList.remove('open');
+        navToggle.classList.remove('open');
+        navToggle.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
       }
     });
   }
 
-  // ── Global search shortcut (Ctrl+K or Cmd+K) ─────────────
+  // ── Global search shortcut (Ctrl+K / Cmd+K) ──────────────────
   document.addEventListener('keydown', (e) => {
     if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
       e.preventDefault();
       const search = document.getElementById('discoverServiceSearch') ||
+                     document.getElementById('heroServiceInput') ||
                      document.getElementById('serviceSearch');
-      if (search) { search.focus(); search.select(); }
+      if (search) { search.focus(); search.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
       else { window.location.href = '/discover.html'; }
     }
   });
 
+  // ── Scroll reveal animations ──────────────────────────────────
+  const revealEls = document.querySelectorAll('.reveal');
+  if (revealEls.length > 0 && 'IntersectionObserver' in window) {
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('revealed');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+    revealEls.forEach(el => revealObserver.observe(el));
+  } else if (revealEls.length > 0) {
+    // Fallback: reveal all immediately
+    revealEls.forEach(el => el.classList.add('revealed'));
+  }
+
+  // ── Lazy image loading ────────────────────────────────────────
+  const lazyImages = document.querySelectorAll('img[data-src], img.lazy:not(.loaded)');
+  if (lazyImages.length > 0 && 'IntersectionObserver' in window) {
+    const imgObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const img = entry.target;
+          if (img.dataset.src) {
+            img.src = img.dataset.src;
+            img.removeAttribute('data-src');
+          }
+          img.classList.add('loaded');
+          imgObserver.unobserve(img);
+        }
+      });
+    }, { rootMargin: '200px 0px' });
+    lazyImages.forEach(img => imgObserver.observe(img));
+  }
+
+  // ── External link handling ────────────────────────────────────
+  document.querySelectorAll('a[href^="http"]').forEach(link => {
+    if (!link.hostname.includes('mortea.ca') && !link.hostname.includes('localhost')) {
+      link.setAttribute('rel', 'noopener noreferrer');
+      link.setAttribute('target', '_blank');
+    }
+  });
+
+  // ── Active nav link highlight ─────────────────────────────────
+  (function highlightActiveNav() {
+    const currentPath = location.pathname.replace(/\/$/, '') || '/index.html';
+    const currentFile = currentPath.split('/').pop();
+    document.querySelectorAll('.nav-links a:not(.lang):not(.pill)').forEach(link => {
+      const href = link.getAttribute('href');
+      if (!href) return;
+      if (href === currentFile || currentPath.endsWith(href) ||
+          (currentFile === 'index.html' && (href === 'index.html' || href === '/' || href === './'))) {
+        link.style.color = 'var(--sand)';
+        link.style.fontWeight = '700';
+      }
+    });
+  })();
+
 });
 
-// ── Cookie functions ──────────────────────────────────────────
-function acceptCookies() {
+// ═══════════════════════════════════════════════════════════════
+// Global utility functions
+// ═══════════════════════════════════════════════════════════════
+
+// ── Toast notification system ───────────────────────────────────
+function showToast(msg, type = 'success', duration = 3500) {
+  const container = document.getElementById('toastContainer');
+  if (!container) return;
+
+  const icons = { success: '✓', error: '✕', info: 'ℹ' };
+  const toast = document.createElement('div');
+  toast.className = `toast ${type}`;
+  toast.innerHTML = `
+    <span class="toast-icon">${icons[type] || icons.info}</span>
+    <span class="toast-msg">${msg}</span>
+    <button class="toast-close" aria-label="Dismiss">×</button>`;
+
+  const closeBtn = toast.querySelector('.toast-close');
+  closeBtn.addEventListener('click', () => {
+    toast.style.opacity = '0';
+    toast.style.transform = 'translateX(40px)';
+    toast.style.transition = 'opacity .25s, transform .25s';
+    setTimeout(() => toast.remove(), 300);
+  });
+
+  container.appendChild(toast);
+  // Trigger animation
+  requestAnimationFrame(() => toast.classList.add('show'));
+
+  // Auto-dismiss
+  setTimeout(() => {
+    if (toast.parentNode) {
+      toast.style.opacity = '0';
+      toast.style.transform = 'translateX(40px)';
+      toast.style.transition = 'opacity .25s, transform .25s';
+      setTimeout(() => toast.remove(), 300);
+    }
+  }, duration);
+}
+
+// ── Cookie consent functions ────────────────────────────────────
+window.acceptCookies = function() {
   localStorage.setItem('mortea_cookies_accepted', '1');
-  document.getElementById('cookieBanner')?.remove();
-}
+  const banner = document.getElementById('cookieBanner');
+  if (banner) {
+    banner.classList.remove('show');
+    setTimeout(() => banner.remove(), 400);
+  }
+};
 
-function declineCookies() {
+window.declineCookies = function() {
   localStorage.setItem('mortea_cookies_accepted', '0');
-  document.getElementById('cookieBanner')?.remove();
-}
+  const banner = document.getElementById('cookieBanner');
+  if (banner) {
+    banner.classList.remove('show');
+    setTimeout(() => banner.remove(), 400);
+  }
+};
 
-// ── hreflang SEO tags ─────────────────────────────────────────
+// ── Share provider profile ──────────────────────────────────────
+window.shareProfile = function(name, url) {
+  const shareUrl = url || window.location.href;
+  const text = `Check out ${name} on Mortéa — luxury beauty discovery`;
+  if (navigator.share) {
+    navigator.share({ title: name, text, url: shareUrl }).catch(() => {});
+  } else {
+    navigator.clipboard.writeText(shareUrl).then(() => {
+      showToast('Profile link copied to clipboard!', 'success');
+    }).catch(() => {
+      showToast('Could not copy link', 'error');
+    });
+  }
+};
+
+// ═══════════════════════════════════════════════════════════════
+// Self-executing modules (run immediately, not on DOMContentLoaded)
+// ═══════════════════════════════════════════════════════════════
+
+// ── hreflang SEO tags ───────────────────────────────────────────
 (function injectHreflang() {
   const BASE  = 'https://www.mortea.ca';
   const path  = location.pathname;
@@ -138,20 +320,16 @@ function declineCookies() {
   });
 })();
 
-// ── Country auto-detect → city suggestion banner ─────────────
+// ── Country auto-detect → city suggestion banner ────────────────
 (async function cityDetect() {
   if (localStorage.getItem('mortea_city_dismissed')) return;
 
-  // Countries with a dedicated city page
   const CITY_MAP = {
-    // North America
     CA: { name: 'Montréal',  page: 'montreal.html',  flag: '🇨🇦' },
     US: { name: 'New York',  page: 'new-york.html',  flag: '🇺🇸' },
     MX: { name: 'New York',  page: 'new-york.html',  flag: '🇲🇽' },
-    // United Kingdom & nearby
     GB: { name: 'London',    page: 'london.html',    flag: '🇬🇧' },
     IE: { name: 'London',    page: 'london.html',    flag: '🇮🇪' },
-    // France & Francophone Europe / Africa
     FR: { name: 'Paris',     page: 'paris.html',     flag: '🇫🇷' },
     BE: { name: 'Paris',     page: 'paris.html',     flag: '🇧🇪' },
     LU: { name: 'Paris',     page: 'paris.html',     flag: '🇱🇺' },
@@ -164,20 +342,16 @@ function declineCookies() {
     CI: { name: 'Paris',     page: 'paris.html',     flag: '🇨🇮' },
     CM: { name: 'Paris',     page: 'paris.html',     flag: '🇨🇲' },
     MG: { name: 'Paris',     page: 'paris.html',     flag: '🇲🇬' },
-    GA: { name: 'Paris',     page: 'paris.html',     flag: '🇬🇦' },
-    // Italy & nearby
     IT: { name: 'Milan',     page: 'milan.html',     flag: '🇮🇹' },
     SM: { name: 'Milan',     page: 'milan.html',     flag: '🇸🇲' },
     VA: { name: 'Milan',     page: 'milan.html',     flag: '🇻🇦' },
     HR: { name: 'Milan',     page: 'milan.html',     flag: '🇭🇷' },
     SI: { name: 'Milan',     page: 'milan.html',     flag: '🇸🇮' },
-    // Lebanon & Levant
     LB: { name: 'Beirut',    page: 'beirut.html',    flag: '🇱🇧' },
     SY: { name: 'Beirut',    page: 'beirut.html',    flag: '🇸🇾' },
     JO: { name: 'Beirut',    page: 'beirut.html',    flag: '🇯🇴' },
     PS: { name: 'Beirut',    page: 'beirut.html',    flag: '🇵🇸' },
     CY: { name: 'Beirut',    page: 'beirut.html',    flag: '🇨🇾' },
-    // UAE & Gulf
     AE: { name: 'Dubai',     page: 'dubai.html',     flag: '🇦🇪' },
     KW: { name: 'Dubai',     page: 'dubai.html',     flag: '🇰🇼' },
     QA: { name: 'Dubai',     page: 'dubai.html',     flag: '🇶🇦' },
@@ -191,10 +365,8 @@ function declineCookies() {
     BD: { name: 'Dubai',     page: 'dubai.html',     flag: '🇧🇩' },
     NP: { name: 'Dubai',     page: 'dubai.html',     flag: '🇳🇵' },
     PH: { name: 'Dubai',     page: 'dubai.html',     flag: '🇵🇭' },
-    // Saudi Arabia
     SA: { name: 'Riyadh',    page: 'riyadh.html',    flag: '🇸🇦' },
     YE: { name: 'Riyadh',    page: 'riyadh.html',    flag: '🇾🇪' },
-    // South Korea & East Asia
     KR: { name: 'Seoul',     page: 'seoul.html',     flag: '🇰🇷' },
     JP: { name: 'Seoul',     page: 'seoul.html',     flag: '🇯🇵' },
     TW: { name: 'Seoul',     page: 'seoul.html',     flag: '🇹🇼' },
@@ -205,10 +377,19 @@ function declineCookies() {
     TH: { name: 'Seoul',     page: 'seoul.html',     flag: '🇹🇭' },
     ID: { name: 'Seoul',     page: 'seoul.html',     flag: '🇮🇩' },
     VN: { name: 'Seoul',     page: 'seoul.html',     flag: '🇻🇳' },
+    // Major remaining countries → generic discover
+    DE: null, ES: null, BR: null, NG: null, ET: null,
+    CD: null, TR: null, IR: null, MM: null, ZA: null,
+    CO: null, AR: null, KE: null, UG: null, TZ: null,
+    GH: null, PE: null, VE: null, AU: null, NL: null,
+    PT: null, SE: null, NO: null, DK: null, FI: null,
+    AT: null, PL: null, CZ: null, RO: null, HU: null,
+    GR: null, IL: null, NZ: null, CL: null, EC: null,
   };
 
   try {
     const res  = await fetch('https://ipapi.co/json/');
+    if (!res.ok) return;
     const data = await res.json();
     const cc   = data.country_code;
     const base = location.pathname.includes('/fr/') ? '../' : '';
@@ -222,8 +403,13 @@ function declineCookies() {
       msg  = `${city.flag} Mortéa covers <strong style="color:var(--sand)">${city.name}</strong> — beauty &amp; aesthetics professionals near you.`;
       cta  = `Explore ${city.name}`;
       href = `${base}${city.page}`;
+    } else if (CITY_MAP.hasOwnProperty(cc)) {
+      // Null entry → generic banner
+      msg  = `Mortéa is available near you — discover beauty &amp; aesthetics professionals worldwide.`;
+      cta  = 'Search near you';
+      href = `${base}discover.html`;
     } else {
-      // Every other country gets the generic discovery banner
+      // Unrecognized country → still show generic
       msg  = `Mortéa is available near you — discover beauty &amp; aesthetics professionals worldwide.`;
       cta  = 'Search near you';
       href = `${base}discover.html`;
@@ -242,32 +428,44 @@ function declineCookies() {
     bar.innerHTML = `
       <span>${msg}</span>
       <a href="${href}" style="background:var(--sand);color:#130d0a;border-radius:999px;padding:6px 16px;font-size:12px;font-weight:700;white-space:nowrap;text-decoration:none">${cta}</a>
-      <button onclick="localStorage.setItem('mortea_city_dismissed','1');document.getElementById('cityBanner').remove()"
+      <button onclick="localStorage.setItem('mortea_city_dismissed','1');document.getElementById('cityBanner')?.remove()"
         style="position:absolute;right:16px;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--muted);font-size:18px;cursor:pointer;line-height:1;padding:4px" aria-label="Dismiss">×</button>`;
 
     const anchor = document.querySelector('.marquee-wrap') || document.querySelector('.nav');
     if (anchor) anchor.insertAdjacentElement('afterend', bar);
     else document.body.prepend(bar);
 
-  } catch (_) { /* silently fail — never break the page */ }
+  } catch (_) { /* silently fail */ }
 })();
 
-// ── Upgrade legacy footers ────────────────────────────────────
+// ── Upgrade legacy footers ──────────────────────────────────────
 (function upgradeFooter() {
   const existing = document.querySelector('footer.footer');
   if (!existing) return;
   const b = location.pathname.includes('/fr/') ? '../' : '';
   const isFr = location.pathname.includes('/fr/');
+  const year = new Date().getFullYear();
   const html = `
 <footer class="footer-full">
   <div class="footer-grid">
     <div class="footer-brand-col">
       <a class="brand" href="${b}index.html" style="font-size:26px">Mortéa</a>
-      <p style="color:var(--muted);font-size:13px;line-height:1.7;margin-top:10px;max-width:220px">Global luxury beauty, wellness &amp; aesthetics discovery. Curated professionals worldwide.</p>
-      ${isFr
-        ? `<a class="lang" href="${b}index.html" style="display:inline-block;margin-top:14px;font-size:11px">EN · English</a>`
-        : `<a class="lang" href="fr/index.html" style="display:inline-block;margin-top:14px;font-size:11px">FR · Français</a>`
-      }
+      <p style="color:var(--muted);font-size:13px;line-height:1.7;margin-top:10px;max-width:240px">Global luxury beauty, wellness &amp; aesthetics discovery. Curated professionals worldwide.</p>
+      <div style="margin-top:16px;display:flex;gap:12px;align-items:center">
+        ${isFr
+          ? `<a class="lang" href="${b}index.html" style="font-size:11px">EN</a>`
+          : `<a class="lang" href="fr/index.html" style="font-size:11px">FR</a>`
+        }
+        <a class="lang" href="${b}ar/index.html" style="font-size:11px">AR</a>
+      </div>
+      <!-- Newsletter -->
+      <div style="margin-top:18px">
+        <div style="font-size:11px;text-transform:uppercase;letter-spacing:.14em;color:var(--rose);font-weight:700;margin-bottom:8px">Newsletter</div>
+        <form class="newsletter-form" onsubmit="event.preventDefault();var e=this.querySelector('input');if(e.value){showToast('Welcome to Mortéa! ✨','success');e.value=''}">
+          <input class="input" type="email" placeholder="Your email" style="font-size:13px;padding:10px 14px" required>
+          <button class="btn primary sm" type="submit" style="white-space:nowrap">Join</button>
+        </form>
+      </div>
     </div>
     <div class="footer-col">
       <div class="footer-col-title">Discover</div>
@@ -278,36 +476,54 @@ function declineCookies() {
       <a href="${b}paris.html">Paris</a>
       <a href="${b}london.html">London</a>
       <a href="${b}new-york.html">New York</a>
+      <a href="${b}riyadh.html">Riyadh</a>
+      <a href="${b}seoul.html">Seoul</a>
+      <a href="${b}milan.html">Milan</a>
+      <a href="${b}beirut.html">Beirut</a>
+      <a href="${b}toronto.html">Toronto</a>
     </div>
     <div class="footer-col">
-      <div class="footer-col-title">Professionals</div>
+      <div class="footer-col-title">For Professionals</div>
       <a href="${b}professional-onboarding.html">Join for free</a>
       <a href="${b}pricing.html">How it works</a>
       <a href="${b}login.html">Dashboard login</a>
+      <a href="${b}provider.html">Provider resources</a>
       <a href="${b}blog.html">Journal</a>
+      <a href="${b}referral.html">Refer a professional</a>
     </div>
     <div class="footer-col">
       <div class="footer-col-title">Company</div>
       <a href="${b}about.html">About Mortéa</a>
-      <a href="${b}contact.html">Contact</a>
+      <a href="${b}contact.html">Contact us</a>
+      <a href="${b}blog.html">Blog</a>
+      <a href="${b}reviews.html">Reviews</a>
       <a href="${b}terms.html">Terms of Service</a>
       <a href="${b}privacy.html">Privacy Policy</a>
+      <a href="${b}beta.html">Beta program</a>
     </div>
   </div>
+  <!-- Trust badges -->
+  <div class="security-strip">
+    <div class="security-badge"><span class="sb-icon">🔒</span> Stripe Secure Payments</div>
+    <div class="security-badge"><span class="sb-icon">🌍</span> Local Currency Support</div>
+    <div class="security-badge"><span class="sb-icon">⭐</span> Verified Reviews</div>
+    <div class="security-badge"><span class="sb-icon">🛡️</span> Privacy First</div>
+    <div class="security-badge"><span class="sb-icon">📱</span> Mobile Friendly</div>
+  </div>
   <div class="footer-bottom">
-    <span>© 2025 Mortéa — Global luxury beauty discovery · Montréal, Canada</span>
+    <span>© ${year} Mortéa — Global luxury beauty discovery · Montréal, Canada · All rights reserved.</span>
   </div>
 </footer>`;
   existing.insertAdjacentHTML('afterend', html);
   existing.remove();
 })();
 
-// ── Inject AR language link into nav on EN/FR pages ──────────
+// ── Inject AR language link into nav on EN/FR pages ─────────────
 (function injectArNavLink() {
   if (location.pathname.includes('/ar/')) return;
   const navLinks = document.getElementById('navLinks');
   if (!navLinks) return;
-  if (navLinks.querySelector('[href*="ar/"]')) return; // already there
+  if (navLinks.querySelector('[href*="ar/"]')) return;
   const file = location.pathname.split('/').pop() || 'index.html';
   const base = location.pathname.includes('/fr/') ? '../' : '';
   const a = document.createElement('a');
@@ -318,29 +534,3 @@ function declineCookies() {
   if (lastLang) lastLang.insertAdjacentElement('afterend', a);
   else navLinks.appendChild(a);
 })();
-
-// ── Share provider profile ────────────────────────────────────
-function shareProfile(name, url) {
-  const shareUrl = url || window.location.href;
-  const text = `Check out ${name} on Mortéa — luxury beauty discovery`;
-  if (navigator.share) {
-    navigator.share({ title: name, text, url: shareUrl });
-  } else {
-    navigator.clipboard.writeText(shareUrl).then(() => {
-      showToast('Profile link copied!');
-    });
-  }
-}
-
-function showToast(msg, type='success') {
-  const t = document.createElement('div');
-  t.style.cssText = `position:fixed;bottom:24px;left:50%;transform:translateX(-50%);
-    background:${type==='success'?'rgba(162,217,162,.15)':'rgba(217,162,162,.15)'};
-    border:1px solid ${type==='success'?'rgba(162,217,162,.35)':'rgba(217,162,162,.35)'};
-    color:${type==='success'?'#a8e0a8':'#e8aaaa'};
-    padding:12px 22px;border-radius:999px;font-size:14px;font-weight:600;
-    z-index:999;white-space:nowrap;backdrop-filter:blur(10px)`;
-  t.textContent = msg;
-  document.body.appendChild(t);
-  setTimeout(() => t.remove(), 3000);
-}

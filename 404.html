@@ -3,12 +3,34 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Page not found — Mortéa global luxury beauty & aesthetics discovery.">
   <title>Page Not Found — Mortéa</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="mobile.css">
+  <style>
+    .notfound-container {
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      min-height: 70vh; text-align: center; max-width: 640px; margin: 0 auto; padding: 60px 20px;
+    }
+    .notfound-code {
+      font-family: 'Playfair Display', serif; font-size: clamp(80px, 15vw, 130px);
+      line-height: 1; color: rgba(234,214,198,.10); margin-bottom: 16px;
+    }
+    .notfound-links { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; margin-top: 32px; }
+    .notfound-suggestions {
+      margin-top: 40px; padding-top: 28px; border-top: 1px solid var(--line);
+      display: grid; grid-template-columns: repeat(auto-fit,minmax(140px,1fr)); gap: 10px;
+    }
+    .notfound-suggestions a {
+      font-size: 13px; color: var(--muted); padding: 10px 14px;
+      border: 1px solid var(--line); border-radius: 14px; text-align: center;
+      transition: border-color .18s, color .18s;
+    }
+    .notfound-suggestions a:hover { border-color: var(--line-hi); color: var(--champagne); }
+  </style>
 </head>
 <body class="mortea-luxury">
 <nav class="nav">
@@ -16,21 +38,35 @@
   <div class="nav-links">
     <a href="discover.html">Discover</a>
     <a href="index.html">Home</a>
+    <a href="blog.html">Journal</a>
   </div>
 </nav>
 <main>
-  <section class="page-hero" style="text-align:center;max-width:640px;margin:0 auto;min-height:60vh;display:flex;flex-direction:column;align-items:center;justify-content:center">
-    <div style="font-family:'Playfair Display',serif;font-size:100px;line-height:1;color:rgba(234,214,198,.15);margin-bottom:20px">404</div>
-    <div class="eyebrow" style="margin-bottom:14px">Page not found</div>
-    <h1 style="font-size:clamp(36px,6vw,62px)">This page doesn't exist.</h1>
-    <p class="lead" style="font-size:16px">The page you're looking for may have moved or been removed. Let's get you back on track.</p>
-    <div class="hero-actions" style="justify-content:center;margin-top:28px;flex-wrap:wrap">
+  <div class="notfound-container">
+    <div class="notfound-code">404</div>
+    <div class="eyebrow" style="margin-bottom:12px">Page not found</div>
+    <h1 style="font-family:'Playfair Display',serif;font-size:clamp(28px,5vw,48px);line-height:1.05;margin-bottom:14px">This page doesn't exist.</h1>
+    <p style="color:var(--muted);font-size:16px;line-height:1.65;max-width:440px">The page you're looking for may have moved or been removed. Let's get you back on track.</p>
+    <div class="notfound-links">
       <a class="btn primary" href="index.html">Go home</a>
       <a class="btn secondary" href="discover.html">Discover professionals</a>
       <a class="btn secondary" href="blog.html">Beauty Journal</a>
     </div>
-  </section>
+    <div class="notfound-suggestions">
+      <a href="montreal.html">🇨🇦 Montréal</a>
+      <a href="dubai.html">🇦🇪 Dubai</a>
+      <a href="paris.html">🇫🇷 Paris</a>
+      <a href="london.html">🇬🇧 London</a>
+      <a href="new-york.html">🇺🇸 New York</a>
+      <a href="seoul.html">🇰🇷 Seoul</a>
+      <a href="professional-onboarding.html">Join as a pro</a>
+      <a href="contact.html">Contact us</a>
+    </div>
+  </div>
 </main>
-<footer class="footer"><b>Mortéa</b><span>Global luxury beauty discovery.</span></footer>
+<footer class="footer">
+  <b>Mortéa</b><span>Global luxury beauty discovery.</span>
+</footer>
+<script src="mortea-ui.js"></script>
 </body>
 </html>

@@ -1,61 +1,191 @@
-/* Mortéa Phase 19 — Mobile Optimization */
+/* ============================================================
+   Mortéa — Mobile & Responsive Styles v2
+   Breakpoints: 480px (small phones), 768px (tablets),
+   900px (small laptops), 1024px (desktop)
+   ============================================================ */
+
+/* ── 480px: Small Phones ────────────────────────────────────── */
+@media (max-width: 480px) {
+  html { font-size: 15px; }
+
+  .brand { font-size: 20px; }
+  .nav { padding: 12px 16px; }
+
+  .hero { padding: 28px 16px 36px; min-height: auto; }
+  .hero h1 { font-size: 36px; }
+  .hero-panel { min-height: 320px; padding: 16px; }
+  .lead { font-size: 15px; }
+
+  .search-row { grid-template-columns: 1fr; gap: 8px; }
+  .search-card { left: 12px; right: 12px; bottom: 12px; padding: 14px; }
+
+  .page-hero { padding: 44px 16px 16px; }
+  .page-hero h1 { font-size: 34px; }
+
+  .section { padding: 48px 16px; }
+  .section h2 { font-size: 28px; }
+
+  .btn { font-size: 14px; padding: 11px 20px; width: 100%; justify-content: center; }
+  .hero-actions { flex-direction: column; }
+  .hero-actions .btn { width: 100%; }
+
+  .metrics-section { grid-template-columns: repeat(2, 1fr); }
+  .metric { padding: 20px 12px; }
+  .metric-num { font-size: 30px; }
+
+  .feature-section { padding: 48px 16px; gap: 24px; }
+  .feature-visual { min-height: 260px; padding: 14px; }
+
+  .cta-banner { margin: 0 12px 48px; padding: 28px 20px; flex-direction: column; text-align: center; }
+  .cta-banner-actions { width: 100%; flex-direction: column; }
+  .cta-banner-actions .btn { width: 100%; }
+
+  .testimonials-grid { grid-template-columns: 1fr; }
+
+  .footer-full { padding: 40px 16px 20px; }
+  .footer-grid { grid-template-columns: 1fr; gap: 24px; }
+
+  .social-proof-bar { flex-direction: column; gap: 16px; align-items: center; }
+  .sp-divider { width: 60%; height: 1px; }
+
+  .cookie-banner { padding: 14px 16px; flex-direction: column; text-align: center; }
+  .cookie-banner-actions { width: 100%; flex-direction: column; }
+  .cookie-banner-actions .btn { width: 100%; }
+
+  .back-to-top { bottom: 20px; right: 16px; width: 40px; height: 40px; }
+  .toast-container { left: 12px; right: 12px; bottom: 12px; }
+  .toast { min-width: auto; max-width: 100%; font-size: 13px; padding: 12px 16px; }
+
+  input, textarea, select { font-size: 16px !important; } /* prevent iOS zoom */
+}
+
+/* ── 768px: Tablets ─────────────────────────────────────────── */
 @media (max-width: 768px) {
-  body {
-    overflow-x: hidden;
+  body { overflow-x: hidden; }
+
+  .nav {
+    flex-wrap: wrap; gap: 10px;
+    padding: 14px 20px;
   }
+  .nav-links {
+    display: none; flex-direction: column; gap: 8px;
+    width: 100%; padding: 12px 0 4px;
+    border-top: 1px solid var(--line); margin-top: 4px;
+  }
+  .nav-links.open { display: flex; }
+  .nav-toggle { display: flex; }
 
   .container,
   .dashboard-container,
   .provider-container,
   .pricing-container {
-    width: 100%;
-    padding: 18px;
+    width: 100%; padding: 16px;
   }
 
-  nav,
-  .navbar {
-    flex-direction: column;
-    gap: 14px;
-    align-items: flex-start;
-  }
-
-  .hero,
-  .provider-hero,
-  .dashboard-grid,
-  .pricing-grid,
-  .analytics-grid,
-  .booking-grid {
-    display: grid;
+  .hero, .discovery, .two {
     grid-template-columns: 1fr !important;
-    gap: 20px;
+  }
+  .hero { padding: 40px 20px 48px; min-height: auto; gap: 28px; }
+  .hero-panel { min-height: 420px; }
+
+  .page-hero { padding: 56px 20px 20px; }
+
+  .cards, .pricing { grid-template-columns: 1fr; }
+  .blog-grid { grid-template-columns: 1fr; }
+
+  .card, .provider-card, .booking-card,
+  .analytics-card, .pricing-card {
+    width: 100%; border-radius: 22px;
   }
 
-  .card,
-  .provider-card,
-  .booking-card,
-  .analytics-card,
-  .pricing-card {
-    width: 100%;
-    border-radius: 22px;
-  }
-
-  .hero-actions .btn,
-  .cta-button,
-  .form .btn {
-    min-height: 48px;
-    font-size: 16px;
+  .hero-actions .btn, .cta-button, .form .btn {
+    min-height: 48px; font-size: 16px;
   }
 
   input:not([type="checkbox"]):not([type="radio"]),
-  textarea,
-  select {
-    width: 100%;
-    min-height: 46px;
-    font-size: 16px;
+  textarea, select {
+    width: 100%; min-height: 46px; font-size: 16px;
   }
 
-  img {
-    max-width: 100%;
-    height: auto;
+  img { max-width: 100%; height: auto; }
+
+  .section { padding: 60px 20px; }
+  .hide-mobile { display: none !important; }
+
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 28px; }
+  .footer-brand-col { grid-column: 1 / -1; }
+  .newsletter-form { max-width: 100%; }
+
+  .discover-toolbar { gap: 6px; }
+  .filter-chip, .filter-select { font-size: 12px; padding: 7px 12px; }
+
+  .providers-grid { grid-template-columns: 1fr; }
+  .testimonials-grid { grid-template-columns: 1fr; }
+
+  .marquee-wrap { padding: 12px 0; }
+  .marquee-item { font-size: 11px; padding: 5px 12px; }
+
+  .city-strip { padding: 10px 20px; font-size: 11px; }
+
+  .search-row { grid-template-columns: 1fr 1fr; }
+  .security-strip { gap: 8px; }
+  .security-badge { padding: 8px 12px; font-size: 11px; }
+}
+
+/* ── 900px: Small Laptops ───────────────────────────────────── */
+@media (max-width: 900px) {
+  .cards, .pricing { grid-template-columns: repeat(2, 1fr); }
+  .blog-grid { grid-template-columns: repeat(2, 1fr); }
+
+  .metrics-section { grid-template-columns: repeat(2, 1fr); }
+  .feature-section { grid-template-columns: 1fr; gap: 32px; padding: 60px 5vw; }
+  .feature-section.reverse { direction: ltr; }
+
+  .city-strip { display: none; }
+  .cta-banner { padding: 32px 24px; }
+}
+
+/* ── 1024px: Standard Laptops ───────────────────────────────── */
+@media (max-width: 1024px) {
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+  .footer-brand-col { grid-column: 1 / -1; }
+}
+
+/* ── Touch device optimizations ─────────────────────────────── */
+@media (hover: none) and (pointer: coarse) {
+  /* Increase tap targets on touch devices */
+  .btn, button, .pill, .tag, .filter-chip,
+  .nav-links a, .footer-col a {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
   }
+
+  /* Remove hover-only effects on touch */
+  .card:hover, .price:hover, .testimonial-card:hover,
+  .blog-card:hover, .result:hover {
+    transform: none;
+  }
+
+  /* Show scrollbar hint on touch */
+  ::-webkit-scrollbar { width: 4px; }
+}
+
+/* ── High-DPI (Retina) screens ──────────────────────────────── */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  /* Ensure crisp rendering */
+  body { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+}
+
+/* ── Dark mode preference ───────────────────────────────────── */
+@media (prefers-color-scheme: dark) {
+  /* Site is already dark — ensure contrast */
+  .input, .textarea { background: rgba(255,255,255,.06); }
+}
+
+/* ── Landscape phones ───────────────────────────────────────── */
+@media (max-height: 500px) and (orientation: landscape) {
+  .hero { min-height: auto; padding: 20px 5vw; }
+  .hero-panel { min-height: 280px; }
+  .nav { position: relative; } /* don't cover content */
 }
