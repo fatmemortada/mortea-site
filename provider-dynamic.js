@@ -103,6 +103,10 @@ async function loadProviderProfile() {
   const addr = [provider.address, provider.city, provider.province, provider.country].filter(Boolean).join(', ');
   document.getElementById('profileAddress').textContent = addr || 'Location on request';
 
+  // Review link — pre-select this provider
+  const reviewLink = document.getElementById('btnLeaveReview');
+  if (reviewLink) reviewLink.href = `reviews.html?provider=${encodeURIComponent(providerId)}`;
+
   // Social links sidebar
   const socials = document.getElementById('socialLinks');
   const socialItems = [

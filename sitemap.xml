@@ -40,4 +40,10 @@
   <url><loc>https://www.mortea.ca/privacy.html</loc><changefreq>yearly</changefreq><priority>0.4</priority></url>
   <url><loc>https://www.mortea.ca/fr/about.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://www.mortea.ca/fr/contact.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.mortea.ca/ar/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.mortea.ca/ar/discover.html</loc><changefreq>daily</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.mortea.ca/ar/professional-onboarding.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.mortea.ca/ar/dubai.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.mortea.ca/ar/riyadh.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.mortea.ca/ar/beirut.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
 </urlset>

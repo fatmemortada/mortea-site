@@ -29,10 +29,16 @@
 <body class="mortea-luxury">
 <nav class="nav">
   <a class="brand" href="index.html">Mortéa</a>
-  <div class="nav-links">
+  <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="nav-links" id="navLinks">
     <a href="discover.html">Discover</a>
-    <a href="professional-onboarding.html">Professionals</a>
+    <a href="map.html">Map</a>
+    <a href="professional-onboarding.html">Join free</a>
+    <a href="reviews.html" style="color:var(--sand);font-weight:700">Reviews</a>
     <a href="login.html">Access</a>
+    <a class="lang" href="fr/index.html">FR</a>
   </div>
 </nav>
 
@@ -107,16 +113,35 @@
   </section>
 </main>
 
-<footer class="footer">
-  <b>Mortéa</b>
-  <span>Global luxury beauty discovery · Montréal, Canada</span>
-  <span style="display:flex;gap:14px;flex-wrap:wrap;justify-content:center">
-    <a href="about.html" style="color:var(--muted)">About</a>
-    <a href="blog.html" style="color:var(--muted)">Journal</a>
-    <a href="contact.html" style="color:var(--muted)">Contact</a>
-    <a href="terms.html" style="color:var(--muted)">Terms</a>
-    <a href="privacy.html" style="color:var(--muted)">Privacy</a>
-  </span>
+<footer class="footer-full">
+  <div class="footer-grid">
+    <div class="footer-brand-col">
+      <a class="brand" href="index.html" style="font-size:26px">Mortéa</a>
+      <p style="color:var(--muted);font-size:13px;line-height:1.7;margin-top:10px;max-width:220px">Global luxury beauty, wellness &amp; aesthetics discovery.</p>
+      <a class="lang" href="fr/index.html" style="display:inline-block;margin-top:14px;font-size:11px">FR · Français</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Discover</div>
+      <a href="discover.html">Search professionals</a>
+      <a href="map.html">Map view</a>
+      <a href="reviews.html">Reviews</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Professionals</div>
+      <a href="professional-onboarding.html">Join for free</a>
+      <a href="pricing.html">How it works</a>
+      <a href="login.html">Dashboard login</a>
+      <a href="blog.html">Journal</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Company</div>
+      <a href="about.html">About Mortéa</a>
+      <a href="contact.html">Contact</a>
+      <a href="terms.html">Terms</a>
+      <a href="privacy.html">Privacy</a>
+    </div>
+  </div>
+  <div class="footer-bottom"><span>© 2025 Mortéa — Global luxury beauty discovery · Montréal, Canada</span></div>
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -232,6 +257,15 @@ async function loadRecentReviews() {
 }
 
 loadRecentReviews();
+
+// Auto-select provider if ?provider=ID in URL
+(async function() {
+  const pid = new URLSearchParams(window.location.search).get('provider');
+  if (!pid) return;
+  const { data } = await supabaseClient.from('professionals')
+    .select('id,business_name,category,city').eq('id', pid).maybeSingle();
+  if (data) selectProvider(data.id, data.business_name, data.category||'', data.city||'');
+})();
 </script>
 <script src="mortea-ui.js"></script>
 </body>

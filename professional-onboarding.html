@@ -175,6 +175,11 @@
               <label class="field-label" for="description">About your work *</label>
               <textarea class="input textarea" id="description" placeholder="Tell us about your services, specialties, and experience..." required></textarea>
             </div>
+            <div class="input-wrap full">
+              <label class="field-label" for="profilePhotoFile">Profile Photo</label>
+              <input type="file" class="input" id="profilePhotoFile" accept="image/*" style="padding:10px;cursor:pointer">
+              <p style="font-size:11px;color:var(--muted);margin-top:4px">JPG, PNG or WebP · Max 5 MB · Your face or studio photo</p>
+            </div>
             <div class="full">
               <button class="btn primary" id="btnStep1" type="button" style="width:100%;padding:16px">Continue →</button>
               <p id="step1Message" style="margin-top:12px;text-align:center;font-size:14px;color:#e8aaaa"></p>
@@ -270,6 +275,7 @@ document.getElementById('btnStep1').addEventListener('click', async () => {
     owner_name:    document.getElementById('owner_name').value.trim(),
     email:         emailVal,
     phone:         document.getElementById('phone').value.trim(),
+    whatsapp:      document.getElementById('whatsapp').value.trim(),
     category:      document.getElementById('category').value.trim(),
     country:       document.getElementById('country').value.trim(),
     province:      document.getElementById('province').value.trim(),
@@ -284,6 +290,20 @@ document.getElementById('btnStep1').addEventListener('click', async () => {
   };
 
   try {
+    // Geocode address so professional appears on the map
+    btn.textContent = 'Locating address…';
+    try {
+      const fullAddress = [payload.address, payload.city, payload.province, payload.country].filter(Boolean).join(', ');
+      const geoRes  = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(fullAddress)}&key=${GOOGLE_MAPS_KEY}`);
+      const geoData = await geoRes.json();
+      if (geoData.results && geoData.results[0]) {
+        const loc = geoData.results[0].geometry.location;
+        payload.latitude  = loc.lat;
+        payload.longitude = loc.lng;
+      }
+    } catch(_) { /* non-fatal — submit without coords */ }
+
+    btn.textContent = 'Saving…';
     const { data: existing } = await supabaseClient.from('professionals').select('id').eq('email', emailVal).maybeSingle();
     if (existing) {
       await supabaseClient.from('professionals').update(payload).eq('id', existing.id);
@@ -293,6 +313,26 @@ document.getElementById('btnStep1').addEventListener('click', async () => {
       if (error) throw error;
       savedProviderId = data.id;
     }
+
+    // Upload profile photo if selected
+    const photoFile = document.getElementById('profilePhotoFile')?.files?.[0];
+    if (photoFile && savedProviderId) {
+      try {
+        btn.textContent = 'Uploading photo…';
+        const ext  = photoFile.name.split('.').pop().toLowerCase() || 'jpg';
+        const path = `${savedProviderId}/avatar.${ext}`;
+        const { error: upErr } = await supabaseClient.storage
+          .from('professional-photos')
+          .upload(path, photoFile, { upsert: true, contentType: photoFile.type });
+        if (!upErr) {
+          const { data: urlData } = supabaseClient.storage.from('professional-photos').getPublicUrl(path);
+          if (urlData?.publicUrl) {
+            await supabaseClient.from('professionals').update({ photo_url: urlData.publicUrl }).eq('id', savedProviderId);
+          }
+        }
+      } catch(_) { /* photo upload failure is non-fatal */ }
+    }
+
     goToStep(2);
   } catch(e) { msg.textContent = 'Error: ' + (e.message||'Please try again.'); }
   finally { btn.textContent='Continue →'; btn.disabled=false; }
