@@ -22,12 +22,11 @@ jobs:
         working-directory: ios/App
         run: |
           xcodebuild \
-            -workspace App.xcworkspace \
+            -project App.xcodeproj \
             -scheme App \
             -sdk iphoneos \
             -configuration Release \
             -archivePath ${{ github.workspace }}/build/Mortea.xcarchive \
-            -allowProvisioningUpdates \
             CODE_SIGN_IDENTITY=- \
             CODE_SIGNING_REQUIRED=NO \
             CODE_SIGNING_ALLOWED=NO \
@@ -36,12 +35,13 @@ jobs:
       - name: Export unsigned IPA
         run: |
           mkdir -p build/Payload
-          cp -R ${{ github.workspace }}/build/Mortea.xcarchive/Products/Applications/Mortéa.app build/Payload/
+          cp -R build/Mortea.xcarchive/Products/Applications/Mortéa.app build/Payload/ 2>/dev/null || \
+          cp -R build/Mortea.xcarchive/Products/Applications/App.app build/Payload/
           cd build && zip -r Mortea-unsigned.ipa Payload/
 
       - name: Upload IPA
         uses: actions/upload-artifact@v4
         with:
-          name: mortea-ios-unsigned
+          name: mortea-ios-ipa
           path: build/Mortea-unsigned.ipa
           retention-days: 30
