@@ -1,137 +1,157 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="Luxury beauty professional profile on Mortéa.">
+  <meta name="description" content="Beauty professional profile on Mortea. View services, reviews, and book appointments.">
+  <title>Provider Profile — Mortea</title>
   <link rel="alternate" hreflang="en" href="https://www.mortea.ca/provider.html">
   <link rel="alternate" hreflang="fr" href="https://www.mortea.ca/fr/provider.html">
+  <link rel="alternate" hreflang="ar" href="https://www.mortea.ca/ar/provider.html">
   <link rel="alternate" hreflang="x-default" href="https://www.mortea.ca/provider.html">
-  <title>Provider Profile — Mortéa</title>
+  <link rel="canonical" href="https://www.mortea.ca/provider.html">
+  <link rel="dns-prefetch" href="https://gnlglfjtgfygpybqlcpa.supabase.co">
+  <meta property="og:title" content="Provider Profile — Mortea">
+  <meta property="og:description" content="View services, reviews, and book appointments with beauty professionals on Mortea.">
+  <meta property="og:type" content="profile">
+  <meta property="og:image" content="https://www.mortea.ca/mortea-og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:image" content="https://www.mortea.ca/mortea-og.jpg">
+  <meta property="og:site_name" content="Mortea">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="mobile.css">
   <style>
-    .profile-hero { display:grid; grid-template-columns:160px 1fr; gap:28px; align-items:start; padding:60px 6vw 32px; }
-    .profile-avatar { width:160px; height:160px; border-radius:28px; background:linear-gradient(140deg,#d9b7a2,#3e2218); border:1px solid var(--line); overflow:hidden; flex-shrink:0; }
-    .profile-avatar img { width:100%; height:100%; object-fit:cover; }
-    .profile-name { font-family:'Playfair Display',serif; font-size:clamp(36px,5vw,62px); margin:0 0 8px; line-height:.95; }
-    .profile-cat  { color:var(--rose); font-size:14px; text-transform:uppercase; letter-spacing:.16em; font-weight:700; }
-    .profile-loc  { color:var(--muted); font-size:15px; margin-top:6px; }
-    .profile-ctas { display:flex; gap:10px; flex-wrap:wrap; margin-top:20px; }
-    .profile-body { display:grid; grid-template-columns:1fr 320px; gap:24px; padding:0 6vw 60px; align-items:start; }
-    .profile-main > h2 { font-family:'Playfair Display',serif; font-size:28px; margin:28px 0 12px; }
-    .services-grid { display:flex; gap:8px; flex-wrap:wrap; }
-    .service-tag  { border:1px solid var(--line); border-radius:999px; padding:8px 14px; font-size:13px; color:var(--champagne); }
-    .social-links { display:grid; gap:10px; }
-    .social-link  { display:flex; align-items:center; gap:12px; border:1px solid var(--line); border-radius:18px; padding:13px 16px; background:rgba(255,255,255,.04); transition:all .18s; color:var(--sand); font-weight:600; font-size:14px; }
+    .service-tag { display:inline-block; padding:6px 14px; border:1px solid var(--line); border-radius:999px; font-size:13px; color:var(--champagne); margin:4px 6px 4px 0; background:rgba(255,255,255,.04); }
+    .social-link { display:flex; align-items:center; gap:12px; border:1px solid var(--line); border-radius:18px; padding:13px 16px; background:rgba(255,255,255,.04); transition:all .18s; color:var(--sand); font-weight:600; font-size:14px; margin-bottom:8px; text-decoration:none; }
     .social-link:hover { border-color:var(--line-hi); background:rgba(255,255,255,.08); transform:translateY(-1px); }
     .social-link .icon { font-size:20px; width:26px; text-align:center; }
-    .review-card  { border:1px solid var(--line); border-radius:18px; padding:18px; background:rgba(255,255,255,.04); margin-bottom:12px; }
-    .review-stars { color:var(--champagne); font-size:16px; }
-    .stat-mini    { display:flex; gap:24px; flex-wrap:wrap; margin-top:10px; }
-    .stat-mini span { font-size:13px; color:var(--muted); }
-    .stat-mini strong { color:var(--sand); }
-    @media(max-width:800px){ .profile-hero{grid-template-columns:1fr;} .profile-avatar{width:100px;height:100px;border-radius:22px;} .profile-body{grid-template-columns:1fr;} }
+    .review-card { border:1px solid var(--line); border-radius:18px; padding:18px; background:rgba(255,255,255,.04); margin-bottom:12px; }
+    .review-stars { color:#f0c060; font-size:15px; margin-bottom:6px; }
+    @media(max-width:768px){ .v2-profile-body{grid-template-columns:1fr!important} .v2-profile-header{flex-direction:column!important;gap:20px!important} .v2-profile-avatar{width:100px!important;height:100px!important} }
   </style>
-  <link rel="stylesheet" href="mobile.css">
 </head>
 <body class="mortea-luxury">
 <a class="skip-to-content" href="#main">Skip to content</a>
+
 <nav class="nav">
-  <a class="brand" href="index.html">Mortéa</a>
+  <a class="brand" href="index.html">Mortea</a>
   <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false">
     <span></span><span></span><span></span>
   </button>
   <div class="nav-links" id="navLinks">
-    <a href="discover.html">Discover</a>
-    <a href="map.html">Map</a>
-    <a href="professional-onboarding.html">Join free</a>
-    <a href="pricing.html">How it works</a>
-    <a href="blog.html">Journal</a>
-    <a href="login.html" id="navAuthLink">Access</a>
-    <a class="lang" href="fr/provider.html">FR</a>
+    <a href="discover.html">Find Services</a>
+    <a href="professional-onboarding.html">For Professionals</a>
+    <a href="about.html">About</a>
+    <a href="login.html" id="navAuthLink">Login</a>
+    <a class="lang" href="fr/index.html">FR</a>
     <a class="lang" href="ar/index.html">AR</a>
   </div>
 </nav>
 
 <main id="main">
 
-<div id="profileLoading" style="text-align:center;padding:80px;color:var(--muted)">Loading profile…</div>
-<div id="profileContent" style="display:none">
-  <div class="profile-hero">
-    <div class="profile-avatar" id="avatarWrap">
-      <img loading="lazy" id="profilePhoto" src="" alt="" style="display:none">
-    </div>
-    <div>
-      <div class="profile-cat" id="profileCategory"></div>
-      <h1 class="profile-name" id="profileName"></h1>
-      <div class="profile-loc" id="profileLocation"></div>
-      <div class="stat-mini">
-        <span><strong id="profileRating">—</strong> avg rating</span>
-        <span><strong id="profileReviewCount">0</strong> reviews</span>
-        <span><strong id="profileViews">0</strong> views</span>
-      </div>
-      <div class="profile-ctas" id="profileCtas"></div>
-    <div style="display:flex;gap:10px;margin-top:12px;flex-wrap:wrap">
-      <a class="btn primary" id="btnBook" href="#" style="font-size:14px;display:none">📅 Request booking</a>
-      <button class="btn secondary" id="btnFav" onclick="toggleFav()" style="font-size:14px">♡ Save</button>
-    </div>
+  <div id="profileLoading" class="v2-container" style="text-align:center;padding:80px 20px">
+    <p style="color:var(--muted);font-size:16px">Loading profile...</p>
+  </div>
+
+  <div id="profileNotFound" class="v2-container" style="display:none;text-align:center;padding:80px 20px">
+    <div class="v2-empty">
+      <h3>Profile not found</h3>
+      <p style="margin-bottom:20px">This provider may have been removed or the link is incorrect.</p>
+      <a class="btn primary" href="discover.html">Browse professionals</a>
     </div>
   </div>
 
-  <div class="profile-body">
-    <div class="profile-main">
-      <div id="profileAboutSection" style="display:none">
-        <h2>About</h2>
-        <p id="profileBio" style="color:#d4c4b8;font-size:16px;line-height:1.75"></p>
-      </div>
+  <div id="profileContent" style="display:none">
+    <div class="v2-container">
 
-      <div id="profileServicesSection" style="display:none">
-        <h2>Services</h2>
-        <div class="services-grid" id="profileServices"></div>
-      </div>
-
-      <div id="profileReviewsSection">
-        <h2>Reviews</h2>
-        <div id="profileReviews">
-          <div style="color:var(--muted);font-size:14px">No reviews yet.</div>
+      <div class="v2-profile-header">
+        <div class="v2-profile-avatar">
+          <img id="profilePhoto" src="" alt="" style="display:none;width:100%;height:100%;object-fit:cover">
         </div>
-        <a class="btn secondary" id="btnLeaveReview" href="reviews.html" style="margin-top:16px;display:inline-flex">Leave a review</a>
+        <div class="v2-profile-info">
+          <div class="v2-profile-category" id="profileCategory"></div>
+          <h1 id="profileName"></h1>
+          <div class="v2-profile-location" id="profileLocation"></div>
+          <div class="v2-profile-rating">
+            <span style="color:#f0c060">&#9733;</span> <strong id="profileRating">-</strong> &middot; <span id="profileReviewCount">0</span> reviews &middot; <span id="profileViews">0</span> views
+          </div>
+          <div class="v2-profile-ctas" id="profileCtas"></div>
+        </div>
+      </div>
+
+      <div class="v2-profile-body">
+
+        <div class="v2-profile-main">
+
+          <div id="profileAboutSection" style="display:none">
+            <h2>About</h2>
+            <p id="profileBio"></p>
+          </div>
+
+          <div id="profileServicesSection" style="display:none">
+            <h2>Services &amp; Pricing</h2>
+            <div id="profileServices"></div>
+          </div>
+
+          <div id="profileGallerySection" style="display:none">
+            <h2>Gallery</h2>
+            <div class="v2-gallery" id="profileGallery"></div>
+          </div>
+
+          <div>
+            <h2>Reviews</h2>
+            <div id="profileReviews">
+              <p style="color:var(--muted);font-size:14px">No reviews yet.</p>
+            </div>
+            <a class="btn secondary" id="btnLeaveReview" href="reviews.html" style="margin-top:12px;font-size:13px">Leave a review</a>
+          </div>
+
+        </div>
+
+        <div class="v2-profile-sidebar">
+          <div class="v2-sidebar-card">
+            <div class="v2-sidebar-title">Connect</div>
+            <div id="socialLinks">
+              <p style="color:var(--muted);font-size:14px">No links added yet.</p>
+            </div>
+          </div>
+
+          <div class="v2-sidebar-card">
+            <div class="v2-sidebar-title">Location</div>
+            <p style="font-size:14px;color:var(--champagne);line-height:1.6" id="profileAddress"></p>
+          </div>
+
+          <div class="v2-sidebar-card">
+            <div class="v2-sidebar-title">Own this business?</div>
+            <a class="btn secondary" href="professional-onboarding.html" style="width:100%;justify-content:center;font-size:13px">Claim This Business</a>
+          </div>
+        </div>
+
       </div>
     </div>
-
-    <aside>
-      <div class="card" style="margin-bottom:16px">
-        <div class="eyebrow" style="margin-bottom:14px">Connect</div>
-        <div class="social-links" id="socialLinks"></div>
-      </div>
-      <div class="card">
-        <div class="eyebrow" style="margin-bottom:10px">Location</div>
-        <p id="profileAddress" style="color:var(--muted);font-size:14px;line-height:1.65"></p>
-      </div>
-    </aside>
   </div>
-</div>
-<div id="profileNotFound" style="display:none;text-align:center;padding:80px">
-  <h2 style="font-family:'Playfair Display',serif;font-size:36px;margin-bottom:12px">Profile not found</h2>
-  <p style="color:var(--muted);margin-bottom:24px">This profile couldn't be loaded.</p>
-  <a class="btn primary" href="discover.html">Back to Discover</a>
-</div>
 
 </main>
 
 <footer class="footer-full">
   <div class="footer-grid">
     <div class="footer-brand-col">
-      <a class="brand" href="index.html" style="font-size:26px">Mortéa</a>
-      <p style="color:var(--muted);font-size:13px;line-height:1.7;margin-top:10px;max-width:220px">Global luxury beauty, wellness &amp; aesthetics discovery.</p>
-      <a class="lang" href="fr/index.html" style="display:inline-block;margin-top:14px;font-size:11px">FR · Français</a>
+      <a class="brand" href="index.html" style="font-size:26px">Mortea</a>
+      <p style="color:var(--muted);font-size:13px;line-height:1.7;margin-top:10px;max-width:240px">Find beauty services near you. Discover salons, clinics, and beauty professionals worldwide.</p>
+      <div style="margin-top:16px;display:flex;gap:12px;align-items:center">
+        <a class="lang" href="fr/index.html" style="font-size:11px">FR</a>
+        <a class="lang" href="ar/index.html" style="font-size:11px">AR</a>
+      </div>
       <div style="margin-top:18px">
         <div style="font-size:11px;text-transform:uppercase;letter-spacing:.14em;color:var(--rose);font-weight:700;margin-bottom:8px">Newsletter</div>
-        <form class="newsletter-form" onsubmit="event.preventDefault();var e=this.querySelector('input');if(e.value){showToast('Welcome to Mortéa! ✨','success');e.value=''}">
-          <input class="input" type="email" placeholder="Your email" style="font-size:13px;padding:10px 14px" required>
+        <form class="newsletter-form" onsubmit="event.preventDefault();var e=this.querySelector('input');if(e.value){showToast('Welcome to Mortea!','success');e.value=''}">
+          <input class="input" type="email" placeholder="Your email" style="font-size:13px;padding:10px 14px" required aria-label="Newsletter email">
           <button class="btn primary sm" type="submit" style="white-space:nowrap">Join</button>
         </form>
         <div style="margin-top:14px;display:flex;gap:10px;align-items:center">
@@ -141,26 +161,33 @@
       </div>
     </div>
     <div class="footer-col">
-      <div class="footer-col-title">Discover</div>
+      <div class="footer-col-title">Find Services</div>
       <a href="discover.html">Search professionals</a>
       <a href="map.html">Map view</a>
-      <a href="reviews.html">Leave a review</a>
     </div>
     <div class="footer-col">
-      <div class="footer-col-title">Professionals</div>
+      <div class="footer-col-title">For Professionals</div>
       <a href="professional-onboarding.html">Join for free</a>
-      <a href="pricing.html">How it works</a>
       <a href="login.html">Dashboard login</a>
     </div>
     <div class="footer-col">
       <div class="footer-col-title">Company</div>
-      <a href="about.html">About Mortéa</a>
-      <a href="contact.html">Contact</a>
-      <a href="terms.html">Terms</a>
-      <a href="privacy.html">Privacy</a>
+      <a href="about.html">About Mortea</a>
+      <a href="contact.html">Contact us</a>
+      <a href="terms.html">Terms of Service</a>
+      <a href="privacy.html">Privacy Policy</a>
     </div>
   </div>
-  <div class="footer-bottom"><span>© 2025 Mortéa — Global luxury beauty discovery</span></div>
+  <div class="security-strip">
+    <div class="security-badge"><span class="sb-icon">&#128274;</span> Stripe Secure Payments</div>
+    <div class="security-badge"><span class="sb-icon">&#127758;</span> Local Currency Support</div>
+    <div class="security-badge"><span class="sb-icon">&#11088;</span> Verified Reviews</div>
+    <div class="security-badge"><span class="sb-icon">&#128737;</span> Privacy First</div>
+    <div class="security-badge"><span class="sb-icon">&#128241;</span> Mobile Friendly</div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Mortea - Global luxury beauty discovery - Montreal, Canada - All rights reserved.</span>
+  </div>
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>

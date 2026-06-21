@@ -3,9 +3,16 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="Discover luxury beauty professionals, aesthetic clinics, and wellness experts near you. Filter by service, city, rating, and category on Mortéa.">
-  <meta property="og:title" content="Discover Beauty Professionals Near You — Mortéa">
-  <meta property="og:description" content="Search and discover luxury beauty professionals and aesthetic clinics near you.">
+  <meta name="description" content="Discover beauty professionals, aesthetic clinics, and wellness experts near you on Mortéa.">
+  <title>Find Beauty Professionals — Mortéa</title>
+  <link rel="alternate" hreflang="en" href="https://www.mortea.ca/discover.html">
+  <link rel="alternate" hreflang="fr" href="https://www.mortea.ca/fr/discover.html">
+  <link rel="alternate" hreflang="ar" href="https://www.mortea.ca/ar/discover.html">
+  <link rel="alternate" hreflang="x-default" href="https://www.mortea.ca/discover.html">
+  <link rel="canonical" href="https://www.mortea.ca/discover.html">
+  <link rel="dns-prefetch" href="https://gnlglfjtgfygpybqlcpa.supabase.co">
+  <meta property="og:title" content="Find Beauty Professionals — Mortéa">
+  <meta property="og:description" content="Search and discover beauty professionals and aesthetic clinics near you.">
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://www.mortea.ca/mortea-og.jpg">
   <meta property="og:image:width" content="1200">
@@ -14,96 +21,100 @@
   <meta property="og:url" content="https://www.mortea.ca/discover.html">
   <meta property="og:site_name" content="Mortéa">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Discover Beauty Professionals Near You — Mortéa">
-  <meta name="twitter:description" content="Search and discover luxury beauty professionals and aesthetic clinics near you.">
-  <link rel="alternate" hreflang="en" href="https://www.mortea.ca/discover.html">
-  <link rel="alternate" hreflang="fr" href="https://www.mortea.ca/fr/discover.html">
-  <link rel="alternate" hreflang="ar" href="https://www.mortea.ca/ar/discover.html">
-  <link rel="alternate" hreflang="x-default" href="https://www.mortea.ca/discover.html">
-  <link rel="canonical" href="https://www.mortea.ca/discover.html">
-  <link rel="dns-prefetch" href="https://gnlglfjtgfygpybqlcpa.supabase.co">
-  <title>Discover Beauty Professionals — Mortéa</title>
+  <meta name="twitter:title" content="Find Beauty Professionals — Mortéa">
+  <meta name="twitter:description" content="Search and discover beauty professionals and aesthetic clinics near you.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="mobile.css">
   <style>
-    .discover-toolbar { display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin:16px 0; }
-    .filter-select { border:1px solid var(--line); border-radius:999px; background:rgba(255,255,255,.04); color:var(--champagne); padding:9px 16px; font-size:13px; cursor:pointer; font-family:inherit; transition:all .18s; appearance:none; -webkit-appearance:none; padding-right:28px; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23bca89a'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:right 12px center; }
-    .filter-select:focus { outline:none; border-color:var(--line-hi); }
-    .filter-chip { border:1px solid var(--line); border-radius:999px; background:rgba(255,255,255,.04); color:var(--champagne); padding:8px 14px; font-size:13px; cursor:pointer; transition:all .18s; white-space:nowrap; }
-    .filter-chip:hover, .filter-chip.active { background:rgba(234,214,198,.12); border-color:var(--line-hi); color:var(--sand); }
-    .chips-row { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:16px; }
-    .result-bar { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px; margin-bottom:20px; }
-    .result-count { font-size:13px; color:var(--rose); text-transform:uppercase; letter-spacing:.12em; font-weight:700; }
-    .view-toggle { display:flex; gap:4px; }
-    .view-btn { border:1px solid var(--line); border-radius:10px; padding:7px 10px; background:rgba(255,255,255,.04); color:var(--muted); cursor:pointer; font-size:14px; transition:all .18s; }
-    .view-btn.active { background:rgba(234,214,198,.12); border-color:var(--line-hi); color:var(--sand); }
-    /* Grid view */
+    /* Classes needed by discover-dynamic.js */
     .providers-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:16px; }
     .provider-grid-card { border:1px solid var(--line); border-radius:24px; overflow:hidden; background:linear-gradient(165deg,rgba(255,255,255,.055),rgba(255,255,255,.015)); transition:all .2s; }
     .provider-grid-card:hover { border-color:var(--line-hi); transform:translateY(-2px); box-shadow:0 16px 44px rgba(0,0,0,.32); }
-    .grid-thumb { height:160px; background:linear-gradient(140deg,#d9b7a2,#3e2218); background-size:cover; background-position:center; position:relative; }
+    .grid-thumb { height:160px; background-size:cover; background-position:center; position:relative; }
     .grid-cat-badge { position:absolute; bottom:10px; left:10px; background:rgba(7,5,4,.78); border:1px solid var(--line); border-radius:999px; padding:4px 10px; font-size:11px; color:var(--rose); font-weight:700; text-transform:uppercase; letter-spacing:.1em; backdrop-filter:blur(6px); }
     .grid-body { padding:16px; }
     .grid-body h3 { font-size:16px; font-weight:700; margin:0 0 4px; }
-    .grid-body h3 a { color:inherit; }
+    .grid-body h3 a { color:inherit; text-decoration:none; }
     .grid-body h3 a:hover { color:var(--champagne); }
     .grid-loc { font-size:13px; color:var(--muted); margin-bottom:10px; }
     .grid-actions { display:flex; gap:7px; }
+    /* List view classes for discover-dynamic.js */
+    .result { display:grid; grid-template-columns:120px 1fr; gap:16px; border:1px solid var(--line); border-radius:22px; overflow:hidden; background:rgba(255,255,255,.03); transition:all .2s; }
+    .result:hover { border-color:var(--line-hi); background:rgba(255,255,255,.05); }
+    .thumb { height:100%; min-height:120px; background-size:cover; background-position:center; }
+    .socials { display:flex; gap:8px; flex-wrap:wrap; }
+    .socials a { padding:5px 12px; border-radius:999px; font-size:12px; font-weight:600; transition:all .15s; border:1px solid var(--line); color:var(--champagne); text-decoration:none; }
+    .socials a:hover { border-color:var(--line-hi); color:var(--sand); }
+    .tag { display:inline-block; padding:4px 10px; border:1px solid var(--line); border-radius:999px; font-size:11px; color:var(--muted); margin:2px 4px 2px 0; }
+    .taglist { display:flex; flex-wrap:wrap; }
     .empty-state { text-align:center; padding:60px 20px; border:1px solid var(--line); border-radius:26px; color:var(--muted); }
     .empty-state h3 { font-family:'Playfair Display',serif; font-size:26px; color:var(--champagne); margin-bottom:10px; }
+    /* Chip + filter extras */
+    .filter-chip { border:1px solid var(--line); border-radius:999px; background:rgba(255,255,255,.04); color:var(--champagne); padding:8px 14px; font-size:13px; cursor:pointer; transition:all .18s; white-space:nowrap; font-family:inherit; }
+    .filter-chip:hover, .filter-chip.active { background:rgba(234,214,198,.12); border-color:var(--line-hi); color:var(--sand); }
+    .chips-row { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:16px; }
+    .view-btn { border:1px solid var(--line); border-radius:10px; padding:7px 10px; background:rgba(255,255,255,.04); color:var(--muted); cursor:pointer; font-size:14px; transition:all .18s; }
+    .view-btn.active { background:rgba(234,214,198,.12); border-color:var(--line-hi); color:var(--sand); }
     .loading-shimmer { display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:16px; }
     .shimmer-card { height:280px; border-radius:24px; background:linear-gradient(90deg,rgba(255,255,255,.04) 25%,rgba(255,255,255,.08) 50%,rgba(255,255,255,.04) 75%); background-size:200% 100%; animation:shimmer 1.4s infinite; }
     @keyframes shimmer { 0%{background-position:200% 0} 100%{background-position:-200% 0} }
-    @media(max-width:600px){ .providers-grid{grid-template-columns:1fr} .discover-toolbar{gap:7px} #searchBar{grid-template-columns:1fr 1fr!important} #searchBar #nearMeBtn{display:none} }
+    @media(max-width:600px){ .providers-grid{grid-template-columns:1fr} .result{grid-template-columns:1fr} .thumb{height:160px} }
   </style>
 </head>
 <body class="mortea-luxury">
 <a class="skip-to-content" href="#main">Skip to content</a>
+
 <nav class="nav">
   <a class="brand" href="index.html">Mortéa</a>
   <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false">
     <span></span><span></span><span></span>
   </button>
   <div class="nav-links" id="navLinks">
-    <a href="discover.html" style="color:var(--sand);font-weight:700">Discover</a>
-    <a href="map.html">Map</a>
-    <a href="professional-onboarding.html">Join free</a>
-    <a href="pricing.html">How it works</a>
-    <a href="blog.html">Journal</a>
-    <a href="login.html">Access</a>
+    <a href="discover.html" style="color:var(--sand);font-weight:700">Find Services</a>
+    <a href="professional-onboarding.html">For Professionals</a>
+    <a href="about.html">About</a>
+    <a href="login.html" id="navAuthLink">Login</a>
     <a class="lang" href="fr/discover.html">FR</a>
+    <a class="lang" href="ar/discover.html">AR</a>
   </div>
 </nav>
 
 <main id="main">
-  <section class="page-hero" style="padding-bottom:16px">
-    <div class="eyebrow">Live beauty, wellness &amp; aesthetics search</div>
-    <h1>Discover beauty experts near you.</h1>
-    <p class="lead">Search real Mortéa professionals by service, city, category, or social portfolio.</p>
-  </section>
-
-  <section class="section" style="padding-top:8px">
+  <div class="v2-container" style="padding-top:32px;padding-bottom:60px">
 
     <!-- Search bar -->
-    <div style="display:grid;grid-template-columns:1fr 1fr auto auto;gap:10px;max-width:860px;margin-bottom:14px" id="searchBar">
-      <input class="input" id="discoverServiceSearch" placeholder="Botox, lashes, head spa, facial…" aria-label="Search by service">
-      <input class="input" id="discoverCitySearch" placeholder="City or country" aria-label="Search by city">
-      <button class="btn secondary" id="nearMeBtn" title="Use my location" style="white-space:nowrap;font-size:14px">📍 Near me</button>
-      <button class="btn primary" id="discoverSearchButton">Search</button>
+    <div class="v2-search" style="margin-bottom:16px">
+      <input id="discoverServiceSearch" placeholder="Service (Botox, lashes, facial...)" aria-label="Search by service">
+      <input id="discoverCitySearch" placeholder="City or location" aria-label="Search by city">
+      <button class="v2-search-btn" id="discoverSearchButton">Search</button>
     </div>
 
-    <!-- Filters toolbar -->
-    <div class="discover-toolbar">
-      <select class="filter-select" id="sortFilter" onchange="applyFilters()">
+    <!-- Quick chips -->
+    <div class="chips-row" id="quickChips">
+      <button class="filter-chip" data-service="Botox">Botox</button>
+      <button class="filter-chip" data-service="Laser">Laser</button>
+      <button class="filter-chip" data-service="Head Spa">Head Spa</button>
+      <button class="filter-chip" data-service="Lashes">Lashes</button>
+      <button class="filter-chip" data-service="Nails">Nails</button>
+      <button class="filter-chip" data-service="Med Spa">Med Spa</button>
+      <button class="filter-chip" data-service="Facial">Facials</button>
+      <button class="filter-chip" data-service="Massage">Massage</button>
+      <button class="filter-chip" data-service="Hair">Hair</button>
+      <button class="filter-chip" data-service="Makeup">Makeup</button>
+    </div>
+
+    <!-- Filters -->
+    <div class="v2-filters">
+      <select class="v2-filter-select" id="sortFilter" onchange="applyFilters()">
         <option value="">Sort: Default</option>
         <option value="name">Sort: A–Z</option>
         <option value="rating">Sort: Highest rated</option>
         <option value="reviews">Sort: Most reviewed</option>
       </select>
-      <select class="filter-select" id="categoryFilter" onchange="applyFilters()">
+      <select class="v2-filter-select" id="categoryFilter" onchange="applyFilters()">
         <option value="">All categories</option>
         <option value="Botox">Botox clinics</option>
         <option value="Laser">Laser clinics</option>
@@ -120,40 +131,16 @@
         <option value="Wellness">Wellness</option>
         <option value="Creator">Beauty creators</option>
       </select>
-      <select class="filter-select" id="cityFilter" onchange="applyFilters()">
+      <select class="v2-filter-select" id="cityFilter" onchange="applyFilters()">
         <option value="">All cities</option>
-        <option value="montreal">Montréal</option>
-        <option value="dubai">Dubai</option>
-        <option value="paris">Paris</option>
-        <option value="beirut">Beirut</option>
-        <option value="riyadh">Riyadh</option>
-        <option value="london">London</option>
-        <option value="toronto">Toronto</option>
-        <option value="new york">New York</option>
-        <option value="seoul">Seoul</option>
-        <option value="milan">Milan</option>
       </select>
       <button class="filter-chip" id="btnClearFilters" onclick="clearFilters()" style="display:none">✕ Clear filters</button>
     </div>
 
-    <!-- Quick chips -->
-    <div class="chips-row" id="quickChips">
-      <button class="filter-chip" data-service="Botox">Botox</button>
-      <button class="filter-chip" data-service="Laser">Laser</button>
-      <button class="filter-chip" data-service="Head Spa">Head Spa</button>
-      <button class="filter-chip" data-service="Lash">Lashes</button>
-      <button class="filter-chip" data-service="Nail">Nails</button>
-      <button class="filter-chip" data-service="Med Spa">Med Spa</button>
-      <button class="filter-chip" data-service="Facial">Facials</button>
-      <button class="filter-chip" data-service="Massage">Massage</button>
-      <button class="filter-chip" data-service="Body Contouring">Body Contouring</button>
-      <button class="filter-chip" data-service="Makeup">Makeup</button>
-    </div>
-
     <!-- Result bar -->
-    <div class="result-bar">
-      <span class="result-count" id="discoverProviderCount">Loading…</span>
-      <div class="view-toggle">
+    <div class="v2-result-bar">
+      <span class="v2-result-count" id="discoverProviderCount">Loading…</span>
+      <div style="display:flex;gap:4px">
         <button class="view-btn active" id="btnGridView" onclick="setView('grid')" title="Grid view">⊞</button>
         <button class="view-btn" id="btnListView" onclick="setView('list')" title="List view">☰</button>
       </div>
@@ -169,26 +156,14 @@
       </div>
     </div>
 
-    <!-- City links -->
-    <div style="margin-top:60px">
-      <div class="eyebrow" style="margin-bottom:16px">Explore by city</div>
-      <div class="grid cards">
-        <div class="card"><h3><a href="montreal.html">Montréal</a></h3><p>Head spas, Botox, laser, lashes, med spas and wellness.</p></div>
-        <div class="card"><h3><a href="dubai.html">Dubai</a></h3><p>Botox clinics, laser, med spas, luxury salons, lashes.</p></div>
-        <div class="card"><h3><a href="paris.html">Paris</a></h3><p>Skincare clinics, facials, salons, and aesthetic destinations.</p></div>
-        <div class="card"><h3><a href="london.html">London</a></h3><p>Botox, laser, head spas, lashes, nails, and med spas.</p></div>
-        <div class="card"><h3><a href="toronto.html">Toronto</a></h3><p>Bilingual beauty, head spas, laser clinics, lashes, nails.</p></div>
-        <div class="card"><h3><a href="beirut.html">Beirut</a></h3><p>Injectors, lashes, hair, makeup, nails, aesthetic clinics.</p></div>
-      </div>
-    </div>
-  </section>
+  </div>
 </main>
 
 <footer class="footer-full">
   <div class="footer-grid">
     <div class="footer-brand-col">
       <a class="brand" href="index.html" style="font-size:26px">Mortéa</a>
-      <p style="color:var(--muted);font-size:13px;line-height:1.7;margin-top:10px;max-width:240px">Global luxury beauty, wellness &amp; aesthetics discovery. Curated professionals worldwide.</p>
+      <p style="color:var(--muted);font-size:13px;line-height:1.7;margin-top:10px;max-width:240px">Find beauty services near you. Discover salons, clinics, and beauty professionals worldwide.</p>
       <div style="margin-top:16px;display:flex;gap:12px;align-items:center">
         <a class="lang" href="fr/index.html" style="font-size:11px">FR</a>
         <a class="lang" href="ar/index.html" style="font-size:11px">AR</a>
@@ -206,38 +181,21 @@
       </div>
     </div>
     <div class="footer-col">
-      <div class="footer-col-title">Discover</div>
+      <div class="footer-col-title">Find Services</div>
       <a href="discover.html">Search professionals</a>
       <a href="map.html">Map view</a>
-      <a href="montreal.html">Montréal</a>
-      <a href="dubai.html">Dubai</a>
-      <a href="paris.html">Paris</a>
-      <a href="london.html">London</a>
-      <a href="new-york.html">New York</a>
-      <a href="riyadh.html">Riyadh</a>
-      <a href="seoul.html">Seoul</a>
-      <a href="milan.html">Milan</a>
-      <a href="beirut.html">Beirut</a>
-      <a href="toronto.html">Toronto</a>
     </div>
     <div class="footer-col">
       <div class="footer-col-title">For Professionals</div>
       <a href="professional-onboarding.html">Join for free</a>
-      <a href="pricing.html">How it works</a>
       <a href="login.html">Dashboard login</a>
-      <a href="provider.html">Provider resources</a>
-      <a href="blog.html">Journal</a>
-      <a href="referral.html">Refer a professional</a>
     </div>
     <div class="footer-col">
       <div class="footer-col-title">Company</div>
       <a href="about.html">About Mortéa</a>
       <a href="contact.html">Contact us</a>
-      <a href="blog.html">Blog</a>
-      <a href="reviews.html">Reviews</a>
       <a href="terms.html">Terms of Service</a>
       <a href="privacy.html">Privacy Policy</a>
-      <a href="beta.html">Beta program</a>
     </div>
   </div>
   <div class="security-strip">
@@ -258,89 +216,54 @@
 <script src="script.js"></script>
 <script src="discover-dynamic.js"></script>
 <script>
-let currentView = 'grid';
+  /* Quick chips */
+  document.querySelectorAll('[data-service]').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var val = btn.getAttribute('data-service');
+      var input = document.getElementById('discoverServiceSearch');
+      if (input.value.toLowerCase() === val.toLowerCase()) {
+        input.value = '';
+        btn.classList.remove('active');
+      } else {
+        input.value = val;
+        document.querySelectorAll('[data-service]').forEach(function(b) { b.classList.remove('active'); });
+        btn.classList.add('active');
+      }
+      applyFilters();
+    });
+  });
 
-function setView(v) {
-  currentView = v;
-  document.getElementById('btnGridView').classList.toggle('active', v==='grid');
-  document.getElementById('btnListView').classList.toggle('active', v==='list');
-  renderCurrentProviders();
-}
-
-// Quick chips
-document.querySelectorAll('[data-service]').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const val = btn.getAttribute('data-service');
-    const input = document.getElementById('discoverServiceSearch');
-    if (input.value.toLowerCase() === val.toLowerCase()) {
-      input.value = '';
-      btn.classList.remove('active');
-    } else {
-      input.value = val;
-      document.querySelectorAll('[data-service]').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
+  /* View toggle */
+  function setView(v) {
+    window._viewOverride = v;
+    document.getElementById('btnGridView').classList.toggle('active', v==='grid');
+    document.getElementById('btnListView').classList.toggle('active', v==='list');
+    if (typeof renderCurrentProviders === 'function') {
+      var oldView = typeof currentView !== 'undefined' ? currentView : 'grid';
+      if (typeof currentView !== 'undefined') currentView = v;
+      renderCurrentProviders();
     }
-    applyFilters();
-  });
-});
+  }
 
-// Search button + Enter key
-document.getElementById('discoverSearchButton').addEventListener('click', applyFilters);
-['discoverServiceSearch','discoverCitySearch'].forEach(id => {
-  document.getElementById(id)?.addEventListener('keydown', e => { if(e.key==='Enter') applyFilters(); });
-});
+  /* Filter helpers */
+  function applyFilters() {
+    document.getElementById('btnClearFilters').style.display =
+      (document.getElementById('discoverServiceSearch').value ||
+       document.getElementById('discoverCitySearch').value ||
+       document.getElementById('categoryFilter').value ||
+       document.getElementById('cityFilter').value) ? 'inline-flex' : 'none';
+    if (typeof filterDiscoverProviders === 'function') filterDiscoverProviders();
+  }
 
-function applyFilters() {
-  document.getElementById('btnClearFilters').style.display =
-    (document.getElementById('discoverServiceSearch').value ||
-     document.getElementById('discoverCitySearch').value ||
-     document.getElementById('categoryFilter').value ||
-     document.getElementById('cityFilter').value) ? 'inline-flex' : 'none';
-  filterDiscoverProviders();
-}
-
-function clearFilters() {
-  document.getElementById('discoverServiceSearch').value = '';
-  document.getElementById('discoverCitySearch').value    = '';
-  document.getElementById('categoryFilter').value        = '';
-  document.getElementById('cityFilter').value            = '';
-  document.querySelectorAll('[data-service]').forEach(b => b.classList.remove('active'));
-  document.getElementById('btnClearFilters').style.display = 'none';
-  filterDiscoverProviders();
-}
-
-// Pre-fill from URL params
-const params = new URLSearchParams(window.location.search);
-if (params.get('service')) document.getElementById('discoverServiceSearch').value = params.get('service');
-if (params.get('city'))    document.getElementById('discoverCitySearch').value    = params.get('city');
-
-// Near me button
-(function() {
-  const btn = document.getElementById('nearMeBtn');
-  if (!btn || !navigator.geolocation) { if (btn) btn.style.display = 'none'; return; }
-  btn.addEventListener('click', () => {
-    btn.textContent = '…';
-    btn.disabled = true;
-    navigator.geolocation.getCurrentPosition(async pos => {
-      try {
-        const { latitude: lat, longitude: lng } = pos.coords;
-        const res  = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&result_type=locality&key=${GOOGLE_MAPS_KEY}`);
-        const data = await res.json();
-        const city = data.results?.[0]?.address_components?.find(c => c.types.includes('locality'))?.long_name
-                  || data.results?.[0]?.formatted_address?.split(',')[0];
-        if (city) {
-          document.getElementById('discoverCitySearch').value = city;
-          applyFilters();
-        }
-      } catch(e) {}
-      btn.textContent = '📍 Near me';
-      btn.disabled = false;
-    }, () => {
-      btn.textContent = '📍 Near me';
-      btn.disabled = false;
-    }, { timeout: 8000 });
-  });
-})();
+  function clearFilters() {
+    document.getElementById('discoverServiceSearch').value = '';
+    document.getElementById('discoverCitySearch').value    = '';
+    document.getElementById('categoryFilter').value        = '';
+    document.getElementById('cityFilter').value            = '';
+    document.querySelectorAll('[data-service]').forEach(function(b) { b.classList.remove('active'); });
+    document.getElementById('btnClearFilters').style.display = 'none';
+    if (typeof filterDiscoverProviders === 'function') filterDiscoverProviders();
+  }
 </script>
 <script src="mortea-ui.js"></script>
 </body>
