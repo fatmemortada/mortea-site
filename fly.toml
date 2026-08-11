@@ -1,14 +1,23 @@
 app = "mortea"
-primary_region = "iad"
+primary_region = "yyz"
+
+[deploy]
+release_command = "sh -c 'python manage.py migrate --noinput && python manage.py seed_beauty_providers'"
+strategy = "immediate"
 
 [http_service]
-  internal_port = 80
-  force_https = true
-  auto_start_machines = true
-  auto_stop_machines = "suspend"
-  min_machines_running = 0
+auto_start_machines = true
+auto_stop_machines = "suspend"
+force_https = true
+internal_port = 8080
+min_machines_running = 0
+
+[http_service.concurrency]
+hard_limit = 50
+soft_limit = 25
+type = "requests"
 
 [[vm]]
-  cpu_kind = "shared"
-  cpus = 1
-  memory_mb = 256
+cpu_kind = "shared"
+cpus = 1
+memory = "1024mb"
